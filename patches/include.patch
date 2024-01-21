@@ -1,0 +1,64 @@
+diff --color -ruN mole-3.0/examples_C++/Makefile mole-3.0-patched/examples_C++/Makefile
+--- mole-3.0/examples_C++/Makefile	2023-11-01 14:42:19.000000000 -0500
++++ mole-3.0-patched/examples_C++/Makefile	2024-01-20 19:58:11.235932420 -0500
+@@ -1,12 +1,12 @@
+ ifndef ARMA
+ # Put here the path to Armadillo
+-ARMA = /home/johnny/armadillo-10.2.1
++ARMA = /usr/include
+ endif
+ 
+ ifndef EIGEN
+ # Put here the path to Eigen (optional)
+ # We recommend SuperLU over Eigen for the sparse LU factorization
+-#EIGEN = /usr/include/eigen3
++EIGEN = /usr/include/eigen3
+ endif
+ 
+ #----------------------------------------------------------------------
+diff --color -ruN mole-3.0/Makefile mole-3.0-patched/Makefile
+--- mole-3.0/Makefile	2023-11-01 14:42:19.000000000 -0500
++++ mole-3.0-patched/Makefile	2024-01-20 19:57:22.705559846 -0500
+@@ -1,10 +1,10 @@
+ # Put here the path to Armadillo
+-ARMA = /home/johnny/Desktop/armadillo-10.2.1
++ARMA = /usr/include
+ 
+ # Put here the path to Eigen (optional)
+ # You won't need it unless you have to solve a linear system in which
+ # case we recommend to use SuperLU over Eigen for the sparse LU factorization
+-#EIGEN = /usr/include/eigen3
++EIGEN = /usr/include/eigen3
+ 
+ export
+ 
+diff --color -ruN mole-3.0/mole_C++/Makefile mole-3.0-patched/mole_C++/Makefile
+--- mole-3.0/mole_C++/Makefile	2023-11-01 14:42:19.000000000 -0500
++++ mole-3.0-patched/mole_C++/Makefile	2024-01-20 19:57:55.772479209 -0500
+@@ -1,13 +1,13 @@
+ ifndef ARMA
+ # Put here the path to Armadillo
+-ARMA = /home/johnny/armadillo-10.2.1
++ARMA = /usr/include
+ endif
+ 
+ ifndef EIGEN
+ # Put here the path to Eigen (optional)
+ # You won't need it unless you have to solve a linear system in which
+ # case we recommend to use SuperLU over Eigen for the sparse LU factorization
+-#EIGEN = /usr/include/eigen3
++EIGEN = /usr/include/eigen3
+ endif
+ 
+ #----------------------------------------------------------------------
+diff --color -ruN mole-3.0/tests_C++/Makefile mole-3.0-patched/tests_C++/Makefile
+--- mole-3.0/tests_C++/Makefile	2023-11-01 14:42:19.000000000 -0500
++++ mole-3.0-patched/tests_C++/Makefile	2024-01-20 19:57:38.309011790 -0500
+@@ -1,6 +1,6 @@
+ ifndef ARMA
+ # Put here the path to Armadillo
+-ARMA = /home/johnny/armadillo-10.2.1
++ARMA = /usr/include
+ endif
+ #----------------------------------------------------------------------
+ MOLE = ../mole_C++
