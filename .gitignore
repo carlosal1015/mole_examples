@@ -33,3 +33,4 @@
 *.patch
 *.tar.gz
 mole-*
+build
