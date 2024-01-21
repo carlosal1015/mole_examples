@@ -26,3 +26,6 @@ target_link_libraries(helloarmadillo ${ARMADILLO_LIBRARIES})
 
 add_executable(helloeigen helloeigen.cc)
 target_link_libraries(helloeigen Eigen3::Eigen)
+
+add_executable(sparse sparse.cc)
+target_link_libraries(sparse Eigen3::Eigen)

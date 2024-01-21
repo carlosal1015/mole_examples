@@ -36,6 +36,9 @@ package() {
   install -d ${pkgdir}/usr/include/${pkgname}
   install mole_C++/*.h ${pkgdir}/usr/include/${pkgname}
 
+  install -d "$pkgdir/usr/share/${pkgname}"
+  mv mole_MATLAB ${pkgdir}/usr/share/${pkgname}
+
   # install docs
   install -d ${pkgdir}/usr/share/doc/${pkgname}
   mv doc_C++ ${pkgdir}/usr/share/doc/${pkgname}
