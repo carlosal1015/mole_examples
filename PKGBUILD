@@ -4,7 +4,7 @@ pkgver=3.0
 pkgrel=1
 pkgdesc="Mimetic Operators Library Enhanced"
 url="https://github.com/jcorbino/${pkgname}" # csrc-sdsu
-license=(GPL3)
+license=(GPL)
 arch=(x86_64)
 depends=(armadillo openblas)
 makedepends=(cmake doxygen graphviz eigen)
@@ -31,6 +31,7 @@ package() {
   cd ${pkgname}-${pkgver}
 
   install -Dm 755 mole_C++/libmole.so -t "${pkgdir}/usr/lib"
+  make clean
 
   install -d ${pkgdir}/usr/include/${pkgname}
   install mole_C++/*.h ${pkgdir}/usr/include/${pkgname}
