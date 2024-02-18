@@ -1,0 +1,97 @@
+diff --color --unified --recursive --no-dereference mole/examples_C++/Makefile mole-patched/examples_C++/Makefile
+--- mole/examples_C++/Makefile	2024-02-18 12:48:32.584735334 -0500
++++ mole-patched/examples_C++/Makefile	2024-02-18 12:55:20.370645074 -0500
+@@ -1,12 +1,12 @@
+ ifndef ARMA
+ # Put here the path to Armadillo
+-ARMA = /home/johnny/armadillo-10.2.1
++ARMA = /usr/include
+ endif
+ 
+ ifndef EIGEN
+ # Put here the path to Eigen (optional)
+ # We recommend SuperLU over Eigen for the sparse LU factorization
+-#EIGEN = /usr/include/eigen3
++EIGEN = /usr/include/eigen3
+ endif
+ 
+ #----------------------------------------------------------------------
+diff --color --unified --recursive --no-dereference mole/.git/config mole-patched/.git/config
+--- mole/.git/config	2024-02-18 12:48:32.561401890 -0500
++++ mole-patched/.git/config	2024-02-18 12:50:57.685519250 -0500
+@@ -9,3 +9,4 @@
+ [branch "master"]
+ 	remote = origin
+ 	merge = refs/heads/master
++	github-pr-owner-number = "csrc-sdsu#mole#3"
+Binary files mole/.git/index and mole-patched/.git/index differ
+diff --color --unified --recursive --no-dereference mole/.git/logs/HEAD mole-patched/.git/logs/HEAD
+--- mole/.git/logs/HEAD	2024-02-18 12:48:32.561401890 -0500
++++ mole-patched/.git/logs/HEAD	2024-02-18 12:50:29.118684381 -0500
+@@ -1 +1 @@
+-0000000000000000000000000000000000000000 8b0ebcccb93c4325a76a4485466e371caf6cd7cc Carlos Aznarán <caznaranl@uni.pe> 1708278512 -0500	clone: from https://github.com/csrc-sdsu/mole.git
++0000000000000000000000000000000000000000 8b0ebcccb93c4325a76a4485466e371caf6cd7cc Carlos Aznarán <caznaranl@uni.pe> 1708278629 -0500	clone: from https://github.com/csrc-sdsu/mole.git
+diff --color --unified --recursive --no-dereference mole/.git/logs/refs/heads/master mole-patched/.git/logs/refs/heads/master
+--- mole/.git/logs/refs/heads/master	2024-02-18 12:48:32.561401890 -0500
++++ mole-patched/.git/logs/refs/heads/master	2024-02-18 12:50:29.118684381 -0500
+@@ -1 +1 @@
+-0000000000000000000000000000000000000000 8b0ebcccb93c4325a76a4485466e371caf6cd7cc Carlos Aznarán <caznaranl@uni.pe> 1708278512 -0500	clone: from https://github.com/csrc-sdsu/mole.git
++0000000000000000000000000000000000000000 8b0ebcccb93c4325a76a4485466e371caf6cd7cc Carlos Aznarán <caznaranl@uni.pe> 1708278629 -0500	clone: from https://github.com/csrc-sdsu/mole.git
+diff --color --unified --recursive --no-dereference mole/.git/logs/refs/remotes/origin/HEAD mole-patched/.git/logs/refs/remotes/origin/HEAD
+--- mole/.git/logs/refs/remotes/origin/HEAD	2024-02-18 12:48:32.561401890 -0500
++++ mole-patched/.git/logs/refs/remotes/origin/HEAD	2024-02-18 12:50:29.118684381 -0500
+@@ -1 +1 @@
+-0000000000000000000000000000000000000000 8b0ebcccb93c4325a76a4485466e371caf6cd7cc Carlos Aznarán <caznaranl@uni.pe> 1708278512 -0500	clone: from https://github.com/csrc-sdsu/mole.git
++0000000000000000000000000000000000000000 8b0ebcccb93c4325a76a4485466e371caf6cd7cc Carlos Aznarán <caznaranl@uni.pe> 1708278629 -0500	clone: from https://github.com/csrc-sdsu/mole.git
+Only in mole/.git/objects/pack: pack-8b7e1d128e07fa9df2d547daff23fc726a2a6673.idx
+Only in mole/.git/objects/pack: pack-8b7e1d128e07fa9df2d547daff23fc726a2a6673.pack
+Only in mole/.git/objects/pack: pack-8b7e1d128e07fa9df2d547daff23fc726a2a6673.rev
+Only in mole-patched/.git/objects/pack: pack-b189cc9cf4ed3540e84f9425c4346a60eec77edb.idx
+Only in mole-patched/.git/objects/pack: pack-b189cc9cf4ed3540e84f9425c4346a60eec77edb.pack
+Only in mole-patched/.git/objects/pack: pack-b189cc9cf4ed3540e84f9425c4346a60eec77edb.rev
+diff --color --unified --recursive --no-dereference mole/Makefile mole-patched/Makefile
+--- mole/Makefile	2024-02-18 12:48:32.574735286 -0500
++++ mole-patched/Makefile	2024-02-18 12:54:27.503587201 -0500
+@@ -1,10 +1,10 @@
+ # Put here the path to Armadillo
+-ARMA = /home/johnny/armadillo-10.2.1
++ARMA = /usr/include
+ 
+ # Put here the path to Eigen (optional)
+ # You won't need it unless you have to solve a linear system in which
+ # case we recommend to use SuperLU over Eigen for the sparse LU factorization
+-#EIGEN = /usr/include/eigen3
++EIGEN = /usr/include/eigen3
+ 
+ export
+ 
+diff --color --unified --recursive --no-dereference mole/mole_C++/Makefile mole-patched/mole_C++/Makefile
+--- mole/mole_C++/Makefile	2024-02-18 12:48:32.611402127 -0500
++++ mole-patched/mole_C++/Makefile	2024-02-18 12:56:06.160994002 -0500
+@@ -1,13 +1,13 @@
+ ifndef ARMA
+ # Put here the path to Armadillo
+-ARMA = /home/johnny/armadillo-10.2.1
++ARMA = /usr/include
+ endif
+ 
+ ifndef EIGEN
+ # Put here the path to Eigen (optional)
+ # You won't need it unless you have to solve a linear system in which
+ # case we recommend to use SuperLU over Eigen for the sparse LU factorization
+-#EIGEN = /usr/include/eigen3
++EIGEN = /usr/include/eigen3
+ endif
+ 
+ #----------------------------------------------------------------------
+diff --color --unified --recursive --no-dereference mole/tests_C++/Makefile mole-patched/tests_C++/Makefile
+--- mole/tests_C++/Makefile	2024-02-18 12:48:32.611402127 -0500
++++ mole-patched/tests_C++/Makefile	2024-02-18 12:56:46.537975444 -0500
+@@ -1,6 +1,6 @@
+ ifndef ARMA
+ # Put here the path to Armadillo
+-ARMA = /home/johnny/armadillo-10.2.1
++ARMA = /usr/include
+ endif
+ #----------------------------------------------------------------------
+ MOLE = ../mole_C++

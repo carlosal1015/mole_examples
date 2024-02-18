@@ -1,0 +1,16 @@
+pkgbase = jupyter-matlab-proxy
+	pkgdesc = A light weight tool for creating summary statistics from dataframes
+	pkgver = 0.10.1
+	pkgrel = 1
+	url = https://github.com/mathworks/jupyter-matlab-proxy
+	arch = any
+	license = custom
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-hatchling
+	makedepends = python-wheels
+	depends = jupyterlab
+	source = -0.10.1.tar.gz::https://github.com/mathworks/jupyter-matlab-proxy/archive/v0.10.1.tar.gz
+	sha512sums = be882b990fab1afb00358cefb57d5ce274addcdc6e5b50d19799311c59da717979cbdadb5d4069574d89c225c9a1f604c8067486ffd5fab995b3094aace407b6
+
+pkgname = jupyter-matlab-proxy

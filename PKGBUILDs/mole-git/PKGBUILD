@@ -1,0 +1,63 @@
+_base=mole
+pkgname=${_base}-git
+pkgdesc="The Mimetic Operators Library Enhanced"
+pkgver=2.0.r44.g8b0ebcc
+pkgrel=1
+arch=(x86_64)
+url="https://github.com/csrc-sdsu/${_base}"
+license=(GPL-3.0-or-later)
+depends=(armadillo openblas)
+makedepends=(cmake doxygen graphviz eigen)
+optdepends=('matlab: for MATLAB support'
+  'octave: for Octave support'
+  'eigen: for the sparse LU factorization')
+source=(git+${url}.git#branch=master
+  https://raw.githubusercontent.com/carlosal1015/mole_examples/main/patches/includes.patch)
+sha512sums=('SKIP'
+  '')
+provides=(${_base})
+conflicts=(${_base})
+
+pkgver() {
+  cd ${_base}
+  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd ${_base}
+  patch -p1 -i ../include.patch
+}
+
+build() {
+  cd ${_base}
+  make SHARED_LIB=1 EIGEN=1
+  doxygen
+}
+
+check() {
+  cd ${_base}
+}
+
+package() {
+  cd ${_base}
+  install -Dm 755 mole_C++/libmole.so -t "${pkgdir}/usr/lib"
+  make clean
+
+  install -d ${pkgdir}/usr/include/${pkgname}
+  install mole_C++/*.h ${pkgdir}/usr/include/${pkgname}
+
+  install -d "$pkgdir/usr/share/${pkgname}"
+  mv mole_MATLAB ${pkgdir}/usr/share/${pkgname}
+
+  # install docs
+  install -d ${pkgdir}/usr/share/doc/${pkgname}
+  mv doc_C++ ${pkgdir}/usr/share/doc/${pkgname}
+  mv doc_MATLAB ${pkgdir}/usr/share/doc/${pkgname}
+
+  # install tutorials
+  install -d ${pkgdir}/usr/share/doc/${pkgname}/examples
+  mv examples_C++ ${pkgdir}/usr/share/doc/${pkgname}/examples
+  mv examples_MATLAB ${pkgdir}/usr/share/doc/${pkgname}/examples
+
+  install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
+}
