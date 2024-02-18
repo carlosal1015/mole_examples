@@ -14,7 +14,7 @@ optdepends=('matlab: for MATLAB support'
 source=(git+${url}.git#branch=master
   https://raw.githubusercontent.com/carlosal1015/mole_examples/main/patches/includes.patch)
 sha512sums=('SKIP'
-  '')
+  '88636f6255888c6555907cbe52ff4569491bcbc7f057a28ff87d45aeb72635cd2614db17b336f8980a233c7078667ed02f99cb06b41fba9e1f1be3ed742429b8')
 provides=(${_base})
 conflicts=(${_base})
 
