@@ -25,7 +25,7 @@ pkgver() {
 
 prepare() {
   cd ${_base}
-  patch -p1 -i ../include.patch
+  patch -p1 -i ../includes.patch
 }
 
 build() {
