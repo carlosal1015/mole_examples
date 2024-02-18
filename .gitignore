@@ -34,3 +34,9 @@
 *.tar.gz
 mole-*
 build
+*.tar.gz
+*.whl
+*.jupyter_ystore.db
+*.ipynb_checkpoints
+*.venv311
+*.SRCINFO

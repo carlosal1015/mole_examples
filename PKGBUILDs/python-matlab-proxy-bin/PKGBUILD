@@ -1,0 +1,19 @@
+# Maintainer: Carlos Aznarán <caznaranl@uni.pe>
+_base=matlab-proxy
+pkgname=python-${_base}-bin
+pkgdesc="Python® package enables you to launch MATLAB® and access it from a web browser"
+pkgver=0.12.1
+pkgrel=1
+arch=(any)
+url="https://github.com/mathworks/${pkgname}"
+license=('custom')
+depends=(python-psutil python-aiohttp-session python-cryptography)
+makedepends=(python-installer)
+provides=(python-${_base}=${pkgver})
+conflicts=(python-${_base})
+source=(https://pypi.org/packages/py3/${_base::1}/${_base}/${_base//-/_}-${pkgver}-py3-none-any.whl)
+sha512sums=('d5f0222326eaeb9199dac8c872128e887c3144ecd03e306a1708550dbe4cbc34b26fbd0d4b1d6d3d356782e50a9e648e2533f2e599717b614ac7f0559eb9c9cd')
+
+package() {
+  PYTHONPYCACHEPREFIX="${PWD}/.cache/cpython/" python -m installer --destdir="${pkgdir}" ./${_base//-/_}*.whl
+}

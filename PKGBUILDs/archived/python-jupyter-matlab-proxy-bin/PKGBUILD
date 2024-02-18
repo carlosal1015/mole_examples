@@ -1,0 +1,20 @@
+# Maintainer: Carlos Aznarán <caznaranl@uni.pe>
+_base=jupyter-matlab-proxy
+pkgname=python-${_base}-bin
+pkgdesc="MATLAB Integration for Jupyter"
+pkgver=0.10.1
+pkgrel=1
+arch=(any)
+url="https://github.com/mathworks/${pkgname}"
+license=('custom')
+depends=(python-jupyter-server-proxy jupyter_contrib_nbextensions python-matlab-proxy python-psutil python-requests)
+makedepends=(python-installer)
+provides=(python-${_base}=${pkgver})
+conflicts=(python-${_base})
+source=(https://pypi.org/packages/py3/${_base::1}/${_base}/${_base//-/_}-${pkgver}-py3-none-any.whl)
+sha512sums=('c78e8466f2411aa4326db8001d6f0c1acd0a5a84f064fc1991e00e439838dd9c1d3f4bdba8df696ad40c1bbc02943ef1c73fd7f74a35cf53382a91edd75a9801')
+
+package() {
+  cd ${pkgname}-${pkgver}
+  PYTHONPYCACHEPREFIX="${PWD}/.cache/cpython/" python -m installer --destdir="${pkgdir}" dist/*.whl
+}

@@ -1,0 +1,25 @@
+# Maintainer: Carlos Aznarán <caznaranl@uni.pe>
+# Contributor: getzze <getzze [at] @gmail [dot] com>
+# Contributor: Maziar Saleh Ziabari
+pkgname=jupyter_nbextensions_configurator
+pkgver=0.6.3
+pkgrel=1
+pkgdesc="jupyter serverextension providing configuration interfaces for nbextensions"
+arch=(any)
+url="https://github.com/Jupyter-contrib/${pkgname}"
+license=('custom:BSD-3-clause')
+depends=(jupyter_contrib_core python-yaml)
+makedepends=(python-build python-installer python-setuptools python-wheel)
+source=(${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz)
+sha512sums=('6802fda100ec7fcee584612cce1fd0634747d7d06409d7cb9bb2396fd3c9a934e2f1e35d764026c77854f92c8bda36587adb9d2b5b4a026b75d369fbb00ab055')
+
+build() {
+  cd ${pkgname}-${pkgver}
+  python -m build --wheel --skip-dependency-check --no-isolation
+}
+
+package() {
+  cd ${pkgname}-${pkgver}
+  PYTHONPYCACHEPREFIX="${PWD}/.cache/cpython/" python -m installer --destdir="${pkgdir}" dist/*.whl
+  install -Dm 644 LICENSE.txt -t "${pkgdir}/usr/share/licenses/${pkgname}"
+}
