@@ -34,10 +34,6 @@ build() {
   doxygen
 }
 
-check() {
-  cd ${_base}
-}
-
 package() {
   cd ${_base}
   install -Dm 755 mole_C++/libmole.so -t "${pkgdir}/usr/lib"
