@@ -6,7 +6,7 @@ pkgrel=1
 arch=(x86_64)
 url="https://github.com/csrc-sdsu/${_base}"
 license=(GPL-3.0-or-later)
-depends=(armadillo openblas)
+depends=(armadillo)
 makedepends=(cmake doxygen graphviz eigen)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'

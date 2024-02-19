@@ -6,7 +6,7 @@ pkgdesc="Mimetic Operators Library Enhanced"
 url="https://github.com/jcorbino/${pkgname}" # csrc-sdsu
 license=(GPL)
 arch=(x86_64)
-depends=(armadillo openblas)
+depends=(armadillo)
 makedepends=(cmake doxygen graphviz eigen)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'
