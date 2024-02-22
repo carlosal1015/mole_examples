@@ -9,7 +9,7 @@ on:
 jobs:
   docs:
     runs-on: ubuntu-22.04
-    container: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole-git
+    container: ghcr.io/carlosal1015/mole_examples/actions:latest
 
     steps:
       - name: Build html
