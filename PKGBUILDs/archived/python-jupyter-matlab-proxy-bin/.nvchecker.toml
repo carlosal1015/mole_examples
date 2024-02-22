@@ -1,0 +1,4 @@
+[python-jupyter-matlab-proxy-bin]
+source = "github"
+github = "mathworks/jupyter-matlab-proxy"
+use_latest_tag = true

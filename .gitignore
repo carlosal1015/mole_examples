@@ -40,3 +40,4 @@ build
 *.ipynb_checkpoints
 *.venv311
 *.SRCINFO
+keyfile.toml

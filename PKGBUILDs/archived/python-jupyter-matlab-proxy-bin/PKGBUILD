@@ -2,7 +2,7 @@
 _base=jupyter-matlab-proxy
 pkgname=python-${_base}-bin
 pkgdesc="MATLAB Integration for Jupyter"
-pkgver=0.10.1
+pkgver=0.11.0
 pkgrel=1
 arch=(any)
 url="https://github.com/mathworks/${pkgname}"
@@ -12,7 +12,7 @@ makedepends=(python-installer)
 provides=(python-${_base}=${pkgver})
 conflicts=(python-${_base})
 source=(https://pypi.org/packages/py3/${_base::1}/${_base}/${_base//-/_}-${pkgver}-py3-none-any.whl)
-sha512sums=('c78e8466f2411aa4326db8001d6f0c1acd0a5a84f064fc1991e00e439838dd9c1d3f4bdba8df696ad40c1bbc02943ef1c73fd7f74a35cf53382a91edd75a9801')
+sha512sums=('00bba80c19f203ea5852add386d51b350b88c53d1ede141948c10c553b49c7215b8110add90256fa95475b78b3513ec43791d81fada138c27506a6ad35572a42')
 
 package() {
   cd ${pkgname}-${pkgver}
