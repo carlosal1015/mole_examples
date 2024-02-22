@@ -10,22 +10,18 @@ jobs:
   docs:
     runs-on: ubuntu-22.04
     container: ghcr.io/carlosal1015/mole_examples/actions:latest
-    env:
-      URL: "https://github.com/carlosal1015/mole_examples"
 
     steps:
       - name: Docs
         run: |
-          git config --global advice.detachedHead false
-          git clone -q --filter=blob:none --no-checkout --depth=1 --sparse $URL.git
-          mkdir -p mole_examples/docs
-          cp -R /usr/share/doc/mole-git/doc_C++ mole_examples/docs
-          cp -R /usr/share/doc/mole-git/doc_MATLAB mole_examples/docs
+          mkdir -p docs
+          cp -R /usr/share/doc/mole-git/doc_C++ docs
+          cp -R /usr/share/doc/mole-git/doc_MATLAB docs
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: mole_examples/docs
+          publish_dir: docs
           force_orphan: true
           publish_branch: gh-pages
