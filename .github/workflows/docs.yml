@@ -1,0 +1,26 @@
+name: MOLE docs
+
+on:
+  push:
+    branches: [main]
+    # paths:
+    #   - PKGBUILDs/mole-git/PKGBUILD
+
+jobs:
+  build_sphinx:
+    runs-on: ubuntu-22.04
+    container: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole-git
+    steps:
+      - name: Build html
+        run: |
+          mkdir -p docs
+          cp -R /usr/share/doc/mole-git/doc_C++ docs
+          cp -R /usr/share/doc/mole-git/doc_MATLAB docs
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs
+          force_orphan: true
+          publish_branch: gh-pages
