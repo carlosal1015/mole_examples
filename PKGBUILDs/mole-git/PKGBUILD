@@ -39,8 +39,8 @@ package() {
   install -Dm 755 mole_C++/libmole.so -t "${pkgdir}/usr/lib"
   make clean
 
-  install -d ${pkgdir}/usr/include/${pkgname}
-  install mole_C++/*.h ${pkgdir}/usr/include/${pkgname}
+  install -d ${pkgdir}/usr/include/${_base}
+  install mole_C++/*.h ${pkgdir}/usr/include/${_base}
 
   install -d "$pkgdir/usr/share/${pkgname}"
   mv mole_MATLAB ${pkgdir}/usr/share/${pkgname}
