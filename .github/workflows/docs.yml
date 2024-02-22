@@ -3,8 +3,8 @@ name: MOLE docs
 on:
   push:
     branches: [main]
-    # paths:
-    #   - PKGBUILDs/mole-git/PKGBUILD
+    paths:
+      - PKGBUILDs/mole-git/PKGBUILD
 
 jobs:
   docs:
@@ -14,9 +14,12 @@ jobs:
     steps:
       - name: Docs
         run: |
+          git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
+          cp -R /usr/share/mole-git/mole_MATLAB .
+          octave -q -p m2html --eval "m2html('mfiles', 'mole_MATLAB', 'htmldir','doc_MATLAB')"
           mkdir -p docs
           cp -R /usr/share/doc/mole-git/doc_C++ docs
-          cp -R /usr/share/doc/mole-git/doc_MATLAB docs
+          mv doc_MATLAB docs
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
