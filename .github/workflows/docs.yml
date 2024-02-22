@@ -18,16 +18,15 @@ jobs:
           git config --global user.email github-actions@github.com
           git config --global user.name github-actions
           git clone -q --filter=blob:none --no-checkout --depth=1 --sparse $REPO .
-          mkdir -p docs      
+          mkdir -p docs
           cp -R /usr/share/doc/mole-git/doc_C++ docs
           cp -R /usr/share/doc/mole-git/doc_MATLAB docs
-          ls -l docs
           pwd
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs
+          publish_dir: mole_examples/docs
           force_orphan: true
           publish_branch: gh-pages
