@@ -42,18 +42,18 @@ package() {
   install -d ${pkgdir}/usr/include/${_base}
   install mole_C++/*.h ${pkgdir}/usr/include/${_base}
 
-  install -d "$pkgdir/usr/share/${pkgname}"
-  mv mole_MATLAB ${pkgdir}/usr/share/${pkgname}
+  install -d "$pkgdir/usr/share/${_base}"
+  mv mole_MATLAB ${pkgdir}/usr/share/${_base}
 
   # install docs
-  install -d ${pkgdir}/usr/share/doc/${pkgname}
-  mv doc_C++ ${pkgdir}/usr/share/doc/${pkgname}
-  mv doc_MATLAB ${pkgdir}/usr/share/doc/${pkgname}
+  install -d ${pkgdir}/usr/share/doc/${_base}
+  mv doc_C++ ${pkgdir}/usr/share/doc/${_base}
+  mv doc_MATLAB ${pkgdir}/usr/share/doc/${_base}
 
   # install tutorials
-  install -d ${pkgdir}/usr/share/doc/${pkgname}/examples
-  mv examples_C++ ${pkgdir}/usr/share/doc/${pkgname}/examples
-  mv examples_MATLAB ${pkgdir}/usr/share/doc/${pkgname}/examples
+  install -d ${pkgdir}/usr/share/doc/${_base}/examples
+  mv examples_C++ ${pkgdir}/usr/share/doc/${_base}/examples
+  mv examples_MATLAB ${pkgdir}/usr/share/doc/${_base}/examples
 
   install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }

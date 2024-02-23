@@ -41,3 +41,4 @@ build
 *.venv311
 *.SRCINFO
 keyfile.toml
+*.epsc
