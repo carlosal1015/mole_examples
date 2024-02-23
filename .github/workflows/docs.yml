@@ -16,7 +16,7 @@ jobs:
         run: |
           git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
           cp -R /usr/share/mole-git/mole_MATLAB .
-          octave -q -p m2html --eval "m2html('mfiles', 'mole_MATLAB', 'htmldir','doc_MATLAB')"
+          octave -q -p m2html --eval "m2html('mfiles', 'mole_MATLAB', 'htmldir', 'doc_MATLAB', 'global', 'on', 'template', 'blue')"
           mkdir -p docs
           cp -R /usr/share/doc/mole-git/doc_C++ docs
           mv doc_MATLAB docs
