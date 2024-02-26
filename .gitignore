@@ -42,3 +42,4 @@ build
 *.SRCINFO
 keyfile.toml
 *.epsc
+*.avi

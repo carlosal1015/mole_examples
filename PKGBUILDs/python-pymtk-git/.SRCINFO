@@ -1,0 +1,21 @@
+pkgbase = python-pymtk-git
+	pkgdesc = Mimetic Methods for Python
+	pkgver = r32.6e921e8
+	pkgrel = 1
+	url = https://github.com/igormorgado/pymtk
+	arch = any
+	license = MIT
+	checkdepends = python-pytest
+	checkdepends = python-ipdb
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	makedepends = python-sphinx
+	makedepends = git
+	depends = python-scipy
+	depends = python-sympy
+	source = git+https://github.com/igormorgado/pymtk.git#branch=master
+	sha512sums = SKIP
+
+pkgname = python-pymtk-git
