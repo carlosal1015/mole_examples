@@ -1,0 +1,36 @@
+# Maintainer: Antonio Rojas <arojas@archlinux.org>
+# Ronald van Haren <ronald.archlinux.org>
+# Contributor: bzklrm <bzklrm@gmail.com>
+# Additional contributors Senjin, Xavier, dundee
+
+_base=glpk
+pkgname=${_base}-static
+pkgver=5.0
+pkgrel=1
+pkgdesc="GNU Linear Programming Kit: solve LP, MIP and other problems (static library)"
+arch=(x86_64)
+url="https://www.gnu.org/software/${_base}/${_base}.html"
+license=(GPL)
+depends=(gmp)
+source=(https://ftp.gnu.org/gnu/${_base}/${_base}-${pkgver}.tar.gz{,.sig})
+sha256sums=('4a1013eebb50f728fc601bdd833b0b2870333c3b3e5a816eeba921d95bec6f15'
+            'SKIP')
+validpgpkeys=('A2B56CCB42220C06481335BAD17BF2305981E818') # Andrew Makhorin
+
+build() {
+  cd $_base-$pkgver
+
+  ./configure --prefix=/usr --with-gmp --enable-static --disable-shared
+  make
+}
+
+check() {
+  cd $_base-$pkgver
+  make check
+}
+
+package(){
+  cd $_base-$pkgver
+  make DESTDIR="$pkgdir" install
+  install -Dm644 doc/{glpk,gmpl}.pdf -t "$pkgdir"/usr/share/doc/${_base}
+}

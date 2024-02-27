@@ -1,0 +1,121 @@
+diff --color --unified --recursive --no-dereference MTK/include/mtk_div_1d.h MTK_patched/include/mtk_div_1d.h
+--- MTK/include/mtk_div_1d.h	2024-02-26 18:09:10.515133465 -0500
++++ MTK_patched/include/mtk_div_1d.h	2024-02-26 18:39:12.430056901 -0500
+@@ -62,7 +62,7 @@
+ 
+ #include <vector>
+ 
+-#include "glpk.h"
++#include <glpk.h>
+ 
+ #include "mtk_foundations.h"
+ #include "mtk_dense_matrix.h"
+diff --color --unified --recursive --no-dereference MTK/include/mtk_glpk_adapter.h MTK_patched/include/mtk_glpk_adapter.h
+--- MTK/include/mtk_glpk_adapter.h	2024-02-26 18:09:10.515133465 -0500
++++ MTK_patched/include/mtk_glpk_adapter.h	2024-02-26 18:41:19.261456145 -0500
+@@ -69,7 +69,7 @@
+ #include <iostream>
+ #include <iomanip>
+ 
+-#include "glpk.h"
++#include <glpk.h>
+ 
+ #include "mtk_foundations.h"
+ #include "mtk_dense_matrix.h"
+diff --color --unified --recursive --no-dereference MTK/include/mtk_grad_1d.h MTK_patched/include/mtk_grad_1d.h
+--- MTK/include/mtk_grad_1d.h	2024-02-26 18:09:10.515133465 -0500
++++ MTK_patched/include/mtk_grad_1d.h	2024-02-26 18:41:43.475069425 -0500
+@@ -62,7 +62,7 @@
+ 
+ #include <vector>
+ 
+-#include "glpk.h"
++#include <glpk.h>
+ 
+ #include "mtk_foundations.h"
+ #include "mtk_enums.h"
+diff --color --unified --recursive --no-dereference MTK/include/mtk_interp_1d.h MTK_patched/include/mtk_interp_1d.h
+--- MTK/include/mtk_interp_1d.h	2024-02-26 18:09:10.515133465 -0500
++++ MTK_patched/include/mtk_interp_1d.h	2024-02-26 18:41:33.248284065 -0500
+@@ -61,7 +61,7 @@
+ #include <iostream>
+ #include <iomanip>
+ 
+-#include "glpk.h"
++#include <glpk.h>
+ 
+ #include "mtk_foundations.h"
+ #include "mtk_enums.h"
+diff --color --unified --recursive --no-dereference MTK/Makefile.conf MTK_patched/Makefile.conf
+--- MTK/Makefile.conf	2024-02-26 18:09:10.005116824 -0500
++++ MTK_patched/Makefile.conf	2024-02-26 20:48:32.683708211 -0500
+@@ -5,7 +5,7 @@
+ #   1. Absolute path to base directory of the MTK.
+ #   __________________________________________________________________
+ 
+-BASE = /home/esanchez/Dropbox/EclipseWorkspace/MTK
++BASE := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
+ 
+ #   2. The machine (platform) identifier and required machine precision.
+ #   __________________________________________________________________
+@@ -36,12 +36,12 @@
+ 
+ # GLPK include path (soon to go):
+ 
+-GLPK_INC = $(HOME)/Libraries/glpk-4.35/include
++GLPK_INC = /usr/include
+ 
+ # Linux: If ATLAS optimization is ON, users should only provide the path to
+ # ATLAS:
+ 
+-ATLAS_INC = $(HOME)/Libraries/ATLAS_3.8.4-CORE/include
++ATLAS_INC = /usr/include
+ 
+ # OS X: Do nothing.
+ 
+@@ -50,18 +50,18 @@
+ 
+ # GLPK linking path (soon to go):
+ 
+-GLPK_LIB = $(HOME)/Libraries/glpk-4.35/lib/lib64/libglpk.a
++GLPK_LIB = /usr/lib/libglpk.a
+ 
+ # If optimization is OFF, then provide the paths for:
+ 
+-BLAS_LIB = $(HOME)/Libraries/BLAS-3.5.0/libblas.a
+-LAPACK_LIB = $(HOME)/Libraries/lapack-3.5.0/liblapack.a
++BLAS_LIB = /usr/lib/libblas.a
++LAPACK_LIB = /usr/lib/liblapack.a
+ 
+ # WARNING: Vendor libraries should be used whenever they are available.
+ 
+ # However, if optimization is ON, please provide the path the ATLAS' archive:
+ 
+-ATLAS_LIB   = $(HOME)/Libraries/ATLAS_3.8.4-CORE/ATLAS_3.8.4-BUILD-Citadel/lib
++ATLAS_LIB   = /usr/lib
+ 
+ #   6. Compiler and its flags.
+ #   __________________________________________________________________
+@@ -111,11 +111,11 @@
+ 
+ # Flags recommended for release code:
+ 
+-CCFLAGS = -Wall -Werror -O2
++CCFLAGS = -Wall -Werror -O2 -Wno-format-overflow -Wno-maybe-uninitialized -Wno-nonnull
+ 
+ # Flags recommended for debugging code:
+ 
+-CCFLAGS = -Wall -Werror -g -ftest-coverage -fprofile-arcs
++#CCFLAGS = -Wall -Werror -g -ftest-coverage -fprofile-arcs 
+ 
+ #   7. Archiver, its flags, and ranlib:
+ #   __________________________________________________________________
+@@ -149,7 +149,7 @@
+ SRC       = $(BASE)/src
+ INCLUDE   = $(BASE)/include
+ LIB       = $(BASE)/lib
+-MTK_LIB   = $(LIB)/libmtk.a
++MTK_LIB   = $(LIB)/libmtk.so
+ TESTS     = $(BASE)/tests
+ EXAMPLES  = $(BASE)/examples
+ 

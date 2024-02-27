@@ -1,13 +1,13 @@
-_base=mole
-pkgname=${_base}-git
-pkgdesc="The Mimetic Operators Library Enhanced"
-pkgver=2.0.r44.g8b0ebcc
+_base=MTK
+pkgname=${_base,,}-git
+pkgdesc="The Mimetic Methods Toolkit"
+pkgver=0.2.4.r3.g796b3e4a
 pkgrel=1
 arch=(x86_64)
-url="https://github.com/csrc-sdsu/${_base}"
-license=(GPL-3.0-or-later)
-depends=(armadillo)
-makedepends=(doxygen graphviz eigen)
+url="https://github.com/ejspeiro/${_base}"
+license=('custom')
+depends=(lapack glpk)
+makedepends=(doxygen graphviz gcc-fortran)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'
   'eigen: for the sparse LU factorization')
@@ -30,7 +30,7 @@ prepare() {
 
 build() {
   cd ${_base}
-  make SHARED_LIB=1 EIGEN=1
+  make
   doxygen
 }
 
