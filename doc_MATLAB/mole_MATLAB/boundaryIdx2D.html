@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of boundaryIdx2D</title>
+  <meta name="keywords" content="boundaryIdx2D">
+  <meta name="description" content="Returns the indices of the nodes that lie on the boundary of a 2D nodal">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../index.html">Home</a> &gt;  <a href="index.html">mole_MATLAB</a> &gt; boundaryIdx2D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../index.html"><img alt="<" border="0" src="../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for mole_MATLAB&nbsp;<img alt=">" border="0" src="../right.png"></a></td></tr></table>-->
+
+<h1>boundaryIdx2D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>Returns the indices of the nodes that lie on the boundary of a 2D nodal</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function idx = boundaryIdx2D(m, n) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns the indices of the nodes that lie on the boundary of a 2D nodal
+ grid
+
+ Parameters:
+           m : Number of nodes along x-axis
+           n : Number of nodes along y-axis
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function idx = boundaryIdx2D(m, n)</a>
+0002 <span class="comment">% Returns the indices of the nodes that lie on the boundary of a 2D nodal</span>
+0003 <span class="comment">% grid</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% Parameters:</span>
+0006 <span class="comment">%           m : Number of nodes along x-axis</span>
+0007 <span class="comment">%           n : Number of nodes along y-axis</span>
+0008 
+0009     idx = zeros(2*m+2*(n-2), 1);
+0010     
+0011     mn = m*n;
+0012     
+0013     idx(1:m) = 1:m;
+0014     idx(end-m+1:end) = mn-m+1:mn;
+0015     
+0016     k = m+1;
+0017     <span class="keyword">for</span> i = m+1:m:mn-m
+0018         idx(k) = i;
+0019         idx(k+1) = i+m-1;
+0020         k = k+2;
+0021     <span class="keyword">end</span>
+0022 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Mon 26-Feb-2024 21:05:32 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of nodal</title>
+  <meta name="keywords" content="nodal">
+  <meta name="description" content="Returns a m+1 by m+1 one-dimensional operator that approximates the">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../index.html">Home</a> &gt;  <a href="index.html">mole_MATLAB</a> &gt; nodal.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../index.html"><img alt="<" border="0" src="../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for mole_MATLAB&nbsp;<img alt=">" border="0" src="../right.png"></a></td></tr></table>-->
+
+<h1>nodal
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>Returns a m+1 by m+1 one-dimensional operator that approximates the</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function N = nodal(k, m, dx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a m+1 by m+1 one-dimensional operator that approximates the 
+ first-order derivatives on a uniform nodal grid
+
+ Parameters:
+                k : Order of accuracy
+                m : Number of nodes
+               dx : Step size
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="nodal2D.html" class="code" title="function N = nodal2D(k, m, dx, n, dy)">nodal2D</a>	Returns a two-dimensional operator that approximates the first-order</li>
+<li><a href="nodal3D.html" class="code" title="function N = nodal3D(k, m, dx, n, dy, o, dz)">nodal3D</a>	Returns a three-dimensional operator that approximates the first-order</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function N = nodal(k, m, dx)</a>
+0002 <span class="comment">% Returns a m+1 by m+1 one-dimensional operator that approximates the</span>
+0003 <span class="comment">% first-order derivatives on a uniform nodal grid</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% Parameters:</span>
+0006 <span class="comment">%                k : Order of accuracy</span>
+0007 <span class="comment">%                m : Number of nodes</span>
+0008 <span class="comment">%               dx : Step size</span>
+0009 
+0010     m = m-1;
+0011     n_rows = m+1;
+0012     n_cols = n_rows;
+0013 
+0014     N = sparse(n_rows, n_cols);
+0015 
+0016     neighbors = zeros(1, k+1); <span class="comment">% Bandwidth = k+1</span>
+0017     neighbors(1) = -k/2;
+0018     len = k+1;
+0019     j = 1;
+0020 
+0021     <span class="keyword">for</span> i = 2 : len
+0022         neighbors(i) = neighbors(i-1)+1;
+0023     <span class="keyword">end</span>
+0024 
+0025     <span class="comment">% Create a k by k Vandermonde matrix based on the neighbors:</span>
+0026     A = vander(neighbors)';
+0027 
+0028     <span class="comment">% First-order derivative</span>
+0029     b = zeros(len, 1);
+0030     b(len-1) = 1;
+0031 
+0032     <span class="comment">% Solve the linear system to get the coefficients</span>
+0033     coeffs = A\b;
+0034 
+0035     <span class="keyword">for</span> i = k/2+1 : n_rows-k/2
+0036         N(i, j:j+len-1) = coeffs;
+0037         j = j+1;
+0038     <span class="keyword">end</span>
+0039 
+0040     p = k/2;
+0041     q = k+1;
+0042     A = sparse(p, q);
+0043     <span class="keyword">for</span> i = 1 : p <span class="comment">% For each row of A</span>
+0044         neighbors = zeros(1, q); <span class="comment">% k+1 points are used for the boundaries</span>
+0045         neighbors(1) = 1-i; <span class="comment">% Shifting the stencil to the right</span>
+0046         neighbors(2) = neighbors(1)+1;
+0047 
+0048         <span class="keyword">for</span> j = 3 : q
+0049             neighbors(j) = neighbors(j-1)+1;
+0050         <span class="keyword">end</span>
+0051 
+0052         V = vander(neighbors)';
+0053         b = zeros(q, 1);
+0054         b(q-1) = 1;
+0055         coeffs = V\b;
+0056         A(i, 1:q) = coeffs;
+0057     <span class="keyword">end</span>
+0058 
+0059     <span class="comment">% Insert A into N (upper-left corner of N)</span>
+0060     N(1:p, 1:q) = A;
+0061 
+0062     <span class="comment">% Permutation matrices</span>
+0063     Pp = fliplr(speye(p));
+0064     Pq = fliplr(speye(q));
+0065     <span class="comment">% Construct A' (lower-right corner of N)</span>
+0066     A = -Pp*A*Pq;
+0067 
+0068     <span class="comment">% Insert A' into N</span>
+0069     N(n_rows-p+1:n_rows, n_cols-q+1:n_cols) = A;
+0070 
+0071     <span class="comment">% Scale N</span>
+0072     N = 1/dx*N;
+0073 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Mon 26-Feb-2024 21:05:32 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>
