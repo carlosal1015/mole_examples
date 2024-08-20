@@ -8,7 +8,7 @@ pkgrel=1
 pkgdesc="A collection of Jupyter nbextensions"
 arch=(any)
 url="https://github.com/ipython-contrib/${pkgname}"
-license=('custom:BSD-3-clause')
+license=(BSD-3-Clause)
 depends=(python-ipython-genutils jupyter_contrib_core jupyter_highlight_selected_word
 	jupyter_nbextensions_configurator jupyter-nbconvert python-lxml)
 makedepends=(python-pip mariadb jq)

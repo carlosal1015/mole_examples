@@ -1,4 +1,4 @@
 [jupyter_contrib_core]
 source = "github"
-github = "jupyter-contrib/jupyter_contrib_core"
+github = "Jupyter-contrib/jupyter_contrib_core"
 use_latest_tag = true

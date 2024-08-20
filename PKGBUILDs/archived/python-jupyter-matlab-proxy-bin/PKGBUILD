@@ -2,19 +2,20 @@
 _base=jupyter-matlab-proxy
 pkgname=python-${_base}-bin
 pkgdesc="MATLAB Integration for Jupyter"
-pkgver=0.11.0
+pkgver=0.14.0
 pkgrel=1
 arch=(any)
 url="https://github.com/mathworks/${pkgname}"
 license=('custom')
-depends=(python-jupyter-server-proxy jupyter_contrib_nbextensions python-matlab-proxy python-psutil python-requests)
+depends=(python-jupyter-server-proxy python-matlab-proxy python-psutil python-requests)
 makedepends=(python-installer)
 provides=(python-${_base}=${pkgver})
 conflicts=(python-${_base})
 source=(https://pypi.org/packages/py3/${_base::1}/${_base}/${_base//-/_}-${pkgver}-py3-none-any.whl)
-sha512sums=('00bba80c19f203ea5852add386d51b350b88c53d1ede141948c10c553b49c7215b8110add90256fa95475b78b3513ec43791d81fada138c27506a6ad35572a42')
+sha512sums=('2ba3d1e443ab5a7ab77b35ffbeb3548d0fd05e7f0168b5e0ebbe407888bcf705a22ee35b971d90b00f0d52a3624733ca00f57c3679037738c974b2553e6ec751')
 
 package() {
-  cd ${pkgname}-${pkgver}
-  PYTHONPYCACHEPREFIX="${PWD}/.cache/cpython/" python -m installer --destdir="${pkgdir}" dist/*.whl
+  PYTHONPYCACHEPREFIX="${PWD}/.cache/cpython/" python -m installer --destdir="${pkgdir}" ${_base//-/_}-${pkgver}*.whl
+  install -Dm 644 ${_base//-/_}/README.md -t "${pkgdir}/usr/share/doc/${pkgname}"
+  install -Dm 644 ${_base//-/_}-${pkgver}.dist-info/licenses/LICENSE.md -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }
