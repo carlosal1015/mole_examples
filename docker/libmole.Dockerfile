@@ -38,6 +38,8 @@ USER gitpod
 ARG PACKAGES="\
   blas-openblas \
   cmake \
+  eigen \
+  octave \
   git \
   "
 

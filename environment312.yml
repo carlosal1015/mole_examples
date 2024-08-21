@@ -1,4 +1,4 @@
-name: matlab2023b
+name: matlab2024a
 channels:
   - conda-forge
   - defaults
