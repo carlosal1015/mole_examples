@@ -1,20 +1,18 @@
 _base=mole
-pkgname=${_base}-git
+pkgname=lib${_base}-git
 pkgdesc="The Mimetic Operators Library Enhanced"
-pkgver=2.0.r44.g8b0ebcc
+pkgver=1.0.r22.gb10acea
 pkgrel=1
 arch=(x86_64)
 url="https://github.com/csrc-sdsu/${_base}"
 license=(GPL-3.0-or-later)
 depends=(armadillo)
-makedepends=(doxygen graphviz eigen)
+makedepends=(doxygen eigen graphviz openblas)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'
   'eigen: for the sparse LU factorization')
-source=(git+${url}.git#branch=master
-  https://raw.githubusercontent.com/carlosal1015/mole_examples/main/patches/includes.patch)
-sha512sums=('SKIP'
-  'e7ad19476aef8b0f0a3cd3505c3d4546b0e1b238e5772e4aa6060ac990f8dfa3e29a44c3a6069110194f25c64e1c188cdf98c2b587f160043b9615e3124f94ea')
+source=(git+${url}.git#branch=master)
+sha512sums=('SKIP')
 provides=(${_base})
 conflicts=(${_base})
 
@@ -23,20 +21,15 @@ pkgver() {
   git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
-prepare() {
-  cd ${_base}
-  patch -p1 -i ../includes.patch
-}
-
 build() {
   cd ${_base}
-  make SHARED_LIB=1 EIGEN=1
+  make SHARED_LIB=1 EIGEN=1 ARMA=1
   doxygen
 }
 
 package() {
   cd ${_base}
-  install -Dm 755 mole_C++/libmole.so -t "${pkgdir}/usr/lib"
+  install -Dm 755 mole_C++/lib${_base}.so -t "${pkgdir}/usr/lib"
   make clean
 
   install -d ${pkgdir}/usr/include/${_base}
