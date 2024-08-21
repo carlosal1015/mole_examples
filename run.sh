@@ -12,7 +12,7 @@ function verification() {
 
 function active_environment() {
   local major_version=3
-  local minor_version=11
+  local minor_version=12
   echo "Activation environment start"
   echo "By default we using python ${major_version}.${minor_version}"
   # conda init zsh
@@ -20,9 +20,9 @@ function active_environment() {
   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/MATLAB/bin/glnxa64
   # python -m venv --system-site-packages $PWD/.venv${major_version}${minor_version}
   # source $PWD/.venv${major_version}${minor_version}/bin/activate
-  # pip install matlabengine==23.2.1
+  # pip install matlabengine==24.1.2
   [ -d $PWD/.venv-${major_version}${minor_version} ] || conda env create -f environment${major_version}${minor_version}.yml --prefix $PWD/.venv${major_version}${minor_version}
-  conda activate $PWD/.venv${major_version}${minor_version} # matlab2023b
+  conda activate $PWD/.venv${major_version}${minor_version} # matlab2024a
 }
 
 verification
