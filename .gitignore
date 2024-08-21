@@ -43,3 +43,4 @@ build
 keyfile.toml
 *.epsc
 *.avi
+*.pdf
