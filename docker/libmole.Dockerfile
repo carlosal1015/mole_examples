@@ -41,9 +41,9 @@ ARG PACKAGES="\
   blas-openblas \
   cmake \
   eigen \
+  git \
   gnuplot \
   octave \
-  git \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
