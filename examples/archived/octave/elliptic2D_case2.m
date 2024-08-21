@@ -1,4 +1,5 @@
 #!/usr/bin/env -S octave -qf
+
 % Tests the 2D curvilinear laplacian on a sinusoidal grid
 clc
 close all

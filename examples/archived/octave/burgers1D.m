@@ -1,4 +1,4 @@
-#!/usr/bin/env -S octave -qf
+%#!/usr/bin/env -S octave -qf
 
 % Solves the 1D Inviscid Burgers' equation.
 % Upwind scheme is used and the equation is written in conservative form.
@@ -32,10 +32,14 @@ U = exp(-(xgrid.^2) / 50)';
 % Premultiply out of the time loop (since it doesn't change)
 D = -dt / 2 * D * I;
 
+% Initialize video writer
+v = VideoWriter('animation');
+open(v);
+
 % Time integration loop
 for i = 0:t / dt
 
-    trapz(U)% Check for area conservation
+    trapz(U);% Check for area conservation
 
     plot(xgrid, U, 'LineWidth', 2)
     str = sprintf('t = %.2f', i * dt);
@@ -45,6 +49,15 @@ for i = 0:t / dt
     grid on
     drawnow
 
+    % Capture frame
+    frame = getframe(gcf);
+
+    % Write frame to video
+    writeVideo(v, frame);
+
     U2 = U + D * U.^2;
     U = U2;
 end
+
+% Close video writer
+close(v);

@@ -1,7 +1,9 @@
+#!/usr/bin/env -S octave -qf
+
 clc
 close all
 
-addpath('../mole_MATLAB')
+addpath('/usr/share/mole/mole_MATLAB')
 
 % Parameters
 k = 2;
@@ -19,18 +21,18 @@ set(gcf, 'Color', 'w')
 [J, Xe, Xn, Ye, Yn] = jacobian2D(k, X, Y);
 
 N = nodal2D(k, m, 1, n, 1);
-Ne = N(1:m*n, :);
-Nn = N(m*n+1:end, :);
+Ne = N(1:m * n, :);
+Nn = N(m * n + 1:end, :);
 
-C = X.^2+Y.^2;
+C = X.^2 + Y.^2;
 
 C_ = reshape(C', [], 1);
 
-Ce = Ne*C_;
-Cn = Nn*C_;
+Ce = Ne * C_;
+Cn = Nn * C_;
 
-Nx = 1./J.*(Yn.*Ce-Ye.*Cn);
-Ny = 1./J.*(-Xn.*Ce+Xe.*Cn);
+Nx = 1 ./ J .* (Yn .* Ce - Ye .* Cn);
+Ny = 1 ./ J .* (-Xn .* Ce + Xe .* Cn);
 
 Nx = reshape(Nx, m, n)';
 Ny = reshape(Ny, m, n)';

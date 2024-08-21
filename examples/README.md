@@ -1,26 +1,31 @@
 ```
-$ pacman -Ql mole-git
-Name            : mole-git
-Version         : 2.0.r44.g8b0ebcc-1
-Description     : The Mimetic Operators Library Enhanced
+$ pacman -Qi libmole
+Name            : libmole
+Version         : 1.0-1
+Description     : Mimetic Operators Library Enhanced
 Architecture    : x86_64
 URL             : https://github.com/csrc-sdsu/mole
-Licenses        : GPL-3.0-or-later
+Licenses        : GPL-3.0-only
 Groups          : None
-Provides        : mole
+Provides        : None
 Depends On      : armadillo
 Optional Deps   : matlab: for MATLAB support
                   octave: for Octave support [installed]
                   eigen: for the sparse LU factorization [installed]
 Required By     : None
 Optional For    : None
-Conflicts With  : mole
+Conflicts With  : None
 Replaces        : None
-Installed Size  : 2.42 MiB
+Installed Size  : 3.03 MiB
 Packager        : Unknown Packager
-Build Date      : Sun 18 Feb 2024 09:12:49 PM -05
-Install Date    : Sun 18 Feb 2024 09:16:35 PM -05
+Build Date      : Wed Aug 21 10:17:52 2024
+Install Date    : Wed Aug 21 10:52:24 2024
 Install Reason  : Explicitly installed
 Install Script  : No
 Validated By    : None
+```
+
+```
+$ cd examples
+$ cp -R /usr/share/doc/libmole/examples/ .
 ```

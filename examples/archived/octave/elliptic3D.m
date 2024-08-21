@@ -1,9 +1,11 @@
+#!/usr/bin/env -S octave -qf
+
 % 3D Staggering example using a 3D Mimetic laplacian
 
 clc
 close all
 
-addpath('../mole_MATLAB')
+addpath('/usr/share/mole/mole_MATLAB')
 
 k = 2; % Order of accuracy
 m = 5; % -> 7
@@ -13,15 +15,15 @@ o = 7; % -> 9
 L = lap3D(k, m, 1, n, 1, o, 1); % 3D Mimetic laplacian operator
 L = L + robinBC3D(k, m, 1, n, 1, o, 1, 1, 0); % Dirichlet BC
 
-RHS = zeros(m+2, n+2, o+2);
+RHS = zeros(m + 2, n + 2, o + 2);
 
 RHS(:, :, 1) = 100; % Known value at the cube's front face
 
-RHS = reshape(RHS, (m+2)*(n+2)*(o+2), 1);
+RHS = reshape(RHS, (m + 2) * (n + 2) * (o + 2), 1);
 
-SOL = L\RHS;
+SOL = L \ RHS;
 
-SOL = reshape(SOL, m+2, n+2, o+2);
+SOL = reshape(SOL, m + 2, n + 2, o + 2);
 
 p = 2; % Page to be displayed
 

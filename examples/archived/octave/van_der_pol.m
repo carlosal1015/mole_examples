@@ -1,6 +1,8 @@
+#!/usr/bin/env -S octave -qf
+
 % Solves a second order ODE using our implementation of RK4 (mole_MATLAB/rk4.m)
 
-addpath('../mole_MATLAB')
+addpath('/usr/share/mole/mole_MATLAB')
 
 %             func   tspan  dt    y0
 [t, y] = rk4(@vdp1, [0 20], .1, [2 0]);
