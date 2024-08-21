@@ -27,6 +27,8 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf && \
   sed -i 's/^#BUILDDIR/BUILDDIR/' /etc/makepkg.conf && \
   sed -i 's/purge debug lto/purge !debug !lto/' /etc/makepkg.conf && \
+  sed -i 's/man,//g' /etc/makepkg.conf && \
+  sed -i 's/doc,//g' /etc/makepkg.conf && \
   useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
   passwd -d gitpod && \
   echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
@@ -39,6 +41,7 @@ ARG PACKAGES="\
   blas-openblas \
   cmake \
   eigen \
+  gnuplot \
   octave \
   git \
   "
