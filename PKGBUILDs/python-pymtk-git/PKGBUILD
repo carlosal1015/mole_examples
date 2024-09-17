@@ -20,7 +20,7 @@ pkgver() {
 
 prepare() {
   sed -i 's/__version__/version__/' ${_base}/docs/conf.py
-  sed -i 's/float_/float/' ${_base}/${_base}/${_base}.py
+  sed -i 's/float_/float64/' ${_base}/${_base}/${_base}.py
 }
 
 build() {
