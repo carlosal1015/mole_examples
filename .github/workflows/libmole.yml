@@ -16,7 +16,7 @@ jobs:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
-          root-reserve-mb: 44000
+          root-reserve-mb: 34000
           remove-dotnet: "true"
           remove-android: "true"
           remove-haskell: "true"
@@ -53,13 +53,13 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      # - name: Scan for vulnerabilities
-      #   uses: crazy-max/ghaction-container-scan@master
-      #   with:
-      #     image: ghcr.io/carlosal1015/mole_examples/libmole:latest
-      #     annotations: true
-      #     severity_threshold: HIGH
-      #     dockerfile: ./docker/libmole.Dockerfile
+      - name: Scan for vulnerabilities
+        uses: crazy-max/ghaction-container-scan@master
+        with:
+          image: ghcr.io/carlosal1015/mole_examples/libmole:latest
+          annotations: true
+          severity_threshold: HIGH
+          dockerfile: ./docker/libmole.Dockerfile
 
       - name: Prune untagged images
         uses: lazyfrosch/ghcr-delete-image-action@main
