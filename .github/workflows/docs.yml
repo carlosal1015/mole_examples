@@ -15,9 +15,9 @@ jobs:
       - name: Docs
         run: |
           pacman --noconfirm --noprogressbar -Syuq doxygen graphviz git octave
-          git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
           git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
           pushd mole
+          git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
           octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/api_docs/matlab', 'global', 'on', 'template', 'blue')"
           doxygen
           popd
