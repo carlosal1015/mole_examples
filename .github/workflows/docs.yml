@@ -4,22 +4,25 @@ on:
   push:
     branches: [main]
     paths:
-      - docker/actions.Dockerfile
+      - docker/libmole-git.Dockerfile
 
 jobs:
   docs:
     runs-on: ubuntu-24.04
-    container: ghcr.io/carlosal1015/mole_examples/actions:latest
+    container: ghcr.io/cpp-review-dune/introductory-review/aur:latest
 
     steps:
       - name: Docs
         run: |
+          yay --noconfirm --noprogressbar -Syuq doxygen graphviz
           git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
-          cp -R /usr/share/mole/matlab .
-          octave -q -p m2html --eval "m2html('mfiles', 'matlab', 'htmldir', 'doc_MATLAB', 'global', 'on', 'template', 'blue')"
+          git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
+          pushd mole
+          octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/api_docs/matlab', 'global', 'on', 'template', 'blue')"
+          doxygen
+          popd
           mkdir -p docs
-          cp -R /usr/share/doc/mole/cpp docs
-          mv doc_MATLAB docs
+          mv mole/doc/api_docs docs
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
