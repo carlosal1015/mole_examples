@@ -9,7 +9,7 @@ on:
 jobs:
   docs:
     runs-on: ubuntu-24.04
-    container: ghcr.io/carlosal1015/mole_examples/actions:latest
+    container: ghcr.io/carlosal1015/mole_examples/actions-git:latest
 
     steps:
       - name: Docs
