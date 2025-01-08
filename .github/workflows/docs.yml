@@ -9,12 +9,12 @@ on:
 jobs:
   docs:
     runs-on: ubuntu-24.04
-    container: ghcr.io/cpp-review-dune/introductory-review/aur:latest
+    container: archlinux:latest
 
     steps:
       - name: Docs
         run: |
-          yay --noconfirm --noprogressbar -Syuq doxygen graphviz
+          pacman --noconfirm --noprogressbar -Syuq doxygen graphviz
           git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
           git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
           pushd mole
