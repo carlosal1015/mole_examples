@@ -4,21 +4,21 @@ on:
   push:
     branches: [main]
     paths:
-      - PKGBUILDs/libmole-git/PKGBUILD
+      - docker/actions.Dockerfile
 
 jobs:
   docs:
     runs-on: ubuntu-24.04
-    container: ghcr.io/carlosal1015/mole_examples/actions-git:latest
+    container: ghcr.io/carlosal1015/mole_examples/actions:latest
 
     steps:
       - name: Docs
         run: |
           git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
-          cp -R /usr/share/libmole-git/mole_MATLAB .
-          octave -q -p m2html --eval "m2html('mfiles', 'mole_MATLAB', 'htmldir', 'doc_MATLAB', 'global', 'on', 'template', 'blue')"
+          cp -R /usr/share/mole/matlab .
+          octave -q -p m2html --eval "m2html('mfiles', 'matlab', 'htmldir', 'doc_MATLAB', 'global', 'on', 'template', 'blue')"
           mkdir -p docs
-          cp -R /usr/share/doc/libmole-git/doc_C++ docs
+          cp -R /usr/share/doc/mole/cpp docs
           mv doc_MATLAB docs
 
       - name: Deploy
