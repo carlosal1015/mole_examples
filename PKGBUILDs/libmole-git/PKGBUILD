@@ -1,13 +1,15 @@
+# Adapted from the package petsc with the following original contributors:
+# Contributor: Carlos Aznarán <caznaranl@uni.pe>
 _base=mole
 pkgname=lib${_base}-git
 pkgdesc="The Mimetic Operators Library Enhanced"
-pkgver=1.0.r22.gb10acea
+pkgver=1.0.r70.gb72198d
 pkgrel=1
 arch=(x86_64)
 url="https://github.com/csrc-sdsu/${_base}"
-license=(GPL-3.0-or-later)
+license=(GPL-3.0-only)
 depends=(armadillo)
-makedepends=(doxygen eigen graphviz openblas)
+makedepends=(doxygen eigen graphviz openblas git)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'
   'eigen: for the sparse LU factorization')
@@ -29,24 +31,24 @@ build() {
 
 package() {
   cd ${_base}
-  install -Dm 755 mole_C++/lib${_base}.so -t "${pkgdir}/usr/lib"
+  install -Dm 755 src/cpp/lib${_base}.so -t "${pkgdir}/usr/lib"
   make clean
 
   install -d ${pkgdir}/usr/include/${_base}
-  install mole_C++/*.h ${pkgdir}/usr/include/${_base}
+  install src/cpp/*.h ${pkgdir}/usr/include/${_base}
 
-  install -d "$pkgdir/usr/share/${_base}"
-  mv mole_MATLAB ${pkgdir}/usr/share/${_base}
+  install -d "${pkgdir}/usr/share/${_base}"
+  mv src/matlab ${pkgdir}/usr/share/${_base}
 
   # install docs
   install -d ${pkgdir}/usr/share/doc/${_base}
-  mv doc_C++ ${pkgdir}/usr/share/doc/${_base}
-  mv doc_MATLAB ${pkgdir}/usr/share/doc/${_base}
+  mv doc/api_docs/cpp ${pkgdir}/usr/share/doc/${_base}
+  mv doc/api_docs/matlab ${pkgdir}/usr/share/doc/${_base}
 
   # install tutorials
   install -d ${pkgdir}/usr/share/doc/${_base}/examples
-  mv examples_C++ ${pkgdir}/usr/share/doc/${_base}/examples
-  mv examples_MATLAB ${pkgdir}/usr/share/doc/${_base}/examples
+  mv examples/cpp ${pkgdir}/usr/share/doc/${_base}/examples
+  mv examples/matlab ${pkgdir}/usr/share/doc/${_base}/examples
 
   install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }

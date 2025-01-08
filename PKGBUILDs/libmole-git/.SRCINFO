@@ -1,14 +1,15 @@
-pkgbase = mole-git
+pkgbase = libmole-git
 	pkgdesc = The Mimetic Operators Library Enhanced
-	pkgver = 2.0.r44.g8b0ebcc
+	pkgver = 1.0.r70.gb72198d
 	pkgrel = 1
 	url = https://github.com/csrc-sdsu/mole
 	arch = x86_64
-	license = GPL-3.0-or-later
-	makedepends = cmake
+	license = GPL-3.0-only
 	makedepends = doxygen
-	makedepends = graphviz
 	makedepends = eigen
+	makedepends = graphviz
+	makedepends = openblas
+	makedepends = git
 	depends = armadillo
 	optdepends = matlab: for MATLAB support
 	optdepends = octave: for Octave support
@@ -16,8 +17,6 @@ pkgbase = mole-git
 	provides = mole
 	conflicts = mole
 	source = git+https://github.com/csrc-sdsu/mole.git#branch=master
-	source = https://raw.githubusercontent.com/carlosal1015/mole_examples/main/patches/includes.patch
 	sha512sums = SKIP
-	sha512sums = e7ad19476aef8b0f0a3cd3505c3d4546b0e1b238e5772e4aa6060ac990f8dfa3e29a44c3a6069110194f25c64e1c188cdf98c2b587f160043b9615e3124f94ea
 
-pkgname = mole-git
+pkgname = libmole-git

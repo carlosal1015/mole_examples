@@ -13,7 +13,7 @@ pkgname=(blas
          lapack64
          lapacke64
          lapack-doc)
-pkgver=3.12.0
+pkgver=3.12.1
 pkgrel=1
 url='https://www.netlib.org/lapack'
 pkgdesc='Linear Algebra PACKage'
