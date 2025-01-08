@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Docs
         run: |
-          pacman --noconfirm --noprogressbar -Syuq doxygen graphviz git
+          pacman --noconfirm --noprogressbar -Syuq doxygen graphviz git octave
           git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
           git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
           pushd mole
