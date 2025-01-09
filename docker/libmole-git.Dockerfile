@@ -6,7 +6,7 @@ ARG LIBMOLE_PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_exampl
 ARG DIR_LIBMOLE="/home/builder/.cache/yay/libmole-git"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  yay --needed --noconfirm --noprogressbar -S armadillo >/dev/null 2>&1 && \
+  yay --needed --noconfirm --noprogressbar -S armadillo octave-symbolic >/dev/null 2>&1 && \
   mkdir -p ${DIR_LIBMOLE} && \
   pushd ${DIR_LIBMOLE} && \
   curl -LO ${LIBMOLE_PKGBUILD} && \

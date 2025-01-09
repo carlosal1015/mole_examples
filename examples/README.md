@@ -33,4 +33,11 @@ Validated By    : None
 ```console
 $ cd examples
 $ cp -R /usr/share/doc/mole/examples/ .
+$ mv matlab octave
+$ cd octave
+$ sed -i '1s/^/#!\/usr\/bin\/env -S octave-cli -qf\n/' *.m
+$ sed -i "s/^addpath('..\/..\/src\/matlab')/addpath('\/usr\/share\/mole\/matlab\/')/" *.m
+$ chmod +x *.m
 ```
+
+[](https://stackoverflow.com/a/8724486)

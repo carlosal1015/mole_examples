@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG PACKAGES="\
   libmole \
+  octave-symbolic \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
