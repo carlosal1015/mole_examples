@@ -1,4 +1,4 @@
-#!/usr/bin/env -S octave -qf
+#!/usr/bin/env -S octave-cli -qf
 
 % Solves ODE using backward Euler method
 
@@ -18,3 +18,5 @@ title('Approximation to y(t) using backward Euler')
 xlabel('t')
 ylabel('y')
 grid on
+
+saveas(gcf, 'backward_euler', 'pdf')

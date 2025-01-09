@@ -1,9 +1,11 @@
+#!/usr/bin/env -S octave -qf
+
 % 2D Staggering example using a 2D Mimetic laplacian
 
 clc
 close all
 
-addpath('../mole_MATLAB')
+addpath('/usr/share/mole/mole_MATLAB')
 
 k = 2; % Order of accuracy
 m = 5; % Vertical resolution
@@ -12,15 +14,15 @@ n = 6; % Horizontal resolution
 L = lap2D(k, m, 1, n, 1); % 2D Mimetic laplacian operator
 L = L + robinBC2D(k, m, 1, n, 1, 1, 0); % Dirichlet BC
 
-RHS = zeros(m+2, n+2);
+RHS = zeros(m + 2, n + 2);
 
 RHS(1, :) = 100; % Known value at the bottom boundary
 
 RHS = reshape(RHS, [], 1);
 
-SOL = L\RHS;
+SOL = L \ RHS;
 
-SOL = reshape(SOL, m+2, n+2);
+SOL = reshape(SOL, m + 2, n + 2);
 
 imagesc(SOL)
 title('2D Poisson''s equation')

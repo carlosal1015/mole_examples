@@ -1,1 +1,1 @@
-Tested with g++ (GCC) 14.2.1 20240805.
+This folder houses a collection of examples that serve as excellent starting points for developing more sophisticated programs utilizing MOLE's C++ version.
