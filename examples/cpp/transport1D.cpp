@@ -4,10 +4,11 @@
  * https://wwwbrr.cr.usgs.gov/projects/GWC_coupled/phreeqc/html/final-22.html
  */
 
-#include "mole.h"
 #include <iostream>
+#include <mole/mole.h>
 
-int main() {
+int main()
+{
 
   int k = 2;             // Operators' order of accuracy
   Real a = 0;            // Left boundary

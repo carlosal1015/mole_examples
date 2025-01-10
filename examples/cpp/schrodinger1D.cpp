@@ -2,11 +2,12 @@
  * This example uses MOLE to solve the 1D Schrodinger equation
  */
 
-#include "mole.h"
 #include <algorithm>
 #include <iostream>
+#include <mole/mole.h>
 
-int main() {
+int main()
+{
 
   int k = 4;   // Operators' order of accuracy
   Real a = -5; // Left boundary

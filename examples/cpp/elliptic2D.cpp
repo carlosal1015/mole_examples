@@ -5,10 +5,11 @@
  * gnuplot> plot 'solution' matrix with image
  */
 
-#include "mole.h"
 #include <iostream>
+#include <mole/mole.h>
 
-int main() {
+int main()
+{
   int k = 2; // Operators' order of accuracy
   int m = 9; // Vertical resolution
   int n = 9; // Horizontal resolution

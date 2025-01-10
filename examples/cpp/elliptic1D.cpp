@@ -2,10 +2,11 @@
  * This example uses MOLE to solve a 1D BVP
  */
 
-#include "mole.h"
 #include <iostream>
+#include <mole/mole.h>
 
-int main() {
+int main()
+{
 
   int k = 6;             // Operators' order of accuracy
   Real a = 0;            // Left boundary
