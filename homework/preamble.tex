@@ -1,0 +1,44 @@
+\documentclass[a4paper, 10pt,
+    twoside,
+    logo={logouni},
+    logo height=2cm,
+    title in boldface,
+    title in sffamily,
+    theorem in new line,
+    %   remove qed,
+    %   remove problem qed,
+    %   remove solution qed
+    colored solution={DarkBlue},
+    %   hide solution,
+]{homework}
+
+\usepackage{diffcoeff}
+\usepackage[svgnames]{xcolor}
+\usepackage{minted}
+\usepackage{hyperref}
+
+\setminted{breaklines=true}
+\setminted[octave]{highlightcolor=yellow!50!white}
+\setminted[cpp]{highlightcolor=yellow!50!white}
+\setmonofont{Fira Code}[Contextuals=Alternate,Scale=MatchLowercase]
+
+\hypersetup{
+    pdfencoding=auto,
+    linktocpage=true,
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    urlcolor=magenta,
+    pdfpagelabels,
+    pdftex,
+    pdfauthor={Carlos Aznarán Laos},
+    pdftitle={Métodos Miméticos para resolver EDPs y la librería MOLE},
+    pdfsubject={Lecture},
+    pdfkeywords={ode, pde},
+    pdfproducer={LuaHBTeX, Version 1.18.0 (TeX Live 2024/Arch Linux)},
+    % bookmark=false
+}
+
+\UseLanguage{Spanish}
+\title{Métodos Miméticos para resolver EDPs y la librería MOLE, Semana $1$}
+\author{Carlos Aznarán}
+\date{Lima, \TheDate{2025-01-14}}

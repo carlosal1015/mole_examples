@@ -10,8 +10,10 @@ include_directories(${ARMADILLO_INCLUDE_DIRS})
 add_executable(convection_diffusion convection_diffusion.cpp)
 target_link_libraries(convection_diffusion PUBLIC ${ARMADILLO_LIBRARIES} mole)
 
+# find_package(HDF5 REQUIRED)
 add_executable(elliptic1D elliptic1D.cpp)
-target_link_libraries(elliptic1D PUBLIC ${ARMADILLO_LIBRARIES} mole)
+# target_compile_definitions(elliptic1D PRIVATE EIGEN=1)
+target_link_libraries(elliptic1D PUBLIC ${ARMADILLO_LIBRARIES} mole hdf5)
 
 add_executable(elliptic2D elliptic2D.cpp)
 target_link_libraries(elliptic2D PUBLIC ${ARMADILLO_LIBRARIES} mole)

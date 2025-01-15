@@ -1,0 +1,53 @@
+$ octave --help
+GNU Octave, version 9.3.0
+Copyright (C) 1993-2024 The Octave Project Developers.
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.
+
+Octave was configured for "x86_64-pc-linux-gnu".
+
+Usage: octave [options] [FILE]
+
+Options:
+
+  --built-in-docstrings-file FILE Use docs for built-ins from FILE.
+  --debug, -d             Enter parser debugging mode.
+  --doc-cache-file FILE   Use doc cache file FILE.
+  --echo-commands, -x     Echo commands as they are executed.
+  --eval CODE             Evaluate CODE.  Exit when done unless --persist.
+  --exec-path PATH        Set path for executing subprograms.
+  --experimental-terminal-widget
+                          Use new experimental terminal widget in the GUI.
+  --gui                   Start the graphical user interface.
+  --help, -h,             Print short help message and exit.
+  --image-path PATH       Add PATH to head of image search path.
+  --info-file FILE        Use top-level info file FILE.
+  --info-program PROGRAM  Use PROGRAM for reading info files.
+  --interactive, -i       Force interactive behavior.
+  --line-editing          Force readline use for command-line editing.
+  --no-gui                Disable the graphical user interface.
+  --no-history, -H        Don't save commands to the history list
+  --no-init-file          Don't read the ~/.octaverc or .octaverc files.
+  --no-init-path          Don't initialize function search path.
+  --no-line-editing       Don't use readline for command-line editing.
+  --no-site-file          Don't read the site-wide octaverc file.
+  --no-window-system, -W  Disable window system, including graphics.
+  --norc, -f              Don't read any initialization files.
+  --path PATH, -p PATH    Add PATH to head of function search path.
+  --persist               Go interactive after --eval or reading from FILE.
+  --server                Enter server mode at startup.
+  --silent, --quiet, -q   Don't print message at startup.
+  --texi-macros-file FILE Use Texinfo macros in FILE for makeinfo command.
+  --traditional           Set variables for closer MATLAB compatibility.
+  --verbose, -V           Enable verbose output in some cases.
+  --version, -v           Print version number and exit.
+
+  FILE                    Execute commands from FILE.  Exit when done
+                          unless --persist is also specified.
+
+Home page:            https://octave.org
+
+Improve Octave:       https://octave.org/get-involved
+
+Support resources:    https://octave.org/support

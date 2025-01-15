@@ -1,0 +1,55 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGZdl{} octave \PYGZhy{}\PYGZhy{}help
+GNU Octave, version 9.3.0
+Copyright (C) 1993\PYGZhy{}2024 The Octave Project Developers.
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.
+
+Octave was configured for \PYGZdq{}x86\PYGZus{}64\PYGZhy{}pc\PYGZhy{}linux\PYGZhy{}gnu\PYGZdq{}.
+
+Usage: octave [options] [FILE]
+
+Options:
+
+  \PYGZhy{}\PYGZhy{}built\PYGZhy{}in\PYGZhy{}docstrings\PYGZhy{}file FILE Use docs for built\PYGZhy{}ins from FILE.
+  \PYGZhy{}\PYGZhy{}debug, \PYGZhy{}d             Enter parser debugging mode.
+  \PYGZhy{}\PYGZhy{}doc\PYGZhy{}cache\PYGZhy{}file FILE   Use doc cache file FILE.
+  \PYGZhy{}\PYGZhy{}echo\PYGZhy{}commands, \PYGZhy{}x     Echo commands as they are executed.
+  \PYGZhy{}\PYGZhy{}eval CODE             Evaluate CODE.  Exit when done unless \PYGZhy{}\PYGZhy{}persist.
+  \PYGZhy{}\PYGZhy{}exec\PYGZhy{}path PATH        Set path for executing subprograms.
+  \PYGZhy{}\PYGZhy{}experimental\PYGZhy{}terminal\PYGZhy{}widget
+                          Use new experimental terminal widget in the GUI.
+  \PYGZhy{}\PYGZhy{}gui                   Start the graphical user interface.
+  \PYGZhy{}\PYGZhy{}help, \PYGZhy{}h,             Print short help message and exit.
+  \PYGZhy{}\PYGZhy{}image\PYGZhy{}path PATH       Add PATH to head of image search path.
+  \PYGZhy{}\PYGZhy{}info\PYGZhy{}file FILE        Use top\PYGZhy{}level info file FILE.
+  \PYGZhy{}\PYGZhy{}info\PYGZhy{}program PROGRAM  Use PROGRAM for reading info files.
+  \PYGZhy{}\PYGZhy{}interactive, \PYGZhy{}i       Force interactive behavior.
+  \PYGZhy{}\PYGZhy{}line\PYGZhy{}editing          Force readline use for command\PYGZhy{}line editing.
+  \PYGZhy{}\PYGZhy{}no\PYGZhy{}gui                Disable the graphical user interface.
+  \PYGZhy{}\PYGZhy{}no\PYGZhy{}history, \PYGZhy{}H        Don\PYGZsq{}t save commands to the history list
+  \PYGZhy{}\PYGZhy{}no\PYGZhy{}init\PYGZhy{}file          Don\PYGZsq{}t read the \PYGZti{}/.octaverc or .octaverc files.
+  \PYGZhy{}\PYGZhy{}no\PYGZhy{}init\PYGZhy{}path          Don\PYGZsq{}t initialize function search path.
+  \PYGZhy{}\PYGZhy{}no\PYGZhy{}line\PYGZhy{}editing       Don\PYGZsq{}t use readline for command\PYGZhy{}line editing.
+  \PYGZhy{}\PYGZhy{}no\PYGZhy{}site\PYGZhy{}file          Don\PYGZsq{}t read the site\PYGZhy{}wide octaverc file.
+  \PYGZhy{}\PYGZhy{}no\PYGZhy{}window\PYGZhy{}system, \PYGZhy{}W  Disable window system, including graphics.
+  \PYGZhy{}\PYGZhy{}norc, \PYGZhy{}f              Don\PYGZsq{}t read any initialization files.
+  \PYGZhy{}\PYGZhy{}path PATH, \PYGZhy{}p PATH    Add PATH to head of function search path.
+  \PYGZhy{}\PYGZhy{}persist               Go interactive after \PYGZhy{}\PYGZhy{}eval or reading from FILE.
+  \PYGZhy{}\PYGZhy{}server                Enter server mode at startup.
+  \PYGZhy{}\PYGZhy{}silent, \PYGZhy{}\PYGZhy{}quiet, \PYGZhy{}q   Don\PYGZsq{}t print message at startup.
+  \PYGZhy{}\PYGZhy{}texi\PYGZhy{}macros\PYGZhy{}file FILE Use Texinfo macros in FILE for makeinfo command.
+  \PYGZhy{}\PYGZhy{}traditional           Set variables for closer MATLAB compatibility.
+  \PYGZhy{}\PYGZhy{}verbose, \PYGZhy{}V           Enable verbose output in some cases.
+  \PYGZhy{}\PYGZhy{}version, \PYGZhy{}v           Print version number and exit.
+
+  FILE                    Execute commands from FILE.  Exit when done
+                          unless \PYGZhy{}\PYGZhy{}persist is also specified.
+
+Home page:            https://octave.org
+
+Improve Octave:       https://octave.org/get\PYGZhy{}involved
+
+Support resources:    https://octave.org/support
+\end{Verbatim}

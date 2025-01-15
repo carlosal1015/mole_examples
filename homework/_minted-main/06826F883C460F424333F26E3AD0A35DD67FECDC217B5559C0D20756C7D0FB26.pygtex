@@ -1,0 +1,65 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * This example uses MOLE to solve a 1D BVP}
+\PYG{c+cm}{ */}
+
+\PYG{c+cp}{\PYGZsh{}define ARMA\PYGZus{}USE\PYGZus{}HDF5}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}mole/laplacian.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}mole/operators.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}mole/robinbc.h\PYGZgt{}}
+
+\PYG{c+c1}{// using Real = double;}
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{k}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{;}\PYG{+w}{             }\PYG{c+c1}{// Operators\PYGZsq{} order of accuracy}
+\PYG{+w}{  }\PYG{n}{Real}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{            }\PYG{c+c1}{// Left boundary}
+\PYG{+w}{  }\PYG{n}{Real}\PYG{+w}{ }\PYG{n}{b}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{            }\PYG{c+c1}{// Right boundary}
+\PYG{+w}{  }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{m}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{k}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{     }\PYG{c+c1}{// Number of cells}
+\PYG{+w}{  }\PYG{n}{Real}\PYG{+w}{ }\PYG{n}{dx}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{b}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Step size}
+
+\PYG{+w}{  }\PYG{c+c1}{// Get mimetic operators}
+\PYG{+w}{  }\PYG{n}{Laplacian}\PYG{+w}{ }\PYG{n}{L}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dx}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{Real}\PYG{+w}{ }\PYG{n}{d}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Dirichlet coefficient}
+\PYG{+w}{  }\PYG{n}{Real}\PYG{+w}{ }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Neumann coefficient}
+\PYG{+w}{  }\PYG{n}{RobinBC}\PYG{+w}{ }\PYG{n}{BC}\PYG{p}{(}\PYG{n}{k}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{dx}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{d}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{L}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{L}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{BC}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{c+c1}{// 1D Staggered grid}
+\PYG{+w}{  }\PYG{n}{arma}\PYG{o}{::}\PYG{n}{vec}\PYG{+w}{ }\PYG{n}{grid}\PYG{p}{(}\PYG{n}{m}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{grid}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{grid}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{a}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{dx}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{l+m+mf}{2.0}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{grid}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{grid}\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{dx}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{  }\PYG{n}{grid}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{c+c1}{// Build RHS for system of equations}
+\PYG{+w}{  }\PYG{n}{arma}\PYG{o}{::}\PYG{n}{vec}\PYG{+w}{ }\PYG{n}{rhs}\PYG{p}{(}\PYG{n}{m}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{rhs}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{arma}\PYG{o}{::}\PYG{n}{exp}\PYG{p}{(}\PYG{n}{grid}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// rhs(0) = 1}
+\PYG{+w}{  }\PYG{n}{rhs}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{rhs}\PYG{p}{(}\PYG{n}{m}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{exp}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// rhs(1) = 2e}
+
+\PYG{+w}{  }\PYG{c+c1}{// Solve the system of linear equations}
+\PYG{c+cp}{\PYGZsh{}ifdef EIGEN}
+\PYG{+w}{  }\PYG{c+c1}{// Use Eigen only if SuperLU (faster) is not available}
+\PYG{+w}{  }\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}With Eigen\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{vec}\PYG{+w}{ }\PYG{n}{sol}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{Utils}\PYG{o}{::}\PYG{n}{spsolve\PYGZus{}eigen}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{rhs}\PYG{p}{);}
+\PYG{c+cp}{\PYGZsh{}else}
+\PYG{+w}{  }\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}With SuperLU\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{arma}\PYG{o}{::}\PYG{n}{vec}\PYG{+w}{ }\PYG{n}{sol}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{spsolve}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{rhs}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// Will use SuperLU}
+\PYG{c+cp}{\PYGZsh{}endif}
+
+\PYG{+w}{  }\PYG{c+c1}{// Save grid}
+\PYG{+w}{  }\PYG{n}{grid}\PYG{p}{.}\PYG{n}{save}\PYG{p}{(}\PYG{n}{arma}\PYG{o}{::}\PYG{n}{hdf5\PYGZus{}name}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}elliptic1d\PYGZus{}grid.h5\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}elliptic1d\PYGZus{}grid\PYGZdq{}}\PYG{p}{));}
+\PYG{+w}{  }\PYG{c+c1}{// Save the solution}
+\PYG{+w}{  }\PYG{n}{sol}\PYG{p}{.}\PYG{n}{save}\PYG{p}{(}\PYG{n}{arma}\PYG{o}{::}\PYG{n}{hdf5\PYGZus{}name}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}elliptic1d\PYGZus{}solution.h5\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}elliptic1d\PYGZus{}solution\PYGZdq{}}\PYG{p}{));}
+\PYG{+w}{  }\PYG{c+c1}{// Print out the solution}
+\PYG{+w}{  }\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{n}{sol}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
