@@ -12,15 +12,24 @@
     %   hide solution,
 ]{homework}
 
+\usepackage{unicode-math}
 \usepackage{diffcoeff}
 \usepackage[svgnames]{xcolor}
 \usepackage{minted}
+\usepackage[
+	citestyle=numeric,
+	style=numeric,
+	backend=biber,
+]{biblatex}
 \usepackage{hyperref}
 
 \setminted{breaklines=true}
 \setminted[octave]{highlightcolor=yellow!50!white}
 \setminted[cpp]{highlightcolor=yellow!50!white}
 \setmonofont{Fira Code}[Contextuals=Alternate,Scale=MatchLowercase]
+\renewcommand{\listingscaption}{Programa}
+\difdef{c}{L}{op-symbol=\mathop{}\!\mathbin\bigtriangleup}
+\addbibresource{references.bib}
 
 \hypersetup{
     pdfencoding=auto,
@@ -41,4 +50,4 @@
 \UseLanguage{Spanish}
 \title{Métodos Miméticos para resolver EDPs y la librería MOLE, Semana $1$}
 \author{Carlos Aznarán}
-\date{Lima, \TheDate{2025-01-14}}
+\date{Lima, \TheDate{2025-01-15}}

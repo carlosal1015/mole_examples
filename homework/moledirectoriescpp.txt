@@ -1,0 +1,19 @@
+$ tree /usr/include/mole
+/usr/include/mole
+├── divergence.h
+├── gradient.h
+├── interpol.h
+├── laplacian.h
+├── mixedbc.h
+├── mole.h
+├── operators.h
+├── robinbc.h
+└── utils.h
+
+1 directory, 9 files
+
+$ tree /usr/lib/libmole.so
+
+/usr/lib/libmole.so
+
+0 directories, 1 file

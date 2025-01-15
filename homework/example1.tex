@@ -10,7 +10,7 @@ siguientes preguntas.
 
           \begin{solution}
               Se está resolviendo la ecuación de Poisson con el
-              problema de valor de frontera Robin
+              problema de valor de frontera Robin~\cite{CORBINO2020112326}
               \begin{equation}\label{eq:poisson1drobindconditions}
                   \left\{
                   \begin{aligned}
@@ -109,7 +109,8 @@ se necesita tener permisos de ejecución (por ejemplo,
     \tiny
     \centering
     \inputminted{text}{octave-help.txt}
-    \caption{Lista de opciones por línea de comandos de Octave.}
+    \caption{\href{https://raw.githubusercontent.com/carlosal1015/mole_examples/refs/heads/main/homework/octave-help.txt}{\mintinline{text}|octave-help.txt|}
+        muestra la lista de opciones de Octave por la línea de comandos.}
 \end{listing}
 
 En la línea $2$ tenemos un comentario sobre el programa de modo que
@@ -131,8 +132,11 @@ Allí se encuentra el directorio de la biblioteca MOLE.
 \begin{listing}[ht!]
     \tiny
     \centering
-    \inputminted{text}{moledirectories.txt}
-    \caption{Estructura de árbol de directorios de la biblioteca MOLE.}
+    \inputminted{text}{moledirectoriesoctave.txt}
+    \inputminted{text}{moledirectoriescpp.txt}
+    \caption{\href{https://raw.githubusercontent.com/carlosal1015/mole_examples/refs/heads/main/homework/moledirectoriesoctave.txt}{\mintinline{text}|moledirectoriesoctave.txt|}
+        y \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/refs/heads/main/homework/moledirectoriescpp.txt}{\mintinline{text}|moledirectoriescpp.txt|}
+        muestran la estructura de árbol de directorios de la biblioteca MOLE.}
 \end{listing}
 
 En las líneas $6$ y $7$, se inicializan los identicadores
@@ -141,9 +145,33 @@ En las líneas $6$ y $7$, se inicializan los identicadores
 $1$, respectivamente, estos representan los valores de frontera del
 dominio espacial en~\eqref{eq:poisson1drobindconditions}.
 
-En la línea $10$, se inicializan los identicadores
+En la línea $13$, llamamos a la función
+\href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/lap.html}{\mintinline{octave}|lap|},
+este requiere como argumentos obligatorios el orden de precisión
+\mintinline{octave}|k|, el número  de celdas \mintinline{octave}|m| y
+el tamaño de paso \mintinline{octave}|dx|.
 
-\href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/lap.html}{\mintinline{octave}|lap|}
+\begin{equation*}
+    L=L^{\left(k\right)}=
+    D^{\left(k\right)}
+    G^{\left(k\right)}=
+    DG.\qquad\qquad
+    \left(
+    \difc.L.{}{}=\nabla\cdot\nabla
+    \right),
+\end{equation*}
+donde $D$ y $G$ son los operadores miméticos de divergencia y gradiente, respectivamente.
+Dado que $D\in\mathbb{R}^{\left(m+2\right)\times\left(m+1\right)}$
+y $G\in\mathbb{R}^{\left(m+1\right)\times\left(m+2\right)}$, entonces $L\in\mathbb{R}^{\left(m+2\right)\times\left(m+2\right)}$.
+
+En la línea $14$, con la función \href{https://docs.octave.org/v9.3.0/Figure-Properties.html#index-figure-visible}{\mintinline{octave}|figure|}
+desactivamos que se muestre la figura en la pantalla, preferimos solamente guardar la gráfica.
+
+En la línea $14$, con la función \href{https://docs.octave.org/latest/Information.html#index-spy}{\mintinline{octave}|spy|}
+graficamos (no se mostrará) el patrón de dispersidad de $L$.
+
+En la línea $15$, con la función \href{https://docs.octave.org/latest/Printing-and-Saving-Plots.html}{\mintinline{octave}|saveas|}
+guardamos esta gráfica en formato PDF recortando.
 
 \href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/robinBC.html}{\mintinline{octave}|robinBC|}
 
@@ -199,7 +227,7 @@ En la línea $10$, se inicializan los identicadores
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=.6\paperwidth]{../examples/octave/elliptic1D.pdf}
-    \caption{Solución al problema usando $k=4$ y $m=2k+1=9$.}
+    \caption{Solución al problema usando \mintinline{octave}|k=4| y \mintinline{octave}|m=2k+1=9|.}
 \end{figure}
 
 \noQED % Use \noqed or \noQED at the end to suppress the Q.E.D. symbol that marks the end of the current problem.

@@ -1,13 +1,13 @@
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'idx', 'log', 'mst', 'pdf']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'pdf', 'run.xml']
 % arara: --> }
-%! arara: lualatex: {
-%! arara: --> shell: yes,
-%! arara: --> draft: yes,
-%! arara: --> interaction: batchmode
-%! arara: --> }
-%! arara: biber
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: yes,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: biber
 % arara: lualatex: {
 % arara: --> shell: yes,
 % arara: --> draft: no,
@@ -20,13 +20,17 @@
 % arara: --> }
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'idx', 'log', 'mst']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'run.xml']
 % arara: --> }
 \input{preamble}
 \begin{document}
 
 \input{example1}
+\input{example2}
 % If there is a question that you can't figure out how to solve at the moment...
 \DNF<falta derivar>
+
+\nocite{*}
+\printbibliography[title={Referencias}] % heading=bibintoc
 
 \end{document}
