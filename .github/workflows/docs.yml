@@ -24,6 +24,18 @@ jobs:
           mkdir -p docs
           mv mole/doc/api_docs docs
 
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v7
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: latex.yml
+          name: PDF-artifact
+
+      - name: "Untar files"
+        run: |
+          tar -I zstd -xvf PDF.tar.zst
+          mv public/*.pdf docs
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
