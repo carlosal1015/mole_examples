@@ -113,7 +113,7 @@ se necesita tener permisos de ejecución (por ejemplo,
         muestra la lista de opciones de Octave por la línea de comandos.}
 \end{listing}
 
-En la línea $2$ tenemos un comentario sobre el programa de modo que
+En las líneas $2$ al $10$ tenemos un comentario sobre el programa de modo que
 ayude al codificador a obtener un contexto del problema a resolver.
 
 % En la línea $4$, la función
@@ -124,7 +124,7 @@ ayude al codificador a obtener un contexto del problema a resolver.
 % \href{https://docs.octave.org/latest/Manipulation-of-Plot-Windows.html#index-close-3}{\mintinline{octave}|close all|}
 % cierra todas las ventanas de las figuras con manejadores visibles.
 
-En la línea $4$, la función
+En la línea $12$, la función
 \href{https://docs.octave.org/v9.3.0/Manipulating-the-Load-Path.html#index-addpath}{\mintinline{octave}|addpath|}
 agrega el directorio \mintinline{octave}|"/usr/share/mole/matlab/"| a la ruta de búsqueda de la función.
 Allí se encuentra el directorio de la biblioteca MOLE.
@@ -139,18 +139,18 @@ Allí se encuentra el directorio de la biblioteca MOLE.
         muestran la estructura de árbol de directorios de la biblioteca MOLE.}
 \end{listing}
 
-En las líneas $6$ y $7$, se inicializan los identicadores
+En las líneas $14$ y $15$, se inicializan los identicadores
 \mintinline{octave}|west| (oeste, izquierda),
 \mintinline{octave}|east| (este, derecha) con los valores de $0$ y
 $1$, respectivamente, estos representan los valores de frontera del
 dominio espacial en~\eqref{eq:poisson1drobindconditions}.
 
-En la línea $13$, llamamos a la función
+En la línea $21$, llamamos a la función
 \href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/lap.html}{\mintinline{octave}|lap|},
-este requiere como argumentos obligatorios el orden de precisión
-\mintinline{octave}|k|, el número  de celdas \mintinline{octave}|m| y
-el tamaño de paso \mintinline{octave}|dx|.
-
+este genera un operador Laplaciano discreto extendido que requiere
+como argumentos obligatorios el orden de precisión
+\mintinline{octave}|k|, el número  de celdas \mintinline{octave}|m|
+y el tamaño de paso \mintinline{octave}|dx|.
 \begin{equation*}
     L=L^{\left(k\right)}=
     D^{\left(k\right)}
@@ -164,23 +164,34 @@ donde $D$ y $G$ son los operadores miméticos de divergencia y gradiente, respec
 Dado que $D\in\mathbb{R}^{\left(m+2\right)\times\left(m+1\right)}$
 y $G\in\mathbb{R}^{\left(m+1\right)\times\left(m+2\right)}$, entonces $L\in\mathbb{R}^{\left(m+2\right)\times\left(m+2\right)}$.
 
-En la línea $14$, con la función \href{https://docs.octave.org/v9.3.0/Figure-Properties.html#index-figure-visible}{\mintinline{octave}|figure|}
+En la línea $22$, con la función \href{https://docs.octave.org/v9.3.0/Figure-Properties.html#index-figure-visible}{\mintinline{octave}|figure|}
 desactivamos que se muestre la figura en la pantalla, preferimos solamente guardar la gráfica.
 
-En la línea $14$, con la función \href{https://docs.octave.org/latest/Information.html#index-spy}{\mintinline{octave}|spy|}
+En la línea $23$, con la función \href{https://docs.octave.org/latest/Information.html#index-spy}{\mintinline{octave}|spy|}
 graficamos (no se mostrará) el patrón de dispersidad de $L$.
 
-En la línea $15$, con la función \href{https://docs.octave.org/latest/Printing-and-Saving-Plots.html}{\mintinline{octave}|saveas|}
-guardamos esta gráfica en formato PDF recortando.
+En la línea $24$, con la función \href{https://docs.octave.org/latest/Printing-and-Saving-Plots.html}{\mintinline{octave}|saveas|}
+guardamos esta gráfica en formato PDF y recortado.
 
-\href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/robinBC.html}{\mintinline{octave}|robinBC|}
+En la línea $29$, llamamos a la función
+\href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/robinBC.html}{\mintinline{octave}|robinBC|},
+este requiere como argumentos obligatorios el orden de precisión \mintinline{octave}|k|,
+el número  de celdas \mintinline{octave}|m|, el tamaño de paso
+\mintinline{octave}|dx|, el coeficiente Dirichlet \mintinline{octave}|a| y el coeficiente Neumann \mintinline{octave}|b|.
+Esta función devuelve una matriz en $\mathbb{R}^{\left(m+2\right)\times\left(m+2\right)}$.
+
+\begin{algorithm}[H]
+    $A\leftarrow L$\;
+    $u\leftarrow g$\;
+    $A\leftarrow A+R_{G}$\;
+\end{algorithm}
 
 \href{https://docs.octave.org/latest/Exponents-and-Logarithms.html#XREFexp}{\mintinline{octave}|exp|}
 
 \begin{listing}[ht!]
     \tiny
     \centering
-    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=43,highlightlines={13}]{octave}{../examples/octave/elliptic1D.m}
+    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=51,highlightlines={21,29}]{octave}{../examples/octave/elliptic1D.m}
     \caption{Programa~\texttt{elliptic1D.m}}
     \label{code:elliptic1D.m}
 \end{listing}
@@ -188,8 +199,18 @@ guardamos esta gráfica en formato PDF recortando.
 \begin{listing}[ht!]
     \tiny
     \centering
-    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=52,highlightlines={18}]{cpp}{../examples/cpp/elliptic1D.cpp}
+    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=63,highlightlines={23,26}]{cpp}{../examples/cpp/elliptic1D.cpp}
     \caption{Programa~\texttt{elliptic1D.cpp}}
+\end{listing}
+
+\begin{listing}[ht!]
+    \tiny
+    \centering
+    \inputminted[firstline=1,lastline=8,highlightlines={7}]{cmake}{../examples/cpp/CMakeLists.txt}
+    \inputminted[firstline=14,lastline=14]{cmake}{../examples/cpp/CMakeLists.txt}
+    \inputminted[firstline=16,lastline=16,highlightlines={16}]{cmake}{../examples/cpp/CMakeLists.txt}
+    \inputminted[firstline=65,lastline=69]{cmake}{../examples/cpp/CMakeLists.txt}
+    \caption{Programa~\texttt{CMakeLists.txt}}
 \end{listing}
 
 \begin{itemize}
@@ -214,7 +235,10 @@ guardamos esta gráfica en formato PDF recortando.
     \centering
     \includegraphics[width=.39\paperwidth]{../examples/octave/elliptic1Dsparsebefore.pdf}
     \includegraphics[width=.39\paperwidth]{../examples/octave/elliptic1Dsparseafter.pdf}
-    \caption{Izquierda: Antes. Derecha: Después.}
+    \caption{Izquierda: Representación dispersa de $L$ hasta la línea 13.
+        La primera fila y última fila son vectores nulos.
+        Derecha: Representación dispersa de $L$ hasta la línea 21.
+        La matriz $L\in\mathbb{R}^{15\times 15}$.}
 \end{figure}
 
 \begin{figure}[ht!]
@@ -227,7 +251,7 @@ guardamos esta gráfica en formato PDF recortando.
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=.6\paperwidth]{../examples/octave/elliptic1D.pdf}
-    \caption{Solución al problema usando \mintinline{octave}|k=4| y \mintinline{octave}|m=2k+1=9|.}
+    \caption{Solución al problema usando \mintinline{octave}|k=6| y \mintinline{octave}|m=2k+1=13|.}
 \end{figure}
 
 \noQED % Use \noqed or \noQED at the end to suppress the Q.E.D. symbol that marks the end of the current problem.
