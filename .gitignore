@@ -45,3 +45,4 @@ keyfile.toml
 *.avi
 *.pdf
 references
+_minted-main
