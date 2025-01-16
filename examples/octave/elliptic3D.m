@@ -24,9 +24,10 @@ SOL = L\RHS;
 
 SOL = reshape(SOL, m+2, n+2, o+2);
 
-p = 2; % Page to be displayed
+p = 2; % Page to be displayed 1...o+2
 
 page = SOL(:, :, p);
+figure('visible', 'off');
 
 imagesc(page)
 title([num2str(p) ' page'])
@@ -34,3 +35,4 @@ xlabel('m')
 ylabel('n')
 set(gca, 'YDir', 'Normal')
 colorbar
+saveas(gcf, "elliptic3D.pdf", 'pdfcrop')
