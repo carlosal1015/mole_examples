@@ -17,6 +17,7 @@ L = L + robinBC3D(k, m, 1, n, 1, o, 1, 1, 0); % Dirichlet BC
 RHS = zeros(m+2, n+2, o+2);
 
 RHS(:, :, 1) = 100; % Known value at the cube's front face
+RHS(:, :, end) = 100; % Known value at the cube's back face
 
 RHS = reshape(RHS, (m+2)*(n+2)*(o+2), 1);
 
