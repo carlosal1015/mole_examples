@@ -51,7 +51,7 @@ fig, ax = plt.subplots(layout="constrained")
 ax.scatter(x=grid, y=error, c="red", s=2)
 ax.set_xticks(np.linspace(start=grid[0], stop=grid[-1], num=5))
 ax.set_xlabel(xlabel=r"$x$")
-ax.set_ylabel(ylabel=r"$\left|u\left(x_{j}\right)-u_{j}\right|$")
+ax.set_ylabel(ylabel=r"$\left|u\left(x_{j-\frac12}\right)-u_{j-\frac12}\right|$")
 ax.set_xlim(left=grid[0] - 5e-3, right=grid[-1] + 5e-3)
 ax.set_title(
     label="Error puntual",
@@ -67,6 +67,29 @@ ax.spines["right"].set_color("none")
 plt.savefig("elliptic1Derror.pdf", transparent=True, bbox_inches="tight")
 plt.clf()
 
+Δx = np.logspace(start=-15, stop=0, num=16, base=2)
 fig, ax = plt.subplots(layout="constrained")
+ax.loglog(
+    Δx,
+    Δx,
+    "--",
+    mfc="none",
+    label=r"$\mathcal{O}\left(\Delta x\right)$",
+    linewidth=0.8,
+)
+ax.loglog(
+    Δx,
+    np.power(Δx, 2),
+    "--",
+    mfc="none",
+    label=r"$\mathcal{O}\left(\Delta x^{2}\right)$",
+    linewidth=0.8,
+)
+ax.set_xlabel(r"Tamaño malla equivalente $\Delta x$")
+ax.set_ylabel("Error")
+ax.set_xlim(left=Δx[0], right=Δx[-1])
+ax.set_ylim(bottom=1e-5, top=1e-1)
+ax.grid(c="gray", linewidth=0.1, linestyle="dashed")
+ax.legend(loc="upper left", shadow=True)
 plt.savefig("elliptic1Dconvergenceorder.pdf", transparent=True, bbox_inches="tight")
 plt.clf()
