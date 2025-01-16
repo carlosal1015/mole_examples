@@ -10,7 +10,8 @@ siguientes preguntas.
 
           \begin{solution}
               Se está resolviendo la ecuación de Poisson con el
-              problema de valor de frontera Robin~\cite{CORBINO2020112326}
+              problema de valor de frontera
+              Robin~\cite{CORBINO2020112326}
               \begin{equation}\label{eq:poisson1drobindconditions}
                   \left\{
                   \begin{aligned}
@@ -24,6 +25,7 @@ siguientes preguntas.
                   \end{aligned}
                   \right.
               \end{equation}
+              \noQED
           \end{solution}
 
     \item
@@ -36,6 +38,7 @@ siguientes preguntas.
                   f\left(x\right)=
                   e^{x}
               \end{math}.
+              \noQED
           \end{solution}
 
     \item
@@ -47,6 +50,7 @@ siguientes preguntas.
               El tipo de condición de contorno es Robin con dos
               coeficientes iguales a $1$.
               El lado derecho es $g_{x=0}=0$ y $g_{x=1}=2e$.
+              \noQED
           \end{solution}
 
     \item
@@ -82,7 +86,7 @@ siguientes preguntas.
                       u\left(0\right)-
                       \diff{u}{x}[x=0]=
                       e^{0}+C_{1}\left(0\right)+C_{2}-
-                      \left(e^{0}+C_{1}\left(1\right)\right)=
+                      \left(e^{0}+C_{1}\right)=
                       C_{2}-C_{1}. \\
                       2e
                        & =
@@ -99,10 +103,57 @@ siguientes preguntas.
               Así, la solución exacta
               de~\eqref{eq:poisson1drobindconditions} es
               $u\left(x\right)=e^{x}$.
+              \noQED
           \end{solution}
 \end{enumerate}
 
-\textsf{\bfseries Explicación del programa}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.39\paperwidth]{../examples/octave/elliptic1Dsparsebefore.pdf}
+    \includegraphics[width=.39\paperwidth]{../examples/octave/elliptic1Dsparseafter.pdf}
+    \caption{Izquierda: Representación dispersa de $L$ hasta la línea 21.
+        La primera fila y última fila son vectores nulos.
+        Derecha: Representación dispersa de $L$ hasta la línea 29.
+        La matriz $L\in\mathbb{R}^{15\times 15}$.}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.39\paperwidth]{elliptic1D.pdf}
+    \includegraphics[width=.39\paperwidth]{elliptic1Derror.pdf}
+    \includegraphics[width=.6\paperwidth]{elliptic1Dconvergenceorder.pdf}
+    \caption{Izquierda arriba: Solución de~\eqref{eq:poisson1drobindconditions}.
+        Derecha arriba: Error en la malla escalonada
+        \begin{math}
+            \left\{
+            0,
+            \dotsc,
+            x_{j-\frac{1}{2}}
+            \dotsc,
+            1
+            \right\}
+        \end{math}
+        % If there is a question that you can't figure out how to solve at the moment...
+        \DNF<Falta obtener el orden de convergencia numérico>
+        Abajo: Estimación del orden de convergencia.}
+\end{figure}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.6\paperwidth]{../examples/octave/elliptic1D.pdf}
+    \caption{Solución al problema usando \mintinline{octave}|k=6| y \mintinline{octave}|m=2k+1=13|.}
+\end{figure}
+
+\section*{Explicación del programa~\ref{code:elliptic1D.m}}
+% \textsf{\bfseries Explicación del programa}
+
+\begin{listing}[ht!]
+    \tiny
+    \centering
+    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=51,highlightlines={21,29}]{octave}{../examples/octave/elliptic1D.m}
+    \caption{Programa~\texttt{elliptic1D.m}}
+    \label{code:elliptic1D.m}
+\end{listing}
 
 En la línea $1$ encontramos el
 \emph{shebang}\footnote{\url{https://en.wikipedia.org/wiki/Shebang_(Unix)}},
@@ -134,10 +185,16 @@ biblioteca MOLE.
     \tiny
     \centering
     \inputminted{text}{moledirectoriesoctave.txt}
-    \inputminted{text}{moledirectoriescpp.txt}
     \caption{\href{https://raw.githubusercontent.com/carlosal1015/mole_examples/refs/heads/main/homework/moledirectoriesoctave.txt}{\mintinline{text}|moledirectoriesoctave.txt|}
-        y \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/refs/heads/main/homework/moledirectoriescpp.txt}{\mintinline{text}|moledirectoriescpp.txt|}
-        muestran la estructura de árbol de directorios de la biblioteca MOLE.}
+        muestran la estructura de árbol de directorios de las funciones Octave / MATLAB de la biblioteca MOLE.}
+\end{listing}
+
+\begin{listing}[ht!]
+    \tiny
+    \centering
+    \inputminted{text}{moledirectoriescpp.txt}
+    \caption{\href{https://raw.githubusercontent.com/carlosal1015/mole_examples/refs/heads/main/homework/moledirectoriescpp.txt}{\mintinline{text}|moledirectoriescpp.txt|}
+        muestran la estructura de árbol de directorios de las cabeceras de C++ de la biblioteca MOLE.}
 \end{listing}
 
 En las líneas $14$ y $15$, se inicializan los identicadores
@@ -163,9 +220,21 @@ y el tamaño de paso \mintinline{octave}|dx|.
 \end{equation*}
 donde $D$ y $G$ son los operadores miméticos de divergencia y
 gradiente, respectivamente.
-Dado que $D\in\mathbb{R}^{\left(m+2\right)\times\left(m+1\right)}$
-y $G\in\mathbb{R}^{\left(m+1\right)\times\left(m+2\right)}$,
-entonces $L\in\mathbb{R}^{\left(m+2\right)\times\left(m+2\right)}$.
+Dado que
+\begin{math}
+    D\in
+    \mathbb{R}^{\left(m+2\right)\times\left(m+1\right)}
+\end{math}
+y
+\begin{math}
+    G\in
+    \mathbb{R}^{\left(m+1\right)\times\left(m+2\right)}
+\end{math},
+entonces
+\begin{math}
+    L\in
+    \mathbb{R}^{\left(m+2\right)\times\left(m+2\right)}.
+\end{math}
 
 En la línea $22$, con la función
 \href{https://docs.octave.org/v9.3.0/Figure-Properties.html#index-figure-visible}{\mintinline{octave}|figure|}
@@ -208,15 +277,16 @@ así como del extremo derecho y el anterior punto malla es
 
 En las líneas $35$ y $43$, guardamos
 \href{https://docs.octave.org/latest/Simple-File-I_002fO.html#index-save-6}{\mintinline{octave}|save|}
-la malla computacional y la solución en el formato HDF5 para posterior post procesamiento.
+la malla computacional y la solución en el formato HDF5 para
+posterior post procesamiento.
 
 En la líneas $39$ y $40$, aplicamos las condiciones de frontera
 Robin, empleamos la función \href{https://docs.octave.org/latest/Exponents-and-Logarithms.html#XREFexp}{\mintinline{octave}|exp|}.
-El signo menos en \mintinline{octave}|b| viene por la implementación
-de \href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/robinBC.html}{\mintinline{octave}|robinBC|}
+El signo menos en el coeficiente Neumann \mintinline{octave}|b| viene
+por la implementación de \href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/robinBC.html}{\mintinline{octave}|robinBC|}
 en MOLE.
 
-En la línea $34$, resolvemos el sistema de ecuaciones lineales
+En la línea $42$, resolvemos el sistema de ecuaciones lineales
 disperso con la función \href{https://docs.octave.org/latest/Arithmetic-Ops.html#index-mldivide}{\mintinline{octave}|mldivide|}.
 
 \begin{figure}[ht!]
@@ -226,19 +296,54 @@ disperso con la función \href{https://docs.octave.org/latest/Arithmetic-Ops.htm
         Vea~\url{https://www.mathworks.com/help/matlab/ref/double.mldivide.html}.}
 \end{figure}
 
-\begin{listing}[ht!]
-    \tiny
+\section*{Resultados del programa~\ref{code:elliptic1D.cpp}}
+
+\begin{table}[ht!]
     \centering
-    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=51,highlightlines={21,29}]{octave}{../examples/octave/elliptic1D.m}
-    \caption{Programa~\texttt{elliptic1D.m}}
-    \label{code:elliptic1D.m}
-\end{listing}
+    \begin{tabular}{ccc}
+        \toprule
+        $\Delta x$            & Error $\ell_1$        & Orden    \\
+        \midrule
+        $1.562\times 10^{-2}$ & $4.410\times 10^{-2}$ & -        \\
+        $1.535\times 10^{-2}$ & $4.464\times 10^{-2}$ & $-0.678$ \\
+        \bottomrule
+    \end{tabular}
+    % \caption{Tabla de errores de aproximación de la primera derivada de $U$ en $x_0$ y el orden convergencia numérico obtenido.}
+    \label{table:errors}
+\end{table}
+
+\DNF<Falta obtener el orden de convergencia numérico>
+
+\section*{Explicación del programa~\ref{code:elliptic1D.cpp}}
+
+En las tres primeras líneas tenemos un comentario sobre el programa
+de modo que ayude al codificador a obtener un contexto del problema a
+resolver.
+
+En la línea $5$
+\href{https://arma.sourceforge.net/docs.html#config_hpp}{\mintinline{cpp}|ARMA_USE_HDF5|}
+para habilitar la lectura y/o escritura de archivos HDF5.
+
+En la línea $16$, se inicializa el orden de precisión del operador.
+
+En las líneas $17$ y $18$, se inicializan los valores que representan
+los bordes del dominio espacial.
+
+\mintinline{cpp}|using Real = double| es un alias que se ha definido
+en \mintinline{cpp}|#include <mole/robinbc.h>|.
+
+En la línea $23$ se instancia la clase \href{https://carlosal1015.github.io/mole_examples/api_docs/cpp/html/classLaplacian.html}{\mintinline{cpp}|Laplacian|}
+
+En la línea $26$ se instancia la clase \href{https://carlosal1015.github.io/mole_examples/api_docs/cpp/html/classRobinBC.html}{\mintinline{cpp}|RobinBC|}
+
+\href{https://arma.sourceforge.net/docs.html#Col}{\mintinline{cpp}|arma::vec|}.
 
 \begin{listing}[ht!]
     \tiny
     \centering
     \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=63,highlightlines={23,26}]{cpp}{../examples/cpp/elliptic1D.cpp}
     \caption{Programa~\texttt{elliptic1D.cpp}}
+    \label{code:elliptic1D.cpp}
 \end{listing}
 
 \begin{listing}[ht!]
@@ -251,193 +356,5 @@ disperso con la función \href{https://docs.octave.org/latest/Arithmetic-Ops.htm
     \caption{Programa~\texttt{CMakeLists.txt}}
 \end{listing}
 
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=.39\paperwidth]{../examples/octave/elliptic1Dsparsebefore.pdf}
-    \includegraphics[width=.39\paperwidth]{../examples/octave/elliptic1Dsparseafter.pdf}
-    \caption{Izquierda: Representación dispersa de $L$ hasta la línea 21.
-        La primera fila y última fila son vectores nulos.
-        Derecha: Representación dispersa de $L$ hasta la línea 29.
-        La matriz $L\in\mathbb{R}^{15\times 15}$.}
-\end{figure}
-
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=.39\paperwidth]{elliptic1D.pdf}
-    \includegraphics[width=.39\paperwidth]{elliptic1Derror.pdf}
-    \includegraphics[width=.6\paperwidth]{elliptic1Dconvergenceorder.pdf}
-    \caption{Izquierda arriba: Solución de~\eqref{eq:poisson1drobindconditions}.
-        Derecha arriba: Error en la malla escalonada
-        \begin{math}
-            \left\{
-            0,
-            \dotsc,
-            x_{j-\frac{1}{2}}
-            \dotsc,
-            1
-            \right\}
-        \end{math}
-        % If there is a question that you can't figure out how to solve at the moment...
-        \DNF<Falta obtener el orden de convergencia numérico>
-        Abajo: Estimación del orden de convergencia.}
-\end{figure}
-
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=.6\paperwidth]{../examples/octave/elliptic1D.pdf}
-    \caption{Solución al problema usando \mintinline{octave}|k=6| y \mintinline{octave}|m=2k+1=13|.}
-\end{figure}
-
 \noQED % Use \noqed or \noQED at the end to suppress the Q.E.D. symbol that marks the end of the current problem.
 \end{problem}
-
-\begin{problem}
-Copie el programa~\ref{code:elliptic1D.m} y modifique lo siguiente:
-
-\begin{itemize}
-    \item
-
-          Cambie el orden de precisión a $4$.
-
-    \item
-
-          Asigne el número de celdas a $10$.
-
-    \item
-
-          Mantenga las condiciones de frontera de tipo Robin.
-
-    \item
-
-          Cambie la función de fuerza a $f\left(x\right)=1+x$.
-
-    \item
-
-          Ejecute el programa con todos los cambios que ha realizado.
-
-    \item
-
-          Verifique que la gráfica es apropiada (títulos, valores de los ejes, etc.).
-\end{itemize}
-\end{problem}
-
-\begin{solution}
-    Se está resolviendo la ecuación de Poisson con el
-    problema de valor de frontera Robin
-    \begin{equation*}
-        \left\{
-        \begin{aligned}
-            \diff[2]{u}{x}
-             & =1+x,
-            \text{ para }x\in\left[0,1\right].     \\
-            0
-             & = u\left(0\right)-\diff{u}{x}[x=0]. \\
-            2e
-             & =u\left(1\right)+\diff{u}{x}[x=1].  \\
-        \end{aligned}
-        \right.
-    \end{equation*}
-
-    Integramos dos veces y obtenemos la solución general.
-    \begin{align*}
-        \iint
-        \diff[2]{u}{x}
-        \dl x
-        \dl x           & =
-        \iint
-        \left(1+x\right)
-        \dl x
-        \dl x.              \\
-        \int
-        \diff{u}{x}
-        \dl x           & =
-        \int
-        \left(x+\frac{x^{2}}{2}+C_{1}\right)
-        \dl x.              \\
-        u\left(x\right) & =
-        \frac{x^{2}}{2}+\frac{x^{3}}{6}+C_{1}x+C_{2}.
-    \end{align*}
-    Ahora, apliquemos las condiciones de frontera Robin.
-    \begin{equation}
-        \left\{
-        \begin{aligned}
-            0
-             & =
-            u\left(0\right)-
-            \diff{u}{x}[x=0]=
-            C_{2}-C_{1}. \\
-            2e
-             & =
-            u\left(1\right)+
-            \diff{u}{x}[x=1]=
-            \frac{13}{6}+2C_{1}+C_{2}.
-        \end{aligned}
-        \right.
-    \end{equation}
-    Así el sistema tiene como solución
-    $C_{1}=C_{2}=\frac{2e}{3}-\frac{13}{18}$.
-    Así, la solución exacta
-    de~\eqref{eq:poisson1drobindconditions} es
-    \begin{math}
-        u\left(x\right)=
-        \frac{x^{2}}{2}+\frac{x^{3}}{6}+
-        \left(x+1\right)\left(\frac{2e}{3}-\frac{13}{18}\right)
-    \end{math}.
-    % You may write claims, lemmas, propositions, etc. inside your solution.
-    % \begin{lemma}\label{lem}
-    %     Some auxiliary result.
-    % \end{lemma}
-    % \begin{proof}
-    %     The proof of \cref{lem}, where we use the following formula:
-    %     \[
-    %         \infty = \infty + 1.
-    %         \qedhere % For placing the Q.E.D. symbol in the right place.
-    %     \]
-    % \end{proof}
-    % \begin{fact}[This statement requires no proof]
-    %     \proofless % To change the hollow box marking the end of a theorem-type environment into a solid one.
-    %     Some statement.
-    % \end{fact}
-    % ... and the rest steps...
-\end{solution}
-
-\begin{listing}[ht!]
-    \tiny
-    \centering
-    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=52,highlightlines={21,29}]{octave}{elliptic1DAznaran.m}
-    \caption{Programa~\href{google.com}{\texttt{elliptic1DAznaran.m}}}
-    \label{code:elliptic1D_Aznaran.m}
-\end{listing}
-
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=.39\paperwidth]{elliptic1D_Aznaran_sparsebefore.pdf}
-    \includegraphics[width=.39\paperwidth]{elliptic1D_Aznaran_sparseafter.pdf}
-    % \caption{Izquierda: Representación dispersa de $L$ hasta la línea 21.
-    %     La primera fila y última fila son vectores nulos.
-    %     Derecha: Representación dispersa de $L$ hasta la línea 29.
-    %     La matriz $L\in\mathbb{R}^{15\times 15}$.}
-\end{figure}
-
-\begin{figure}[ht!]
-    \centering
-    \includegraphics[width=.6\paperwidth]{elliptic1D_Aznaran.pdf}
-    % \caption{Solución al problema usando \mintinline{octave}|k=6| y \mintinline{octave}|m=2k+1=13|.}
-\end{figure}
-
-% En la línea $4$, la función
-% \href{https://docs.octave.org/latest/Cursor-Motion.html#index-clc}{\mintinline{octave}|clc|}
-% limpia la pantalla del terminal y mueve el cursor a la esquina superior izquierda.
-
-% En la línea $5$, la función
-% \href{https://docs.octave.org/latest/Manipulation-of-Plot-Windows.html#index-close-3}{\mintinline{octave}|close all|}
-% cierra todas las ventanas de las figuras con manejadores visibles.
-
-% \url{https://arma.sourceforge.net/docs.html#Col}.
-
-% \url{https://docs.octave.org/v9.3.0/Creating-Sparse-Matrices.html}
-
-% \url{https://docs.octave.org/v9.3.0/Information.html}
-
-% \url{https://www.mathworks.com/matlabcentral/fileexchange/44354-curvilinear-2d-grid-poisson}
-

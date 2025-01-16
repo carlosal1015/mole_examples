@@ -1,50 +1,71 @@
 \begin{problem}
-En este ejemplo no modificarás el código fuente
+Copie el programa~\ref{code:elliptic3D.m} y modifique lo siguiente:
 
 \begin{enumerate}
-    \item
+      \item
 
-          ¿Cuál es el dominio de la EDP (la región donde se cumple la EDP)?
+            ¿Cuál es el dominio de la EDP (la región donde la PDE se cumple)?
 
-    \item
+            \begin{solution}
+                  El dominio de la EDP es
+                  \begin{math}
+                        \Omega=
+                        \left[
+                              0,7
+                              \right]\times
+                        \left[
+                              0,8
+                              \right]\times
+                        \left[
+                              0,9
+                              \right]
+                  \end{math}
+            \end{solution}
 
-          ¿Cuál es la ecuación que resuelve este ejemplo?
+      \item
 
-    \item
+            ¿Cuál es la ecuación que resuelve este ejemplo?
 
-          ¿Cuál es la condición inicial?
+            \begin{solution}
+                  La ecuación que resuelve es la ecuación de Laplace.
+            \end{solution}
 
-    \item
+      \item
 
-          ¿Cuáles son las condiciones de contorno?
+            ¿Cuál es la función de fuerza o el lado derecho?
 
-    \item
+            \begin{solution}
+                  Es cero.
+            \end{solution}
 
-          ¿Cuál es la función de fuerza o el lado derecho?
+      \item
 
-    \item
+            ¿Qué tipo de condiciones de contorno?
 
-          Explora y explica qué es el criterio de estabilidad de Neumann.
+            \begin{solution}
+                  Se tiene condiciones Dirichlet.
+            \end{solution}
 
-    \item
+      \item
 
-          ¿Cómo se discretiza la derivada parcial con respecto al tiempo en el esquema explícito de este código?
+            Cambie la condición de contorno a 100 en la cara frontal y posterior del cubo.
 
-    \item
+            \begin{solution}
+            \end{solution}
 
-          ¿Cómo se discretiza la derivada parcial con respecto al tiempo en el esquema implícito de este código?
+      \item
 
-    \item
+            Ejecute el ejemplo con todos los cambios que ha realizado.
 
-          Ejecuta el ejemplo con el esquema explícito y almacena su solución numérica.
-
-    \item
-
-          Ejecuta el ejemplo con el esquema implícito y almacena su solución numérica.
-
-    \item
-
-          Haz un gráfico de ambas soluciones, explícita en azul e
-          implícita en rojo.
+            \begin{solution}
+            \end{solution}
 \end{enumerate}
 \end{problem}
+
+\begin{listing}[ht!]
+      \tiny
+      \centering
+      \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=38,highlightlines={14,15}]{octave}{../examples/octave/elliptic3D.m}
+      \caption{Programa~\texttt{elliptic3D.m}}
+      \label{code:elliptic3D.m}
+\end{listing}

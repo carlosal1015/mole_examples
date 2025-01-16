@@ -46,3 +46,4 @@ keyfile.toml
 *.pdf
 references
 _minted-main
+*.log
