@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 import sys
-from h5py import File
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
+from h5py import File
 
 try:
     with File(name="../examples/cpp/build/elliptic1d_grid.h5", mode="r") as f:
@@ -66,6 +67,17 @@ ax.spines["left"].set_color("none")
 ax.spines["right"].set_color("none")
 plt.savefig("elliptic1Derror.pdf", transparent=True, bbox_inches="tight")
 plt.clf()
+
+for m in range(10, 1000, 100):
+    try:
+        with File(name=f"sandbox/grid{m}.h5", mode="r") as f:
+            grid = np.array(f["elliptic1d_grid"][:][0])
+        with File(name="../examples/cpp/build/elliptic1d_solution.h5", mode="r") as f:
+            solution = np.array(f["elliptic1d_solution"][:][0])
+    except OSError as err:
+        print(f"OS error: {err}")
+        sys.exit(0)
+    error = np.abs(exact - solution)
 
 Δx = np.logspace(start=-15, stop=0, num=16, base=2)
 fig, ax = plt.subplots(layout="constrained")
