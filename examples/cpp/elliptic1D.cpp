@@ -3,6 +3,7 @@
  */
 
 #define ARMA_USE_HDF5
+#define ARMA_USE_SUPERLU
 #include <cmath>
 #include <iostream>
 #include <mole/laplacian.h>
@@ -42,14 +43,30 @@ int main()
   rhs(0) = 0;
   rhs(m + 1) = 2 * std::exp(1); // rhs(1) = 2e
 
+  arma::wall_clock timer;
   // Solve the system of linear equations
 #ifdef EIGEN
   // Use Eigen only if SuperLU (faster) is not available
   std::cout << "With Eigen" << std::endl;
+  timer.tic();
   vec sol = Utils::spsolve_eigen(L, rhs);
+  Real elapsed_time = timer.toc();
+  std::cout << "Elapased time with Eigen: " << elapsed_time << endl;
+#elif LAPACK
+  std::cout << "With LAPACK" << std::endl;
+  timer.tic();
+  arma::vec sol = arma::spsolve(L, rhs, "lapack"); // Will use LAPACK
+  Real elapsed_time = timer.toc();
+  std::cout << "Elapased time with LAPACK: " << elapsed_time << endl;
 #else
   std::cout << "With SuperLU" << std::endl;
-  arma::vec sol = spsolve(L, rhs); // Will use SuperLU
+  arma::superlu_opts opts;
+  opts.allow_ugly = true;
+  opts.equilibrate = true;
+  timer.tic();
+  arma::vec sol = arma::spsolve(L, rhs, "superlu", opts); // Will use SuperLU
+  Real elapsed_time = timer.toc();
+  std::cout << "Elapased time with SuperLU: " << elapsed_time << endl;
 #endif
 
   // Save grid

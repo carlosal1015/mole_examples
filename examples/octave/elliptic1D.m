@@ -38,8 +38,9 @@ save("-hdf5", "grid")
 U = exp(grid)';
 U(1) = 0; % West BC
 U(end) = 2 * exp(1); % East BC
-
+tic
 U = L \ U; % Solve a linear system of equations
+toc
 save("-hdf5", "U")
 % Plot result
 plot(grid, U, 'o')

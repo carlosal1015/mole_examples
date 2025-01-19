@@ -20,18 +20,20 @@ Copie el programa~\ref{code:elliptic1D.m} y modifique lo siguiente:
 
       \item
 
-            Ejecute el programa con todos los cambios que ha realizado.
+            Ejecute el programa con todos los cambios que ha
+            realizado.
 
       \item
 
-            Verifique que la gráfica es apropiada (títulos, valores de los ejes, etc.).
+            Verifique que la gráfica es apropiada (títulos, valores
+            de los ejes, etc.).
 \end{itemize}
 \end{problem}
 
 \begin{solution}
       Se está resolviendo la ecuación de Poisson con el
       problema de valor de frontera Robin
-      \begin{equation*}
+      \begin{equation}\label{eq:poisson1drobindconditions2}
             \left\{
             \begin{aligned}
                   \diff[2]{u}{x}
@@ -43,7 +45,7 @@ Copie el programa~\ref{code:elliptic1D.m} y modifique lo siguiente:
                    & =u\left(1\right)+\diff{u}{x}[x=1].  \\
             \end{aligned}
             \right.
-      \end{equation*}
+      \end{equation}
 
       Integramos dos veces y obtenemos la solución general.
       \begin{align*}
@@ -65,7 +67,7 @@ Copie el programa~\ref{code:elliptic1D.m} y modifique lo siguiente:
             \frac{x^{2}}{2}+\frac{x^{3}}{6}+C_{1}x+C_{2}.
       \end{align*}
       Ahora, apliquemos las condiciones de frontera Robin.
-      \begin{equation}
+      \begin{equation}\label{eq:linearsystem2}
             \left\{
             \begin{aligned}
                   0
@@ -81,10 +83,10 @@ Copie el programa~\ref{code:elliptic1D.m} y modifique lo siguiente:
             \end{aligned}
             \right.
       \end{equation}
-      Así el sistema tiene como solución
+      El sistema~\eqref{eq:linearsystem2} tiene como solución
       $C_{1}=C_{2}=\frac{2e}{3}-\frac{13}{18}$.
-      Así, la solución exacta
-      de~\eqref{eq:poisson1drobindconditions} es
+      $\therefore$ la solución
+      de~\eqref{eq:poisson1drobindconditions2} es
       \begin{math}
             u\left(x\right)=
             \frac{x^{2}}{2}+\frac{x^{3}}{6}+
@@ -111,8 +113,8 @@ Copie el programa~\ref{code:elliptic1D.m} y modifique lo siguiente:
 
 \begin{figure}[ht!]
       \centering
-      \includegraphics[width=.39\paperwidth]{elliptic1D_Aznaran_sparsebefore.pdf}
-      \includegraphics[width=.39\paperwidth]{elliptic1D_Aznaran_sparseafter.pdf}
+      \includegraphics[width=.39\paperwidth]{elliptic1DAznaransparsebefore.pdf}
+      \includegraphics[width=.39\paperwidth]{elliptic1DAznaransparseafter.pdf}
       % \caption{Izquierda: Representación dispersa de $L$ hasta la línea 21.
       %     La primera fila y última fila son vectores nulos.
       %     Derecha: Representación dispersa de $L$ hasta la línea 29.
@@ -121,7 +123,7 @@ Copie el programa~\ref{code:elliptic1D.m} y modifique lo siguiente:
 
 \begin{figure}[ht!]
       \centering
-      \includegraphics[width=.6\paperwidth]{elliptic1D_Aznaran.pdf}
+      \includegraphics[width=.6\paperwidth]{elliptic1DAznaran.pdf}
       % \caption{Solución al problema usando \mintinline{octave}|k=6| y \mintinline{octave}|m=2k+1=13|.}
 \end{figure}
 
