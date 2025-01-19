@@ -270,8 +270,10 @@ siguientes preguntas.
             \begin{figure}[ht!]
                   \centering
                   \includegraphics[width=.3\paperwidth]{mldivide_sparse}
-                  \caption{El siguiente diagrama de flujo es el que se emplea en MATLAB.
-                        Vea~\url{https://www.mathworks.com/help/matlab/ref/double.mldivide.html}.}
+                  \caption{Diagrama de flujo del solucionador
+                        \mintinline{octave}|mldivide| para matrices
+                        disperas que emplea MATLAB.
+                        Recuperado de~\url{https://www.mathworks.com/help/matlab/ref/double.mldivide.html}.}
             \end{figure}
 \end{itemize}
 
@@ -285,10 +287,9 @@ exacta y de la solución mimética obtenida en el Programa~\ref{code:elliptic1D.
       % \includegraphics[width=.6\paperwidth]{../examples/octave/elliptic1D.pdf}
       \includegraphics[width=.39\paperwidth]{elliptic1D.pdf}
       \includegraphics[width=.39\paperwidth]{elliptic1Derror.pdf}
-      \includegraphics[width=.3\paperwidth]{elliptic1Dconvergenceorder.pdf}
-      \caption{Izquierda arriba: Solución de~\eqref{eq:poisson1drobindconditions}
+      \caption{Izquierda: Solución de~\eqref{eq:poisson1drobindconditions}
             usando \mintinline{octave}|k=6| y \mintinline{octave}|m=2k+1=13|.
-            Derecha arriba: Error en la malla escalonada
+            Derecha: Error en la malla escalonada
             \begin{math}
                   \left\{
                   0,
@@ -297,19 +298,20 @@ exacta y de la solución mimética obtenida en el Programa~\ref{code:elliptic1D.
                   \dotsc,
                   1
                   \right\}
-            \end{math}
-            \DNF<Falta obtener el orden de convergencia numérico>
-            Abajo: Estimación del orden de convergencia.}
+            \end{math}}
 \end{figure}
 
 En segundo lugar, mostramos una gráfica del error en cada punto de la malla computacional
 dada por
 \begin{equation*}
+      \text{Error de $u$ en $x_{j-\frac{1}{2}}$}=
       \left|
       u\left(x_{j-\frac{1}{2}}\right)-
       u_{j-\frac{1}{2}}
       \right|.
 \end{equation*}
+
+Por último, mostramos la tabla de los errores y el orden de convergencia numérico.
 
 \begin{table}[ht!]
       \centering
@@ -321,11 +323,13 @@ dada por
             $1.535\times 10^{-2}$ & $4.464\times 10^{-2}$ & $-0.678$ \\
             \bottomrule
       \end{tabular}
-      % \caption{Tabla de errores de aproximación de la primera derivada de $U$ en $x_0$ y el orden convergencia numérico obtenido.}
+      \caption{Tabla de errores de aproximación de $U$ en
+            $x_{j-\frac{1}{2}}$ y el orden convergencia numérico obtenido.}
       \label{table:errors}
 \end{table}
 
-\DNF<Falta obtener el orden de convergencia numérico>
+% \includegraphics[width=.3\paperwidth]{elliptic1Dconvergenceorder.pdf}
+% \DNF<Obtener el orden de convergencia numérico> Abajo: Estimación del orden de convergencia.
 
 \section*{Explicación del Programa~\ref{code:elliptic1D.cpp}}
 
