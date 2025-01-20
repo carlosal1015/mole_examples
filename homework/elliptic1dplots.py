@@ -71,8 +71,6 @@ ax.set_yticks(
         num=4,
     )
 )
-# ax.set_xticklabels(labels=ax.get_xticklabels(which="major"), fontdict=dict(size=8))
-# ax.set_yticklabels(labels=ax.get_yticklabels(which="major"), fontdict=dict(size=8))
 ax.set_title(
     label="Error puntual",
     loc="center",

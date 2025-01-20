@@ -3,7 +3,6 @@
  */
 
 #define ARMA_USE_HDF5
-#define ARMA_USE_SUPERLU
 #include <cmath>
 #include <iostream>
 #include <mole/laplacian.h>
