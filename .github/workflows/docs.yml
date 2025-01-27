@@ -25,7 +25,7 @@ jobs:
           mv mole/doc/api_docs docs
 
       - name: Download artifact
-        uses: dawidd6/action-download-artifact@v7
+        uses: dawidd6/action-download-artifact@v8
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: homework.yml
