@@ -19,6 +19,8 @@ m = 2 * k + 1; % Minimum number of cells to attain the desired accuracy
 dx = (east - west) / m; % Step length
 
 L = lap(k, m, dx); % 1D Mimetic laplacian operator
+L_before_name = sprintf("L_before.h5");
+save("-hdf5", L_before_name, "L")
 figure('visible', 'off');
 spy(L);
 saveas(gcf, "elliptic1Dsparsebefore.pdf", 'pdfcrop')
@@ -27,6 +29,8 @@ saveas(gcf, "elliptic1Dsparsebefore.pdf", 'pdfcrop')
 a = 1;
 b = 1;
 L = L + robinBC(k, m, dx, a, b);
+L_after_name = sprintf("L_after.h5");
+save("-hdf5", L_after_name, "L")
 spy(L);
 saveas(gcf, "elliptic1Dsparseafter.pdf", 'pdfcrop')
 
