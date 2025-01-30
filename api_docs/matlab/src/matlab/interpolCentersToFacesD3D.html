@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of interpolCentersToFacesD3D</title>
+  <meta name="keywords" content="interpolCentersToFacesD3D">
+  <meta name="description" content="SPDX-License-Identifier: GPL-3.0-only">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; interpolCentersToFacesD3D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>interpolCentersToFacesD3D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>SPDX-License-Identifier: GPL-3.0-only</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function I = interpolCentersToFacesD3D(k, m, n, o) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> SPDX-License-Identifier: GPL-3.0-only
+ 
+ Copyright 2008-2024 San Diego State University Research Foundation (SDSURF).
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ LICENSE file or on the web GNU General Public License 
+ &lt;https://www.gnu.org/licenses/&gt; for more details.
+
+ ------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="interpolCentersToFacesD1D.html" class="code" title="function I = interpolCentersToFacesD1D(k, m)">interpolCentersToFacesD1D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">% SPDX-License-Identifier: GPL-3.0-only</span>
+0002 <span class="comment">%</span>
+0003 <span class="comment">% Copyright 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0006 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0007 <span class="comment">% the Free Software Foundation, version 3.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0010 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0011 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0012 <span class="comment">% LICENSE file or on the web GNU General Public License</span>
+0013 <span class="comment">% &lt;https://www.gnu.org/licenses/&gt; for more details.</span>
+0014 <span class="comment">%</span>
+0015 <span class="comment">% ------------------------------------------------------------------------</span>
+0016 
+0017 <a name="_sub0" href="#_subfunctions" class="code">function I = interpolCentersToFacesD3D(k, m, n, o)</a>
+0018 <span class="comment">% 3D interpolation from centers to faces</span>
+0019 <span class="comment">% logical centers are [1 1.5 ... m-0.5 m]x[1 1.5 ... n-0.5 n]x[1 1.5 ... o-0.5 o]</span>
+0020 <span class="comment">% m, n, o, are the number of cells in the logical x-, y-, z- axes</span>
+0021 
+0022     cells = (o+2)*(n+2)*(m+2);
+0023 
+0024     Ix = <a href="interpolCentersToFacesD1D.html" class="code" title="function I = interpolCentersToFacesD1D(k, m)">interpolCentersToFacesD1D</a>(k, m);
+0025     Iy = <a href="interpolCentersToFacesD1D.html" class="code" title="function I = interpolCentersToFacesD1D(k, m)">interpolCentersToFacesD1D</a>(k, n);
+0026     Iz = <a href="interpolCentersToFacesD1D.html" class="code" title="function I = interpolCentersToFacesD1D(k, m)">interpolCentersToFacesD1D</a>(k, o);
+0027 
+0028     Im = sparse(m + 2, m);
+0029     In = sparse(n + 2, n);
+0030     Io = sparse(o + 2, o);
+0031 
+0032     Im(2:(m+2)-1, :) = speye(m, m);
+0033     In(2:(n+2)-1, :) = speye(n, n);
+0034     Io(2:(o+2)-1, :) = speye(o, o);
+0035 
+0036     Sx = kron(kron(Io', In'), Ix);
+0037     Sy = kron(kron(Io', Iy), Im');
+0038     Sz = kron(kron(Iz, In'), Im');
+0039 
+0040     I = sparse(o*n*(m+1)+o*(n+1)*m+(o+1)*n*m, 3*cells);
+0041     
+0042     I(1:o*n*(m+1), 1:cells) = Sx; 
+0043     I(o*n*(m+1)+1:o*n*(m+1)+o*(n+1)*m, cells+1:2*cells) = Sy;
+0044     I(o*n*(m+1)+o*(n+1)*m+1:<span class="keyword">end</span>, 2*cells+1:end) = Sz;
+0045 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Thu 30-Jan-2025 22:49:21 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

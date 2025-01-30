@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="examples_2cpp_2README_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">This<sp/>folder<sp/>houses<sp/>a<sp/>collection<sp/>of<sp/>examples<sp/>that<sp/>serve<sp/>as<sp/>excellent<sp/>starting<sp/>points<sp/>for<sp/>developing<sp/>more<sp/>sophisticated<sp/>programs<sp/>utilizing<sp/>MOLE&apos;s<sp/>C++<sp/>version.</highlight></codeline>
+    </programlisting>
+    <location file="examples/cpp/README.md"/>
+  </compounddef>
+</doxygen>

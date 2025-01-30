@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of interpolFacesToCentersG1D</title>
+  <meta name="keywords" content="interpolFacesToCentersG1D">
+  <meta name="description" content="SPDX-License-Identifier: GPL-3.0-only">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; interpolFacesToCentersG1D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>interpolFacesToCentersG1D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>SPDX-License-Identifier: GPL-3.0-only</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function I = interpolFacesToCentersG1D(k, m) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> SPDX-License-Identifier: GPL-3.0-only
+ 
+ Copyright 2008-2024 San Diego State University Research Foundation (SDSURF).
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ LICENSE file or on the web GNU General Public License 
+ &lt;https://www.gnu.org/licenses/&gt; for more details.
+
+ ------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="interpolFacesToCentersG2D.html" class="code" title="function I = interpolFacesToCentersG2D(k, m, n)">interpolFacesToCentersG2D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+<li><a href="interpolFacesToCentersG3D.html" class="code" title="function I = interpolFacesToCentersG3D(k, m, n, o)">interpolFacesToCentersG3D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+<li><a href="interpolNodesToCenters1D.html" class="code" title="function I = interpolNodesToCenters1D(k, m)">interpolNodesToCenters1D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+<li><a href="interpolNodesToCenters2D.html" class="code" title="function I = interpolNodesToCenters2D(k, m, n)">interpolNodesToCenters2D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+<li><a href="interpolNodesToCenters3D.html" class="code" title="function I = interpolNodesToCenters3D(k, m, n, o)">interpolNodesToCenters3D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">% SPDX-License-Identifier: GPL-3.0-only</span>
+0002 <span class="comment">%</span>
+0003 <span class="comment">% Copyright 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0006 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0007 <span class="comment">% the Free Software Foundation, version 3.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0010 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0011 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0012 <span class="comment">% LICENSE file or on the web GNU General Public License</span>
+0013 <span class="comment">% &lt;https://www.gnu.org/licenses/&gt; for more details.</span>
+0014 <span class="comment">%</span>
+0015 <span class="comment">% ------------------------------------------------------------------------</span>
+0016 
+0017 <a name="_sub0" href="#_subfunctions" class="code">function I = interpolFacesToCentersG1D(k, m)</a>
+0018 <span class="comment">% 1D interpolation from faces to centers</span>
+0019 <span class="comment">% centers logical coordinates [1,1.5:m-0.5,m]</span>
+0020 <span class="comment">% m is the number of cells in the logical x-axis</span>
+0021 
+0022     I = sparse(m+2, m+1);
+0023 
+0024     <span class="keyword">switch</span> k
+0025         <span class="keyword">case</span> 2
+0026             I(1, 1) = 2; I(<span class="keyword">end</span>, end) = 2;
+0027             <span class="keyword">for</span> i = 2:m+1
+0028                I(i, i-1:i) = [1 1];
+0029             <span class="keyword">end</span>
+0030             denom = 2;
+0031 
+0032         <span class="keyword">case</span> 4
+0033             I(1, 1) = 128; I(<span class="keyword">end</span>, end) = 128;
+0034             A = [35 140 -70 28 -5];
+0035             I(2, 1:5) = A;
+0036             I(m+1, m-3:end) = fliplr(A);
+0037             <span class="keyword">for</span> i = 3:m
+0038                I(i, i-2:i+1) = [-8 72 72 -8];
+0039             <span class="keyword">end</span>
+0040             denom = 128;
+0041 
+0042         <span class="keyword">case</span> 6
+0043             I(1, 1) = 1024; I(<span class="keyword">end</span>, end) = 1024;
+0044             A = [231 1386 -1155  924 -495 154 -21; <span class="keyword">...</span><span class="comment"> % (2,2) 1278</span>
+0045                  -21  378   945 -420  189 -54   7];
+0046             I(2:3, 1:7) = A;
+0047             I(m:m+1, m-5:end) = flipud(fliplr(A));<span class="comment">%#ok</span>
+0048             <span class="keyword">for</span> i = 4:m-1
+0049                 I(i, i-3:i+2) = [12 -100 600 600 -100 12];
+0050             <span class="keyword">end</span>
+0051             denom = 1024;
+0052 
+0053         <span class="keyword">case</span> 8
+0054             I(1, 1) = 1; I(<span class="keyword">end</span>, end) = 1;
+0055             A = [6435/32768 6435/4096 -15015/8192  9009/4096 -32175/16384  5005/4096 -4095/8192  495/4096 -429/32768; <span class="keyword">...</span>
+0056                  -429/32768 1287/4096   9009/8192 -3003/4096   9009/16384 -1287/4096  1001/8192 -117/4096   99/32768; <span class="keyword">...</span>
+0057                    99/32768 -165/4096   3465/8192  3465/4096  -5775/16384   693/4096  -495/8192   55/4096  -45/32768];
+0058             I(2:4, 1:9) = A;
+0059             I(m-1:m+1, m-7:end) = flipud(fliplr(A));<span class="comment">%#ok</span>
+0060             <span class="keyword">for</span> i = 5:m-2
+0061                 I(i, i-4:i+3) = (1/2048).*[-5 49 -245 1225 1225 -245 49 -5];
+0062             <span class="keyword">end</span>
+0063             denom = 1;   
+0064 
+0065     <span class="keyword">end</span>
+0066     I = (1/denom).*I;
+0067 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Thu 30-Jan-2025 22:49:21 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

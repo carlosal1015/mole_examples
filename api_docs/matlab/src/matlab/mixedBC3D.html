@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of mixedBC3D</title>
+  <meta name="keywords" content="mixedBC3D">
+  <meta name="description" content="SPDX-License-Identifier: GPL-3.0-only">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; mixedBC3D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>mixedBC3D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>SPDX-License-Identifier: GPL-3.0-only</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function BC = mixedBC3D(k, m, dx, n, dy, o, dz, left, coeffs_left, right, coeffs_right, bottom, coeffs_bottom, top, coeffs_top, front, coeffs_front, back, coeffs_back) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> SPDX-License-Identifier: GPL-3.0-only
+ 
+ Copyright 2008-2024 San Diego State University Research Foundation (SDSURF). 
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ LICENSE file or on the web GNU General Public License 
+ &lt;https://www.gnu.org/licenses/&gt; for more details.
+
+ ------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="mixedBC.html" class="code" title="function BC = mixedBC(k, m, dx, left, coeffs_left, right, coeffs_right)">mixedBC</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">% SPDX-License-Identifier: GPL-3.0-only</span>
+0002 <span class="comment">%</span>
+0003 <span class="comment">% Copyright 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0006 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0007 <span class="comment">% the Free Software Foundation, version 3.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0010 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0011 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0012 <span class="comment">% LICENSE file or on the web GNU General Public License</span>
+0013 <span class="comment">% &lt;https://www.gnu.org/licenses/&gt; for more details.</span>
+0014 <span class="comment">%</span>
+0015 <span class="comment">% ------------------------------------------------------------------------</span>
+0016 
+0017 <a name="_sub0" href="#_subfunctions" class="code">function BC = mixedBC3D(k, m, dx, n, dy, o, dz, left, coeffs_left, right, coeffs_right, bottom, coeffs_bottom, top, coeffs_top, front, coeffs_front, back, coeffs_back)</a>
+0018 <span class="comment">% Constructs a 3D mimetic mixed boundary conditions operator</span>
+0019 <span class="comment">%</span>
+0020 <span class="comment">% Parameters:</span>
+0021 <span class="comment">%    k               : Order of accuracy</span>
+0022 <span class="comment">%    m               : Number of cells in x-direction</span>
+0023 <span class="comment">%    dx              : Step size in x-direction</span>
+0024 <span class="comment">%    n               : Number of cells in y-direction</span>
+0025 <span class="comment">%    dy              : Step size in y-direction</span>
+0026 <span class="comment">%    o               : Number of cells in z-direction</span>
+0027 <span class="comment">%    dz              : Step size in z-direction</span>
+0028 <span class="comment">%    left            : Type of boundary condition at the left boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0029 <span class="comment">%    coeffs_left     : Coefficients for the left boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0030 <span class="comment">%    right           : Type of boundary condition at the right boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0031 <span class="comment">%    coeffs_right    : Coefficients for the right boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0032 <span class="comment">%    bottom          : Type of boundary condition at the bottom boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0033 <span class="comment">%    coeffs_bottom   : Coefficients for the bottom boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0034 <span class="comment">%    top             : Type of boundary condition at the top boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0035 <span class="comment">%    coeffs_top      : Coefficients for the top boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0036 <span class="comment">%    front           : Type of boundary condition at the front boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0037 <span class="comment">%    coeffs_front    : Coefficients for the front boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0038 <span class="comment">%    back            : Type of boundary condition at the back boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0039 <span class="comment">%    coeffs_back     : Coefficients for the back boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0040 
+0041     <span class="comment">% 1-D boundary operators</span>
+0042     Bm = <a href="mixedBC.html" class="code" title="function BC = mixedBC(k, m, dx, left, coeffs_left, right, coeffs_right)">mixedBC</a>(k, m, dx, left, coeffs_left, right, coeffs_right);
+0043     Bn = <a href="mixedBC.html" class="code" title="function BC = mixedBC(k, m, dx, left, coeffs_left, right, coeffs_right)">mixedBC</a>(k, n, dy, bottom, coeffs_bottom, top, coeffs_top);
+0044     Bo = <a href="mixedBC.html" class="code" title="function BC = mixedBC(k, m, dx, left, coeffs_left, right, coeffs_right)">mixedBC</a>(k, o, dz, front, coeffs_front, back, coeffs_back);
+0045 
+0046     Im = speye(m+2);
+0047 
+0048     In = speye(n+2);
+0049 
+0050     Io = speye(o+2);
+0051     Io(1, 1) = 0;
+0052     Io(<span class="keyword">end</span>, end) = 0;
+0053 
+0054     In2 = In;
+0055     In2(1, 1) = 0;
+0056     In2(<span class="keyword">end</span>, end) = 0;
+0057 
+0058     BC1 = kron(kron(Io, In2), Bm);
+0059     BC2 = kron(kron(Io, Bn), Im);
+0060     BC3 = kron(kron(Bo, In), Im);
+0061 
+0062     BC = BC1 + BC2 + BC3;
+0063 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Thu 30-Jan-2025 22:49:21 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

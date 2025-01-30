@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of nodal</title>
+  <meta name="keywords" content="nodal">
+  <meta name="description" content="SPDX-License-Identifier: GPL-3.0-only">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; nodal.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>nodal
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>SPDX-License-Identifier: GPL-3.0-only</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function N = nodal(k, m, dx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> SPDX-License-Identifier: GPL-3.0-only
+ 
+ Copyright 2008-2024 San Diego State University Research Foundation (SDSURF). 
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ LICENSE file or on the web GNU General Public License 
+ &lt;https://www.gnu.org/licenses/&gt; for more details.
+
+ ------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="nodal2D.html" class="code" title="function N = nodal2D(k, m, dx, n, dy)">nodal2D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+<li><a href="nodal3D.html" class="code" title="function N = nodal3D(k, m, dx, n, dy, o, dz)">nodal3D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">% SPDX-License-Identifier: GPL-3.0-only</span>
+0002 <span class="comment">%</span>
+0003 <span class="comment">% Copyright 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0006 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0007 <span class="comment">% the Free Software Foundation, version 3.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0010 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0011 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0012 <span class="comment">% LICENSE file or on the web GNU General Public License</span>
+0013 <span class="comment">% &lt;https://www.gnu.org/licenses/&gt; for more details.</span>
+0014 <span class="comment">%</span>
+0015 <span class="comment">% ------------------------------------------------------------------------</span>
+0016 
+0017 <a name="_sub0" href="#_subfunctions" class="code">function N = nodal(k, m, dx)</a>
+0018 <span class="comment">% Returns a m+1 by m+1 one-dimensional operator that approximates the</span>
+0019 <span class="comment">% first-order derivatives on a uniform nodal grid</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% Parameters:</span>
+0022 <span class="comment">%                k : Order of accuracy</span>
+0023 <span class="comment">%                m : Number of nodes</span>
+0024 <span class="comment">%               dx : Step size</span>
+0025 
+0026     m = m-1;
+0027     n_rows = m+1;
+0028     n_cols = n_rows;
+0029 
+0030     N = sparse(n_rows, n_cols);
+0031 
+0032     neighbors = zeros(1, k+1); <span class="comment">% Bandwidth = k+1</span>
+0033     neighbors(1) = -k/2;
+0034     len = k+1;
+0035     j = 1;
+0036 
+0037     <span class="keyword">for</span> i = 2 : len
+0038         neighbors(i) = neighbors(i-1)+1;
+0039     <span class="keyword">end</span>
+0040 
+0041     <span class="comment">% Create a k by k Vandermonde matrix based on the neighbors:</span>
+0042     A = vander(neighbors)';
+0043 
+0044     <span class="comment">% First-order derivative</span>
+0045     b = zeros(len, 1);
+0046     b(len-1) = 1;
+0047 
+0048     <span class="comment">% Solve the linear system to get the coefficients</span>
+0049     coeffs = A\b;
+0050 
+0051     <span class="keyword">for</span> i = k/2+1 : n_rows-k/2
+0052         N(i, j:j+len-1) = coeffs;
+0053         j = j+1;
+0054     <span class="keyword">end</span>
+0055 
+0056     p = k/2;
+0057     q = k+1;
+0058     A = sparse(p, q);
+0059     <span class="keyword">for</span> i = 1 : p <span class="comment">% For each row of A</span>
+0060         neighbors = zeros(1, q); <span class="comment">% k+1 points are used for the boundaries</span>
+0061         neighbors(1) = 1-i; <span class="comment">% Shifting the stencil to the right</span>
+0062         neighbors(2) = neighbors(1)+1;
+0063 
+0064         <span class="keyword">for</span> j = 3 : q
+0065             neighbors(j) = neighbors(j-1)+1;
+0066         <span class="keyword">end</span>
+0067 
+0068         V = vander(neighbors)';
+0069         b = zeros(q, 1);
+0070         b(q-1) = 1;
+0071         coeffs = V\b;
+0072         A(i, 1:q) = coeffs;
+0073     <span class="keyword">end</span>
+0074 
+0075     <span class="comment">% Insert A into N (upper-left corner of N)</span>
+0076     N(1:p, 1:q) = A;
+0077 
+0078     <span class="comment">% Permutation matrices</span>
+0079     Pp = fliplr(speye(p));
+0080     Pq = fliplr(speye(q));
+0081     <span class="comment">% Construct A' (lower-right corner of N)</span>
+0082     A = -Pp*A*Pq;
+0083 
+0084     <span class="comment">% Insert A' into N</span>
+0085     N(n_rows-p+1:n_rows, n_cols-q+1:n_cols) = A;
+0086 
+0087     <span class="comment">% Scale N</span>
+0088     N = 1/dx*N;
+0089 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Thu 30-Jan-2025 22:49:21 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

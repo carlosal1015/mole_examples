@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of nodal2DCurv</title>
+  <meta name="keywords" content="nodal2DCurv">
+  <meta name="description" content="SPDX-License-Identifier: GPL-3.0-only">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; nodal2DCurv.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>nodal2DCurv
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>SPDX-License-Identifier: GPL-3.0-only</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [Nx, Ny] = nodal2DCurv(k, X, Y) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> SPDX-License-Identifier: GPL-3.0-only
+ 
+ Copyright 2008-2024 San Diego State University Research Foundation (SDSURF). 
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ LICENSE file or on the web GNU General Public License 
+ &lt;https://www.gnu.org/licenses/&gt; for more details.
+
+ ------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="jacobian2D.html" class="code" title="function [J, Xe, Xn, Ye, Yn] = jacobian2D(k, X, Y)">jacobian2D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+<li><a href="nodal2D.html" class="code" title="function N = nodal2D(k, m, dx, n, dy)">nodal2D</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">% SPDX-License-Identifier: GPL-3.0-only</span>
+0002 <span class="comment">%</span>
+0003 <span class="comment">% Copyright 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0006 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0007 <span class="comment">% the Free Software Foundation, version 3.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0010 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0011 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0012 <span class="comment">% LICENSE file or on the web GNU General Public License</span>
+0013 <span class="comment">% &lt;https://www.gnu.org/licenses/&gt; for more details.</span>
+0014 <span class="comment">%</span>
+0015 <span class="comment">% ------------------------------------------------------------------------</span>
+0016 
+0017 <a name="_sub0" href="#_subfunctions" class="code">function [Nx, Ny] = nodal2DCurv(k, X, Y)</a>
+0018     <span class="comment">% Get the determinant of the jacobian and the metrics</span>
+0019     [J, Xe, Xn, Ye, Yn] = <a href="jacobian2D.html" class="code" title="function [J, Xe, Xn, Ye, Yn] = jacobian2D(k, X, Y)">jacobian2D</a>(k, X, Y);
+0020     
+0021     <span class="comment">% Dimensions of nodal grid</span>
+0022     [n, m] = size(X);
+0023     
+0024     len = n*m;
+0025     
+0026     <span class="comment">% Convert metrics to diagonal matrices</span>
+0027     J = spdiags(1./J, 0, len, len);
+0028     Xe = spdiags(Xe, 0, len, len);
+0029     Xn = spdiags(Xn, 0, len, len);
+0030     Ye = spdiags(Ye, 0, len, len);
+0031     Yn = spdiags(Yn, 0, len, len);
+0032     
+0033     <span class="comment">% Construct 2D uniform nodal operator</span>
+0034     N = <a href="nodal2D.html" class="code" title="function N = nodal2D(k, m, dx, n, dy)">nodal2D</a>(k, m, 1, n, 1); <span class="comment">% N is tall and skinny</span>
+0035     Ne = N(1:len, :);
+0036     Nn = N(len+1:<span class="keyword">end</span>, :);
+0037     
+0038     <span class="comment">% Apply transformation</span>
+0039     Nx = J*(Yn*Ne-Ye*Nn);
+0040     Ny = J*(-Xn*Ne+Xe*Nn);
+0041     
+0042     <span class="comment">% [J*Yn -J*Ye; J*-Xn J*Xe]*[Ne; Nn]</span>
+0043 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Thu 30-Jan-2025 22:49:21 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

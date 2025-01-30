@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of DI3</title>
+  <meta name="keywords" content="DI3">
+  <meta name="description" content="SPDX-License-Identifier: GPL-3.0-only">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; DI3.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>DI3
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>SPDX-License-Identifier: GPL-3.0-only</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function I = DI3(m, n, o, type) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> SPDX-License-Identifier: GPL-3.0-only
+ 
+ Copyright 2008-2024 San Diego State University Research Foundation (SDSURF).
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, version 3.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ LICENSE file or on the web GNU General Public License 
+ &lt;https://www.gnu.org/licenses/&gt; for more details.
+
+ ------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="div3DCurv.html" class="code" title="function D = div3DCurv(k, X, Y, Z)">div3DCurv</a>	SPDX-License-Identifier: GPL-3.0-only</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">% SPDX-License-Identifier: GPL-3.0-only</span>
+0002 <span class="comment">%</span>
+0003 <span class="comment">% Copyright 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0006 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0007 <span class="comment">% the Free Software Foundation, version 3.</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0010 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0011 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0012 <span class="comment">% LICENSE file or on the web GNU General Public License</span>
+0013 <span class="comment">% &lt;https://www.gnu.org/licenses/&gt; for more details.</span>
+0014 <span class="comment">%</span>
+0015 <span class="comment">% ------------------------------------------------------------------------</span>
+0016 
+0017 
+0018 <a name="_sub0" href="#_subfunctions" class="code">function I = DI3(m, n, o, type)</a>
+0019     <span class="keyword">if</span> strcmp(type, <span class="string">'Dn'</span>)
+0020         e = ones(m, 1);
+0021         bdry = spdiags([-0.5*e -0.5*e 0.5*e 0.5*e], [0 1 m+1 m+2], m, (m+1)*n);
+0022         block = spdiags([[0.25*e; 0; 0] [0.25*e; 0.25; 0]], [0 1], m+2, m+1);
+0023         pattern = spdiags([-ones(n-2, 1) ones(n-2, 1)], [0 2], n-2, n);
+0024         middle = kron(pattern, block);
+0025         I = [spalloc(m+3, (m+1)*n, 0); bdry; spalloc(2, (m+1)*n, 0); middle; circshift(bdry, (m+1)*(n-2), 2); spalloc(m+3, (m+1)*n, 0)];
+0026         I = kron(speye(o), I);
+0027         I = [spalloc((m+2)*(n+2), size(I, 2), 0); I; spalloc((m+2)*(n+2), size(I, 2), 0)];
+0028     <span class="keyword">elseif</span> strcmp(type, <span class="string">'De'</span>)
+0029         e = ones(m-2, 1);
+0030         block = spdiags([[-0.25*e; -0.25; 0] [0; 0.25*e; 0.25]], [-1 1], m+2, m);
+0031         block(1, 1) = -0.5;
+0032         block(1, 2) = 0.5;
+0033         block(m, m-1) = -0.5;
+0034         block(m, m) = 0.5;
+0035         pattern = spdiags([ones(n, 1) ones(n, 1)], [0 1], n, n+1);
+0036         middle = kron(pattern, block);
+0037         I = [spalloc(m+3, (n+1)*m, 0); middle; spalloc(m+1, (n+1)*m, 0)];
+0038         I = kron(speye(o), I);
+0039         I = [spalloc((m+2)*(n+2), size(I, 2), 0); I; spalloc((m+2)*(n+2), size(I, 2), 0)];
+0040     <span class="keyword">elseif</span> strcmp(type, <span class="string">'Dc'</span>)
+0041         e = ones(m, 1);
+0042         bdry = spdiags([0.5*e 0.5*e], [0 1], m, m+1);
+0043         bdry = [bdry; spalloc(2, m+1, 0)];
+0044         bdry = kron(speye(n), bdry);
+0045         middle = kron(0.25*speye(o-2), [bdry; spalloc(2*(m+2), size(bdry, 2), 0)]);
+0046         middle = [spalloc(2*(m+2), size(middle, 2), 0); middle];
+0047         middle = [middle spalloc(size(middle, 1), (m+1)*n*o-size(middle, 2), 0)];
+0048         middle = -middle + circshift(middle, 2*(m+1)*n, 2);
+0049         bdry = [-bdry bdry spalloc(size(bdry, 1), (m+1)*n*o-2*size(bdry, 2), 0)];
+0050         I = [spalloc((m+2)*(n+2)+m+3, size(bdry, 2), 0); bdry];
+0051         I = [I; middle; circshift(bdry, (m+1)*n*(o-2), 2); spalloc((m+2)*(n+2)+m+1, size(bdry, 2), 0)];
+0052     <span class="keyword">elseif</span> strcmp(type, <span class="string">'Dcc'</span>)
+0053         e = ones(m, 1);
+0054         bdry = spdiags(0.5*e, 0, m, m);
+0055         bdry = [bdry; spalloc(2, m, 0)];
+0056         I = spdiags([ones(n, 1) ones(n, 1)], [0 1], n, n+1);
+0057         middle = kron(0.25*I, bdry);
+0058         middle = [middle; spalloc(2*(m+2), size(middle, 2), 0)];
+0059         middle = kron(spdiags([-ones(o-2, 1) ones(o-2, 1)], [0 2], o-2, o), middle);
+0060         bdry = kron(I, bdry);
+0061         bdry = [-bdry bdry spalloc(size(bdry, 1), m*(n+1)*o-2*size(bdry, 2), 0)];
+0062         I = [spalloc((m+2)*(n+2)+m+3, size(bdry, 2), 0); bdry; spalloc(2*(m+2), size(bdry, 2), 0); middle; circshift(bdry, m*(n+1)*(o-2), 2); spalloc((m+2)*(n+2)+m+1, size(bdry, 2), 0)];
+0063     <span class="keyword">elseif</span> strcmp(type, <span class="string">'Dee'</span>)
+0064         e = ones(m-2, 1);
+0065         block = spdiags([[-0.25*e; -0.25; 0] [0; 0.25*e; 0.25]], [-1 1], m+2, m);
+0066         block(1, 1) = -0.5;
+0067         block(1, 2) = 0.5;
+0068         block(m, m-1) = -0.5;
+0069         block(m, m) = 0.5;
+0070         middle = kron(speye(n), block);
+0071         middle = [middle; spalloc(2*(m+2), size(middle, 2), 0)];
+0072         I = kron(spdiags([ones(o, 1) ones(o, 1)], [0 1], o, o+1), middle);
+0073         I = [spalloc((m+2)*(n+2)+m+3, size(I, 2), 0); I; spalloc((m+2)*n+m+1, size(I, 2), 0)];
+0074     <span class="keyword">elseif</span> strcmp(type, <span class="string">'Dnn'</span>)
+0075         e = ones(m, 1);
+0076         bdry = spdiags([-0.5*e 0.5*e -0.5*e 0.5*e], [0 m m*n m*n+m], m, 2*m*n);
+0077         middle = 0.25*speye(m);
+0078         middle = [middle; spalloc(2, m, 0)];
+0079         middle = kron(spdiags([-ones(n-2, 1) ones(n-2, 1)], [0 2], n-2, n), middle);
+0080         middle = [middle middle];
+0081         I = [bdry; spalloc(2, size(bdry, 2), 0); middle; circshift(bdry, m*(n-2), 2)];
+0082         I = I(:, 1:m*n);
+0083         I = [I; spalloc(2*(m+2)+2, size(I, 2), 0)];
+0084         I = kron(spdiags([ones(o, 1) ones(o, 1)], [0 1], o, o+1), I);
+0085         I = [spalloc((m+2)*(n+2)+m+3, size(I, 2), 0); I; spalloc((m+2)*n+m+1, size(I, 2), 0)];
+0086     <span class="keyword">end</span>
+0087 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Thu 30-Jan-2025 22:49:21 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

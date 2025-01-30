@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="schrodinger1D_8cpp" kind="file" language="C++">
+    <compoundname>schrodinger1D.cpp</compoundname>
+    <includes refid="mole_8h" local="yes">mole.h</includes>
+    <includes local="no">algorithm</includes>
+    <includes local="no">iostream</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>examples/cpp/schrodinger1D.cpp</label>
+        <link refid="schrodinger1D_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>divergence.h</label>
+        <link refid="divergence_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>gradient.h</label>
+        <link refid="gradient_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>interpol.h</label>
+        <link refid="interpol_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>laplacian.h</label>
+        <link refid="laplacian_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>mixedbc.h</label>
+        <link refid="mixedbc_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>mole.h</label>
+        <link refid="mole_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>operators.h</label>
+        <link refid="operators_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>robinbc.h</label>
+        <link refid="robinbc_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>utils.h</label>
+        <link refid="utils_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>algorithm</label>
+      </node>
+      <node id="5">
+        <label>armadillo</label>
+      </node>
+      <node id="6">
+        <label>cassert</label>
+      </node>
+      <node id="14">
+        <label>iostream</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="schrodinger1D_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>()</argsstring>
+        <name>main</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>This example uses MOLE to solve the 1D Schrodinger equation </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="examples/cpp/schrodinger1D.cpp" line="9" column="5" bodyfile="examples/cpp/schrodinger1D.cpp" bodystart="9" bodyend="41"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mole_8h" kindref="compound">mole.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="schrodinger1D_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="schrodinger1D_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" kindref="member">main</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>4;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Operators&apos;<sp/>order<sp/>of<sp/>accuracy</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>a<sp/>=<sp/>-5;<sp/></highlight><highlight class="comment">//<sp/>Left<sp/>boundary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>b<sp/>=<sp/>5;<sp/><sp/></highlight><highlight class="comment">//<sp/>Right<sp/>boundary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>m<sp/>=<sp/>500;<sp/></highlight><highlight class="comment">//<sp/>Number<sp/>of<sp/>cells</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>vec<sp/>grid<sp/>=<sp/>linspace(a,<sp/>b,<sp/>m);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx<sp/>=<sp/>grid(1)<sp/>-<sp/>grid(0);<sp/></highlight><highlight class="comment">//<sp/>Step<sp/>size</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>mimetic<sp/>Laplacian<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><ref refid="classLaplacian" kindref="compound">Laplacian</ref><sp/>L(k,<sp/>m<sp/>-<sp/>2,<sp/>dx);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>std::transform(grid.begin(),<sp/>grid.end(),<sp/>grid.begin(),</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](<ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>x)<sp/>{<sp/>return<sp/>x<sp/>*<sp/>x;<sp/>});</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>sp_mat<sp/>V(m,<sp/>m);<sp/></highlight><highlight class="comment">//<sp/>Potential<sp/>energy<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/>V.diag(0)<sp/>=<sp/>grid;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Hamiltonian</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>sp_mat<sp/>H<sp/>=<sp/>-0.5<sp/>*<sp/>(sp_mat)L<sp/>+<sp/>V;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>cx_vec<sp/>eigval;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/>eig_gen(eigval,<sp/>(mat)H);<sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>eigenvalues</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/>eigval<sp/>=<sp/>sort(eigval);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Energy<sp/>levels<sp/>=<sp/>[<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>4;<sp/>++i)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>real(eigval(i)<sp/>/<sp/>eigval(0))<sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;<sp/>&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="examples/cpp/schrodinger1D.cpp"/>
+  </compounddef>
+</doxygen>

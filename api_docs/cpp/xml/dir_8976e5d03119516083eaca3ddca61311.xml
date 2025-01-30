@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="dir_8976e5d03119516083eaca3ddca61311" kind="dir">
+    <compoundname>examples/cpp</compoundname>
+    <innerfile refid="convection__diffusion_8cpp">convection_diffusion.cpp</innerfile>
+    <innerfile refid="elliptic1D_8cpp">elliptic1D.cpp</innerfile>
+    <innerfile refid="elliptic2D_8cpp">elliptic2D.cpp</innerfile>
+    <innerfile refid="parabolic1D_8cpp">parabolic1D.cpp</innerfile>
+    <innerfile refid="RK2_8cpp">RK2.cpp</innerfile>
+    <innerfile refid="schrodinger1D_8cpp">schrodinger1D.cpp</innerfile>
+    <innerfile refid="transport1D_8cpp">transport1D.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This folder houses a collection of examples that serve as excellent starting points for developing more sophisticated programs utilizing MOLE&apos;s C++ version. </para>
+    </detaileddescription>
+    <location file="examples/cpp/"/>
+  </compounddef>
+</doxygen>

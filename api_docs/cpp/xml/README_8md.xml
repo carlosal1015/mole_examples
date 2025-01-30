@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="README_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">MOLE:<sp/>Mimetic<sp/>Operators<sp/>Library<sp/>Enhanced</highlight></codeline>
+<codeline><highlight class="normal">========================================</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">1:<sp/>Description</highlight></codeline>
+<codeline><highlight class="normal">--------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">MOLE<sp/>is<sp/>a<sp/>high-quality<sp/>(C++<sp/>&amp;<sp/>MATLAB/Octave)<sp/>library<sp/>that<sp/>implements<sp/></highlight></codeline>
+<codeline><highlight class="normal">high-order<sp/>mimetic<sp/>operators<sp/>to<sp/>solve<sp/>partial<sp/>differential<sp/>equations.<sp/></highlight></codeline>
+<codeline><highlight class="normal">It<sp/>provides<sp/>discrete<sp/>analogs<sp/>of<sp/>the<sp/>most<sp/>common<sp/>vector<sp/>calculus<sp/>operators:<sp/></highlight></codeline>
+<codeline><highlight class="normal">Gradient,<sp/>Divergence,<sp/>Laplacian,<sp/>Bilaplacian,<sp/>and<sp/>Curl.<sp/>These<sp/>operators<sp/>(highly<sp/>sparse<sp/>matrices)<sp/>act<sp/></highlight></codeline>
+<codeline><highlight class="normal">on<sp/>staggered<sp/>grids<sp/>(uniform,<sp/>non-uniform,<sp/>curvilinear)<sp/>and<sp/>satisfy<sp/>local<sp/>and<sp/></highlight></codeline>
+<codeline><highlight class="normal">global<sp/>conservation<sp/>laws.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Mathematics<sp/>is<sp/>based<sp/>on<sp/>the<sp/>work<sp/>of<sp/>[Corbino<sp/>and<sp/>Castillo,<sp/>2020](https://doi.org/10.1016/j.cam.2019.06.042).<sp/></highlight></codeline>
+<codeline><highlight class="normal">However,<sp/>the<sp/>user<sp/>may<sp/>find<sp/>helpful<sp/>previous<sp/>publications,<sp/>such<sp/>as<sp/>[Castillo<sp/>and<sp/>Grone,<sp/>2003](https://doi.org/10.1137/S0895479801398025),</highlight></codeline>
+<codeline><highlight class="normal">in<sp/>which<sp/>similar<sp/>operators<sp/>were<sp/>derived<sp/>using<sp/>a<sp/>matrix<sp/>analysis<sp/>approach.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2:<sp/>Licensing</highlight></codeline>
+<codeline><highlight class="normal">------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">MOLE<sp/>is<sp/>distributed<sp/>under<sp/>a<sp/>GNU<sp/>General<sp/>Public<sp/>License;<sp/>please<sp/>refer<sp/>to<sp/>the<sp/>_LICENSE_<sp/></highlight></codeline>
+<codeline><highlight class="normal">file<sp/>for<sp/>more<sp/>details.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">3:<sp/>Installation</highlight></codeline>
+<codeline><highlight class="normal">------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>3.1<sp/>Packages<sp/>Required</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">To<sp/>install<sp/>the<sp/>MOLE<sp/>library<sp/>on<sp/>your<sp/>system,<sp/>certain<sp/>packages<sp/>must<sp/>be<sp/>installed<sp/>and<sp/>configured<sp/>beforehand.<sp/>The<sp/>required<sp/>packages<sp/>vary<sp/>by<sp/>operating<sp/>system.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">For<sp/>the<sp/>macOS,<sp/>Homebrew<sp/>needs<sp/>to<sp/>be<sp/>installed<sp/>to<sp/>download<sp/>the<sp/>required<sp/>packages.<sp/>Invoke<sp/>the<sp/>following<sp/>command<sp/>in<sp/>the<sp/>terminal<sp/>app</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>/bin/bash<sp/>-c<sp/>&quot;$(curl<sp/>-fsSL<sp/>https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>3.1.1<sp/>OpenBLAS</highlight></codeline>
+<codeline><highlight class="normal">**Minimum<sp/>Version<sp/>Required**:<sp/>OpenBLAS<sp/>0.3.10</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>For<sp/>Ubuntu<sp/>systems:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sudo<sp/>apt<sp/>install<sp/>libopenblas-dev<sp/></highlight></codeline>
+<codeline><highlight class="normal">#####<sp/>For<sp/>Mac<sp/>Systems</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>brew<sp/>install<sp/>openblas</highlight></codeline>
+<codeline><highlight class="normal">#####<sp/>For<sp/>Yum-based<sp/>systems:<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sudo<sp/>yum<sp/>install<sp/>openblas-devel</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>3.1.2<sp/>Eigen3</highlight></codeline>
+<codeline><highlight class="normal">**Minimum<sp/>Version<sp/>Required**:<sp/>eigen-3</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>For<sp/>Ubuntu<sp/>systems</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sudo<sp/>apt<sp/>install<sp/>libeigen3-dev</highlight></codeline>
+<codeline><highlight class="normal">#####<sp/>For<sp/>Mac<sp/>Systems</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>brew<sp/>install<sp/>eigen<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">#####<sp/>For<sp/>Yum-based<sp/>systems:<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sudo<sp/>yum<sp/>install<sp/>eigen3-devel</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>3.1.3<sp/>libomp</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>For<sp/>Mac<sp/>Systems</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>brew<sp/>install<sp/>libomp</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>3.1.4<sp/>LAPACK</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>For<sp/>Mac<sp/>Systems</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>brew<sp/>install<sp/>lapack</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>3.2<sp/>MOLE<sp/>Library<sp/>Installation</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Clone<sp/>the<sp/>MOLE<sp/>repository<sp/>and<sp/>build<sp/>the<sp/>library**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>git<sp/>clone<sp/>https://github.com/csrc-sdsu/mole.git<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cd<sp/>mole<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mkdir<sp/>build<sp/>&amp;&amp;<sp/>cd<sp/>build<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cmake<sp/>..</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>make<sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>To<sp/>install<sp/>the<sp/>library<sp/>in<sp/>a<sp/>custom<sp/>location<sp/>(Eg.<sp/>home/mole)<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cmake<sp/>--install<sp/>.<sp/>--prefix<sp/>/path/to/location</highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>To<sp/>install<sp/>the<sp/>library<sp/>in<sp/>a<sp/>previledged<sp/>location<sp/>(Eg.<sp/>/opt/mole)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sudo<sp/>cmake<sp/>--install<sp/>.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>Or</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sudo<sp/>cmake<sp/>--install<sp/>.<sp/>--prefix<sp/>/path/to/privileged/location<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>Armadillo<sp/>and<sp/>SuperLu<sp/>will<sp/>be<sp/>locally<sp/>installed<sp/>in<sp/>the<sp/>build<sp/>directory<sp/>once<sp/>the<sp/>cmake<sp/>..<sp/>command<sp/>is<sp/>passed.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>By<sp/>following<sp/>the<sp/>steps<sp/>outlined<sp/>above,<sp/>you<sp/>will<sp/>successfully<sp/>install<sp/>the<sp/>necessary<sp/>packages<sp/>and<sp/>the<sp/>MOLE<sp/>library<sp/>on<sp/>your<sp/>system.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/>The<sp/>library<sp/>will<sp/>be<sp/>installed<sp/>in<sp/>the<sp/>location<sp/>provided.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>The<sp/>tests<sp/>and<sp/>examples<sp/>to<sp/>be<sp/>executed<sp/>will<sp/>also<sp/>be<sp/>built<sp/>locally<sp/>inside<sp/>the<sp/>build<sp/>directory.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">4:<sp/>Running<sp/>Examples<sp/>&amp;<sp/>Tests</highlight></codeline>
+<codeline><highlight class="normal">---------------------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Here<sp/>are<sp/>instructions<sp/>on<sp/>how<sp/>to<sp/>run<sp/>the<sp/>provided<sp/>examples<sp/>and<sp/>tests<sp/>for<sp/>both<sp/>the<sp/>C++<sp/>and<sp/>MATLAB<sp/>versions<sp/>of<sp/>the<sp/>library<sp/>to<sp/>help<sp/>you<sp/>quickly<sp/>get<sp/>started<sp/>with<sp/>MOLE.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>**tests/cpp:**</highlight></codeline>
+<codeline><highlight class="normal">These<sp/>tests,<sp/>which<sp/>are<sp/>automatically<sp/>executed<sp/>upon<sp/>constructing<sp/>the<sp/>library&apos;s<sp/>C++<sp/>version,<sp/>play<sp/>a<sp/>crucial<sp/>role<sp/>in<sp/>verifying<sp/>the<sp/>correct<sp/>installation<sp/>of<sp/>MOLE<sp/>and<sp/>its<sp/>dependencies.<sp/>There<sp/>are<sp/>four<sp/>tests<sp/>in<sp/>total.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>**tests/matlab:**</highlight></codeline>
+<codeline><highlight class="normal">We<sp/>encourage<sp/>MATLAB<sp/>users<sp/>to<sp/>execute<sp/>these<sp/>tests<sp/>before<sp/>using<sp/>MOLE<sp/>by<sp/>entering<sp/>the<sp/>`tests/matlab`<sp/>directory<sp/>and<sp/>executing<sp/>`run_tests.m`<sp/>from<sp/>MATLAB.<sp/>These<sp/>tests<sp/>are<sp/>analogous<sp/>to<sp/>those<sp/>contained<sp/>in<sp/>`tests/cpp`.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>**examples/cpp:**</highlight></codeline>
+<codeline><highlight class="normal">These<sp/>will<sp/>be<sp/>automatically<sp/>built<sp/>after<sp/>calling<sp/>`make`.<sp/>We<sp/>encourage<sp/>C++<sp/>users<sp/>to<sp/>make<sp/>this<sp/>their<sp/>entry<sp/>point<sp/>to<sp/>familiarize<sp/>themselves<sp/>with<sp/>this<sp/>library<sp/>version.<sp/>The<sp/>four<sp/>examples<sp/>are<sp/>self-contained<sp/>and<sp/>adequately<sp/>documented,<sp/>and<sp/>they<sp/>solve<sp/>typical<sp/>PDEs.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>**examples/matlab:**</highlight></codeline>
+<codeline><highlight class="normal">Most<sp/>of<sp/>our<sp/>examples<sp/>are<sp/>provided<sp/>in<sp/>the<sp/>MATLAB<sp/>scripting<sp/>language.<sp/>Over<sp/>30<sp/>examples<sp/>range<sp/>from<sp/>linear<sp/>one-dimensional<sp/>PDEs<sp/>to<sp/>highly<sp/>nonlinear<sp/>multidimensional<sp/>PDEs.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">5:<sp/>Documentation</highlight></codeline>
+<codeline><highlight class="normal">----------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>folder<sp/>`doc/api_docs/matlab`<sp/>contains<sp/>generated<sp/>documentation<sp/>about<sp/>the<sp/>MATLAB/Octave<sp/>API.</highlight></codeline>
+<codeline><highlight class="normal">It<sp/>was<sp/>generated<sp/>with<sp/>a<sp/>tool<sp/>called<sp/>[_m2html_](https://www.gllmflndn.com/software/matlab/m2html).<sp/>However,<sp/>for<sp/>a<sp/>quick<sp/>start<sp/>on<sp/>MOLE&apos;s<sp/>MATLAB/Octave<sp/>version,<sp/>we<sp/>recommend<sp/>starting<sp/>with<sp/>this<sp/>short<sp/>[guide](https://github.com/csrc-sdsu/mole/blob/master/doc/assets/manuals/CSRC%20Report%20on%20MOLE.pdf).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">For<sp/>C++<sp/>users,<sp/>we<sp/>provide<sp/>a<sp/>short<sp/>[guide](https://github.com/csrc-sdsu/mole/blob/master/doc/assets/manuals/MOLE_C%2B%2B_Quick_Guide.pdf)<sp/>to<sp/>MOLE&apos;s<sp/>C++<sp/>flavor.<sp/>However,<sp/>for<sp/>those<sp/>in<sp/>need<sp/>of<sp/>more<sp/>details<sp/>to<sp/>interact<sp/>with<sp/>the<sp/>library,<sp/>we<sp/>suggest<sp/>to<sp/>follow<sp/>these<sp/>instructions:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">To<sp/>generate<sp/>the<sp/>C++<sp/>documentation,<sp/>execute:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">`doxygen<sp/>Doxyfile`<sp/>(requires<sp/>_Doxygen_<sp/>and<sp/>_Graphviz_)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">this<sp/>will<sp/>create<sp/>a<sp/>folder<sp/>called<sp/>`doc_C++`<sp/>containing<sp/>a<sp/>set<sp/>of<sp/>_html_<sp/>files.<sp/>Please<sp/>take<sp/>a<sp/>look<sp/>at<sp/>the<sp/>_index.html_<sp/>file<sp/></highlight></codeline>
+<codeline><highlight class="normal">to<sp/>start<sp/>browsing<sp/>the<sp/>documentation.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**NOTE:**</highlight></codeline>
+<codeline><highlight class="normal">Performing<sp/>non-unary<sp/>operations<sp/>involving<sp/>operands<sp/>constructed<sp/>over<sp/>different<sp/>grids<sp/>may<sp/>lead<sp/>to<sp/>unexpected<sp/>results.<sp/>While<sp/>MOLE<sp/>allows<sp/>such<sp/>operations<sp/>without<sp/>throwing<sp/>errors,<sp/>users<sp/>must<sp/>exercise<sp/>caution<sp/>when<sp/>manipulating<sp/>operators<sp/>across<sp/>different<sp/>grids.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">6:<sp/>Community<sp/>Guidelines</highlight></codeline>
+<codeline><highlight class="normal">-----------------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">We<sp/>welcome<sp/>contributions<sp/>to<sp/>MOLE,<sp/>whether<sp/>they<sp/>involve<sp/>adding<sp/>new<sp/>functionalities,<sp/>providing<sp/>examples,<sp/>addressing<sp/>existing<sp/>issues,<sp/>reporting<sp/>bugs,<sp/>or<sp/>requesting<sp/>new<sp/>features.<sp/>Please<sp/>refer<sp/>to<sp/>our<sp/>[Contribution<sp/>Guidelines](https://github.com/csrc-sdsu/mole/blob/master/CONTRIBUTING.md)<sp/>for<sp/>more<sp/>details.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">7:<sp/>Citations</highlight></codeline>
+<codeline><highlight class="normal">------------</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Please<sp/>cite<sp/>our<sp/>work<sp/>if<sp/>you<sp/>use<sp/>MOLE<sp/>in<sp/>your<sp/>research<sp/>or<sp/>software.<sp/></highlight></codeline>
+<codeline><highlight class="normal">Citations<sp/>are<sp/>helpful<sp/>for<sp/>the<sp/>continued<sp/>development<sp/>and<sp/>maintenance<sp/>of<sp/></highlight></codeline>
+<codeline><highlight class="normal">the<sp/>library<sp/>[![DOI](https://joss.theoj.org/papers/10.21105/joss.06288/status.svg)](https://doi.org/10.21105/joss.06288)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[![View<sp/>mole<sp/>on<sp/>File<sp/>Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/124870-mole)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Now,<sp/>some<sp/>cool<sp/>pictures<sp/>obtained<sp/>with<sp/>MOLE:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">![Obtained<sp/>with<sp/>curvilinear<sp/>operators](doc/assets/img/4thOrder.png)</highlight></codeline>
+<codeline><highlight class="normal">![Obtained<sp/>with<sp/>curvilinear<sp/>operators](doc/assets/img/4thOrder2.png)</highlight></codeline>
+<codeline><highlight class="normal">![Obtained<sp/>with<sp/>curvilinear<sp/>operators](doc/assets/img/4thOrder3.png)</highlight></codeline>
+<codeline><highlight class="normal">![Obtained<sp/>with<sp/>curvilinear<sp/>operators](doc/assets/img/grid2.png)</highlight></codeline>
+<codeline><highlight class="normal">![Obtained<sp/>with<sp/>curvilinear<sp/>operators](doc/assets/img/grid.png)</highlight></codeline>
+<codeline><highlight class="normal">![Obtained<sp/>with<sp/>curvilinear<sp/>operators](doc/assets/img/WavyGrid.png)</highlight></codeline>
+<codeline><highlight class="normal">![Obtained<sp/>with<sp/>curvilinear<sp/>operators](doc/assets/img/wave2D.png)</highlight></codeline>
+<codeline><highlight class="normal">![Obtained<sp/>with<sp/>curvilinear<sp/>operators](doc/assets/img/burgers.png)</highlight></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>
