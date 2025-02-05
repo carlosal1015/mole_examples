@@ -1,0 +1,52 @@
+%! arara: lualatex: {
+%! arara: --> shell: yes,
+%! arara: --> draft: yes,
+%! arara: --> interaction: batchmode
+%! arara: --> }
+\documentclass[a4paper,abstract=true]{scrreprt}
+\usepackage{fontspec}
+\usepackage[svgnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{diffcoeff}
+\usepackage{minted}
+\usepackage{hyperref}
+
+\title{\color{DarkBlue}MOLE Tutorial}
+\titlehead{\centering    
+\includegraphics[width=.3\paperwidth]{logo.png}}
+\author{based on commit \href{https://github.com/csrc-sdsu/mole/tree/b1176d9969e807fb62bed8fee28bc0eb9648a93a}{\mintinline{bash}|b1176d9|}}
+
+\setminted{breaklines=true}
+\setminted[octave]{highlightcolor=yellow!50!white}
+\setminted[cpp]{highlightcolor=yellow!50!white}
+\setmonofont{Fira Code}[Contextuals=Alternate,Scale=MatchLowercase]
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    This document is written for a novice users in
+    \href{https://octave.org}{GNU Octave}/\href{https://www.mathworks.com/products/matlab.html}{MATLAB}
+    and C++ but with a solid
+    foundation in numerical analysis for PDEs.
+    MOLE stands Mimetic Operators Library Enhanced.
+    % for gave.
+\end{abstract}
+
+\part{First part}
+
+\url{https://csrc-sdsu.github.io/mole}
+
+\part{Numerical Exercises}
+
+\chapter{Tests}
+
+\chapter{Python}
+
+\chapter{Fortran}
+
+\chapter{C++}
+
+\chapter{Octave}
+
+\end{document}

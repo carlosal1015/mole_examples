@@ -3,13 +3,9 @@
  */
 
 #define ARMA_USE_HDF5
-#include <cmath>
-#include <iostream>
 #include <mole/laplacian.h>
 #include <mole/operators.h>
 #include <mole/robinbc.h>
-
-// using Real = double;
 
 int main()
 {

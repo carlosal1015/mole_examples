@@ -4,8 +4,10 @@
  * https://wwwbrr.cr.usgs.gov/projects/GWC_coupled/phreeqc/html/final-22.html
  */
 
-#include <iostream>
-#include <mole/mole.h>
+#include <mole/divergence.h>
+#include <mole/gradient.h>
+#include <mole/interpol.h>
+#include <mole/operators.h>
 
 int main()
 {
@@ -26,11 +28,11 @@ int main()
   // Get 1D mimetic operators
   Gradient G(k, m, dx);
   Divergence D(k, m, dx);
-  Interpol I(m, 0.5);
+  Interpol I(m, 0.5); // probar hasta 1
 
   // Allocate fields
-  vec C(m + 2); // Scalar field (concentrations)
-  vec V(m + 1); // Vector field (velocities)
+  arma::vec C(m + 2); // Scalar field (concentrations)
+  arma::vec V(m + 1); // Vector field (velocities)
 
   // Impose initial conditions
   C(0) = C0;
@@ -53,7 +55,7 @@ int main()
   }
 
   // Spit out the new concentrations!
-  cout << C;
+  std::cout << C;
 
   return 0;
 }

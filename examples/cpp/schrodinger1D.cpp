@@ -13,7 +13,7 @@ int main()
   Real a = -5; // Left boundary
   Real b = 5;  // Right boundary
   int m = 500; // Number of cells
-  vec grid = linspace(a, b, m);
+  vec grid = arma::linspace(a, b, m);
   Real dx = grid(1) - grid(0); // Step size
 
   // Get mimetic Laplacian operator
