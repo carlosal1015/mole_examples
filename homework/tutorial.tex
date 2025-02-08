@@ -2,17 +2,17 @@
 % arara: --> extensions:
 % arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'pdf', 'run.xml']
 % arara: --> }
-% arara: lualatex: {
-% arara: --> shell: yes,
-% arara: --> draft: yes,
-% arara: --> interaction: batchmode
-% arara: --> }
-%! arara: biber
 %! arara: lualatex: {
 %! arara: --> shell: yes,
-%! arara: --> draft: no,
+%! arara: --> draft: yes,
 %! arara: --> interaction: batchmode
 %! arara: --> }
+%! arara: biber
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: no,
+% arara: --> interaction: batchmode
+% arara: --> }
 %! arara: lualatex: {
 %! arara: --> shell: yes,
 %! arara: --> draft: no,
