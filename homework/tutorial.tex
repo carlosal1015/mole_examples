@@ -13,11 +13,11 @@
 % arara: --> draft: no,
 % arara: --> interaction: batchmode
 % arara: --> }
-%! arara: lualatex: {
-%! arara: --> shell: yes,
-%! arara: --> draft: no,
-%! arara: --> interaction: batchmode
-%! arara: --> }
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: no,
+% arara: --> interaction: batchmode
+% arara: --> }
 % arara: clean: {
 % arara: --> extensions:
 % arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'run.xml']
@@ -70,6 +70,16 @@ After skimming the description and reading the papers you will find out that thi
 
 
 \part{Numerical Exercises}
+
+\section{Ecuación de Poisson 1D}
+
+\begin{listing}[ht!]
+    \tiny
+    \centering
+    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=53,highlightlines={21,29}]{octave}{../examples/octave/elliptic1D.m}
+    \caption{Programa~\texttt{elliptic1D.m}}
+    \label{code:elliptic1D.m}
+\end{listing}
 
 \section{Ecuación de diffusion 1D}
 Se tiene  la ecuación de calor unidimensional

@@ -28,6 +28,9 @@ target_link_libraries(RK2 PUBLIC ${ARMADILLO_LIBRARIES} mole)
 add_executable(schrodinger1D schrodinger1D.cpp)
 target_link_libraries(schrodinger1D PUBLIC ${ARMADILLO_LIBRARIES} mole)
 
+add_executable(schrodinger2D schrodinger2D.cpp)
+target_link_libraries(schrodinger2D PUBLIC ${ARMADILLO_LIBRARIES} mole)
+
 add_executable(transport1D transport1D.cpp)
 target_link_libraries(transport1D PUBLIC ${ARMADILLO_LIBRARIES} mole)
 
@@ -79,6 +82,12 @@ add_custom_command(
   COMMAND schrodinger1D
   POST_BUILD
   TARGET schrodinger1D
+)
+
+add_custom_command(
+  COMMAND schrodinger2D
+  POST_BUILD
+  TARGET schrodinger2D
 )
 
 add_custom_command(
