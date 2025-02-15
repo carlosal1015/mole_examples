@@ -1,6 +1,6 @@
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'pdf', 'run.xml']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'pdf', 'run.xml', 'toc']
 % arara: --> }
 % arara: lualatex: {
 % arara: --> shell: yes,
@@ -20,12 +20,13 @@
 % arara: --> }
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'run.xml']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'run.xml', 'toc']
 % arara: --> }
 \documentclass[a4paper,abstract=true]{scrreprt}
 \usepackage{fontspec}
 \usepackage[svgnames]{xcolor}
 \usepackage{graphicx}
+\usepackage{todonotes}
 \usepackage{mathtools}
 \usepackage[ISO]{diffcoeff}
 \usepackage{minted}
@@ -66,7 +67,37 @@
     and \href{https://www.rust-lang.org}{Rust}.
 \end{abstract}
 
-\part{First part}
+\tableofcontents
+
+\part{The Foundations of the Mimetic Finite Difference Operators 1D}
+
+\chapter{Introduction and Objectives}
+
+\chapter{Mimetic Operadors List}
+
+\section{Divergence}
+
+\section{Gradient}
+
+\section{Interpolation from center to nodes}
+
+\section{Interpolation from nodes to center}
+
+\section{Laplacian}
+
+\chapter{Numerical Methods for ODEs}
+
+\todo{Only the methods used in the tutorials: Verlett, RK4, Explicit Euler}
+
+\chapter{Numerical Solutions of Boundary Value Problems}
+
+\chapter{Numerical Methods for PDEs}
+
+\section{von Neumann Stability Criterion}
+
+\section{Stability and Convergence Analysis}
+
+\part{Numerical Exercises}
 
 \chapter{Foo}
 
@@ -76,11 +107,6 @@ The official website is \url{https://csrc-sdsu.github.io/mole}.
 After skimming the description and reading the papers you will find out that this method never uses a ghost points.
 
 \subsection{Create the staggered grid}
-
-
-\part{Numerical Exercises}
-
-\chapter{Foo}
 
 \section{Ecuación de Poisson 1D}
 
@@ -119,20 +145,20 @@ Usando métodos mimeticos
 En  la ecuación de calor unidimensional en el código parabolic1D.m
 
 \begin{equation}
-	\frac{\partial u}{\partial t} = \alpha \frac{\partial^{2} u}{\partial x^{2}},   x \in [0,1] ; t \in [0,1]
+    \frac{\partial u}{\partial t} = \alpha \frac{\partial^{2} u}{\partial x^{2}},   x \in [0,1] ; t \in [0,1]
 \end{equation}
 
 con condición inicial: $u(x,0) = 0$\\
 
 con condición de contorno: $u(0,t)= 100$ y $u(1,t) =100$\\
 
-donde 
+donde
 
 $k = 2$: es el orden de precisión
 
- $m = 2*k+1=2*(2)+1 = 5$: Número de celdas
- 
-$dx =\frac{1-0}{5} =\frac{1}{5}$ : Tamaño del paso 
+$m = 2*k+1=2*(2)+1 = 5$: Número de celdas
+
+$dx =\frac{1-0}{5} =\frac{1}{5}$ : Tamaño del paso
 
 $dt = \frac{(dx)^{2}}{3*\alpha} =\frac{1}{75}$\\
 
@@ -144,54 +170,52 @@ $L = lap(k,m,dx)$  Operador laplaciano mimética 1D es de orden $m+2$ por $m+2$ 
 grafica de la malla:\\
 
 
- grid = $[west$  $west+dx/2: dx :east-dx/2$  $east]$
- 
+grid = $[west$  $west+dx/2: dx :east-dx/2$  $east]$
+
 entonces malla = $[0$ $0+\frac{1}{10}: \frac{1}{5}: 1-\frac{1}{10}$ $1  ]$ = $[0$ $\frac{1}{10}: \frac{1}{5}: \frac{9}{10}$ $1]$ = $  \{0, \frac{1}{10}, \frac{3}{10}, \frac{5}{10}, \frac{7}{10}, \frac{9}{10}, 1 \}$
 
 
 Método explicito en la ecuación unidimensional
 
 \begin{equation}
-	\frac{\partial u}{\partial t} = \alpha \frac{\partial^{2} u}{\partial x^{2}}
+    \frac{\partial u}{\partial t} = \alpha \frac{\partial^{2} u}{\partial x^{2}}
 \end{equation}
 Discretizando  $\frac{\partial u}{\partial t}$ por diferencias finitas hacia adelante, y $\frac{\partial^{2} u}{\partial x^{2}}$ aplicando método miméticos
 
-\begin{equation}	
-	\frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \alpha L 	u^{n}_{i}
+\begin{equation}
+    \frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \alpha L 	u^{n}_{i}
 \end{equation}
 
- luego despejando $u^{n+1}_{i}$ se obtiene:
- 
- \begin{equation}	
- 	u^{n+1}_{i} = u^{n}_{i}  +  \alpha dt L u^{n}_{i}
- \end{equation}
+luego despejando $u^{n+1}_{i}$ se obtiene:
+
+\begin{equation}
+    u^{n+1}_{i} = u^{n}_{i}  +  \alpha dt L u^{n}_{i}
+\end{equation}
 
 factorizando $u^{n}_{i}$ tenemos:
 
- \begin{equation}	
-	u^{n+1}_{i} = (I  +  \alpha dt L )u^{n}_{i}
+\begin{equation}
+    u^{n+1}_{i} = (I  +  \alpha dt L )u^{n}_{i}
 \end{equation}
 
-donde $I$ es la matriz identidad de orden en general $m+2$ por $m+2$, para este ejemplo es de orden $7$ por $7$, siendo 
+donde $I$ es la matriz identidad de orden en general $m+2$ por $m+2$, para este ejemplo es de orden $7$ por $7$, siendo
 
 $$  L = (\alpha dt L +I )$$
 
-siendo en el código: $ L = alpha*dt*L + speye(size(L))$; finalmente  para obtener la solución 
+siendo en el código: $ L = alpha*dt*L + speye(size(L))$; finalmente  para obtener la solución
 
- \begin{equation}	
-	u^{n+1}_{i} = L *u^{n}_{i}
+\begin{equation}
+    u^{n+1}_{i} = L *u^{n}_{i}
 \end{equation}
- 
- en el código se tiene $ U = L*U$
 
-
-
-
+en el código se tiene $ U = L*U$
 
 
 \section{Convection-diffusion}
 
-\chapter{Tests}
+\chapter{MOLE Tests}
+
+\appendix
 
 \chapter{Python}
 
