@@ -116,6 +116,79 @@ donde $\kappa=1$ es la difusividad térmica.
 
 Usando métodos mimeticos
 
+En  la ecuación de calor unidimensional en el código parabolic1D.m
+
+\begin{equation}
+	\frac{\partial u}{\partial t} = \alpha \frac{\partial^{2} u}{\partial x^{2}},   x \in [0,1] ; t \in [0,1]
+\end{equation}
+
+con condición inicial: $u(x,0) = 0$\\
+
+con condición de contorno: $u(0,t)= 100$ y $u(1,t) =100$\\
+
+donde 
+
+$k = 2$: es el orden de precisión
+
+ $m = 2*k+1=2*(2)+1 = 5$: Número de celdas
+ 
+$dx =\frac{1-0}{5} =\frac{1}{5}$ : Tamaño del paso 
+
+$dt = \frac{(dx)^{2}}{3*\alpha} =\frac{1}{75}$\\
+
+\textbf{\textbf{Operador Laplaciano}}\\
+
+$L = lap(k,m,dx)$  Operador laplaciano mimética 1D es de orden $m+2$ por $m+2$ para este ejemplo es de orden  7 por 7,  se tiene $L = D* G$, donde $D = div(k,m,dx)$ es de orden en general $m+2$ por $m+1$, en particular 7 por 6, y $G = grad(k,m,dx)$ es de orden $m+1$ por $m+2$\\
+
+
+grafica de la malla:\\
+
+
+ grid = $[west$  $west+dx/2: dx :east-dx/2$  $east]$
+ 
+entonces malla = $[0$ $0+\frac{1}{10}: \frac{1}{5}: 1-\frac{1}{10}$ $1  ]$ = $[0$ $\frac{1}{10}: \frac{1}{5}: \frac{9}{10}$ $1]$ = $  \{0, \frac{1}{10}, \frac{3}{10}, \frac{5}{10}, \frac{7}{10}, \frac{9}{10}, 1 \}$
+
+
+Método explicito en la ecuación unidimensional
+
+\begin{equation}
+	\frac{\partial u}{\partial t} = \alpha \frac{\partial^{2} u}{\partial x^{2}}
+\end{equation}
+Discretizando  $\frac{\partial u}{\partial t}$ por diferencias finitas hacia adelante, y $\frac{\partial^{2} u}{\partial x^{2}}$ aplicando método miméticos
+
+\begin{equation}	
+	\frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \alpha L 	u^{n}_{i}
+\end{equation}
+
+ luego despejando $u^{n+1}_{i}$ se obtiene:
+ 
+ \begin{equation}	
+ 	u^{n+1}_{i} = u^{n}_{i}  +  \alpha dt L u^{n}_{i}
+ \end{equation}
+
+factorizando $u^{n}_{i}$ tenemos:
+
+ \begin{equation}	
+	u^{n+1}_{i} = (I  +  \alpha dt L )u^{n}_{i}
+\end{equation}
+
+donde $I$ es la matriz identidad de orden en general $m+2$ por $m+2$, para este ejemplo es de orden $7$ por $7$, siendo 
+
+$$  L = (\alpha dt L +I )$$
+
+siendo en el código: $ L = alpha*dt*L + speye(size(L))$; finalmente  para obtener la solución 
+
+ \begin{equation}	
+	u^{n+1}_{i} = L *u^{n}_{i}
+\end{equation}
+ 
+ en el código se tiene $ U = L*U$
+
+
+
+
+
+
 \section{Convection-diffusion}
 
 \chapter{Tests}
