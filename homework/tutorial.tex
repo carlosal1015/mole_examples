@@ -26,7 +26,8 @@
 \usepackage{fontspec}
 \usepackage[svgnames]{xcolor}
 \usepackage{graphicx}
-\usepackage{diffcoeff}
+\usepackage{mathtools}
+\usepackage[ISO]{diffcoeff}
 \usepackage{minted}
 \usepackage{hyperref}
 
@@ -61,6 +62,8 @@
 
 \part{First part}
 
+\chapter{Foo}
+
 \section{Meeting MOLE}
 
 The official website is \url{https://csrc-sdsu.github.io/mole}.
@@ -70,6 +73,8 @@ After skimming the description and reading the papers you will find out that thi
 
 
 \part{Numerical Exercises}
+
+\chapter{Foo}
 
 \section{Ecuación de Poisson 1D}
 
@@ -81,19 +86,29 @@ After skimming the description and reading the papers you will find out that thi
     \label{code:elliptic1D.m}
 \end{listing}
 
-\section{Ecuación de diffusion 1D}
-Se tiene  la ecuación de calor unidimensional
-\begin{center}
-$u_{t} = k  u_{xx} $, $0 < x < \pi$, $0 < t< 1$	
-\end{center}
+\section{Ecuación de difusión 1D}
+Se tiene la ecuación de calor unidimensional
 
-C.I : $u(x,0) = 100$\\
+\begin{equation}\label{eq:IBVPheat1d}
+    \begin{cases}
+        \diffp{u}{t}=
+        \kappa\diffp[2]{u}{x},
+         & \left(x,t\right)\in
+        \left(0,\pi\right)\times\left(0,1\right). \\
+        u\left(x,0\right)=
+        100,
+         & x\in
+        \left[0,\pi\right].                       \\
+        u\left(0,t\right)=
+        u\left(\pi,t\right)=0,
+         & t\in
+        \left(0,1\right),
+    \end{cases}
+\end{equation}
 
-C.C:  $u(0,t)=0 =u(\pi,t)$\\
+donde $\kappa=1$ es la difusividad térmica.
 
-donde $ k =1$ es la difusividad térmica.
-Usando métodos mimeticos 
-
+Usando métodos mimeticos
 
 \section{Convection-diffusion}
 
