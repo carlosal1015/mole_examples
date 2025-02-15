@@ -2,12 +2,12 @@
 % arara: --> extensions:
 % arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'pdf', 'run.xml']
 % arara: --> }
-%! arara: lualatex: {
-%! arara: --> shell: yes,
-%! arara: --> draft: yes,
-%! arara: --> interaction: batchmode
-%! arara: --> }
-%! arara: biber
+% arara: lualatex: {
+% arara: --> shell: yes,
+% arara: --> draft: yes,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: biber
 % arara: lualatex: {
 % arara: --> shell: yes,
 % arara: --> draft: no,
@@ -29,6 +29,11 @@
 \usepackage{mathtools}
 \usepackage[ISO]{diffcoeff}
 \usepackage{minted}
+\usepackage[
+    citestyle=numeric,
+    style=numeric,
+    backend=biber,
+]{biblatex}
 \usepackage{hyperref}
 
 \title{\color{DarkBlue}MOLE Tutorial}
@@ -40,6 +45,7 @@
 \setminted[octave]{highlightcolor=yellow!50!white}
 \setminted[cpp]{highlightcolor=yellow!50!white}
 \setmonofont{Fira Code}[Contextuals=Alternate,Scale=MatchLowercase]
+\addbibresource{references.bib}
 
 \begin{document}
 \maketitle
@@ -121,5 +127,8 @@ Usando métodos mimeticos
 \chapter{C++}
 
 \chapter{Octave}
+
+\nocite{*}
+\printbibliography[title={Referencias}]
 
 \end{document}
