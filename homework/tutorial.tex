@@ -87,7 +87,7 @@ After skimming the description and reading the papers you will find out that thi
 \begin{listing}[ht!]
     \tiny
     \centering
-    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=53,highlightlines={21,29}]{octave}{../examples/octave/elliptic1D.m}
+    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=80,highlightlines={20,29}]{octave}{../examples/octave/elliptic1D.m}
     \caption{Programa~\texttt{elliptic1D.m}}
     \label{code:elliptic1D.m}
 \end{listing}
@@ -100,15 +100,15 @@ Given the one-dimensional heat equation
         \diffp{u}{t}=
         \kappa\diffp[2]{u}{x},
          & \left(x,t\right)\in
-        \left(0,\pi\right)\times\left(0,1\right). \\
-        u\left(x,0\right)=
-        100,
+        \left(a,b \right)\times\left(0, \infty \right). \\
+        u\left(x,0\right)=f(x),
          & x\in
-        \left[0,\pi\right].                       \\
-        u\left(0,t\right)=
-        u\left(\pi,t\right)=0,
+        \left[a,b\right].                       \\
+        u\left(a,t\right)= \alpha(t), & t\in
+        \left(0,\infty\right),\\
+        u\left(b,t\right)= \beta(t),
          & t\in
-        \left(0,1\right),
+        \left(0,\infty\right),
     \end{cases}
 \end{equation}
 
@@ -120,7 +120,7 @@ The 1D heat equation code by mimetic methods
     \tiny
     \centering
     \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=53,highlightlines={21,29}]{octave}{../examples/octave/parabolic1D.m}
-    \caption{Programa~\texttt{elliptic1D.m}}
+    \caption{Programa~\texttt{parabolic1D.m}}
     \label{code:parabolic1D.m}
 \end{listing}
 
