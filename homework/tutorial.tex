@@ -1,6 +1,6 @@
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'pdf', 'run.xml', 'toc']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'pdf', 'run.xml']
 % arara: --> }
 % arara: lualatex: {
 % arara: --> shell: yes,
@@ -20,13 +20,12 @@
 % arara: --> }
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'run.xml', 'toc']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'run.xml']
 % arara: --> }
 \documentclass[a4paper,abstract=true]{scrreprt}
 \usepackage{fontspec}
 \usepackage[svgnames]{xcolor}
 \usepackage{graphicx}
-\usepackage{todonotes}
 \usepackage{mathtools}
 \usepackage[ISO]{diffcoeff}
 \usepackage{minted}
@@ -67,37 +66,7 @@
     and \href{https://www.rust-lang.org}{Rust}.
 \end{abstract}
 
-\tableofcontents
-
-\part{The Foundations of the Mimetic Finite Difference Operators 1D}
-
-\chapter{Introduction and Objectives}
-
-\chapter{Mimetic Operadors List}
-
-\section{Divergence}
-
-\section{Gradient}
-
-\section{Interpolation from center to nodes}
-
-\section{Interpolation from nodes to center}
-
-\section{Laplacian}
-
-\chapter{Numerical Methods for ODEs}
-
-\todo{Only the methods used in the tutorials: Verlett, RK4, Explicit Euler}
-
-\chapter{Numerical Solutions of Boundary Value Problems}
-
-\chapter{Numerical Methods for PDEs}
-
-\section{von Neumann Stability Criterion}
-
-\section{Stability and Convergence Analysis}
-
-\part{Numerical Exercises}
+\part{First part}
 
 \chapter{Foo}
 
@@ -107,6 +76,11 @@ The official website is \url{https://csrc-sdsu.github.io/mole}.
 After skimming the description and reading the papers you will find out that this method never uses a ghost points.
 
 \subsection{Create the staggered grid}
+
+
+\part{Numerical Exercises}
+
+\chapter{Foo}
 
 \section{Ecuación de Poisson 1D}
 
@@ -118,104 +92,143 @@ After skimming the description and reading the papers you will find out that thi
     \label{code:elliptic1D.m}
 \end{listing}
 
-\section{Ecuación de difusión 1D}
-Se tiene la ecuación de calor unidimensional
+\section{The 1D Diffusion Equation}
+
+Given the one-dimensional heat equation
 
 \begin{equation}\label{eq:IBVPheat1d}
     \begin{cases}
         \diffp{u}{t}=
         \kappa\diffp[2]{u}{x},
          & \left(x,t\right)\in
-        \left(0,\pi\right)\times\left(0,1\right). \\
-        u\left(x,0\right)=
-        100,
+        \left(a,b \right)\times\left(0, \infty \right). \\
+        u\left(x,0\right)=f(x),
          & x\in
-        \left[0,\pi\right].                       \\
-        u\left(0,t\right)=
-        u\left(\pi,t\right)=0,
+        \left[a,b\right].                       \\
+        u\left(a,t\right)= \alpha(t), & t\in
+        \left(0,\infty\right),\\
+        u\left(b,t\right)= \beta(t),
          & t\in
-        \left(0,1\right),
+        \left(0,\infty\right),
     \end{cases}
 \end{equation}
 
-donde $\kappa=1$ es la difusividad térmica.
+where $\kappa$ is the thermal diffusivity.\\
 
-Usando métodos mimeticos
+The 1D heat equation code by mimetic methods
 
-En  la ecuación de calor unidimensional en el código parabolic1D.m
 
-\begin{equation}
-    \frac{\partial u}{\partial t} = \alpha \frac{\partial^{2} u}{\partial x^{2}},   x \in [0,1] ; t \in [0,1]
+\begin{listing}[ht!]
+    \tiny
+    \centering
+    \inputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=80,highlightlines={20,29}]{octave}{../examples/octave/parabolic1D.m}
+    \caption{Programa~\texttt{parabolic1D.m}}
+    \label{code:parabolic1D.m}
+\end{listing}
+
+
+In the one-dimensional heat equation in the parabolic1D.m code, the PDE being solved is given by:
+
+
+\begin{equation}\label{eq:IBVPheat1d}
+    \begin{cases}
+        \diffp{u}{t}=
+        \kappa\diffp[2]{u}{x},
+         & \left(x,t\right)\in
+        \left(0,1 \right)\times\left(0, 1 \right). \\
+        u\left(x,0\right)= 0,
+         & x\in
+        \left[0,1\right].                       \\
+        u\left(0,t\right)= 100., & t\in
+        \left(0,1 \right),\\
+        u\left(1,t\right)= 100.,
+         & t\in
+        \left(0, 1\right),
+    \end{cases}
 \end{equation}
 
-con condición inicial: $u(x,0) = 0$\\
 
-con condición de contorno: $u(0,t)= 100$ y $u(1,t) =100$\\
+\textbf{Line 11:} In this part the code defines the value of the diffusion coefficient $\kappa =1$.\\
 
-donde
+\textbf{Line 12:} Define the left side $a= 0$ of the domain of the variable $x$.\\
 
-$k = 2$: es el orden de precisión
+\textbf{Line 13:} Define the right hand side $b= 1$ of the domain of the variable $x$.\\
 
-$m = 2*k+1=2*(2)+1 = 5$: Número de celdas
+\textbf{Line 15:} The Operator's order of accuracy $k = 2$.\\
 
-$dx =\frac{1-0}{5} =\frac{1}{5}$ : Tamaño del paso
+\textbf{Line 16:} $m$ is the number of cells, where $m$ can take values ​​$m \geq 2*k+1$; in this case $m=2*(2)+1=5$.\\
 
-$dt = \frac{(dx)^{2}}{3*\alpha} =\frac{1}{75}$\\
+\textbf{Line 17:} In this line the step size in $x$ is defined, defined as $dx=(b-a)/m$, en this case, replacing it, we have $dx =\frac{1-0}{5} =\frac{1}{5}$ \\
 
-\textbf{\textbf{Operador Laplaciano}}\\
+\textbf{Line 19:} End time $t=1$.\\
 
-$L = lap(k,m,dx)$  Operador laplaciano mimética 1D es de orden $m+2$ por $m+2$ para este ejemplo es de orden  7 por 7,  se tiene $L = D* G$, donde $D = div(k,m,dx)$ es de orden en general $m+2$ por $m+1$, en particular 7 por 6, y $G = grad(k,m,dx)$ es de orden $m+1$ por $m+2$\\
+\textbf{Line 20:} Von Neumann stability criterion for $k=2$, we have $ dt = \frac{(dx)^{2}}{3 \kappa}$, in this exercise the step in time is given by: $dt =\frac{1}{75}$\\
 
+\textbf{Line 22:} $L = lap(k,m,dx)$ 1D mimetic Laplacian operator is of order $m+2$ so $m+2$ for this exercise is of order 7 by 7, where $k=2$, $m = 5$ and $\frac{1}{5}$, then $L = lap(2,5,\frac{1}{5})$.\\
 
-grafica de la malla:\\
+\textbf{Line 25:} The initial condition  value $u(x,0)=0$ is a matrix of order $m+2$ by $1$, in this case $7$ by $1$.\\
 
+\textbf{Line 27:} The boundary condition is on the left side u(a,t)= u(0,t)=100.\\
 
-grid = $[west$  $west+dx/2: dx :east-dx/2$  $east]$
+\textbf{Line 28:} The boundary condition on the right side u(b,t)= u(1,t)=100.\\
 
-entonces malla = $[0$ $0+\frac{1}{10}: \frac{1}{5}: 1-\frac{1}{10}$ $1  ]$ = $[0$ $\frac{1}{10}: \frac{1}{5}: \frac{9}{10}$ $1]$ = $  \{0, \frac{1}{10}, \frac{3}{10}, \frac{5}{10}, \frac{7}{10}, \frac{9}{10}, 1 \}$
+\textbf{Line 31:} The mesh used in the mimetic method  grid = $[west$  $west+dx/2: dx :east-dx/2$  $east]$, then grid = $[a$ $a+\frac{dx}{2}: dx : b-\frac{dx}{2}$ $b  ]$, in this exercise the mesh is given by:
 
+\begin{center}
 
-Método explicito en la ecuación unidimensional
+  grid = $[0$ $\frac{1}{10}: \frac{1}{5}: \frac{9}{10}$ $1]$ = $  \{0, \frac{1}{10}, \frac{3}{10}, \frac{5}{10}, \frac{7}{10}, \frac{9}{10}, 1 \}$
 
-\begin{equation}
-    \frac{\partial u}{\partial t} = \alpha \frac{\partial^{2} u}{\partial x^{2}}
-\end{equation}
-Discretizando  $\frac{\partial u}{\partial t}$ por diferencias finitas hacia adelante, y $\frac{\partial^{2} u}{\partial x^{2}}$ aplicando método miméticos
+\end{center}
 
-\begin{equation}
-    \frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \alpha L 	u^{n}_{i}
-\end{equation}
+\textbf{Line 34:} If explicit=1 then the PDE will be solved in time by the explicit method, and if explicit=0 then the PDE will be solved by the implicit method.\\
 
-luego despejando $u^{n+1}_{i}$ se obtiene:
+\textbf{Line 37 to 53:} In this section we have the solution of the PDE and the graph. \\
 
-\begin{equation}
-    u^{n+1}_{i} = u^{n}_{i}  +  \alpha dt L u^{n}_{i}
-\end{equation}
-
-factorizando $u^{n}_{i}$ tenemos:
+\textbf{Line 40:} The value of L is obtained by:
 
 \begin{equation}
-    u^{n+1}_{i} = (I  +  \alpha dt L )u^{n}_{i}
+	\frac{\partial u}{\partial t} = \kappa \frac{\partial^{2} u}{\partial x^{2}}
 \end{equation}
 
-donde $I$ es la matriz identidad de orden en general $m+2$ por $m+2$, para este ejemplo es de orden $7$ por $7$, siendo
+Discretizing $\frac{\partial u}{\partial t}$ by forward finite differences, and $\frac{\partial^{2} u}{\partial x^{2}}$ by applying mimetic methods
 
-$$  L = (\alpha dt L +I )$$
-
-siendo en el código: $ L = alpha*dt*L + speye(size(L))$; finalmente  para obtener la solución
-
-\begin{equation}
-    u^{n+1}_{i} = L *u^{n}_{i}
+\begin{equation}	
+ \frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \kappa L 	u^{n}_{i}
 \end{equation}
 
-en el código se tiene $ U = L*U$
+then clearing $u^{n+1}_{i}$ we obtain:
+
+ 
+ \begin{equation}	
+ 	u^{n+1}_{i} = u^{n}_{i}  +  \kappa dt L u^{n}_{i}
+ \end{equation}
+
+Factoring $u^{n}_{i}$ we have:
+
+ \begin{equation}	
+	u^{n+1}_{i} = (I  +  \kappa dt L )u^{n}_{i}
+\end{equation}
+
+where $I$ is the identity matrix of general order $m+2$ by $m+2$, for this exercise of order $7$ by $7$, being
+
+$$  L = (\kappa dt L +I )$$
+
+being in the code: $ L = alpha*dt*L + speye(size(L))$; finally to obtain the solution
+
+ \begin{equation}	
+	u^{n+1}_{i} = L *u^{n}_{i}
+\end{equation}
+ 
+ in the code on line 51 we have $ U = L*U$
+
+
+
+
 
 
 \section{Convection-diffusion}
 
-\chapter{MOLE Tests}
-
-\appendix
+\chapter{Tests}
 
 \chapter{Python}
 
