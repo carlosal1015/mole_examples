@@ -4,6 +4,7 @@
 
 #include <mole/divergence.h>
 #include <mole/operators.h>
+#include <gtest/gtest.h>
 
 void run_nullity_test(int k, Real tol)
 {
@@ -11,26 +12,24 @@ void run_nullity_test(int k, Real tol)
   Real dx = 1;
 
   Divergence D(k, m, dx);
-  vec field(m + 1, fill::ones);
+  arma::vec field(m + 1, fill::ones);
 
   arma::vec sol = D * field;
-  std::cout << sol << "\n";
 
-  if (norm(sol) > tol)
+  EXPECT_NEAR(arma::norm(sol), 0, tol);
+}
+
+TEST(DivergenceTests, Nullity)
+{
+  Real tol = 1e-10;
+  for (int k : {2, 4, 6})
   {
-    std::cout << "\033[1;31mTest FAILED!\033[0m\n";
-    std::exit(1);
+    run_nullity_test(k, tol);
   }
 }
 
-int main()
+int main(int argc, char **argv)
 {
-  Real tol = 1e-10;
-
-  for (int k : {2, 4, 6})
-    run_nullity_test(k, tol);
-
-  std::cout << "\033[1;32mTest PASSED!\033[0m\n";
-
-  return 0;
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

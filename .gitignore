@@ -47,3 +47,5 @@ keyfile.toml
 references
 _minted-main
 *.log
+*.tar.zst
+mole

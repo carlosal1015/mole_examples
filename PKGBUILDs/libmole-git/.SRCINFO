@@ -1,10 +1,11 @@
 pkgbase = libmole-git
 	pkgdesc = The Mimetic Operators Library Enhanced
-	pkgver = 1.0.r70.gb72198d
+	pkgver = 1.0.r130.g16d23bb
 	pkgrel = 1
 	url = https://github.com/csrc-sdsu/mole
 	arch = x86_64
 	license = GPL-3.0-only
+	makedepends = cmake
 	makedepends = doxygen
 	makedepends = eigen
 	makedepends = graphviz

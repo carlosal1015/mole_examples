@@ -7,20 +7,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
 
+find_package(GTest)
+enable_testing()
+
 add_executable(test1 test1.cpp)
-target_link_libraries(test1 PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(test1 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
 
 add_executable(test2 test2.cpp)
-target_link_libraries(test2 PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(test2 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
 
 add_executable(test3 test3.cpp)
-target_link_libraries(test3 PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(test3 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
 
 add_executable(test4 test4.cpp)
-target_link_libraries(test4 PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(test4 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
 
 add_executable(test5 test5.cpp)
-target_link_libraries(test5 PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(test5 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
+
+include(GoogleTest)
+gtest_discover_tests(test1)
+gtest_discover_tests(test2)
+gtest_discover_tests(test3)
+gtest_discover_tests(test4)
+gtest_discover_tests(test5)
 
 add_custom_command(
   COMMAND test1
