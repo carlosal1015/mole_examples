@@ -7,8 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
 
-add_executable(convection_diffusion convection_diffusion.cpp)
-target_link_libraries(convection_diffusion PUBLIC ${ARMADILLO_LIBRARIES} mole)
+# add_executable(convection_diffusion convection_diffusion.cpp)
+# target_link_libraries(convection_diffusion PUBLIC ${ARMADILLO_LIBRARIES} mole)
 
 # find_package(HDF5 REQUIRED)
 add_executable(elliptic1D elliptic1D.cpp)
@@ -34,6 +34,9 @@ target_link_libraries(schrodinger2D PUBLIC ${ARMADILLO_LIBRARIES} mole)
 add_executable(transport1D transport1D.cpp)
 target_link_libraries(transport1D PUBLIC ${ARMADILLO_LIBRARIES} mole)
 
+add_executable(hyperbolic1D_upwind hyperbolic1D_upwind.cpp)
+target_link_libraries(hyperbolic1D_upwind PUBLIC ${ARMADILLO_LIBRARIES} mole)
+
 find_package(Eigen3 3.4 REQUIRED NO_MODULE)
 
 add_executable(helloarmadillo helloarmadillo.cc)
@@ -45,26 +48,11 @@ target_link_libraries(helloeigen Eigen3::Eigen)
 add_executable(sparse sparse.cc)
 target_link_libraries(sparse Eigen3::Eigen)
 
-add_executable(test1 test1.cpp)
-target_link_libraries(test1 PUBLIC ${ARMADILLO_LIBRARIES} mole)
-
-add_executable(test2 test2.cpp)
-target_link_libraries(test2 PUBLIC ${ARMADILLO_LIBRARIES} mole)
-
-add_executable(test3 test3.cpp)
-target_link_libraries(test3 PUBLIC ${ARMADILLO_LIBRARIES} mole)
-
-add_executable(test4 test4.cpp)
-target_link_libraries(test4 PUBLIC ${ARMADILLO_LIBRARIES} mole)
-
-add_executable(test5 test5.cpp)
-target_link_libraries(test5 PUBLIC ${ARMADILLO_LIBRARIES} mole)
-
-add_custom_command(
-  COMMAND convection_diffusion
-  POST_BUILD
-  TARGET convection_diffusion
-)
+# add_custom_command(
+#   COMMAND convection_diffusion
+#   POST_BUILD
+#   TARGET convection_diffusion
+# )
 
 add_custom_command(
   COMMAND elliptic1D
@@ -97,6 +85,12 @@ add_custom_command(
 )
 
 add_custom_command(
+  COMMAND hyperbolic1D_upwind
+  POST_BUILD
+  TARGET hyperbolic1D_upwind
+)
+
+add_custom_command(
   COMMAND helloarmadillo
   POST_BUILD
   TARGET helloarmadillo
@@ -112,34 +106,4 @@ add_custom_command(
   COMMAND sparse
   POST_BUILD
   TARGET sparse
-)
-
-add_custom_command(
-  COMMAND test1
-  POST_BUILD
-  TARGET test1
-)
-
-add_custom_command(
-  COMMAND test2
-  POST_BUILD
-  TARGET test2
-)
-
-add_custom_command(
-  COMMAND test3
-  POST_BUILD
-  TARGET test3
-)
-
-add_custom_command(
-  COMMAND test4
-  POST_BUILD
-  TARGET test4
-)
-
-add_custom_command(
-  COMMAND test5
-  POST_BUILD
-  TARGET test5
 )
