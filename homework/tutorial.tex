@@ -37,7 +37,7 @@
 \usepackage{hyperref}
 
 \title{\color{DarkBlue}MOLE Tutorial}
-\titlehead{\centering    
+\titlehead{\centering
 \includegraphics[width=.3\paperwidth]{logo.png}}
 \author{based on commit \href{https://github.com/csrc-sdsu/mole/tree/b1176d9969e807fb62bed8fee28bc0eb9648a93a}{\mintinline{bash}|b1176d9|}}
 
@@ -51,19 +51,19 @@
 \maketitle
 
 \begin{abstract}
-    This document is written for newcomers in MOLE stands
-    Mimetic Operators Library Enhanced, but with a solid foundation
-    in numerical analysis for PDEs.
-    The algorithms are continuously grows in size and quality and the
-    examples are diverse implemented independently in
-    \href{https://octave.org}{GNU Octave}/\href{https://www.mathworks.com/products/matlab.html}{MATLAB}
-    and \href{https://isocpp.org}{C++} through Armadillo sparse
-    linear algebra library.
-    For now, these are exclusively the two language flavours.
-    A clear comprenhension will gave you the capabilities to the translation
-    into other high-performance scientific languages such as \href{https://julialang.org}{Julia},
-    \href{https://www.python.org}{Python}, \href{https://fortran-lang.org}{Fortran}, \href{https://www.open-std.org/jtc1/sc22/wg14}{C}
-    and \href{https://www.rust-lang.org}{Rust}.
+	This document is written for newcomers in MOLE stands
+	Mimetic Operators Library Enhanced, but with a solid foundation
+	in numerical analysis for PDEs.
+	The algorithms are continuously grows in size and quality and the
+	examples are diverse implemented independently in
+	\href{https://octave.org}{GNU Octave}/\href{https://www.mathworks.com/products/matlab.html}{MATLAB}
+	and \href{https://isocpp.org}{C++} through Armadillo sparse
+	linear algebra library.
+	For now, these are exclusively the two language flavours.
+	A clear comprenhension will gave you the capabilities to the translation
+	into other high-performance scientific languages such as \href{https://julialang.org}{Julia},
+	\href{https://www.python.org}{Python}, \href{https://fortran-lang.org}{Fortran}, \href{https://www.open-std.org/jtc1/sc22/wg14}{C}
+	and \href{https://www.rust-lang.org}{Rust}.
 \end{abstract}
 
 \part{First part}
@@ -82,14 +82,29 @@ After skimming the description and reading the papers you will find out that thi
 
 \chapter{Foo}
 
-\section{Ecuación de Poisson 1D}
+\section{Transport 1D}
+
+\begin{equation*}
+	\diffp{u}{t}+c\diffp{u}{x}=
+	0.
+\end{equation*}
 
 \begin{listing}[ht!]
-    \tiny
-    \centering
-    \inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=53,highlightlines={21,29}]{octave}{../examples/octave/elliptic1D.m}
-    \caption{Programa~\texttt{elliptic1D.m}}
-    \label{code:elliptic1D.m}
+	\tiny
+	\centering
+	\inputminted[frame=single,framesep=10pt,linenos,firstline=9,lastline=35,highlightlines={9}]{cpp}{../examples/cpp/hyperbolic1D_upwind.cpp}
+	\caption{Programa~\texttt{hyperbolic1Dupwind.cpp}}
+	\label{code:hyperbolic1Dupwind.cpp}
+\end{listing}
+
+\section{Poisson 1D}
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=53,highlightlines={21,29}]{octave}{../examples/octave/elliptic1D.m}
+	\caption{Programa~\texttt{elliptic1D.m}}
+	\label{code:elliptic1D.m}
 \end{listing}
 
 \section{The 1D Diffusion Equation}
@@ -97,20 +112,20 @@ After skimming the description and reading the papers you will find out that thi
 Given the one-dimensional heat equation
 
 \begin{equation}\label{eq:IBVPheat1d}
-    \begin{cases}
-        \diffp{u}{t}=
-        \kappa\diffp[2]{u}{x},
-         & \left(x,t\right)\in
-        \left(a,b \right)\times\left(0, \infty \right). \\
-        u\left(x,0\right)=f(x),
-         & x\in
-        \left[a,b\right].                       \\
-        u\left(a,t\right)= \alpha(t), & t\in
-        \left(0,\infty\right),\\
-        u\left(b,t\right)= \beta(t),
-         & t\in
-        \left(0,\infty\right),
-    \end{cases}
+	\begin{cases}
+		\diffp{u}{t}=
+		\kappa\diffp[2]{u}{x},
+		                              & \left(x,t\right)\in
+		\left(a,b \right)\times\left(0, \infty \right).     \\
+		u\left(x,0\right)=f(x),
+		                              & x\in
+		\left[a,b\right].                                   \\
+		u\left(a,t\right)= \alpha(t), & t\in
+		\left(0,\infty\right),                              \\
+		u\left(b,t\right)= \beta(t),
+		                              & t\in
+		\left(0,\infty\right),
+	\end{cases}
 \end{equation}
 
 where $\kappa$ is the thermal diffusivity.\\
@@ -119,11 +134,11 @@ The 1D heat equation code by mimetic methods
 
 
 \begin{listing}[ht!]
-    \tiny
-    \centering
-    \inputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=80,highlightlines={20,29}]{octave}{../examples/octave/parabolic1D.m}
-    \caption{Programa~\texttt{parabolic1D.m}}
-    \label{code:parabolic1D.m}
+	\tiny
+	\centering
+	\inputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=80,highlightlines={20,29}]{octave}{../examples/octave/parabolic1D.m}
+	\caption{Programa~\texttt{parabolic1D.m}}
+	\label{code:parabolic1D.m}
 \end{listing}
 
 
@@ -131,20 +146,20 @@ In the one-dimensional heat equation in the parabolic1D.m code, the PDE being so
 
 
 \begin{equation}\label{eq:IBVPheat1d}
-    \begin{cases}
-        \diffp{u}{t}=
-        \kappa\diffp[2]{u}{x},
-         & \left(x,t\right)\in
-        \left(0,1 \right)\times\left(0, 1 \right). \\
-        u\left(x,0\right)= 0,
-         & x\in
-        \left[0,1\right].                       \\
-        u\left(0,t\right)= 100., & t\in
-        \left(0,1 \right),\\
-        u\left(1,t\right)= 100.,
-         & t\in
-        \left(0, 1\right),
-    \end{cases}
+	\begin{cases}
+		\diffp{u}{t}=
+		\kappa\diffp[2]{u}{x},
+		                         & \left(x,t\right)\in
+		\left(0,1 \right)\times\left(0, 1 \right).     \\
+		u\left(x,0\right)= 0,
+		                         & x\in
+		\left[0,1\right].                              \\
+		u\left(0,t\right)= 100., & t\in
+		\left(0,1 \right),                             \\
+		u\left(1,t\right)= 100.,
+		                         & t\in
+		\left(0, 1\right),
+	\end{cases}
 \end{equation}
 
 
@@ -176,7 +191,7 @@ In the one-dimensional heat equation in the parabolic1D.m code, the PDE being so
 
 \begin{center}
 
-  grid = $[0$ $\frac{1}{10}: \frac{1}{5}: \frac{9}{10}$ $1]$ = $  \{0, \frac{1}{10}, \frac{3}{10}, \frac{5}{10}, \frac{7}{10}, \frac{9}{10}, 1 \}$
+	grid = $[0$ $\frac{1}{10}: \frac{1}{5}: \frac{9}{10}$ $1]$ = $  \{0, \frac{1}{10}, \frac{3}{10}, \frac{5}{10}, \frac{7}{10}, \frac{9}{10}, 1 \}$
 
 \end{center}
 
@@ -192,20 +207,20 @@ In the one-dimensional heat equation in the parabolic1D.m code, the PDE being so
 
 Discretizing $\frac{\partial u}{\partial t}$ by forward finite differences, and $\frac{\partial^{2} u}{\partial x^{2}}$ by applying mimetic methods
 
-\begin{equation}	
- \frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \kappa L 	u^{n}_{i}
+\begin{equation}
+	\frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \kappa L 	u^{n}_{i}
 \end{equation}
 
 then clearing $u^{n+1}_{i}$ we obtain:
 
- 
- \begin{equation}	
- 	u^{n+1}_{i} = u^{n}_{i}  +  \kappa dt L u^{n}_{i}
- \end{equation}
+
+\begin{equation}
+	u^{n+1}_{i} = u^{n}_{i}  +  \kappa dt L u^{n}_{i}
+\end{equation}
 
 Factoring $u^{n}_{i}$ we have:
 
- \begin{equation}	
+\begin{equation}
 	u^{n+1}_{i} = (I  +  \kappa dt L )u^{n}_{i}
 \end{equation}
 
@@ -215,11 +230,11 @@ $$  L = (\kappa dt L +I )$$
 
 being in the code: $ L = alpha*dt*L + speye(size(L))$; finally to obtain the solution
 
- \begin{equation}	
+\begin{equation}
 	u^{n+1}_{i} = L *u^{n}_{i}
 \end{equation}
- 
- in the code on line 51 we have $ U = L*U$
+
+in the code on line 51 we have $ U = L*U$
 
 
 

@@ -1,33 +1,34 @@
 #include <cmath>
+// #include <chrono>
 #include <iostream>
 #include <mole/mole.h>
 
-using namespace std::chrono_literals;
+// using namespace std::chrono_literals;
 constexpr double pi = 3.14159;
 
-sp_mat sidedNodalTemp(int m, double dx, const std::string &type)
+arma::sp_mat sidedNodalTemp(int m, double dx, const std::string &type)
 {
 
   // Create a sparse matrix of size (m+1) x (m+1)
-  sp_mat S(m + 1, m + 1);
+  arma::sp_mat S(m + 1, m + 1);
   if (type == "backward") {
     // Backward difference
-    S.diag(-1) = -ones<vec>(m);   // Sub-diagonal
-    S.diag(0) = ones<vec>(m + 1); // Main diagonal
-    S(0, m - 1) = -1;             // Wrap-around for periodic boundary
+    S.diag(-1) = -arma::ones<vec>(m);   // Sub-diagonal
+    S.diag(0) = arma::ones<vec>(m + 1); // Main diagonal
+    S(0, m - 1) = -1;                   // Wrap-around for periodic boundary
     S /= dx;
   }
   else if (type == "forward") {
     // Forward difference
-    S.diag(0) = -ones<vec>(m + 1); // Main diagonal
-    S.diag(1) = ones<vec>(m);      // Super-diagonal
+    S.diag(0) = -arma::ones<vec>(m + 1); // Main diagonal
+    S.diag(1) = arma::ones<vec>(m);      // Super-diagonal
     S(m, 1) = 1;                   // Wrap-around for periodic boundary
     S /= dx;
   }
   else { // "centered"
     // Centered difference
-    S.diag(-1) = -ones<vec>(m); // Sub-diagonal
-    S.diag(1) = ones<vec>(m);   // Super-diagonal
+    S.diag(-1) = -arma::ones<vec>(m); // Sub-diagonal
+    S.diag(1) = arma::ones<vec>(m);   // Super-diagonal
     S(0, m - 1) = -1;           // Wrap-around for periodic boundary
     S(m, 1) = 1;                // Wrap-around for periodic boundary
     S /= (2 * dx);
@@ -48,13 +49,13 @@ int main()
   double t = 1.0;               // Simulation time
   double dt = dx / std::abs(a); // Time step based on CFL condition
 
-  sp_mat S = sidedNodalTemp(
+  arma::sp_mat S = sidedNodalTemp(
       m, dx, (a > 0) ? "backward" : "forward"); // Use "forward" if a < 0
 
-  vec grid = arma::regspace(west, dx, east);
-  vec U = sin(2 * pi * grid);
+  arma::vec grid = arma::regspace(west, dx, east);
+  arma::vec U = arma::sin(2 * pi * grid);
 
-  S = speye<sp_mat>(S.n_rows, S.n_cols) - a * dt * S;
+  S = arma::speye<arma::sp_mat>(S.n_rows, S.n_cols) - a * dt * S;
 
   int steps = t / dt;
 
@@ -105,5 +106,5 @@ int main()
   scriptFile.close();
 
   // Run GNUplot with the script
-  system("gnuplot -persistent gp_script");
+  std::system("gnuplot -persistent gp_script");
 }

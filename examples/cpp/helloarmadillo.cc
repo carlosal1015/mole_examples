@@ -17,5 +17,8 @@ int main()
   std::cout << nodes << "\n";
   // arma::mat grid = arma::join_rows(0, nodes);
 
+  arma::vec grid = arma::regspace(west, 0.01, east);
+  std::cout << grid << "\n";
+
   return 0;
 }
