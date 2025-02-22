@@ -37,11 +37,10 @@
     backend=biber,
 ]{biblatex}
 \usepackage{hyperref}
-
 \title{\color{DarkBlue}Tutorial for MOLE}
-\subtitle{\color{DarkBlue}based on commit \href{https://github.com/csrc-sdsu/mole/tree/16d23bbdf4362dc811a8056a6ee4193258d15b0e}{\mintinline{bash}|16d23bb|}}
+\subtitle{\color{DarkBlue}based on commit \href{https://github.com/csrc-sdsu/mole/tree/8682eb591409088e0647250c8b027d181abb755c}{\mintinline{bash}|8682eb5|}}
 \titlehead{\centering
-\includegraphics[width=.3\paperwidth]{logo.png}}
+\href{https://csrc-sdsu.github.io/mole}{\includegraphics[width=.3\paperwidth]{logo.png}}}
 \author{
 	Carlos Aznarán\thanks{
 		Universidad Nacional de Ingeniería \\
@@ -306,15 +305,29 @@ in the code on line 51 we have $ U = L*U$
 
 \appendix
 
+\chapter{Installation}
+
+The only hard dependency is
+\href{https://arma.sourceforge.net/docs.html}{\mintinline{cpp}|armadillo|}.
+The steps are described in the Program~\ref{code:installer.sh}.
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=18,highlightlines={9,15}]{bash}{installer.sh}
+	\caption{Instalación de MOLE vía \texttt{installer.sh} en \href{https://archlinux.org}{Arch Linux}.}
+	\label{code:installer.sh}
+\end{listing}
+
+\chapter{Julia}
+
 \chapter{Python}
 
 \chapter{Fortran}
-
-\chapter{C++}
-
-\chapter{Octave}
 
 \nocite{*}
 \printbibliography[title={References}]
 
 \end{document}
+
+%https://www.csrc.sdsu.edu/research-reports
