@@ -59,6 +59,8 @@
 \setmonofont{Fira Code}[Contextuals=Alternate,Scale=MatchLowercase]
 \addbibresource{references.bib}
 
+\renewcommand{\listingscaption}{Program}
+
 \makeatletter
 % latex.ltx, line 8262:
 \def\@fnsymbol#1{%
@@ -315,7 +317,9 @@ The steps are described in the Program~\ref{code:installer.sh}.
 	\tiny
 	\centering
 	\inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=18,highlightlines={9,15}]{bash}{installer.sh}
-	\caption{Instalación de MOLE vía \texttt{installer.sh} en \href{https://archlinux.org}{Arch Linux}.}
+	\caption{Steps for a system-wide installation both C++ and Octave
+		MOLE libraries vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/homework/installer.sh}{\texttt{installer.sh}} on
+		\href{https://archlinux.org}{Arch Linux}.}
 	\label{code:installer.sh}
 \end{listing}
 
