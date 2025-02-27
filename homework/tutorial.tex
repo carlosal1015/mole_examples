@@ -163,31 +163,31 @@ In the one-dimensional heat equation in the parabolic1D.m code, the PDE being so
 \end{equation}
 
 
-\textbf{Line 11:} In this part the code defines the value of the diffusion coefficient $\kappa =1$.\\
+\textbf{Line 9:} In this part the code defines the value of the diffusion coefficient $\kappa =1$.\\
 
-\textbf{Line 12:} Define the left side $a= 0$ of the domain of the variable $x$.\\
+\textbf{Line 10:} Define the left side $a= 0$ of the domain of the variable $x$.\\
 
-\textbf{Line 13:} Define the right hand side $b= 1$ of the domain of the variable $x$.\\
+\textbf{Line 11:} Define the right hand side $b= 1$ of the domain of the variable $x$.\\
 
-\textbf{Line 15:} The Operator's order of accuracy $k = 2$.\\
+\textbf{Line 13:} The Operator's order of accuracy $k = 2$.\\
 
-\textbf{Line 16:} $m$ is the number of cells, where $m$ can take values ​​$m \geq 2*k+1$; in this case $m=2*(2)+1=5$.\\
+\textbf{Line 14:} $m$ is the number of cells, where $m$ can take values ​​$m \geq 2*k+1$; in this case $m=2*(2)+1=5$.\\
 
-\textbf{Line 17:} In this line the step size in $x$ is defined, defined as $dx=(b-a)/m$, en this case, replacing it, we have $dx =\frac{1-0}{5} =\frac{1}{5}$ \\
+\textbf{Line 15:} In this line the step size in $x$ is defined, defined as $dx=(b-a)/m$, en this case, replacing it, we have $dx =\frac{1-0}{5} =\frac{1}{5}$ \\
 
-\textbf{Line 19:} End time $t=1$.\\
+\textbf{Line 17:} End time $t=1$.\\
 
-\textbf{Line 20:} Von Neumann stability criterion for $k=2$, we have $ dt = \frac{(dx)^{2}}{3 \kappa}$, in this exercise the step in time is given by: $dt =\frac{1}{75}$\\
+\textbf{Line 18:} Von Neumann stability criterion for $k=2$, we have $ dt = \frac{(dx)^{2}}{3 \kappa}$, in this exercise the step in time is given by: $dt =\frac{1}{75}$\\
 
-\textbf{Line 22:} $L = lap(k,m,dx)$ 1D mimetic Laplacian operator is of order $m+2$ so $m+2$ for this exercise is of order 7 by 7, where $k=2$, $m = 5$ and $\frac{1}{5}$, then $L = lap(2,5,\frac{1}{5})$.\\
+\textbf{Line 20:} $L = lap(k,m,dx)$ 1D mimetic Laplacian operator is of order $m+2$ so $m+2$ for this exercise is of order 7 by 7, where $k=2$, $m = 5$ and $\frac{1}{5}$, then $L = lap(2,5,\frac{1}{5})$.\\
 
-\textbf{Line 25:} The initial condition  value $u(x,0)=0$ is a matrix of order $m+2$ by $1$, in this case $7$ by $1$.\\
+\textbf{Line 23:} The initial condition  value $u(x,0)=0$ is a matrix of order $m+2$ by $1$, in this case $7$ by $1$.\\
 
-\textbf{Line 27:} The boundary condition is on the left side u(a,t)= u(0,t)=100.\\
+\textbf{Line 25:} The boundary condition is on the left side u(a,t)= u(0,t)=100\\
 
-\textbf{Line 28:} The boundary condition on the right side u(b,t)= u(1,t)=100.\\
+\textbf{Line 26:} The boundary condition on the right side u(b,t)= u(1,t)=100\\
 
-\textbf{Line 31:} The mesh used in the mimetic method  grid = $[west$  $west+dx/2: dx :east-dx/2$  $east]$, then grid = $[a$ $a+\frac{dx}{2}: dx : b-\frac{dx}{2}$ $b  ]$, in this exercise the mesh is given by:
+\textbf{Line 29:} The mesh used in the mimetic method  grid = $[west$  $west+dx/2: dx :east-dx/2$  $east]$, then grid = $[a$ $a+\frac{dx}{2}: dx : b-\frac{dx}{2}$ $b  ]$, in this exercise the mesh is given by:
 
 \begin{center}
 
@@ -195,11 +195,11 @@ In the one-dimensional heat equation in the parabolic1D.m code, the PDE being so
 
 \end{center}
 
-\textbf{Line 34:} If explicit=1 then the PDE will be solved in time by the explicit method, and if explicit=0 then the PDE will be solved by the implicit method.\\
+\textbf{Line 31:} If explicit=1 then the PDE will be solved in time by the explicit method, and if explicit=0 then the PDE will be solved by the implicit method.\\
 
-\textbf{Line 37 to 53:} In this section we have the solution of the PDE and the graph. \\
+\textbf{Line 33 to 50:} In this section we have the explicita solution of the PDE and the graph. \\
 
-\textbf{Line 40:} The value of L is obtained by:
+\textbf{Line 36:} The value of L is obtained by:
 
 \begin{equation}
 	\frac{\partial u}{\partial t} = \kappa \frac{\partial^{2} u}{\partial x^{2}}
@@ -234,10 +234,63 @@ being in the code: $ L = alpha*dt*L + speye(size(L))$; finally to obtain the sol
 	u^{n+1}_{i} = L *u^{n}_{i}
 \end{equation}
 
-in the code on line 51 we have $ U = L*U$
+in the code on line 47 we have $ U = L*U.$\\
 
 
+\textbf{Line 39:} The iteration starts for $t=0$ until $t=t/dt+1$, in this exercise $t/dt+1= 75+1=76$.\\
 
+
+\textbf{Line 40 and 60:} The graph of the mesh on the $x$ axis by grid and the solution of the PDE $U$. \\
+
+
+\textbf{Line 41 and 62:} In this line the graph is on the $x$ axis from 0 to 1 and on the $y$ axis from 0 to 105.\\
+
+ 
+\textbf{Line 42 and 63:} In this line prints the different times ($ i* dt$)for explicit method, with two decimal  ($ .2f $).\\
+
+
+\textbf{Line 43 and 64:} Use the title command to display the title designated on line 42. \\
+
+
+\textbf{Line 44 and 65:} Label the $x$-axis in this exercise as $x$.
+
+
+\textbf{Line 45 and 66:} Label the $y$-axis in this exercise as $T$.\\
+
+
+\textbf{Line 46 and 67:} Shows the graph for the different times with a pause of 0.01. \\
+
+
+\textbf{Line 50 to 71:} In this section we have the implicita solution of the PDE and the graph. \\
+
+\textbf{Line 53:} The value of L is obtained by:
+
+\begin{equation}
+	\frac{\partial u}{\partial t} = \kappa \frac{\partial^{2} u}{\partial x^{2}}
+\end{equation}
+
+Discretizing $\frac{\partial u}{\partial t}$ by forward finite differences, and $\frac{\partial^{2} u}{\partial x^{2}}$ by applying mimetic methods
+
+\begin{equation}
+	\frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \kappa L 	u^{n+1}_{i}
+\end{equation}
+
+then clearing $u^{n+1}_{i}$ we obtain:
+
+
+\begin{equation}
+	u^{n+1}_{i}(I - \kappa dt L ) = u^{n}_{i}
+\end{equation}
+
+where $I$ is the identity matrix of general order $m+2$ by $m+2$, for this exercise of order $7$ by $7$, being
+
+$$  L = (-\kappa dt L + I)$$
+
+being in the code: $ L = -alpha*dt*L +speye(size(L))$.\\
+
+\textbf{Line 54:} In this line $dL=$ decomputation($L$) the matrix L is decomposed into lower triangular matrix $L$ and upper triangular matrix $U$ using LU decomposition method.\\
+
+\textbf{Line 68:} In this line solve the $u^{n+1} =(dL)^{-1}*u^{n}$, thus finding the solution $U=dL\ U$.\\
 
 
 
