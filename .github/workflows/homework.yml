@@ -35,11 +35,12 @@ jobs:
             sudo chown -R gitpod:gitpod /work
             # sudo pacman -Syu --needed --noconfirm python
             pushd /work/homework
-            arara main project
+            arara main project tutorial
             popd
             mkdir -p /work/public
             mv /work/homework/main.pdf /work/public
             mv /work/homework/project.pdf /work/public
+            mv /work/homework/tutorial.pdf /work/public
 
       - name: "Tar files"
         run: |

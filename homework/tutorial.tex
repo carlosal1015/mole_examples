@@ -1,6 +1,6 @@
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'pdf', 'run.xml']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'pdf', 'run.xml', 'toc']
 % arara: --> }
 % arara: lualatex: {
 % arara: --> shell: yes,
@@ -20,32 +20,67 @@
 % arara: --> }
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'run.xml']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg','idx', 'log', 'mst', 'run.xml', 'toc']
 % arara: --> }
 \documentclass[a4paper,abstract=true]{scrreprt}
 \usepackage{fontspec}
 \usepackage[svgnames]{xcolor}
 \usepackage{graphicx}
+\usepackage{todonotes}
 \usepackage{mathtools}
 \usepackage[ISO]{diffcoeff}
 \usepackage{minted}
+\usepackage{academicons}
 \usepackage[
     citestyle=numeric,
     style=numeric,
     backend=biber,
 ]{biblatex}
 \usepackage{hyperref}
-
-\title{\color{DarkBlue}MOLE Tutorial}
+\title{\color{DarkBlue}Tutorial for MOLE}
+\subtitle{\color{DarkBlue}based on commit \href{https://github.com/csrc-sdsu/mole/tree/8682eb591409088e0647250c8b027d181abb755c}{\mintinline{bash}|8682eb5|}}
 \titlehead{\centering
-\includegraphics[width=.3\paperwidth]{logo.png}}
-\author{based on commit \href{https://github.com/csrc-sdsu/mole/tree/b1176d9969e807fb62bed8fee28bc0eb9648a93a}{\mintinline{bash}|b1176d9|}}
-
+\href{https://csrc-sdsu.github.io/mole}{\includegraphics[width=.3\paperwidth]{logo.png}}}
+\author{
+	Carlos Aznarán\thanks{
+		Universidad Nacional de Ingeniería \\
+		Av. Tupac Amaru, s/n, Lima, Perú \\
+		\href{mailto:caznaranl@uni.pe}{\texttt{caznaranl\MVAt uni.pe}} \\
+		\textcolor{orcidcolor}{\aiOrcid}~\href{https://orcid.org/0000-0001-8314-2271}{0000-0001-8314-2271}}
+	\and Adelaida Otazu\thanks{
+		Universidad Nacional del Altiplano Puno \\
+		Avenida El Sol, Puno, Perú \\
+		\href{mailto:aotazu@unap.edu.pe}{\texttt{aotazu\MVAt unap.edu.pe}} \\
+		\textcolor{orcidcolor}{\aiOrcid}~\href{https://orcid.org/0000-0003-4793-0400}{0000-0003-4793-0400}}
+}
 \setminted{breaklines=true}
 \setminted[octave]{highlightcolor=yellow!50!white}
 \setminted[cpp]{highlightcolor=yellow!50!white}
 \setmonofont{Fira Code}[Contextuals=Alternate,Scale=MatchLowercase]
 \addbibresource{references.bib}
+
+\renewcommand{\listingscaption}{Program}
+
+\makeatletter
+% latex.ltx, line 8262:
+\def\@fnsymbol#1{%
+	\ifcase#1\or
+		%\TextOrMath\textasteriskcentered *\or
+		\TextOrMath \textdagger \dagger\or
+		\TextOrMath \textdaggerdbl \ddagger \or
+		\TextOrMath \textsection  \mathsection\or
+		\TextOrMath \textparagraph \mathparagraph\or
+		\TextOrMath \textbardbl \|\or
+		%\TextOrMath {\textasteriskcentered\textasteriskcentered}{**}\or
+		\TextOrMath {\textdagger\textdagger}{\dagger\dagger}\or
+		\TextOrMath {\textdaggerdbl\textdaggerdbl}{\ddagger\ddagger}\else
+		\@ctrerr \fi
+}
+\makeatother
+
+\newcommand{\MVAt}{{\usefont{U}{mvs}{m}{n}\symbol{`@}}}
+\definecolor{orcidcolor}{HTML}{a5ca3f}
+\definecolor{orcidlinkcolor}{HTML}{0961ba}
 
 \begin{document}
 \maketitle
@@ -66,7 +101,37 @@
 	and \href{https://www.rust-lang.org}{Rust}.
 \end{abstract}
 
-\part{First part}
+\tableofcontents
+
+\part{The Foundations of the Mimetic Finite Difference Operators 1D}
+
+\chapter{Introduction and Objectives}
+
+\chapter{Mimetic Operadors List}
+
+\section{Divergence}
+
+\section{Gradient}
+
+\section{Interpolation from center to nodes}
+
+\section{Interpolation from nodes to center}
+
+\section{Laplacian}
+
+\chapter{Numerical Methods for ODEs}
+
+\todo{Only the methods used in the tutorials: Verlett, RK4, Explicit Euler}
+
+\chapter{Numerical Solutions of Boundary Value Problems}
+
+\chapter{Numerical Methods for PDEs}
+
+\section{von Neumann Stability Criterion}
+
+\section{Stability and Convergence Analysis}
+
+\part{Numerical Exercises}
 
 \chapter{Foo}
 
@@ -76,11 +141,6 @@ The official website is \url{https://csrc-sdsu.github.io/mole}.
 After skimming the description and reading the papers you will find out that this method never uses a ghost points.
 
 \subsection{Create the staggered grid}
-
-
-\part{Numerical Exercises}
-
-\chapter{Foo}
 
 \section{Transport 1D}
 
@@ -296,17 +356,35 @@ being in the code: $ L = -alpha*dt*L +speye(size(L))$.\\
 
 \section{Convection-diffusion}
 
-\chapter{Tests}
+\chapter{MOLE Tests}
+
+\appendix
+
+\chapter{Installation}
+
+The only hard dependency is
+\href{https://arma.sourceforge.net/docs.html}{\mintinline{cpp}|armadillo|}.
+The steps are described in the Program~\ref{code:installer.sh}.
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\inputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=18,highlightlines={9,15}]{bash}{installer.sh}
+	\caption{Steps for a system-wide installation both C++ and Octave
+		MOLE libraries vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/homework/installer.sh}{\texttt{installer.sh}} on
+		\href{https://archlinux.org}{Arch Linux}.}
+	\label{code:installer.sh}
+\end{listing}
+
+\chapter{Julia}
 
 \chapter{Python}
 
 \chapter{Fortran}
 
-\chapter{C++}
-
-\chapter{Octave}
-
 \nocite{*}
-\printbibliography[title={Referencias}]
+\printbibliography[title={References}]
 
 \end{document}
+
+%https://www.csrc.sdsu.edu/research-reports
