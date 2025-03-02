@@ -3,19 +3,20 @@
 _base=mole
 pkgname=lib${_base}-git
 pkgdesc="The Mimetic Operators Library Enhanced"
-pkgver=1.0.r130.g16d23bb
+pkgver=1.0.r161.g85adde5
 pkgrel=1
 arch=(x86_64)
 url="https://github.com/csrc-sdsu/${_base}"
 license=(GPL-3.0-only)
-depends=(armadillo)
-makedepends=(cmake doxygen eigen graphviz openblas git) # python-sphinx texlive-bin
-# checkdepends=(gtest)
+depends=(armadillo superlu)
+makedepends=(cmake doxygen eigen graphviz octave git) # python-sphinx texlive-bin
+checkdepends=(gtest)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'
   'eigen: for the sparse LU factorization')
-source=(git+${url}.git#branch=master)
-sha512sums=('SKIP')
+source=(git+${url}.git#branch=master
+  git+https://github.com/gllmflndn/m2html.git#branch=main)
+sha512sums=('SKIP' 'SKIP')
 provides=(${_base})
 conflicts=(${_base})
 
@@ -25,35 +26,49 @@ pkgver() {
 }
 
 prepare() {
-  sed -i 's/SUBDIRS = src\/cpp examples\/cpp tests\/cpp/SUBDIRS = src\/cpp examples\/cpp/' ${_base}/Makefile
+  sed -i '/^if(POLICY/,+51 s/^/#/' ${_base}/CMakeLists.txt
+  sed -i '/^set(LINK_LIBS/,+3 s/^/#/' ${_base}/CMakeLists.txt
+  sed -i '96i set(LINK_LIBS ${ARMADILLO_LIBRARIES} ${OpenBLAS_LIBRARIES} ${LAPACK_LIBRARY} ${SUPERLU_INSTALL_DIR}/lib/libsuperlu.so)' ${_base}/CMakeLists.txt
+  sed -i '/^include(/,+9 s/^/#/' ${_base}/tests/cpp/CMakeLists.txt
+  mv m2html ${_base}
 }
 
 build() {
+  cmake \
+    -S ${_base} \
+    -B build \
+    -DBUILD_SHARED_LIBS=TRUE \
+    -DCMAKE_BUILD_TYPE=None \
+    -DCMAKE_CXX_STANDARD=14 \
+    -DCMAKE_CXX_COMPILER=g++ \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -Wno-dev
+  cmake --build build --target mole_C++
   cd ${_base}
-  make SHARED_LIB=1 EIGEN=1 ARMA=1
   doxygen
+  octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/api_docs/matlab', 'global', 'on', 'template', 'blue')"
+}
+
+check() {
+  cmake --build build --target run_tests
 }
 
 package() {
-  cd ${_base}
-  install -Dm 755 src/cpp/lib${_base}.so -t "${pkgdir}/usr/lib"
-  make clean
-
+  DESTDIR="${pkgdir}" cmake --build build --target install
   install -d ${pkgdir}/usr/include/${_base}
-  install src/cpp/*.h ${pkgdir}/usr/include/${_base}
+  install ${_base}/src/cpp/*.h ${pkgdir}/usr/include/${_base}
 
   install -d "${pkgdir}/usr/share/${_base}"
-  mv src/matlab ${pkgdir}/usr/share/${_base}
+  mv ${_base}/src/matlab ${pkgdir}/usr/share/${_base}
 
   # install docs
   install -d ${pkgdir}/usr/share/doc/${_base}
-  mv doc/api_docs/cpp ${pkgdir}/usr/share/doc/${_base}
-  mv doc/api_docs/matlab ${pkgdir}/usr/share/doc/${_base}
+  mv ${_base}/doc/api_docs/cpp ${pkgdir}/usr/share/doc/${_base}
+  mv ${_base}/doc/api_docs/matlab ${pkgdir}/usr/share/doc/${_base}
 
   # install tutorials
   install -d ${pkgdir}/usr/share/doc/${_base}/examples
-  mv examples/cpp ${pkgdir}/usr/share/doc/${_base}/examples
-  mv examples/matlab ${pkgdir}/usr/share/doc/${_base}/examples
-
-  install -Dm 644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
+  mv ${_base}/examples/cpp ${pkgdir}/usr/share/doc/${_base}/examples
+  mv ${_base}/examples/matlab ${pkgdir}/usr/share/doc/${_base}/examples
+  install -Dm 644 ${_base}/LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }
