@@ -8,34 +8,34 @@ find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
 
 # add_executable(convection_diffusion convection_diffusion.cpp)
-# target_link_libraries(convection_diffusion PUBLIC ${ARMADILLO_LIBRARIES} mole)
+# target_link_libraries(convection_diffusion PUBLIC ${ARMADILLO_LIBRARIES} mole_C++)
 
 # find_package(HDF5 REQUIRED)
 add_executable(elliptic1D elliptic1D.cpp)
 # target_compile_definitions(elliptic1D PRIVATE EIGEN=1)
 # target_compile_definitions(elliptic1D PRIVATE LAPACK=1)
-target_link_libraries(elliptic1D PUBLIC ${ARMADILLO_LIBRARIES} mole hdf5 superlu)
+target_link_libraries(elliptic1D PUBLIC ${ARMADILLO_LIBRARIES} mole_C++ hdf5 superlu)
 
 add_executable(elliptic2D elliptic2D.cpp)
-target_link_libraries(elliptic2D PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(elliptic2D PUBLIC ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(parabolic1D parabolic1D.cpp)
-target_link_libraries(parabolic1D PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(parabolic1D PUBLIC ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(RK2 RK2.cpp)
-target_link_libraries(RK2 PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(RK2 PUBLIC ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(schrodinger1D schrodinger1D.cpp)
-target_link_libraries(schrodinger1D PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(schrodinger1D PUBLIC ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(schrodinger2D schrodinger2D.cpp)
-target_link_libraries(schrodinger2D PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(schrodinger2D PUBLIC ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(transport1D transport1D.cpp)
-target_link_libraries(transport1D PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(transport1D PUBLIC ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(hyperbolic1D_upwind hyperbolic1D_upwind.cpp)
-target_link_libraries(hyperbolic1D_upwind PUBLIC ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(hyperbolic1D_upwind PUBLIC ${ARMADILLO_LIBRARIES} mole_C++)
 
 find_package(Eigen3 3.4 REQUIRED NO_MODULE)
 
