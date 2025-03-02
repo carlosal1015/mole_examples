@@ -1,12 +1,17 @@
-# Copyleft (c) April, 2024, Oromion.
+# Copyleft (c) March, 2025, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG LIBMOLE_PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/refs/heads/main/PKGBUILDs/libmole-git/PKGBUILD"
 ARG DIR_LIBMOLE="/home/builder/.cache/yay/libmole-git"
 
+ARG PACKAGES="\
+  armadillo \
+  octave-symbolic \
+  "
+
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  yay --needed --noconfirm --noprogressbar -S armadillo octave-symbolic >/dev/null 2>&1 && \
+  yay --needed --noconfirm --noprogressbar -S ${PACKAGES} >/dev/null 2>&1 && \
   mkdir -p ${DIR_LIBMOLE} && \
   pushd ${DIR_LIBMOLE} && \
   curl -LO ${LIBMOLE_PKGBUILD} && \
