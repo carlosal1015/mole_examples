@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - homework/**
+      - tutorial/**
 
 jobs:
   build_latex:
@@ -19,7 +20,7 @@ jobs:
           git config --global user.email github-actions@github.com
           git config --global user.name github-actions
           git clone -q --filter=blob:none --no-checkout --depth=1  --sparse $REPO .
-          git sparse-checkout set homework examples/cpp examples/octave
+          git sparse-checkout set homework tutorial project examples/cpp examples/octave
           git checkout
 
       - uses: addnab/docker-run-action@v3
@@ -35,18 +36,24 @@ jobs:
             sudo chown -R gitpod:gitpod /work
             # sudo pacman -Syu --needed --noconfirm python
             pushd /work/homework
-            arara main project tutorial
+            arara main
+            popd
+            pushd /work/tutorial
+            arara main
+            popd
+            pushd /work/project
+            arara main
             popd
             mkdir -p /work/public
-            mv /work/homework/main.pdf /work/public
-            mv /work/homework/project.pdf /work/public
-            mv /work/homework/tutorial.pdf /work/public
+            mv /work/homework/main.pdf /work/public/homework.pdf
+            mv /work/tutorial/main.pdf /work/public/
+            mv /work/project/main.pdf /work/public/project.pdf
 
       - name: "Tar files"
         run: |
           sudo chown runner:docker -R .
           tar --zstd -cf PDF.tar.zst public/*.pdf
-  
+
       - uses: actions/upload-artifact@v4
         with:
           name: PDF-artifact

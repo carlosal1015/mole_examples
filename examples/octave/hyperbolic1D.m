@@ -13,29 +13,23 @@ dx = (east - west) / m;
 
 t = 1; % Simulation time
 dt = dx / abs(a); % CFL condition for explicit schemes
-alpha = abs(a) * dt /dx
+alpha = abs(a) * dt / dx;
 
-D = div(k, m, dx); % 1D Mimetic divergence operator
-size(D)
-D_before_name = sprintf("D_before.h5");
-save("-hdf5", D_before_name, "D")
+D = div(k, m, dx); % 1D Mimetic divergence operator% size(D)
+save("-hdf5", "D_before.h5", "D")
 figure('visible', 'off');
 spy(D);
 saveas(gcf, "hyperbolic1D_divergence_sparsebefore.pdf", 'pdfcrop')
-I = interpol(m, 0.5); % 1D 2nd order interpolator% 0<=c<=1
-size(I);
+I = interpol(m, 0.5); % 1D 2nd order interpolator% 0<=c<=1% size(I);
 spy(I);
 saveas(gcf, "hyperbolic1D_interpolator_sparse.pdf", 'pdfcrop')
-I_name = sprintf("I_name.h5");
-save("-hdf5", I_name, "I")
+save("-hdf5", "I_name.h5", "I")
 
 % 1D Staggered grid
 grid = [west west + dx / 2:dx:east - dx / 2 east];
 size(grid);
 % IC
-U = sin(2 * pi * grid)';
-% U = 100 * ones(m + 2, 1)
-% U = repmat(100, [m + 2, 1])
+U = sin(2 * pi * grid)'; % 100 * ones(m + 2, 1) or repmat(100, [m + 2, 1])
 
 % Periodic BC imposed on the divergence operator
 D(1, 2) = 1 / (2 * dx);
@@ -47,8 +41,7 @@ D(end, end - 1) = -1 / (2 * dx);
 D = -a * dt * 2 * D * I;
 % One could also have said: D = -a*dt*2*I*D if the grid
 % was defined as: grid = west : dx : east (nodal)
-D_after_name = sprintf("D_before.h5");
-save("-hdf5", D_after_name, "D")
+save("-hdf5", "D_after.h5", "D")
 spy(D);
 saveas(gcf, "hyperbolic1D_divergence_sparseafter.pdf", 'pdfcrop')
 

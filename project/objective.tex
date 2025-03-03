@@ -1,0 +1,59 @@
+\section{Objective of the study}
+
+\begin{frame}
+	\frametitle{\secname}
+	\begin{block}{One-dimensional advection partial differential equation with constant velocity}
+		Consider the following BVP/IVP for the advection equation
+		with a Dirichlet boundary condition
+		\begin{equation}\label{eq:bvpivp}
+			\left\{
+			\begin{aligned}
+				\difcp{u}{t}\left(x,t\right)+
+				c
+				\difcp{u}{x}\left(x,t\right) & =
+				f\left(x\right),             & x\in\left(a,b\right), t>0. \\
+				u\left(a,t\right)            & =
+				g\left(t\right),             & t>0.                       \\
+				u\left(x,0\right)            & =
+				u_{0}\left(x\right),         & x\in\left(a,b\right).
+			\end{aligned}
+			\right.
+		\end{equation}
+
+		The solution of~\eqref{eq:bvpivp} is given by
+		\begin{equation*}
+			u\left(x,t\right)=
+			% \begin{cases}
+			g\left(x-ct\right)+
+			\int_{0}^{t}
+			f\left(x-c\left(t-\theta\right)\right)\dl\theta. %& x-ct\geq a. \\
+			% g\left(t-\frac{x-a}{c}\right),                   & x-ct<a.
+			% \end{cases}
+		\end{equation*}
+	\end{block}
+
+	\begin{example}[Non-homogeneous]
+		\begin{equation*}
+			\left\{
+			\begin{aligned}
+				\difcp{u}{t}\left(x,t\right)+
+				c
+				\difcp{u}{x}\left(x,t\right) & =
+				1,                           & x\in\left(-1,1\right), t>0. \\
+				u\left(-1,t\right)           & =
+				0,                           & t>0.                        \\
+				u\left(x,0\right)            & =
+				x+1,                         & x\in\left(-1,1\right).
+			\end{aligned}
+			\right.
+		\end{equation*}
+		The solution is given by
+		\begin{equation*}
+			u\left(x,t\right)=
+			\begin{cases}
+				x-ct + 1 + t,                  & x-ct\geq -1. \\
+				\frac{x+1}{c}+t-\frac{x+1}{c}, & x-ct<-1.
+			\end{cases}
+		\end{equation*}
+	\end{example}
+\end{frame}

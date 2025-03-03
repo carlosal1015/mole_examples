@@ -1,10 +1,7 @@
 #include <cmath>
-// #include <chrono>
 #include <iostream>
 #include <mole/mole.h>
-
-// using namespace std::chrono_literals;
-constexpr double pi = 3.14159;
+#include <numbers>
 
 arma::sp_mat sidedNodalTemp(int m, double dx, const std::string &type)
 {
@@ -22,15 +19,15 @@ arma::sp_mat sidedNodalTemp(int m, double dx, const std::string &type)
     // Forward difference
     S.diag(0) = -arma::ones<vec>(m + 1); // Main diagonal
     S.diag(1) = arma::ones<vec>(m);      // Super-diagonal
-    S(m, 1) = 1;                   // Wrap-around for periodic boundary
+    S(m, 1) = 1;                         // Wrap-around for periodic boundary
     S /= dx;
   }
   else { // "centered"
     // Centered difference
     S.diag(-1) = -arma::ones<vec>(m); // Sub-diagonal
     S.diag(1) = arma::ones<vec>(m);   // Super-diagonal
-    S(0, m - 1) = -1;           // Wrap-around for periodic boundary
-    S(m, 1) = 1;                // Wrap-around for periodic boundary
+    S(0, m - 1) = -1;                 // Wrap-around for periodic boundary
+    S(m, 1) = 1;                      // Wrap-around for periodic boundary
     S /= (2 * dx);
   }
 
@@ -53,7 +50,7 @@ int main()
       m, dx, (a > 0) ? "backward" : "forward"); // Use "forward" if a < 0
 
   arma::vec grid = arma::regspace(west, dx, east);
-  arma::vec U = arma::sin(2 * pi * grid);
+  arma::vec U = arma::sin(2 * std::numbers::pi * grid);
 
   S = arma::speye<arma::sp_mat>(S.n_rows, S.n_cols) - a * dt * S;
 
@@ -74,7 +71,8 @@ int main()
     // GNUplot
     for (size_t j = 0; j < grid.size(); ++j) {
       dataFile << grid[j] << " " << U[j] << " "
-               << std::sin(2 * pi * (grid[j] - a * i * dt)) << "\n";
+               << std::sin(2 * std::numbers::pi * (grid[j] - a * i * dt))
+               << "\n";
     }
     dataFile << "\n\n"; // Separate time steps
   }
