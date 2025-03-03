@@ -49,3 +49,4 @@ _minted-*
 *.log
 *.tar.zst
 mole
+*.h5
