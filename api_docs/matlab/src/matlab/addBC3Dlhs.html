@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of addBC3Dlhs</title>
+  <meta name="keywords" content="addBC3Dlhs">
+  <meta name="description" content="This functions uses geometry and boundary type conditions to create">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; addBC3Dlhs.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>addBC3Dlhs
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>This functions uses geometry and boundary type conditions to create</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = addBC3Dlhs(k, m, dx, n, dy, o, dz, dc, nc) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> This functions uses geometry and boundary type conditions to create
+ modifications of matrix A associated to each of the boundary faces.
+
+ Parameters:
+ output
+      Abcl : Matrix coefficients associated to boundary conditions for left face
+      Abcr : Matrix coefficients associated to boundary conditions for right face
+      Abcb : Matrix coefficients associated to boundary conditions for bottom face
+      Abct : Matrix coefficients associated to boundary conditions for top face
+      Abcf : Matrix coefficients associated to boundary conditions for front face
+      Abcz : Matrix coefficients associated to boundary conditions for back face
+
+ input
+         k : Order of accuracy
+         m : Number of the horizontal cells
+        dx : Step size
+         n : Number of the vertical cells
+        dy : Horizonttal cell size
+         o : Number of the depth cells
+        dz : Depth cell size
+        dc : a0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)
+        nc : b0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addBC1Dlhs.html" class="code" title="function [Al, Ar] = addBC1Dlhs(k, m, dx, dc, nc)">addBC1Dlhs</a>	This functions uses geometry and boundary type conditions to create</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addBC3D.html" class="code" title="function [A, b] = addBC3D(A, b, k, m, dx, n, dy, o, dz, dc, nc, v)">addBC3D</a>	This function assumes that the unknown u, which represents the discrete</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = addBC3Dlhs(k, m, dx, n, dy, o, dz, dc, nc)</a>
+0002 <span class="comment">% This functions uses geometry and boundary type conditions to create</span>
+0003 <span class="comment">% modifications of matrix A associated to each of the boundary faces.</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% Parameters:</span>
+0006 <span class="comment">% output</span>
+0007 <span class="comment">%      Abcl : Matrix coefficients associated to boundary conditions for left face</span>
+0008 <span class="comment">%      Abcr : Matrix coefficients associated to boundary conditions for right face</span>
+0009 <span class="comment">%      Abcb : Matrix coefficients associated to boundary conditions for bottom face</span>
+0010 <span class="comment">%      Abct : Matrix coefficients associated to boundary conditions for top face</span>
+0011 <span class="comment">%      Abcf : Matrix coefficients associated to boundary conditions for front face</span>
+0012 <span class="comment">%      Abcz : Matrix coefficients associated to boundary conditions for back face</span>
+0013 <span class="comment">%</span>
+0014 <span class="comment">% input</span>
+0015 <span class="comment">%         k : Order of accuracy</span>
+0016 <span class="comment">%         m : Number of the horizontal cells</span>
+0017 <span class="comment">%        dx : Step size</span>
+0018 <span class="comment">%         n : Number of the vertical cells</span>
+0019 <span class="comment">%        dy : Horizonttal cell size</span>
+0020 <span class="comment">%         o : Number of the depth cells</span>
+0021 <span class="comment">%        dz : Depth cell size</span>
+0022 <span class="comment">%        dc : a0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)</span>
+0023 <span class="comment">%        nc : b0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)</span>
+0024 <span class="comment">% ----------------------------------------------------------------------------</span>
+0025 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0026 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0027 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0028 <span class="comment">% ----------------------------------------------------------------------------</span>
+0029 
+0030     <span class="comment">% 3D boundary operator</span>
+0031     [Abcl0,Abcr0] = <a href="addBC1Dlhs.html" class="code" title="function [Al, Ar] = addBC1Dlhs(k, m, dx, dc, nc)">addBC1Dlhs</a>(k, m, dx, dc(1:2,1), nc(1:2,1));
+0032     [Abcb0,Abct0] = <a href="addBC1Dlhs.html" class="code" title="function [Al, Ar] = addBC1Dlhs(k, m, dx, dc, nc)">addBC1Dlhs</a>(k, n, dy, dc(3:4,1), nc(3:4,1));
+0033     [Abcf0,Abcz0] = <a href="addBC1Dlhs.html" class="code" title="function [Al, Ar] = addBC1Dlhs(k, m, dx, dc, nc)">addBC1Dlhs</a>(k, o, dz, dc(5:6,1), nc(5:6,1));
+0034     
+0035     Im = speye(m+2);
+0036     
+0037     In = speye(n+2);
+0038     
+0039     Io = speye(o+2);
+0040     Io(1, 1) = 0;
+0041     Io(<span class="keyword">end</span>, end) = 0;
+0042     
+0043     In2 = In;
+0044     In2(1, 1) = 0;
+0045     In2(<span class="keyword">end</span>, end) = 0;
+0046     
+0047     <span class="comment">% left and right faces</span>
+0048     Abcl = kron(kron(Io, In2), Abcl0);
+0049     Abcr = kron(kron(Io, In2), Abcr0);
+0050     <span class="comment">% bottom and top faces</span>
+0051     Abcb = kron(kron(Io, Abcb0), Im);
+0052     Abct = kron(kron(Io, Abct0), Im);
+0053     <span class="comment">% front and back faces</span>
+0054     Abcf = kron(kron(Abcf0, In), Im);
+0055     Abcz = kron(kron(Abcz0, In), Im);
+0056 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Mon 03-Mar-2025 04:05:09 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

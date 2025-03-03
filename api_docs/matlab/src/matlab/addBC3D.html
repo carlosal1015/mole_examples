@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of addBC3D</title>
+  <meta name="keywords" content="addBC3D">
+  <meta name="description" content="This function assumes that the unknown u, which represents the discrete">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; addBC3D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>addBC3D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>This function assumes that the unknown u, which represents the discrete</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [A, b] = addBC3D(A, b, k, m, dx, n, dy, o, dz, dc, nc, v) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> This function assumes that the unknown u, which represents the discrete
+ solution the continuous second-order 3D PDE operator 
+                                   L U = f, 
+ with continuous boundary condition 
+                              a0 U + b0 dU/dn = g,
+ are given at the 3D cell centers and boundary face centers. Furthermore,
+ all discrete calculations are performed at the 3D cell centers and boundary 
+ face centers.
+
+ The function receives as input quantities associated to the discrete
+ analog of the continuous problem given by the squared linear system 
+                                 A u = b 
+ where A is the discrete analog of L and b is the discrete analog of g,
+ both constructed by the user without boundary conditions.
+ The function output is the modified square linear system 
+                                 A u = b
+ where both A and b include boundary condition information.
+
+ The boundary condition is always one of the following forms:
+
+ For Dirichlet set: a0 not equal zero and b0 = 0.
+ For Neumann set  : a0 = 0 and b0 not equal zero.
+ For Robin set    : both a0 and b0 not equal zero.
+ For Periodic set : both a0 = 0 and b0 = 0.
+
+ For periodic bc, it is assumed that not only u but also du/dn are the same 
+ in both extremes of the domain since a second-order PDE is assumed.
+
+ Periodic boundary conditions can be applied along some axes and
+ non-periodic to some others.
+ 
+ For consistence with the way boundary operators are calculated to avoid 
+ overwriting of the values v, the left and right boundary conditions are
+ assumed to be column vectors of n*o components, the bottom and top
+ boundary conditions are assumed to be column vectors of (m+2)*o
+ components, and the front and back faces are assumed to be vectors of
+ (m+2)*(n+2) components. 
+
+ The order of these components is as follows:
+ For left and right faces, the ordering is the one by columns of the
+ matrix where y increase along rows, and z increase along columns.
+ For bottom and top faces, the ordering is the one by columns of the
+ matrix where x increase along rows, and z increase along columns.
+ For front and back faces, the ordering is the one by columns of the
+ matrix where x increase along rows, and y increase along columns.
+ 
+ The code assumes the following assertions:
+ assert(k &gt;= 2, 'k &gt;= 2');
+ assert(mod(k, 2) == 0, 'k % 2 = 0');
+ assert(m &gt;= 2*k+1, ['m &gt;= ' num2str(2*k+1) ' for k = ' num2str(k)]);
+
+ Parameters:
+ output
+         A : Linear operator with boundary conditions added
+         b : Right hand side with boundary conditions added
+
+ input
+         A : Linear operator without boundary conditions added
+         b : Right hand side without boundary conditions added
+         k : Order of accuracy
+         m : Number of horizontal cells
+        dx : Step size of horizontal
+         n : Number of vertical cells
+        dy : Step size of vertical cells
+         o : Number of depth cells
+        dz : Step size of depth cells
+        dc : a0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)
+        nc : b0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)
+         v : g (6x1 vector of arrays for left, right, bottom, top, front, back boundaries, resp.)
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addBC3Dlhs.html" class="code" title="function [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = addBC3Dlhs(k, m, dx, n, dy, o, dz, dc, nc)">addBC3Dlhs</a>	This functions uses geometry and boundary type conditions to create</li>
+<li><a href="addBC3Drhs.html" class="code" title="function b = addBC3Drhs(b, dc, nc, v, rl, rr, rb, rt, rf, rz)">addBC3Drhs</a>	This function uses the boundary condition type of each face and the rhs b</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [A, b] = addBC3D(A, b, k, m, dx, n, dy, o, dz, dc, nc, v)</a>
+0002 <span class="comment">% This function assumes that the unknown u, which represents the discrete</span>
+0003 <span class="comment">% solution the continuous second-order 3D PDE operator</span>
+0004 <span class="comment">%                                   L U = f,</span>
+0005 <span class="comment">% with continuous boundary condition</span>
+0006 <span class="comment">%                              a0 U + b0 dU/dn = g,</span>
+0007 <span class="comment">% are given at the 3D cell centers and boundary face centers. Furthermore,</span>
+0008 <span class="comment">% all discrete calculations are performed at the 3D cell centers and boundary</span>
+0009 <span class="comment">% face centers.</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% The function receives as input quantities associated to the discrete</span>
+0012 <span class="comment">% analog of the continuous problem given by the squared linear system</span>
+0013 <span class="comment">%                                 A u = b</span>
+0014 <span class="comment">% where A is the discrete analog of L and b is the discrete analog of g,</span>
+0015 <span class="comment">% both constructed by the user without boundary conditions.</span>
+0016 <span class="comment">% The function output is the modified square linear system</span>
+0017 <span class="comment">%                                 A u = b</span>
+0018 <span class="comment">% where both A and b include boundary condition information.</span>
+0019 <span class="comment">%</span>
+0020 <span class="comment">% The boundary condition is always one of the following forms:</span>
+0021 <span class="comment">%</span>
+0022 <span class="comment">% For Dirichlet set: a0 not equal zero and b0 = 0.</span>
+0023 <span class="comment">% For Neumann set  : a0 = 0 and b0 not equal zero.</span>
+0024 <span class="comment">% For Robin set    : both a0 and b0 not equal zero.</span>
+0025 <span class="comment">% For Periodic set : both a0 = 0 and b0 = 0.</span>
+0026 <span class="comment">%</span>
+0027 <span class="comment">% For periodic bc, it is assumed that not only u but also du/dn are the same</span>
+0028 <span class="comment">% in both extremes of the domain since a second-order PDE is assumed.</span>
+0029 <span class="comment">%</span>
+0030 <span class="comment">% Periodic boundary conditions can be applied along some axes and</span>
+0031 <span class="comment">% non-periodic to some others.</span>
+0032 <span class="comment">%</span>
+0033 <span class="comment">% For consistence with the way boundary operators are calculated to avoid</span>
+0034 <span class="comment">% overwriting of the values v, the left and right boundary conditions are</span>
+0035 <span class="comment">% assumed to be column vectors of n*o components, the bottom and top</span>
+0036 <span class="comment">% boundary conditions are assumed to be column vectors of (m+2)*o</span>
+0037 <span class="comment">% components, and the front and back faces are assumed to be vectors of</span>
+0038 <span class="comment">% (m+2)*(n+2) components.</span>
+0039 <span class="comment">%</span>
+0040 <span class="comment">% The order of these components is as follows:</span>
+0041 <span class="comment">% For left and right faces, the ordering is the one by columns of the</span>
+0042 <span class="comment">% matrix where y increase along rows, and z increase along columns.</span>
+0043 <span class="comment">% For bottom and top faces, the ordering is the one by columns of the</span>
+0044 <span class="comment">% matrix where x increase along rows, and z increase along columns.</span>
+0045 <span class="comment">% For front and back faces, the ordering is the one by columns of the</span>
+0046 <span class="comment">% matrix where x increase along rows, and y increase along columns.</span>
+0047 <span class="comment">%</span>
+0048 <span class="comment">% The code assumes the following assertions:</span>
+0049 <span class="comment">% assert(k &gt;= 2, 'k &gt;= 2');</span>
+0050 <span class="comment">% assert(mod(k, 2) == 0, 'k % 2 = 0');</span>
+0051 <span class="comment">% assert(m &gt;= 2*k+1, ['m &gt;= ' num2str(2*k+1) ' for k = ' num2str(k)]);</span>
+0052 <span class="comment">%</span>
+0053 <span class="comment">% Parameters:</span>
+0054 <span class="comment">% output</span>
+0055 <span class="comment">%         A : Linear operator with boundary conditions added</span>
+0056 <span class="comment">%         b : Right hand side with boundary conditions added</span>
+0057 <span class="comment">%</span>
+0058 <span class="comment">% input</span>
+0059 <span class="comment">%         A : Linear operator without boundary conditions added</span>
+0060 <span class="comment">%         b : Right hand side without boundary conditions added</span>
+0061 <span class="comment">%         k : Order of accuracy</span>
+0062 <span class="comment">%         m : Number of horizontal cells</span>
+0063 <span class="comment">%        dx : Step size of horizontal</span>
+0064 <span class="comment">%         n : Number of vertical cells</span>
+0065 <span class="comment">%        dy : Step size of vertical cells</span>
+0066 <span class="comment">%         o : Number of depth cells</span>
+0067 <span class="comment">%        dz : Step size of depth cells</span>
+0068 <span class="comment">%        dc : a0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)</span>
+0069 <span class="comment">%        nc : b0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)</span>
+0070 <span class="comment">%         v : g (6x1 vector of arrays for left, right, bottom, top, front, back boundaries, resp.)</span>
+0071 <span class="comment">% ----------------------------------------------------------------------------</span>
+0072 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0073 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0074 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0075 <span class="comment">% ----------------------------------------------------------------------------</span>
+0076 
+0077     <span class="comment">% verify bc sizes and square linear system</span>
+0078     assert(all(size(dc) == [6 1]), <span class="string">'dc is a 6x1 vector'</span>);
+0079     assert(all(size(nc) == [6 1]), <span class="string">'nc is a 6x1 vector'</span>);
+0080     assert(all(size(v) == [6 1]), <span class="string">'v is a 6x1 vector'</span>);
+0081     cellsz = cellfun(@size,v,<span class="string">'uni'</span>,false);
+0082     assert(all(cellsz{1} == [o*n 1]), <span class="string">'v{1} is a (o*n)x1 vector'</span>); <span class="comment">% left</span>
+0083     assert(all(cellsz{2} == [o*n 1]), <span class="string">'v{2} is a (o*n)x1 vector'</span>); <span class="comment">% right</span>
+0084     assert(all(cellsz{3} == [o*(m+2) 1]), <span class="string">'v{3} is a (o*(m+2))x1 vector'</span>); <span class="comment">% bottom</span>
+0085     assert(all(cellsz{4} == [o*(m+2) 1]), <span class="string">'v{4} is a (o*(m+2))x1 vector'</span>); <span class="comment">% top</span>
+0086     assert(all(cellsz{5} == [(n+2)*(m+2) 1]), <span class="string">'v{5} is a ((n+2)*(m+2))x1 vector'</span>); <span class="comment">% front</span>
+0087     assert(all(cellsz{6} == [(n+2)*(m+2) 1]), <span class="string">'v{6} is a ((n+2)*(m+2))x1 vector'</span>); <span class="comment">% back</span>
+0088     assert(all(size(A,1) == size(A,2)), <span class="string">'A is a square matrix'</span>);
+0089     assert(all(size(A,2) == numel(b)), <span class="string">'b size = A columns'</span>);
+0090 
+0091     <span class="comment">% get modifications of A for left, right, bottom, top, front, back faces, resp.</span>
+0092     [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = <a href="addBC3Dlhs.html" class="code" title="function [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = addBC3Dlhs(k, m, dx, n, dy, o, dz, dc, nc)">addBC3Dlhs</a>(k, m, dx, n, dy, o, dz, dc, nc);
+0093 
+0094     <span class="comment">% get rhs entries affected by bcs for left, right, bottom, top, front, back faces, resp.</span>
+0095     [rl,~,~] = find(Abcl); 
+0096     [rr,~,~] = find(Abcr); 
+0097     [rb,~,~] = find(Abcb); 
+0098     [rt,~,~] = find(Abct); 
+0099     [rf,~,~] = find(Abcf); 
+0100     [rz,~,~] = find(Abcz); 
+0101     rl = unique(rl);
+0102     rr = unique(rr);
+0103     rb = unique(rb);
+0104     rt = unique(rt);
+0105     rf = unique(rf);
+0106     rz = unique(rz);
+0107 
+0108     <span class="comment">% remove rows from matrix A</span>
+0109     Abc = Abcl + Abcr + Abcb + Abct + Abcz + Abcf;
+0110     [rowsbc,~,~] = find(Abc);
+0111     rowsbc = unique(rowsbc);
+0112     [rows,cols,s] = find(A(rowsbc,:));
+0113     A = A - sparse(rows, cols, s, size(A,1), size(A,2));
+0114     <span class="comment">% update matrix A with boundary information</span>
+0115     A = A + Abc;
+0116 
+0117     <span class="comment">% remove b entries associated to bcs</span>
+0118     b(rowsbc) = 0;
+0119     <span class="comment">% update b with boundary information</span>
+0120     b = <a href="addBC3Drhs.html" class="code" title="function b = addBC3Drhs(b, dc, nc, v, rl, rr, rb, rt, rf, rz)">addBC3Drhs</a>(b, dc, nc, v, rl, rr, rb, rt, rf, rz);
+0121 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Mon 03-Mar-2025 04:05:09 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

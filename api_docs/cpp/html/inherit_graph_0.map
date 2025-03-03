@@ -1,0 +1,15 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,129,70,154"/>
+<area shape="rect" id="Node000001" href="$classDivergence.html" title="Mimetic Divergence operator." alt="" coords="118,5,204,30"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="53,115,81,78,116,41,133,28,137,33,119,45,85,82,57,118"/>
+<area shape="rect" id="Node000002" href="$classGradient.html" title="Mimetic Gradient operator." alt="" coords="126,55,196,79"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="70,119,116,90,137,78,140,82,119,95,73,123"/>
+<area shape="rect" id="Node000003" href="$classInterpol.html" title="Mimetic Interpolator operator." alt="" coords="128,104,194,129"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="84,129,127,120,128,126,85,135"/>
+<area shape="rect" id="Node000004" href="$classLaplacian.html" title="Mimetic Laplacian operator." alt="" coords="123,153,199,178"/>
+<area shape="poly" id="edge4_Node000000_Node000004" title=" " alt="" coords="85,148,123,156,122,161,84,153"/>
+<area shape="rect" id="Node000005" href="$classMixedBC.html" title="Mimetic Mixed Boundary Condition operator." alt="" coords="124,203,198,227"/>
+<area shape="poly" id="edge5_Node000000_Node000005" title=" " alt="" coords="74,160,119,187,140,200,137,204,116,192,71,165"/>
+<area shape="rect" id="Node000006" href="$classRobinBC.html" title="Mimetic Robin Boundary Condition operator." alt="" coords="124,252,198,277"/>
+<area shape="poly" id="edge6_Node000000_Node000006" title=" " alt="" coords="57,165,85,201,119,237,137,249,134,254,116,241,81,204,53,168"/>
+</map>

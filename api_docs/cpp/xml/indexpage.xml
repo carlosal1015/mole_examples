@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>MOLE: Mimetic Operators Library Enhanced</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="index_1md_README"/></para>
+<para><heading level="1">1: Description </heading>
+</para>
+<para>MOLE is a high-quality (C++ &amp; MATLAB/Octave) library that implements high-order mimetic operators to solve partial differential equations. It provides discrete analogs of the most common vector calculus operators: <ref refid="classGradient" kindref="compound">Gradient</ref>, <ref refid="classDivergence" kindref="compound">Divergence</ref>, <ref refid="classLaplacian" kindref="compound">Laplacian</ref>, Bilaplacian, and Curl. These operators (highly sparse matrices) act on staggered grids (uniform, non-uniform, curvilinear) and satisfy local and global conservation laws.</para>
+<para>Mathematics is based on the work of <ulink url="https://doi.org/10.1016/j.cam.2019.06.042">Corbino and Castillo, 2020</ulink>. However, the user may find helpful previous publications, such as <ulink url="https://doi.org/10.1137/S0895479801398025">Castillo and Grone, 2003</ulink>, in which similar operators were derived using a matrix analysis approach.</para>
+<para><heading level="1">2: Licensing </heading>
+</para>
+<para>MOLE is distributed under a GNU General Public License; please refer to the <emphasis>LICENSE</emphasis> file for more details.</para>
+<para><heading level="1">3: Installation </heading>
+</para>
+<para><heading level="2">3.1 Packages Required</heading>
+</para>
+<para>To install the MOLE library on your system, certain packages must be installed and configured beforehand. The required packages vary by operating system.</para>
+<para>For the macOS, Homebrew needs to be installed to download the required packages. Invoke the following command in the terminal app <verbatim>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+</verbatim></para>
+<para>Remove Java dependencies <verbatim>brew uninstall --ignore-dependencies java
+</verbatim></para>
+<para>Update Homebrew again <verbatim>brew update
+</verbatim></para>
+<para>If you encounter errors during Homebrew installation, please run the following commands before the installation:</para>
+<para><verbatim>sudo chown -R $(whoami) /usr/local/Cellar
+git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
+</verbatim></para>
+<para><heading level="3">3.1.1 CMake</heading>
+</para>
+<para><bold>Minimum Version Required</bold>: 3.10</para>
+<para><heading level="4">For Ubuntu systems:</heading>
+</para>
+<para>sudo apt install cmake <heading level="4">For Mac Systems</heading>
+</para>
+<para>brew install cmake <heading level="4">For Yum-based systems:</heading>
+</para>
+<para>sudo yum install cmake</para>
+<para><heading level="3">3.1.2 OpenBLAS</heading>
+</para>
+<para><bold>Minimum Version Required</bold>: OpenBLAS 0.3.10</para>
+<para><heading level="4">For Ubuntu systems:</heading>
+</para>
+<para>sudo apt install libopenblas-dev <heading level="4">For Mac Systems</heading>
+</para>
+<para>brew install openblas <heading level="4">For Yum-based systems:</heading>
+</para>
+<para>sudo yum install openblas-devel</para>
+<para><heading level="3">3.1.3 Eigen3</heading>
+</para>
+<para><bold>Minimum Version Required</bold>: eigen-3</para>
+<para><heading level="4">For Ubuntu systems</heading>
+</para>
+<para>sudo apt install libeigen3-dev <heading level="4">For Mac Systems</heading>
+</para>
+<para>brew install eigen <linebreak/>
+ <heading level="4">For Yum-based systems:</heading>
+</para>
+<para>sudo yum install eigen3-devel</para>
+<para><heading level="3">3.1.4 libomp</heading>
+</para>
+<para><heading level="4">For Mac Systems</heading>
+</para>
+<para>brew install libomp</para>
+<para><heading level="3">3.1.5 LAPACK</heading>
+</para>
+<para><heading level="4">For Mac Systems</heading>
+</para>
+<para>brew install lapack</para>
+<para><heading level="2">3.2 MOLE Library Installation</heading>
+</para>
+<para><bold>Clone the MOLE repository and build the library</bold> <verbatim>git clone https://github.com/csrc-sdsu/mole.git  
+cd mole  
+mkdir build &amp;&amp; cd build  
+cmake ..
+make  
+</verbatim> To install the library in a custom location (Eg. home/mole)</para>
+<para>cmake <ndash/>install . <ndash/>prefix /path/to/location</para>
+<para>To install the library in a previledged location (Eg. /opt/mole)</para>
+<para>sudo cmake <ndash/>install . Or</para>
+<para>sudo cmake <ndash/>install . <ndash/>prefix /path/to/privileged/location <linebreak/>
+</para>
+<para>To run the C++ tests manually, <verbatim>make run_tests
+</verbatim></para>
+<para>Armadillo and SuperLu will be locally installed in the build directory once the cmake .. command is passed. By following the steps outlined above, you will successfully install the necessary packages and the MOLE library on your system. The library will be installed in the location provided. The tests and examples to be executed will also be built locally inside the build directory.</para>
+<para><heading level="1">4: Running Examples &amp; Tests </heading>
+</para>
+<para>Here are instructions on how to run the provided examples and tests for both the C++ and MATLAB versions of the library to help you quickly get started with MOLE.</para>
+<para><itemizedlist>
+<listitem><para><bold>tests/cpp:</bold> These tests, which are automatically executed upon constructing the library&apos;s C++ version, play a crucial role in verifying the correct installation of MOLE and its dependencies. There are four tests in total.</para>
+</listitem><listitem><para><bold>tests/matlab:</bold> We encourage MATLAB users to execute these tests before using MOLE by entering the <computeroutput>tests/matlab</computeroutput> directory and executing <computeroutput>run_tests.m</computeroutput> from MATLAB. These tests are analogous to those contained in <computeroutput>tests/cpp</computeroutput>.</para>
+</listitem><listitem><para><bold>examples/cpp:</bold> These will be automatically built after calling <computeroutput>make</computeroutput>. We encourage C++ users to make this their entry point to familiarize themselves with this library version. The four examples are self-contained and adequately documented, and they solve typical PDEs.</para>
+</listitem><listitem><para><bold>examples/matlab:</bold> Most of our examples are provided in the MATLAB scripting language. Over 30 examples range from linear one-dimensional PDEs to highly nonlinear multidimensional PDEs.</para>
+</listitem></itemizedlist>
+</para>
+<para><heading level="1">5: Documentation </heading>
+</para>
+<para>The folder <computeroutput>doc/api_docs/matlab</computeroutput> contains generated documentation about the MATLAB/Octave API. It was generated with a tool called <ulink url="https://www.gllmflndn.com/software/matlab/m2html"><emphasis>m2html</emphasis></ulink>. However, for a quick start on MOLE&apos;s MATLAB/Octave version, we recommend starting with this short <ulink url="https://github.com/csrc-sdsu/mole/blob/master/doc/assets/manuals/CSRC%20Report%20on%20MOLE.pdf">guide</ulink>.</para>
+<para>For C++ users, we provide a short <ulink url="https://github.com/csrc-sdsu/mole/blob/master/doc/assets/manuals/MOLE_C%2B%2B_Quick_Guide.pdf">guide</ulink> to MOLE&apos;s C++ flavor. However, for those in need of more details to interact with the library, we suggest to follow these instructions:</para>
+<para>To generate the C++ documentation, execute:</para>
+<para><computeroutput>doxygen Doxyfile</computeroutput> (requires <emphasis>Doxygen</emphasis> and <emphasis>Graphviz</emphasis>)</para>
+<para>this will create a folder called <computeroutput>doc_C++</computeroutput> containing a set of <emphasis>html</emphasis> files. Please take a look at the <emphasis>index.html</emphasis> file to start browsing the documentation.</para>
+<para><bold>NOTE:</bold> Performing non-unary operations involving operands constructed over different grids may lead to unexpected results. While MOLE allows such operations without throwing errors, users must exercise caution when manipulating operators across different grids.</para>
+<para><heading level="1">6: Community Guidelines </heading>
+</para>
+<para>We welcome contributions to MOLE, whether they involve adding new functionalities, providing examples, addressing existing issues, reporting bugs, or requesting new features. Please refer to our <ulink url="https://github.com/csrc-sdsu/mole/blob/master/CONTRIBUTING.md">Contribution Guidelines</ulink> for more details.</para>
+<para><heading level="1">7: Citations </heading>
+</para>
+<para>Please cite our work if you use MOLE in your research or software. Citations are helpful for the continued development and maintenance of the library <ulink url="https://doi.org/10.21105/joss.06288"><image type="html" name="https://joss.theoj.org/papers/10.21105/joss.06288/status.svg" alt="DOI" inline="yes"></image>
+</ulink></para>
+<para><ulink url="https://www.mathworks.com/matlabcentral/fileexchange/124870-mole"><image type="html" name="https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg" alt="View mole on File Exchange" inline="yes"></image>
+</ulink></para>
+<para>Now, some cool pictures obtained with MOLE:</para>
+<para><image type="html" name="4thOrder.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="latex" name="4thOrder.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="rtf" name="4thOrder.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="docbook" name="4thOrder.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="xml" name="4thOrder.png" inline="yes">Obtained with curvilinear operators</image>
+</para>
+<para><image type="html" name="4thOrder2.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="latex" name="4thOrder2.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="rtf" name="4thOrder2.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="docbook" name="4thOrder2.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="xml" name="4thOrder2.png" inline="yes">Obtained with curvilinear operators</image>
+</para>
+<para><image type="html" name="4thOrder3.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="latex" name="4thOrder3.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="rtf" name="4thOrder3.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="docbook" name="4thOrder3.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="xml" name="4thOrder3.png" inline="yes">Obtained with curvilinear operators</image>
+</para>
+<para><image type="html" name="grid2.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="latex" name="grid2.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="rtf" name="grid2.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="docbook" name="grid2.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="xml" name="grid2.png" inline="yes">Obtained with curvilinear operators</image>
+</para>
+<para><image type="html" name="grid.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="latex" name="grid.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="rtf" name="grid.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="docbook" name="grid.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="xml" name="grid.png" inline="yes">Obtained with curvilinear operators</image>
+</para>
+<para><image type="html" name="WavyGrid.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="latex" name="WavyGrid.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="rtf" name="WavyGrid.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="docbook" name="WavyGrid.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="xml" name="WavyGrid.png" inline="yes">Obtained with curvilinear operators</image>
+</para>
+<para><image type="html" name="wave2D.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="latex" name="wave2D.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="rtf" name="wave2D.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="docbook" name="wave2D.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="xml" name="wave2D.png" inline="yes">Obtained with curvilinear operators</image>
+</para>
+<para><image type="html" name="burgers.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="latex" name="burgers.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="rtf" name="burgers.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="docbook" name="burgers.png" inline="yes">Obtained with curvilinear operators</image>
+ <image type="xml" name="burgers.png" inline="yes">Obtained with curvilinear operators</image>
+ </para>
+    </detaileddescription>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

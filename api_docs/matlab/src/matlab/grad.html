@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of grad</title>
+  <meta name="keywords" content="grad">
+  <meta name="description" content="Returns a m+1 by m+2 one-dimensional mimetic gradient operator">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; grad.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>grad
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns a m+1 by m+2 one-dimensional mimetic gradient operator</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function G = grad(k, m, dx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a m+1 by m+2 one-dimensional mimetic gradient operator
+
+ Parameters:
+                k : Order of accuracy
+                m : Number of cells
+               dx : Step size
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addBC1Dlhs.html" class="code" title="function [Al, Ar] = addBC1Dlhs(k, m, dx, dc, nc)">addBC1Dlhs</a>	This functions uses geometry and boundary type conditions to create</li>
+<li><a href="grad2D.html" class="code" title="function G = grad2D(k, m, dx, n, dy)">grad2D</a>	Returns a two-dimensional mimetic gradient operator</li>
+<li><a href="grad3D.html" class="code" title="function G = grad3D(k, m, dx, n, dy, o, dz)">grad3D</a>	Returns a three-dimensional mimetic gradient operator</li>
+<li><a href="gradNonUniform.html" class="code" title="function G = gradNonUniform(k, ticks)">gradNonUniform</a>	Returns a m+1 by m+2 one-dimensional non-uniform mimetic gradient</li>
+<li><a href="lap.html" class="code" title="function L = lap(k, m, dx)">lap</a>	Returns a m+2 by m+2 one-dimensional mimetic laplacian operator</li>
+<li><a href="mimeticB.html" class="code" title="function B = mimeticB(k, m)">mimeticB</a>	Returns a m+2 by m+1 one-dimensional mimetic boundary operator</li>
+<li><a href="mixedBC.html" class="code" title="function BC = mixedBC(k, m, dx, left, coeffs_left, right, coeffs_right)">mixedBC</a>	Constructs a 1D mimetic mixed boundary conditions operator</li>
+<li><a href="robinBC.html" class="code" title="function BC = robinBC(k, m, dx, a, b)">robinBC</a>	Returns a m+2 by m+2 one-dimensional mimetic boundary operator that</li>
+<li><a href="weightsP.html" class="code" title="function P = weightsP(k, m, dx)">weightsP</a>	Returns the m+1 weights of P</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function G = grad(k, m, dx)</a>
+0002 <span class="comment">% Returns a m+1 by m+2 one-dimensional mimetic gradient operator</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% Parameters:</span>
+0005 <span class="comment">%                k : Order of accuracy</span>
+0006 <span class="comment">%                m : Number of cells</span>
+0007 <span class="comment">%               dx : Step size</span>
+0008 <span class="comment">% ----------------------------------------------------------------------------</span>
+0009 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0010 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0011 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0012 <span class="comment">% ----------------------------------------------------------------------------</span>
+0013 
+0014     <span class="comment">% Assertions:</span>
+0015     assert(k &gt;= 2, <span class="string">'k &gt;= 2'</span>);
+0016     assert(mod(k, 2) == 0, <span class="string">'k % 2 = 0'</span>);
+0017     assert(m &gt;= 2*k, [<span class="string">'m &gt;= '</span> num2str(2*k) <span class="string">' for k = '</span> num2str(k)]);
+0018 
+0019     G = sparse(m+1, m+2);
+0020 
+0021     <span class="keyword">switch</span> k
+0022         <span class="keyword">case</span> 2
+0023             A = [-8/3 3 -1/3];
+0024             G(1, 1:3) = A; 
+0025             G(<span class="keyword">end</span>, end-2:end) = -fliplr(A);
+0026             <span class="keyword">for</span> i = 2:m
+0027                G(i, i:i+1) = [-1 1];
+0028             <span class="keyword">end</span>
+0029 
+0030         <span class="keyword">case</span> 4
+0031             A = [-352/105  35/8  -35/24 21/40 -5/56; <span class="keyword">...</span>
+0032                    16/105 -31/24  29/24 -3/40  1/168];
+0033             G(1:2, 1:5) = A;
+0034             G(m:m+1, m-2:end) = -rot90(A,2);
+0035             <span class="keyword">for</span> i = 3:m-1
+0036                G(i, i-1:i+2) = [1/24 -9/8 9/8 -1/24];
+0037             <span class="keyword">end</span>
+0038 
+0039         <span class="keyword">case</span> 6
+0040             A = [-13016/3465  693/128  -385/128 693/320 -495/448  385/1152 -63/1408; <span class="keyword">...</span>
+0041                     496/3465 -811/640   449/384 -29/960  -11/448   13/1152 -37/21120; <span class="keyword">...</span>
+0042                      -8/385   179/1920 -153/128 381/320 -101/1344   1/128   -3/7040];
+0043             G(1:3, 1:7) = A;
+0044             G(m-1:m+1, m-4:end) = -rot90(A,2);
+0045             <span class="keyword">for</span> i = 4:m-2
+0046                 G(i, i-2:i+3) = [-3/640 25/384 -75/64 75/64 -25/384 3/640];
+0047             <span class="keyword">end</span>
+0048 
+0049         <span class="keyword">case</span> 8
+0050             A = [-182144/45045     6435/1024    -5005/1024  27027/5120  -32175/7168  25025/9216  -12285/11264  3465/13312   -143/5120; <span class="keyword">...</span>
+0051                    86048/675675 -131093/107520  49087/46080 10973/76800  -4597/21504  4019/27648 -10331/168960 2983/199680 -2621/1612800; <span class="keyword">...</span>
+0052                    -3776/225225    8707/107520 -17947/15360 29319/25600   -533/21504  -263/9216     903/56320  -283/66560    257/537600; <span class="keyword">...</span>
+0053                       32/9009      -543/35840     265/3072  -1233/1024    8625/7168   -775/9216     639/56320  -15/13312       1/21504];
+0054             G(1:4, 1:9) = A;
+0055             G(m-2:m+1, m-6:end) = -rot90(A,2);
+0056             <span class="keyword">for</span> i = 5:m-3
+0057                 G(i, i-3:i+4) = [5/7168 -49/5120 245/3072 -1225/1024 1225/1024 -245/3072 49/5120 -5/7168];
+0058             <span class="keyword">end</span>
+0059     <span class="keyword">end</span>
+0060     G = (1/dx).*G;
+0061 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Mon 03-Mar-2025 04:05:09 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

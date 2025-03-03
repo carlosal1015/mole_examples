@@ -1,0 +1,5 @@
+<map id="MixedBC" name="MixedBC">
+<area shape="rect" id="Node000001" title="Mimetic Mixed Boundary Condition operator." alt="" coords="5,78,80,103"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="10,5,75,30"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,46,45,78,40,78,40,46"/>
+</map>
