@@ -10,3 +10,5 @@ $ git clone git@github.com:carlosal1015/mole_examples.git
 $ cd mole_examples/homework
 $ arara tutorial
 ```
+
+In order to submmit a pull request, see [here](https://github.com/carlosal1015/mole_examples/discussions/11).
