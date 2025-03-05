@@ -16,3 +16,9 @@ git clone https://aur.archlinux.org/libmole.git
 pushd libmole
 makepkg -s --noconfirm
 popd
+
+sudo apt update
+sudo apt upgrade
+sudo apt install cmake libarmadillo-dev libsuperlu-dev libeigen3-dev octave build-essential git libgtest-dev
+git clone https://github.com/csrc-sdsu/mole.git
+cd mole
