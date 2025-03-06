@@ -11,16 +11,24 @@
 \usepackage[ISO]{diffcoeff}
 \usepackage{minted}
 \usepackage{academicons}
+\usepackage{background}
 \usepackage[
-    citestyle=numeric,
-    style=numeric,
-    backend=biber,
+	citestyle=numeric,
+	style=numeric,
+	backend=biber,
 ]{biblatex}
 \usepackage{hyperref}
-\title{\color{DarkBlue}Tutorial for MOLE}
-\subtitle{\color{DarkBlue}based on commit \href{https://github.com/csrc-sdsu/mole/tree/8682eb591409088e0647250c8b027d181abb755c}{\mintinline{bash}|8682eb5|}}
+
+\title{
+	\color{DarkBlue}Tutorial for MOLE
+}
+\subtitle{
+	\color{DarkBlue}
+	based on commit \href{https://github.com/csrc-sdsu/mole/tree/723d18bac90696260bd29b12d04f03605a997557}{\mintinline{bash}|723d18b|}
+}
 \titlehead{\centering
-\href{https://csrc-sdsu.github.io/mole}{\includegraphics[width=.3\paperwidth]{logo.png}}}
+	\href{https://csrc-sdsu.github.io/mole}{\includegraphics[width=.3\paperwidth]{logo.png}}}
+
 \author{
 	Carlos Aznarán\thanks{
 		Universidad Nacional de Ingeniería \\
@@ -33,6 +41,7 @@
 		\href{mailto:aotazu@unap.edu.pe}{\texttt{aotazu\MVAt unap.edu.pe}} \\
 		\textcolor{orcidcolor}{\aiOrcid}~\href{https://orcid.org/0000-0003-4793-0400}{0000-0003-4793-0400}}
 }
+
 \setminted{breaklines=true}
 \setminted[octave]{highlightcolor=yellow!50!white}
 \setminted[cpp]{highlightcolor=yellow!50!white}
@@ -87,5 +96,24 @@
 }
 \ExplSyntaxOff
 
-\mintedpath{{../examples/cpp/}{../examples/octave/}}
+\mintedpath{{../examples/cpp/}{../examples/octave/}{../homework/}}
 \graphicspath{{../homework/}}
+
+\backgroundsetup{
+	scale=1,
+	angle=0,
+	opacity=.1,
+	contents={
+			\ifodd\value{page}
+				\begin{tikzpicture}[remember picture,overlay]
+					\node at ([yshift=11pt,xshift=5pt]current page.center)
+					{\includegraphics[width=8.1cm]{logouni}};
+				\end{tikzpicture}
+			\else
+				\begin{tikzpicture}[remember picture,overlay]
+					\node at ([yshift=11pt,xshift=5pt]current page.center)
+					{\includegraphics[width=8.1cm]{logounap}};
+				\end{tikzpicture}
+			\fi
+		}
+}

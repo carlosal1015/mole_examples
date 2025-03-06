@@ -1,0 +1,4 @@
+[libmole-git]
+source = "git"
+git = "https://github.com/csrc-sdsu/mole"
+use_commit = "true"

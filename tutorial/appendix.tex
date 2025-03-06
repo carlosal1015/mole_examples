@@ -1,32 +1,60 @@
 \appendix
 
-\chapter{Installation over Linux}
+\chapter{Installing MOLE on Linux}
 
-In this section we show the steps in order to get a proper installation of MOLE.
+To work through this tutorial requires to have a working installation
+of the MOLE software.
+It relies on Armadillo~\cite{Sanderson2025}, a fast C++ library for
+numerical linear algebra. % https://gitlab.com/conradsnicta/armadillo-code
+We believe that the best choice to getting started in scientific
+computing is GNU/Linux.
+There are \href{https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg}{several flavours},
+but we show the steps process for Ubuntu
+Linux~\footnote{See~\url{https://help.ubuntu.com/lts/ubuntu-help/index.html}.}
+and Arch Linux~\footnote{See~\url{https://wiki.archlinux.org/title/Pacman/Rosetta}.}
+since both systems were sucessfully tested.
+Let's show the steps in order to get a proper installation of MOLE.
+% \href{https://books.goalkicker.com/LinuxBook}{Linux commands Notes for Professionals book}.
 
-\section{C++ library}
-
-\subsection{Ubuntu Linux}
+\section{Ubuntu Linux}
 
 The user need
 
-\subsection{Arch Linux}
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=18,highlightlines={9,15}]{bash}{installer.sh}
+	\caption{Steps for a system-wide installation both C++ and Octave
+		MOLE libraries vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/homework/installer.sh}{\texttt{installer.sh}} on
+		\href{https://archlinux.org}{Arch Linux}.}
+	\label{code:installer.sh}
+\end{listing}
 
-\section{Documentation}
+\section{Arch Linux}
 
 The only hard dependency is
 \href{https://arma.sourceforge.net/docs.html}{\mintinline{cpp}|armadillo|}.
 The steps are described in the Program~\ref{code:installer.sh}.
 
 \begin{listing}[ht!]
-    \tiny
-    \centering
-    \pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=18,highlightlines={9,15}]{bash}{installer.sh}
-    \caption{Steps for a system-wide installation both C++ and Octave
-        MOLE libraries vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/homework/installer.sh}{\texttt{installer.sh}} on
-        \href{https://archlinux.org}{Arch Linux}.}
-    \label{code:installer.sh}
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=18,highlightlines={9,15}]{bash}{installer.sh}
+	\caption{Steps for a system-wide installation both C++ and Octave
+		MOLE libraries vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/homework/installer.sh}{\texttt{installer.sh}} on
+		\href{https://archlinux.org}{Arch Linux}.}
+	\label{code:installer.sh}
 \end{listing}
+
+\section{Docker image ideal for Windows 11}
+
+%docker pull ghcr.io/carlosal1015/mole_examples/libmole-git
+
+\section{MOLE Documentation}
+
+\section{Getting started with MOLE}
+
+\subsection{Compiling and running the first code}
 
 \chapter{Julia}
 
