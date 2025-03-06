@@ -460,6 +460,24 @@ being in the code: $ L = -alpha*dt*L +speye(size(L))$.\\
 
 
 \section{Convection-diffusion}
+Given the three-dimensional convection diffusion equation
+
+\begin{equation}\label{eq:IBVP3d}
+    \begin{cases}
+        \diffp{u}{t} + \nabla(v u) = \nabla \cdot (D \nabla u),
+                                      & \left(x,y,z,t\right)\in
+        \left(a,b \right)\times\left(c,d \right)\times \left(e,f \right)\times\left(0, \infty \right).     \\
+        u\left(x,0\right)=f(x),
+                                      & x\in
+        \left[a,b\right].                                   \\
+        u\left(a,t\right)= \alpha(t), & t\in
+        \left(0,\infty\right),                              \\
+        u\left(b,t\right)= \beta(t),
+                                      & t\in
+        \left(0,\infty\right),
+    \end{cases}
+\end{equation}
+
 
 \begin{listing}[ht!]
     \tiny
