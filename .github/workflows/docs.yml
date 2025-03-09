@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Docs
         run: |
-          pacman --noconfirm --noprogressbar -Syuq doxygen graphviz git octave python-sphinx_rtd_theme \
+          pacman --noconfirm --noprogressbar -Syuq base-devel doxygen graphviz git octave python-sphinx_rtd_theme \
           python-pillow python-docutils python-sphinxcontrib-bibtex python-altair python-breathe \
           python-myst-parser python-linkify-it-py texlive-binextra texlive-luatex texlive-latexrecommended \
           texlive-fontsrecommended ttf-dejavu texlive-latexextra
@@ -31,7 +31,10 @@ jobs:
           popd
           popd
           mkdir -p docs
-          mv mole/doc/api_docs docs
+          mv mole/doc/doxygen/cpp docs
+          mv mole/doc/api_docs/matlab docs
+          mv mole/doc/sphinx/build/html docs
+          mv mole/doc/sphinx/build/latex/MOLE.pdf docs
 
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v9
