@@ -1,7 +1,8 @@
 Examples based from https://csrc-sdsu.github.io/mole
 
-- [C++ docs](https://carlosal1015.github.io/mole_examples/api_docs/cpp/html)
-- [MATLAB docs](https://carlosal1015.github.io/mole_examples/api_docs/matlab)
+- [General docs](https://carlosal1015.github.io/mole_examples/html)
+- [C++ docs](https://carlosal1015.github.io/mole_examples/cpp/html)
+- [MATLAB docs](https://carlosal1015.github.io/mole_examples/matlab)
 
 In order to generate the `tutorial.pdf`, you should do the following
 
