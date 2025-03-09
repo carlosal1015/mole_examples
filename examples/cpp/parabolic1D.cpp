@@ -1,6 +1,6 @@
 #include <iostream>
-#include <math.h>
-#include <mole/mole.h>
+#include <mole/laplacian.h>
+#include <mole/operators.h>
 /**
  * This example uses MOLE to solve the heat equation u_t-alpha*u_xx=0[with
  * alpha=1] over [0,1]^2, u(x,0)=0 for x in (-1,1), u(1,t)=u(-1,t)=100 for t in
@@ -16,7 +16,8 @@ int main()
   int m = 2 * k + 1; // num of cells
   double dx = (b - a) / m;
   double dt =
-      tf / (ceil((3 * tf) /
+      tf /
+      (std::ceil((3 * tf) /
                  (dx * dx))); // Von Neumann stability criterion for explicit
                               // scheme, if k > 2 then dt/dx^2<0.5.
   /*Note that unlike the matlab example, dt isn't dx^2/3 because if a and b are
@@ -26,10 +27,10 @@ int main()
    *example dt=dx^2/3 like it is in the matlab example.
    */
   Laplacian L(k, m, dx);
-  vec solution(m + 2);
+  arma::vec solution(m + 2);
   solution(0) = 100;
   solution(m + 1) = 100;
-  vec k1(m + 2);
+  arma::vec k1(m + 2);
   double t = t0;
   while (t <= tf) { // time integration with euler method.
     k1 = L * (solution);

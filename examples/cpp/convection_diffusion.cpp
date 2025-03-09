@@ -18,7 +18,8 @@
 #define OUTPUT_FRAME_DATA 0
 
 // Helper for linear indexing in 3D arrays (0-based indexing)
-inline size_t idx3D(size_t i, size_t j, size_t k, size_t m, size_t n, size_t o)
+inline std::size_t idx3D(std::size_t i, std::size_t j, std::size_t k,
+                         std::size_t m, std::size_t n, std::size_t o)
 {
   return i + (m + 2) * j + (m + 2) * (n + 2) * k;
 }
@@ -27,29 +28,29 @@ int main()
 {
   // Parameters
   unsigned short k = 2;
-  unsigned int m = 101;
+  unsigned int m = 51;
   unsigned int n = 51;
-  unsigned int o = 101;
+  unsigned int o = 51;
 
-  double a = 0.0, b = 101.0;
+  double a = 0.0, b = 51.0;
   double c = 0.0, d = 51.0;
-  double e = 0.0, f = 101.0;
+  double e = 0.0, f = 51.0;
 
   double dx = (b - a) / m;
   double dy = (d - c) / n;
   double dz = (f - e) / o;
 
   // Construct operators
-  sp_mat D = Divergence(k, m, n, o, dx, dy, dz);
-  sp_mat G = Gradient(k, m, n, o, dx, dy, dz);
-  sp_mat I = Interpol(m, n, o, 1, 1, 1);
+  arma::sp_mat D = Divergence(k, m, n, o, dx, dy, dz);
+  arma::sp_mat G = Gradient(k, m, n, o, dx, dy, dz);
+  arma::sp_mat I = Interpol(m, n, o, 1, 1, 1);
 
-  size_t scalarSize = (m + 2) * (n + 2) * (o + 2);
-  size_t vectorSize = G.n_rows;
+  std::size_t scalarSize = (m + 2) * (n + 2) * (o + 2);
+  std::size_t vectorSize = G.n_rows;
 
   // Allocate fields
   std::vector<double> V(vectorSize, 0.0);
-  vec C(scalarSize, fill::zeros);
+  arma::vec C(scalarSize, arma::fill::zeros);
 
   // Initial conditions
   int bottom = 10;
@@ -59,7 +60,7 @@ int main()
   int seal5_idx = (seal + 5) - 1;
 
   // Construct the velocity field
-  size_t yCount = m * (n + 1) * o;
+  std::size_t yCount = m * (n + 1) * o;
   std::vector<double> y(yCount, 1.0);
 
   // Apply shale conditions on velocity field
@@ -71,8 +72,8 @@ int main()
   }
 
   // Assign y into V at the correct offset
-  size_t offset = (m + 1) * n * o;
-  for (size_t i_ = 0; i_ < yCount; ++i_) {
+  std::size_t offset = (m + 1) * n * o;
+  for (std::size_t i_ = 0; i_ < yCount; ++i_) {
     if (offset + i_ < V.size()) {
       V[offset + i_] = y[i_];
     }
@@ -82,13 +83,13 @@ int main()
   int mid_x = (int)std::ceil((m + 2) / 2.0) - 1;
   int mid_z = (int)std::ceil((o + 2) / 2.0) - 1;
   for (int j = bottom - 1; j <= top - 1; j++) {
-    size_t idx = idx3D(mid_x, j, mid_z, m, n, o);
+    std::size_t idx = idx3D(mid_x, j, mid_z, m, n, o);
     C(idx) = 1.0;
   }
 
   // Well indices where C=1
-  std::vector<size_t> wellIndices;
-  for (size_t i_ = 0; i_ < scalarSize; ++i_) {
+  std::vector<std::size_t> wellIndices;
+  for (std::size_t i_ = 0; i_ < scalarSize; ++i_) {
     if (C(i_) == 1.0) {
       wellIndices.push_back(i_);
     }
@@ -108,7 +109,7 @@ int main()
       kk[i_ + m * seal5_idx + m * (n + 1) * k_] = diff / 40.0;
     }
   }
-  for (size_t i_ = 0; i_ < yCount; ++i_) {
+  for (std::size_t i_ = 0; i_ < yCount; ++i_) {
     if (offset + i_ < K.size()) {
       K[offset + i_] = kk[i_];
     }
@@ -132,15 +133,17 @@ int main()
   arma::ivec offsets_vec(1);
   offsets_vec(0) = 0;
 
-  sp_mat Kdiag = spdiags(K_arma, offsets_vec, K_arma.n_elem, K_arma.n_elem);
-  sp_mat Vdiag = spdiags(V_arma, offsets_vec, V_arma.n_elem, V_arma.n_elem);
+  arma::sp_mat Kdiag =
+      arma::spdiags(K_arma, offsets_vec, K_arma.n_elem, K_arma.n_elem);
+  arma::sp_mat Vdiag =
+      arma::spdiags(V_arma, offsets_vec, V_arma.n_elem, V_arma.n_elem);
 
-  SizeMat size_identity(D.n_rows, D.n_rows);
-  sp_mat I_sp = speye(size_identity);
+  arma::SizeMat size_identity(D.n_rows, D.n_rows);
+  arma::sp_mat I_sp = arma::speye(size_identity);
 
   // Operators: L and Dadv
-  sp_mat L = dt * D * Kdiag * G + I_sp;
-  sp_mat Dadv = dt * D * Vdiag * I;
+  arma::sp_mat L = dt * D * Kdiag * G + I_sp;
+  arma::sp_mat Dadv = dt * D * Vdiag * I;
 
 #if OUTPUT_FRAME_DATA
   // Open a single file to store selected frames
@@ -154,14 +157,14 @@ int main()
   // Time-stepping loop
   for (int i_ = 1; i_ <= iters * 3; ++i_) {
     // Diffusion step
-    vec Cnew = L * C;
+    arma::vec Cnew = L * C;
     for (auto w : wellIndices) {
       Cnew(w) = 1.0;
     }
     C = Cnew;
 
     // Advection step
-    vec Cadv = Dadv * C;
+    arma::vec Cadv = Dadv * C;
     Cadv = C - Cadv;
     for (auto w : wellIndices) {
       Cadv(w) = 1.0;
@@ -173,7 +176,7 @@ int main()
     frameFile << "FRAME " << i_ << "\n";
     for (int j = 0; j < (int)(n + 2); j++) {
       for (int k_ = 0; k_ < (int)(o + 2); k_++) {
-        size_t idx = idx3D(seal_idx, j, k_, m, n, o);
+        std::size_t idx = idx3D(seal_idx, j, k_, m, n, o);
         frameFile << C(idx);
         if (k_ < (int)(o + 1))
           frameFile << " ";

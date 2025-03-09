@@ -1,6 +1,8 @@
 #include <cmath>
 #include <iostream>
-#include <mole/mole.h>
+#include <mole/laplacian.h>
+// #include <mole/operators.h>
+// #include <mole/robinbc.h>
 #include <numbers>
 
 arma::sp_mat sidedNodalTemp(int m, double dx, const std::string &type)

@@ -7,11 +7,11 @@
 // using the second-order Runge-Kutta (RK2) method. The solution is computed
 // over the time interval [0, 5] with an initial condition y(0) = 2.0.
 
+#include <armadillo>
 #include <cmath>   // For sin()
 #include <fstream> // For file output
 #include <iomanip> // For setprecision
 #include <iostream>
-#include <mole/mole.h>
 #include <sstream> // For string streams
 
 // Function prototype for f(t, y)
@@ -26,8 +26,8 @@ int main()
   int n_steps = static_cast<int>((t_end - t_start) / h) + 1;
 
   // MOLE's vec type for vectors
-  vec t(n_steps); // Time vector
-  vec y(n_steps); // Solution vector
+  arma::vec t(n_steps); // Time vector
+  arma::vec y(n_steps); // Solution vector
 
   // Initial conditions
   t(0) = t_start;
@@ -46,23 +46,27 @@ int main()
     y(i + 1) = y(i) + h * k2;                   // Update solution
   }
 
-  // Print the time and solution values to the standard output
+  // Set the output stream to fixed-point notation with 6 decimal places
   std::cout << std::fixed << std::setprecision(6);
-  for (int i = 0; i < n_steps; ++i) {
-    std::cout << t(i) << " " << y(i) << "\n";
-  }
 
-  // Generate GNUplot script
+  // Create a GNUplot script file
   std::ofstream plot_script("plot.gnu");
   if (!plot_script) {
     std::cerr << "Error: Failed to create GNUplot script.\n";
     return 1;
   }
-
   plot_script << "set title 'RK2 Solution to ODE'\n";
   plot_script << "set xlabel 't'\n";
   plot_script << "set ylabel 'y'\n";
-  plot_script << "plot 'data.txt' using 1:2 with lines title 'RK2 Solution'\n";
+  plot_script << "plot '-' using 1:2 with lines\n";
+
+  // Print the time and solution values to the standard output & gnuplot script
+  for (int i = 0; i < n_steps; ++i) {
+    // output to stdout
+    std::cout << t(i) << " " << y(i) << "\n";
+    // AND output to plot_script (plot.gnu)
+    plot_script << t(i) << " " << y(i) << "\n";
+  }
   plot_script.close();
 
   // Execute GNUplot using the script

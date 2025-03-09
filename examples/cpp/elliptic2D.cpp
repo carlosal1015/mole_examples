@@ -4,9 +4,10 @@
  * The output can be plotted via:
  * gnuplot> plot 'solution' matrix with image
  */
-
 #include <iostream>
-#include <mole/mole.h>
+#include <mole/laplacian.h>
+#include <mole/operators.h>
+#include <mole/robinbc.h>
 
 int main()
 {
@@ -20,19 +21,20 @@ int main()
   L = L + BC;
 
   // Build RHS for system of equations
-  mat rhs(m + 2, n + 2, fill::zeros);
-  rhs.row(0) = 100 * ones(1, n + 2); // Known value at the bottom boundary
+  arma::mat rhs(m + 2, n + 2, arma::fill::zeros);
+  rhs.row(0) = 100 * arma::ones(1, n + 2); // Known value at the bottom boundary
 
   // Solve the system of linear equations
 #ifdef EIGEN
   // Use Eigen only if SuperLU (faster) is not available
-  vec sol = Utils::spsolve_eigen(L, vectorise(rhs));
+  arma::vec sol = Utils::spsolve_eigen(L, vectorise(rhs));
 #else
-  vec sol = spsolve(L, vectorise(rhs)); // Will use SuperLU
+  arma::vec sol;
+  arma::spsolve(sol, L, arma::vectorise(rhs), "lapack"); // Will use SuperLU
 #endif
 
   // Print out the solution
-  cout << reshape(sol, m + 2, n + 2);
+  std::cout << arma::reshape(sol, m + 2, n + 2);
 
   return 0;
 }

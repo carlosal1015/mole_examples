@@ -9,7 +9,10 @@
  */
 
 #include <iomanip>
-#include <mole/mole.h>
+#include <mole/interpol.h>
+#include <mole/laplacian.h>
+#include <mole/operators.h>
+#include <mole/robinbc.h>
 
 int main()
 {
@@ -47,8 +50,8 @@ int main()
       (m + 2) * (n + 2); // Total size for the grid including boundaries
 
   // Hamiltonian definition
-  auto H = [&](const vec &x) {
-    vec result = 0.5 * (L * x);
+  auto H = [&](const arma::vec &x) {
+    arma::vec result = 0.5 * (L * x);
     return result;
   };
 
@@ -59,17 +62,18 @@ int main()
   double A = 2 / Lxy;
 
   // Initialize the wavefunction psi_old
-  mat Psi_grid(m + 2, n + 2, fill::zeros);
+  mat Psi_grid(m + 2, n + 2, arma::fill::zeros);
 
   // Manually pad Psi_grid
   for (int i = 1; i <= m; i++) {
     for (int j = 1; j <= n; j++) {
-      Psi_grid(i, j) = A * sin(kx(nx) * X(i, j)) * sin(ky(ny) * Y(i, j));
+      Psi_grid(i, j) =
+          A * std::sin(kx(nx) * X(i, j)) * std::sin(ky(ny) * Y(i, j));
     }
   }
 
   // Convert to column vector for compatibility
-  vec psi_old = arma::vectorise(Psi_grid); // Convert to column vector
+  arma::vec psi_old = arma::vectorise(Psi_grid); // Convert to column vector
   // Create interpolators
   Interpol I(m, n, 0.5, 0.5);
   Interpol I2(true, m, n, 0.5, 0.5);

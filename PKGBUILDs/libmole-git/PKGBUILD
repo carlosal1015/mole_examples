@@ -33,7 +33,7 @@ pkgver() {
 prepare() {
   sed -i '/^if(POLICY/,+51 s/^/#/' ${_base}/CMakeLists.txt
   sed -i '/^set(LINK_LIBS/,+3 s/^/#/' ${_base}/CMakeLists.txt
-  sed -i '96i set(LINK_LIBS ${ARMADILLO_LIBRARIES} ${OpenBLAS_LIBRARIES} ${LAPACK_LIBRARY} ${SUPERLU_INSTALL_DIR}/lib/libsuperlu.so)' ${_base}/CMakeLists.txt
+  sed -i '96i set(LINK_LIBS ${ARMADILLO_LIBRARIES} ${OpenBLAS_LIBRARIES} ${LAPACK_LIBRARY} ${SUPERLU_INSTALL_DIR}/lib/libsuperlu.so)' ${_base}/CMakeLists.txt # ${EIGEN3_LIBRARIES}
   sed -i '/^include(/,+9 s/^/#/' ${_base}/tests/cpp/CMakeLists.txt
   sed -i 's/^	@pip/	#@pip/' ${_base}/doc/sphinx/Makefile
   mv m2html ${_base}

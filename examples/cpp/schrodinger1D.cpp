@@ -2,9 +2,8 @@
  * This example uses MOLE to solve the 1D Schrodinger equation
  */
 
-#include <algorithm>
 #include <iostream>
-#include <mole/mole.h>
+#include <mole/laplacian.h>
 
 int main()
 {
@@ -22,21 +21,21 @@ int main()
   std::transform(grid.begin(), grid.end(), grid.begin(),
                  [](Real x) { return x * x; });
 
-  sp_mat V(m, m); // Potential energy operator
+  arma::sp_mat V(m, m); // Potential energy operator
   V.diag(0) = grid;
 
   // Hamiltonian
-  sp_mat H = -0.5 * (sp_mat)L + V;
+  arma::sp_mat H = -0.5 * (arma::sp_mat)L + V;
 
-  cx_vec eigval;
-  eig_gen(eigval, (mat)H); // Compute eigenvalues
+  arma::cx_vec eigval;
+  arma::eig_gen(eigval, (arma::mat)H); // Compute eigenvalues
 
-  eigval = sort(eigval);
+  eigval = arma::sort(eigval);
 
-  cout << "Energy levels = [ ";
+  std::cout << "Energy levels = [ ";
   for (int i = 0; i < 4; ++i)
-    cout << real(eigval(i) / eigval(0)) << ' ';
-  cout << "]\n";
+    std::cout << std::real(eigval(i) / eigval(0)) << ' ';
+  std::cout << "]\n";
 
   return 0;
 }

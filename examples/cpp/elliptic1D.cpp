@@ -55,6 +55,7 @@ int main()
   std::cout << "Elapased time with LAPACK: " << elapsed_time << endl;
 #else
   std::cout << "With SuperLU" << std::endl;
+#define ARMA_USE_SUPERLU 1
   arma::superlu_opts opts;
   opts.allow_ugly = true;
   opts.equilibrate = true;
