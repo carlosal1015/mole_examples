@@ -14,12 +14,21 @@ jobs:
     steps:
       - name: Docs
         run: |
-          pacman --noconfirm --noprogressbar -Syuq doxygen graphviz git octave
+          pacman --noconfirm --noprogressbar -Syuq doxygen graphviz git octave python-sphinx_rtd_theme \
+          python-pillow python-docutils python-sphinxcontrib-bibtex python-altair python-breathe \
+          python-myst-parser python-linkify-it-py texlive-binextra texlive-luatex texlive-latexrecommended \
+          texlive-fontsrecommended ttf-dejavu texlive-latexextra
           git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
           pushd mole
           git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
+          sed -i 's/^	@pip/	#@pip/' doc/sphinx/Makefile
           octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/api_docs/matlab', 'global', 'on', 'template', 'blue')"
-          doxygen
+          pushd doc/sphinx/
+          make doc-all
+          pushd build/latex
+          make
+          popd
+          popd
           popd
           mkdir -p docs
           mv mole/doc/api_docs docs
