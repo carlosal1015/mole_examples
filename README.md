@@ -1,6 +1,7 @@
 Examples based from https://csrc-sdsu.github.io/mole
 
 - [MOLE docs](https://carlosal1015.github.io/mole_examples/html)
+- [Old C++ docs](https://carlosal1015.github.io/mole_examples/doxygen/cpp/html/index.html)
 
 In order to generate the `tutorial.pdf`, you should do the following
 
