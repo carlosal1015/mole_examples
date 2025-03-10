@@ -11,19 +11,20 @@ find_package(GTest)
 enable_testing()
 
 add_executable(test1 test1.cpp)
-target_link_libraries(test1 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(test1 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(test2 test2.cpp)
-target_link_libraries(test2 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(test2 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(test3 test3.cpp)
-target_link_libraries(test3 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(test3 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(test4 test4.cpp)
-target_link_libraries(test4 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
+target_link_libraries(test4 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(test5 test5.cpp)
-target_link_libraries(test5 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole)
+target_compile_definitions(test5 PRIVATE LAPACK=1)
+target_link_libraries(test5 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++)
 
 include(GoogleTest)
 gtest_discover_tests(test1)

@@ -2,9 +2,9 @@
  * Poisson accuracy test
  */
 
-#include <mole/operators.h>
-#include <mole/laplacian.h>
 #include <gtest/gtest.h>
+#include <mole/laplacian.h>
+#include <mole/operators.h>
 
 void run_test(int k, arma::vec grid_sizes)
 {
@@ -13,8 +13,7 @@ void run_test(int k, arma::vec grid_sizes)
 
   arma::vec errors(grid_sizes.size());
 
-  for (int i = 0; i < grid_sizes.size(); ++i)
-  {
+  for (int i = 0; i < grid_sizes.size(); ++i) {
     int m = grid_sizes(i);       // Number of cells
     Real dx = (east - west) / m; // Step length
 
@@ -25,8 +24,7 @@ void run_test(int k, arma::vec grid_sizes)
     arma::vec grid(m + 2);
     grid(0) = west;
     grid(1) = west + dx / 2.0;
-    for (int j = 2; j <= m; j++)
-    {
+    for (int j = 2; j <= m; j++) {
       grid(j) = grid(j - 1) + dx;
     }
     grid(m + 1) = east;
@@ -36,18 +34,19 @@ void run_test(int k, arma::vec grid_sizes)
     U(m + 1) = 2 * std::exp(1); // East BC
 
 #ifdef EIGEN
-    vec computed_solution = Utils::spsolve_eigen(L, U);
+    arma::vec computed_solution = Utils::spsolve_eigen(L, U);
+#elif LAPACK
+    arma::vec computed_solution = spsolve(L, U, "lapack"); // Will use LAPACK
 #else
-    vec computed_solution = spsolve(L, U); // Will use SuperLU
+    arma::vec computed_solution = spsolve(L, U); // Will use SuperLU
 #endif
 
-    vec analytical_solution = arma::exp(grid);
+    arma::vec analytical_solution = arma::exp(grid);
     errors(i) = arma::max(arma::abs(computed_solution - analytical_solution));
   }
 
   arma::vec order(errors.size() - 1);
-  for (int i = 0; i < errors.size() - 1; ++i)
-  {
+  for (int i = 0; i < errors.size() - 1; ++i) {
     order(i) = std::log2(errors(i) / errors(i + 1));
     ASSERT_GE(order(i), k - 0.5) << "Poisson Test failed for k = " << k;
   }
@@ -56,8 +55,7 @@ void run_test(int k, arma::vec grid_sizes)
 TEST(PoissonTests, Accuracy)
 {
   arma::vec grid_sizes = {20, 40};
-  for (int k : {2, 4, 6})
-  {
+  for (int k : {2, 4, 6}) {
     run_test(k, grid_sizes);
   }
 }

@@ -1,6 +1,10 @@
 #include <armadillo>
 // #define ARMA_USE_SUPERLU 1
 #include <iostream>
+#include <omp.h>
+
+#pragma omp declare reduction(+ : arma::mat : omp_out += omp_in)               \
+    initializer(omp_priv = omp_orig)
 
 int main()
 {
@@ -27,6 +31,16 @@ int main()
 
   arma::vec grid = arma::regspace(west, 0.01, east);
   std::cout << grid << "\n";
+
+  arma::mat D = arma::randu<arma::mat>(1000, 700);
+  arma::mat X = arma::zeros(700, 700);
+  arma::rowvec point = D.row(0);
+
+#pragma omp parallel shared(D) reduction(+ : X)
+  for (unsigned int i = 0; i < D.n_rows; i++) {
+    arma::rowvec diff = point - D.row(i);
+    X += diff.t() * diff; // Adding the matrices to X here
+  }
 
   return 0;
 }

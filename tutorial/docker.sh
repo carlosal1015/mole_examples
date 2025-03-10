@@ -1,8 +1,6 @@
 #!/bin/bash
 
-docker pull ghcr.io/carlosal1015/mole_examples/libmole-git
-docker pull ghcr.io/carlosal1015/mole_examples/libmole
-
+docker run -it --rm ghcr.io/carlosal1015/mole_examples/libmole-git # or libmole instead of libmole-git
 docker images
 REPOSITORY TAG IMAGE ID CREATED SIZE
 ghcr.io/carlosal1015/mole_examples/libmole-git         latest    a86fb0fef044   3 hours ago    2.16GB

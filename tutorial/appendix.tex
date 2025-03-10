@@ -11,18 +11,17 @@ We explain the step-by-step process for
 \href{https://wiki.archlinux.org/title/Pacman/Rosetta}{Arch Linux}
 and \href{https://help.ubuntu.com/lts/ubuntu-help/index.html}{Ubuntu Linux},
 as both systems have been sucessfully tested by us.
-% but it should be similar for \href{https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg}{other distributions}
 % We believe that the best choice for getting started in scientific computing is GNU/Linux.
 % \href{https://books.goalkicker.com/LinuxBook}{Linux commands Notes for Professionals book}.
 
 \section{Arch Linux}
 
-This distribution is supported by a group of
-\href{https://archlinux.org/people/developers}{developers} and
+This distribution is supported by a proactive group of
+\href{https://archlinux.org/people/developers}{developers},
 \href{https://archlinux.org/people/package-maintainers}{package maintainers}
-volunteers cooperates and it is recommended if you want to have bleeding-edge stable
-software releases.
-The steps are described in the Program~\ref{code:installerarchlinux.sh}.
+and \href{https://archlinux.org/people/support-staff}{support staff}
+that try to provides the latest stable software releases.
+The steps are outlined in the Program~\ref{code:installerarchlinux.sh}.
 
 \begin{listing}[ht!]
 	\tiny
@@ -34,43 +33,124 @@ The steps are described in the Program~\ref{code:installerarchlinux.sh}.
 	\label{code:installerarchlinux.sh}
 \end{listing}
 
+Even if you are using Windows, the
+\href{https://docs.docker.com/desktop/features/wsl}{Docker Desktop WSL 2 backend}
+is ideal for using MOLE via Program~\ref{code:docker.sh} or
+\href{https://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL}{installing Arch Linux on WSL 2} and following
+the Program~\ref{code:installerarchlinux.sh}.
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=7,highlightlines={3}]{bash}{docker.sh}
+	\caption{Pull container based on Arch Linux with set up MOLE
+		library vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/tutorial/docker.sh}{\texttt{docker.sh}}.}
+	\label{code:docker.sh}
+\end{listing}
+
 \section{Ubuntu Linux}
 
-Derived from \href{https://www.debian.org}{Debian} supported by
-\href{https://canonical.com}{Canonical Ltd.} Long Term Support (LTS) each 2 years it has big community.
-The steps are described in the Program~\ref{code:installerubuntu.sh}.
+This \href{https://www.debian.org}{Debian}-derived distribution is
+managed by \href{https://canonical.com}{Canonical Ltd.}
+Each 2 years they launch a Long Term Support(LTS) release.
+The steps are outlined in the Program~\ref{code:installerubuntu.sh}.
 
 \begin{listing}[ht!]
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=25,highlightlines={9,15}]{bash}{installerubuntu.sh}
 	\caption{Steps for a system-wide installation both C++ and Octave
-		MOLE libraries vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/tutorial/installerubuntu.sh}{\texttt{installerubuntu.sh}}.}
+		MOLE library vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/tutorial/installerubuntu.sh}{\texttt{installerubuntu.sh}}.}
 	\label{code:installerubuntu.sh}
 \end{listing}
 
-\section{Docker image ideal for Windows 11}
+\chapter{Documentation}
 
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=10,highlightlines={9}]{bash}{docker.sh}
-	\caption{Steps for a system-wide installation both C++ and Octave
-		MOLE libraries vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/tutorial/docker.sh}{\texttt{docker.sh}}.}
-	\label{code:docker.sh}
-\end{listing}
+We split the documentation in three categories.
 
-\section{MOLE Documentation}
+\section{MOLE documentation}
 
-\section{Getting started with MOLE}
+\begin{description}
+	\item[General docs]
 
-\subsection{Compiling and running the first code}
+	      \url{https://carlosal1015.github.io/mole_examples/html}
 
-\chapter{Julia}
+	\item[C++ docs]
 
-\chapter{Python}
+	      \url{https://carlosal1015.github.io/mole_examples/cpp/html}
 
-\chapter{Fortran}
+	\item[Octave docs]
+
+	      \url{https://carlosal1015.github.io/mole_examples/matlab}
+\end{description}
+
+\section{Programming language documentation}
+
+\begin{itemize}
+	\item \href{https://en.cppreference.com}{C++ docs}
+
+	      \mintinline{cpp}|#include <iostream>|
+
+	      \mintinline{cpp}|#include <cmath>|
+
+	      \mintinline{cpp}|#include <vector>|
+
+	\item \href{https://docs.octave.org}{Octave docs}
+
+	      \mintinline{octave}|addpath("/usr/share/")|
+
+	\item \href{https://www.mathworks.com/help/matlab/index.html}{MATLAB docs}
+\end{itemize}
+
+\section{Linear Algebra software documentation}
+
+\begin{description}
+	\item[Intel MKL docs]
+
+	      \url{https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-documentation.html}
+
+	\item[Openblas docs]
+
+	      \url{http://www.openmathlib.org/OpenBLAS/docs}
+
+	\item[Netlib Lapack docs]
+
+	      \url{https://www.netlib.org/lapack/explore-html}
+
+	\item[SuperLU docs]
+
+	      \url{https://portal.nersc.gov/project/sparse/superlu/superlu_code_html/index.html}
+
+	\item[Eigen docs]
+
+	      \url{https://eigen.tuxfamily.org/dox}
+
+	\item[Armadillo docs]
+	      \url{https://arma.sourceforge.net/docs.html}
+\end{description}
+
+\section{Extra documentation}
+
+\begin{description}
+	\item[Gtest docs]
+
+	      \url{https://google.github.io/googletest}
+
+	\item[SciPy sparse docs]
+
+	      \url{https://docs.scipy.org/doc/scipy/reference/sparse.html}
+
+	\item[Matplotlib docs]
+
+	      \url{https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html}
+
+	\item[H5DF for Python docs]
+	      \url{https://docs.h5py.org/en/stable}
+\end{description}
+
+% \chapter{Julia bindings}
+% \chapter{Python bindings}
+% \chapter{Fortran bindings}
 
 \nocite{*}
 \printbibliography[title={References}]

@@ -1,29 +1,38 @@
 \documentclass[a4paper,abstract=true]{scrreprt}
+
 \usepackage{fontspec}
 \usepackage[svgnames]{xcolor}
+\usepackage[many]{tcolorbox}
 \usepackage{graphicx}
-\usepackage{todonotes}
-\usepackage{mathtools}
-\usepackage{amssymb}
-\usepackage[linesnumbered,ruled,boxed,vlined]{algorithm2e}
-\usepackage{algorithmicx}
-\usepackage{booktabs}
-\usepackage[ISO]{diffcoeff}
-\usepackage{minted}
 \usepackage{academicons}
 \usepackage{background}
+\usepackage{todonotes}
+\usepackage[shortlabels]{enumitem}
+\usepackage{booktabs}
+\usepackage[ISO]{diffcoeff}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{dsfont}
+\usepackage[makeroom]{cancel}
+\usepackage{nicematrix}
+\usepackage{amsthm}
+\usepackage[linesnumbered,ruled,boxed,vlined]{algorithm2e}
+\usepackage{algorithmicx}
+\usepackage{minted}
 \usepackage[
 	citestyle=numeric,
 	style=numeric,
 	backend=biber,
 ]{biblatex}
 \usepackage{hyperref}
+\usepackage{cleveref}
 
 \title{
 	\color{DarkBlue}Tutorial for MOLE
 }
 \subtitle{
-	\color{DarkBlue}
+	\color{NavyBlue}
 	based on commit \href{https://github.com/csrc-sdsu/mole/tree/723d18bac90696260bd29b12d04f03605a997557}{\mintinline{bash}|723d18b|}
 }
 \titlehead{\centering
@@ -96,8 +105,8 @@
 }
 \ExplSyntaxOff
 
-\mintedpath{{../examples/cpp/}{../examples/octave/}{../homework/}}
-\graphicspath{{../homework/}}
+\mintedpath{{../examples/cpp/}{../examples/octave/}{../homework/}{../tests/cpp/}{../tests/octave/}}
+\graphicspath{{../homework/}{../examples/octave/}}
 
 \backgroundsetup{
 	scale=1,
@@ -117,3 +126,71 @@
 			\fi
 		}
 }
+
+\tcbset{
+	defstyle/.style={
+			fonttitle=\bfseries\upshape,
+			arc=0mm,
+			colback=blue!5!white,
+			colframe=blue!75!black
+		},
+	theostyle/.style={
+			fonttitle=\bfseries\upshape,
+			arc=0mm,%fontupper=\slshape,
+			colback=red!10!white,
+			colframe=red!75!black
+		}
+}
+\newtcbtheorem[
+	crefname={definición}{definitions}
+]
+{definition}{Definición}{defstyle}{def}
+
+\newtcbtheorem[
+	crefname={teorema}{theorems}
+]
+{theorem}{Teorema}{theostyle}{thm}
+
+\newtcbtheorem[
+	crefname={ejemplo}{examples}
+]{example}{Ejemplo}{
+	enhanced,
+	frame empty,
+	interior empty,
+	colframe=ForestGreen!50!white,
+	coltitle=ForestGreen!50!black,
+	fonttitle=\bfseries,colbacktitle=ForestGreen!15!white,
+	borderline={0.5mm}{0mm}{ForestGreen!15!white},
+	borderline={0.5mm}{0mm}{ForestGreen!50!white,dashed},
+	attach boxed title to top center={yshift=-2mm},
+	boxed title style={boxrule=0.4pt},
+	varwidth boxed title}{theo}
+
+\theoremstyle{definition}
+\newtheorem{corollary}{Corolario}
+\newtheorem{proposition}{Proposición}
+\newtheorem{axiom}{Axioma}
+\newtheorem{remark}{Observación}
+\newtheorem{note}{Nota}
+\newtheorem{property}{Propiedad}
+\newtheorem{lemma}{Lema}
+
+\tcolorboxenvironment{corollary}{
+	enhanced jigsaw,
+	colframe=cyan,
+	interior hidden,
+	breakable,
+	before skip=10pt,
+	after skip=10pt
+}
+
+\tcolorboxenvironment{proof}{
+	blanker,
+	breakable,
+	left=5mm,
+	before skip=10pt,
+	after skip=10pt,
+	borderline west={1mm}{0pt}{red}
+}
+
+\renewcommand{\qedsymbol}{\(\blacksquare\)}
