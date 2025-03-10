@@ -31,8 +31,7 @@ jobs:
           popd
           popd
           mkdir -p docs
-          mv mole/doc/doxygen/cpp docs
-          mv mole/doc/doxygen/matlab docs
+          mv mole/doc/doxygen docs
           mv mole/doc/sphinx/build/html docs
           mv mole/doc/sphinx/build/latex/MOLE.pdf docs
 
