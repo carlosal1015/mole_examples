@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of addBC1Dlhs</title>
+  <meta name="keywords" content="addBC1Dlhs">
+  <meta name="description" content="This functions uses geometry and boundary type conditions to create">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; addBC1Dlhs.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>addBC1Dlhs
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>This functions uses geometry and boundary type conditions to create</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [Al, Ar] = addBC1Dlhs(k, m, dx, dc, nc) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> This functions uses geometry and boundary type conditions to create
+ modifications of matrix A associated to each of the boundary faces.
+
+ Parameters:
+ output
+        Al : modification of matrix A due to left boundary condition
+        Ar : modification of matrix A due to right boundary condition
+
+ input
+         k : Order of accuracy
+         m : Number of cells
+        dx : Step size
+        dc : Dirichlet coefficient (2x1 vector for left and right vertices, resp.)
+        nc : Neumann coefficient (2x1 vector for left and right vertices, resp.)
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="grad.html" class="code" title="function G = grad(k, m, dx)">grad</a>	Returns a m+1 by m+2 one-dimensional mimetic gradient operator</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addBC1D.html" class="code" title="function [A, b] = addBC1D(A, b, k, m, dx, dc, nc, v)">addBC1D</a>	This function assumes that the unknown u, which represents the discrete</li>
+<li><a href="addBC2Dlhs.html" class="code" title="function [Abcl,Abcr,Abcb,Abct] = addBC2Dlhs(k, m, dx, n, dy, dc, nc)">addBC2Dlhs</a>	This functions uses geometry and boundary type conditions to create</li>
+<li><a href="addBC3Dlhs.html" class="code" title="function [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = addBC3Dlhs(k, m, dx, n, dy, o, dz, dc, nc)">addBC3Dlhs</a>	This functions uses geometry and boundary type conditions to create</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [Al, Ar] = addBC1Dlhs(k, m, dx, dc, nc)</a>
+0002 <span class="comment">% This functions uses geometry and boundary type conditions to create</span>
+0003 <span class="comment">% modifications of matrix A associated to each of the boundary faces.</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% Parameters:</span>
+0006 <span class="comment">% output</span>
+0007 <span class="comment">%        Al : modification of matrix A due to left boundary condition</span>
+0008 <span class="comment">%        Ar : modification of matrix A due to right boundary condition</span>
+0009 <span class="comment">%</span>
+0010 <span class="comment">% input</span>
+0011 <span class="comment">%         k : Order of accuracy</span>
+0012 <span class="comment">%         m : Number of cells</span>
+0013 <span class="comment">%        dx : Step size</span>
+0014 <span class="comment">%        dc : Dirichlet coefficient (2x1 vector for left and right vertices, resp.)</span>
+0015 <span class="comment">%        nc : Neumann coefficient (2x1 vector for left and right vertices, resp.)</span>
+0016 <span class="comment">% ----------------------------------------------------------------------------</span>
+0017 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0018 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0019 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0020 <span class="comment">% ----------------------------------------------------------------------------</span>
+0021 
+0022     <span class="comment">% Dirichlet coefficient</span>
+0023     Al = sparse(m+2, m+2);
+0024     Ar = sparse(m+2, m+2);
+0025     <span class="keyword">if</span> dc(1,1) ~= 0; Al(1,1) = dc(1,1); <span class="keyword">end</span>
+0026     <span class="keyword">if</span> dc(2,1) ~= 0; Ar(<span class="keyword">end</span>,end) = dc(2,1); <span class="keyword">end</span>
+0027 
+0028     <span class="comment">% Neumann coefficient</span>
+0029     Bl = sparse(m+2, m+1);
+0030     Br = sparse(m+2, m+1);
+0031     Gl = <a href="grad.html" class="code" title="function G = grad(k, m, dx)">grad</a>(k, m, dx); 
+0032     Gr = <a href="grad.html" class="code" title="function G = grad(k, m, dx)">grad</a>(k, m, dx); 
+0033     <span class="keyword">if</span> nc(1,1) ~= 0; Bl(1,1) = -nc(1,1); <span class="keyword">end</span>
+0034     <span class="keyword">if</span> nc(2,1) ~= 0; Br(<span class="keyword">end</span>,end) = nc(2,1); <span class="keyword">end</span>  
+0035     
+0036     <span class="comment">% Robin coefficients</span>
+0037     Al = Al + Bl*Gl;
+0038     Ar = Ar + Br*Gr;
+0039 
+0040     <span class="comment">% periodic boundary condition case</span>
+0041     q = find(dc.*dc + nc.*nc,1);
+0042     <span class="keyword">if</span> isempty(q)
+0043         <span class="comment">% u at vertices are equal</span>
+0044         Al(1,1) = 1;
+0045         Al(1,end) = -1;
+0046         <span class="comment">% du/dn at vertices are equal</span>
+0047         B = sparse(m+2, m+1);
+0048         B(1, 1) = -1;
+0049         B(<span class="keyword">end</span>, end) = 1;
+0050         G = <a href="grad.html" class="code" title="function G = grad(k, m, dx)">grad</a>(k, m, dx);
+0051         BC = B*G;
+0052         Ar(<span class="keyword">end</span>,:) = BC(1,:)+BC(<span class="keyword">end</span>,:);
+0053     <span class="keyword">end</span>
+0054 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Mon 10-Mar-2025 02:06:38 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>
