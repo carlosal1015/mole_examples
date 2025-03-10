@@ -1,8 +1,6 @@
 Examples based from https://csrc-sdsu.github.io/mole
 
-- [General docs](https://carlosal1015.github.io/mole_examples/html)
-- [C++ docs](https://carlosal1015.github.io/mole_examples/cpp/html)
-- [MATLAB docs](https://carlosal1015.github.io/mole_examples/matlab)
+- [MOLE docs](https://carlosal1015.github.io/mole_examples/html)
 
 In order to generate the `tutorial.pdf`, you should do the following
 
