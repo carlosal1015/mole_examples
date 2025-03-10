@@ -51,7 +51,7 @@ build() {
     -Wno-dev
   cmake --build build --target mole_C++
   cd ${_base}
-  octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/api_docs/matlab', 'global', 'on', 'template', 'blue')"
+  octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/doxygen/matlab', 'global', 'on', 'template', 'blue')"
   cd doc/sphinx/
   make doc-all
   cd build/latex
@@ -75,7 +75,7 @@ package() {
   mv ${_base}/doc/sphinx/build/html ${pkgdir}/usr/share/doc/${_base}
   mv ${_base}/doc/sphinx/build/latex/MOLE.pdf ${pkgdir}/usr/share/doc/${_base}
   mv ${_base}/doc/doxygen/cpp ${pkgdir}/usr/share/doc/${_base}
-  mv ${_base}/doc/api_docs/matlab ${pkgdir}/usr/share/doc/${_base}
+  mv ${_base}/doc/doxygen/matlab ${pkgdir}/usr/share/doc/${_base}
 
   # install tutorials
   install -d ${pkgdir}/usr/share/doc/${_base}/examples

@@ -22,7 +22,7 @@ jobs:
           pushd mole
           git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
           sed -i 's/^	@pip/	#@pip/' doc/sphinx/Makefile
-          octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/api_docs/matlab', 'global', 'on', 'template', 'blue')"
+          octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/doxygen/matlab', 'global', 'on', 'template', 'blue')"
           pushd doc/sphinx/
           make doc-all
           pushd build/latex
@@ -32,7 +32,7 @@ jobs:
           popd
           mkdir -p docs
           mv mole/doc/doxygen/cpp docs
-          mv mole/doc/api_docs/matlab docs
+          mv mole/doc/doxygen/matlab docs
           mv mole/doc/sphinx/build/html docs
           mv mole/doc/sphinx/build/latex/MOLE.pdf docs
 
