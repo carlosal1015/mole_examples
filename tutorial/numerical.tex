@@ -464,27 +464,62 @@ Given the three-dimensional convection diffusion equation
 
 \begin{equation}\label{eq:IBVP3d}
     \begin{cases}
-        \diffp{u}{t} + \nabla(v u) = \nabla \cdot (D \nabla u),
-                                      & \left(x,y,z,t\right)\in
-        \left(a,b \right)\times\left(c,d \right)\times \left(e,f \right)\times\left(0, \infty \right).     \\
-        u\left(x,0\right)=f(x),
-                                      & x\in
-        \left[a,b\right].                                   \\
-        u\left(a,t\right)= \alpha(t), & t\in
-        \left(0,\infty\right),                              \\
-        u\left(b,t\right)= \beta(t),
-                                      & t\in
-        \left(0,\infty\right),
+        \diffp{u}{t} + \nabla \cdot (\textbf{v} u) = \nabla \cdot (D \nabla u) + R,
+                                      & u \in \Omega, t > 0     \\
+        u\left( \textbf{x},0\right)= \bar{\alpha} ,
+                                      & \textbf{x} \in  \Omega.\\
+        u\left(\textbf{x},t\right)= \bar{\alpha}_{0}, & t >0, \textbf{x} \in \partial  \Omega  
     \end{cases}
 \end{equation}
-
+where  $\Omega$  is the three-dimensional domain with  boundary $\partial  \Omega $.
 
 \begin{listing}[ht!]
     \tiny
     \centering
-    \pathinputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=80,highlightlines={20,29}]{octave}{convection_diffusion.m}
+    \pathinputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=32,highlightlines={20,29}]{octave}{convection_diffusion.m}
     \caption{Programa~\texttt{convection\_diffusion.m}}
     \label{code:convection_diffusion.m}
 \end{listing}
+
+\textbf{Line 11:} The Operator's order of accuracy $k = 2$.\\
+
+\textbf{Line 12:} $m$ is the number of cells on the x-axis, where $m$ can take values ​​$m= 101$.\\
+
+\textbf{Line 13:} $m$ is the number of cells on the y-axis, where $m$ can take values ​​$m= 51$.\\
+
+\textbf{Line 14:} $m$ is the number of cells on the z-axis, where $m$ can take values ​​$m= 101$.\\
+
+\textbf{Line 17 and 18:} The domain on the  x-axis, $a=0 \leq x \leq 101=b$\\
+
+\textbf{Line 19 and 20:} The domain on the  y-axis, $c=0 \leq y \leq 51=d$\\
+
+\textbf{Line 21 and 22:} The domain on the  z-axis, $e=0 \leq x \leq 101=f$\\
+
+\textbf{Line 25:} The spatial step sizes on the x-axis, $ dx = (b-a)/m$, this case $dx = 1$.\\
+
+\textbf{Line 26:} The spatial step sizes on the y-axis, $ dy = (d-c)/n$, this case $dy = 1$.\\
+
+\textbf{Line 27:} The spatial step sizes on the z-axis, $ dz = (f-e)/o$, this case $dz = 1$.\\
+
+\textbf{Line 30:} three-dimensional mimetic divergence operator $div3D(k,m,dx,n,dy,o,dz)=div3D(2,101,1,51,1,101,1)$\\
+
+\textbf{Line 31:} three-dimensional mimetic divergence operator $div3D(k,m,dx,n,dy,o,dz)=div3D(2,101,1,51,1,101,1)$\\
+
+\textbf{Line 32:} three-dimensional mimetic gradient operator $grad3D(k,m,dx,n,dy,o,dz)=grad3D(2,101,1,51,1,101,1)$\\
+
+\textbf{Line 33:} The three-dimensional mimetic interpolation operator 
+ $interpol3D(m, n, o, c1, c2, c3)$.  Where $c1$ : Left interpolation coeff, $c2$ : Bottom interpolation coeff, $c3$ : Front interpolation coeff.\\
+
+
+
+
+
+
+
+
+
+
+
+
 
 \chapter{MOLE Tests}
