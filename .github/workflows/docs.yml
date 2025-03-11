@@ -10,14 +10,14 @@ jobs:
   docs:
     runs-on: ubuntu-24.04
     container: archlinux:latest
+    env:
+      PACKAGES: "make doxygen graphviz git octave python-sphinx_rtd_theme python-pillow python-docutils python-sphinxcontrib-bibtex python-altair python-breathe python-myst-parser python-linkify-it-py texlive-binextra texlive-luatex texlive-latexrecommended texlive-fontsrecommended ttf-dejavu texlive-latexextra"
 
     steps:
       - name: Docs
         run: |
-          pacman --noconfirm --noprogressbar -Syuq base-devel doxygen graphviz git octave python-sphinx_rtd_theme \
-          python-pillow python-docutils python-sphinxcontrib-bibtex python-altair python-breathe \
-          python-myst-parser python-linkify-it-py texlive-binextra texlive-luatex texlive-latexrecommended \
-          texlive-fontsrecommended ttf-dejavu texlive-latexextra
+          pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1
+          pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} \
           git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
           pushd mole
           git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git

@@ -45,7 +45,7 @@ keyfile.toml
 *.avi
 *.pdf
 references
-_minted-*
+_minted*
 *.log
 *.tar.zst
 mole
