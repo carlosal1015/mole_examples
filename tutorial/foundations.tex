@@ -126,6 +126,8 @@ Let $U=\left[a,b\right]$.
 
 \chapter{Numerical Methods for ODEs}
 
+\section{Numerical Solution of Initial Value Problems}
+
 \todo{Only the methods used in the tutorials: Verlett, RK4, Explicit Euler}
 
 Consider the Initial Value Problem
@@ -139,7 +141,7 @@ Consider the Initial Value Problem
 	\end{cases}
 \end{equation*}
 
-\section{Backward Euler Method}
+\subsection{Backward Euler Method}
 % https://www.youtube.com/watch?v=HeVsOss1w78
 \begin{equation*}
 	f\left(t_{n+1},y_{n+1}\right)
@@ -271,7 +273,7 @@ $u\left(x\right)=e^{x}$.
 % \url{https://docs.octave.org/v9.4.0/Basic-Vectorization.html}
 % \url{https://docs.octave.org/v9.4.0/Ordinary-Differential-Equations.html}
 
-\section{Explicit Runge-Kutta 2}
+\subsection{Explicit Runge-Kutta 2}
 % https://www.youtube.com/watch?v=HeVsOss1w78
 \begin{align*}
 	\widetilde{y}_{n+1} & =
@@ -314,9 +316,9 @@ The Butcher table is
 \begin{listing}[ht!]
 	\tiny
 	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=14,highlightlines={11-13}]{cpp}{RK2.cpp}
-	\caption{Program~\texttt{RK2.m}}
-	\label{code:RK2.m}
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=81,highlightlines={41-47}]{cpp}{RK2.cpp}
+	\caption{Program~\texttt{RK2.cpp}}
+	\label{code:RK2.cpp}
 \end{listing}
 
 \begin{figure}[ht!]
@@ -325,7 +327,7 @@ The Butcher table is
 	\caption{Numerical solution by the Runge-Kutta 2 Method.}
 \end{figure}
 
-\section{Explicit Runge-Kutta 4}
+\subsection{Explicit Runge-Kutta 4}
 % https://jonshiach.github.io/ODEs-book/_pages/2.3_RK4_Derivation.html
 % https://www.youtube.com/watch?v=qUe_kR7QoBU
 
@@ -376,9 +378,9 @@ The Butcher table is
 	\caption{Numerical solution by the Runge-Kutta 4 Method.}
 \end{figure}
 
-\section{Verlett}
+\subsection{Verlett}
 
-\chapter{Numerical Solutions of Boundary Value Problems}
+\section{Numerical Solutions of Boundary Value Problems}
 
 \chapter{Numerical Methods for PDEs}
 
@@ -620,97 +622,3 @@ We find the characteristics, i.e., the curves which follow these directions, by 
 \section{Method of separation of variables}
 
 % https://sci-hub.se/10.1137/S0895479801398025
-% https://github.com/nutrik/pymole?tab=readme-ov-file
-
-\section{Getting started with MOLE}
-\subsection{Compiling and running the first code}
-
-\section{Test $1$}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=33,highlightlines={9-19}]{cpp}{test1.cpp}
-	\caption{Program~\texttt{test1.cpp}}
-	\label{code:test1.cpp}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=21,highlightlines={8-19}]{octave}{test1.m}
-	\caption{Program~\texttt{test1.m}}
-	\label{code:test1.m}
-\end{listing}
-
-\section{Test $2$}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=28,highlightlines={9-20}]{cpp}{test2.cpp}
-	\caption{Program~\texttt{test2.cpp}}
-	\label{code:test2.cpp}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=21,highlightlines={8-19}]{octave}{test2.m}
-	\caption{Program~\texttt{test2.m}}
-	\label{code:test2.m}
-\end{listing}
-
-\section{Test $3$}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=27,highlightlines={8-19}]{cpp}{test3.cpp}
-	\caption{Program~\texttt{test3.cpp}}
-	\label{code:test3.cpp}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=21,highlightlines={8-19}]{octave}{test3.m}
-	\caption{Program~\texttt{test3.m}}
-	\label{code:test3.m}
-\end{listing}
-
-\section{Test $4$}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=39,highlightlines={10-39}]{cpp}{test4.cpp}
-	\caption{Program~\texttt{test4.cpp}}
-	\label{code:test4.cpp}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=48,highlightlines={15-44}]{octave}{test4.m}
-	\caption{Program~\texttt{test4.m}}
-	\label{code:test4.m}
-\end{listing}
-
-\section{Test $5$}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=61,highlightlines={9-53}]{cpp}{test5.cpp}
-	\caption{Program~\texttt{test5.cpp}}
-	\label{code:test5.cpp}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=55,highlightlines={10-53}]{octave}{test5.m}
-	\caption{Program~\texttt{test5.m}}
-	\label{code:test5.m}
-\end{listing}
