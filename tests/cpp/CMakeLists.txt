@@ -6,6 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
+# find_package(Eigen3 3.4 REQUIRED NO_MODULE)
+# include_directories(${EIGEN3_INCLUDE_DIRS})
+set(BLA_VENDOR OpenBLAS)
+find_package(BLAS)
+# message(${BLAS_LIBRARIES})
 
 find_package(GTest)
 enable_testing()
@@ -23,8 +28,13 @@ add_executable(test4 test4.cpp)
 target_link_libraries(test4 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(test5 test5.cpp)
-target_compile_definitions(test5 PRIVATE LAPACK=1)
-target_link_libraries(test5 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++)
+# target_compile_definitions(test5 PRIVATE LAPACK=1)
+# target_link_libraries(test5 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++ lapack)
+
+# target_link_libraries(test5 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++ ${BLAS_LIBRARIES} superlu)
+# target_compile_definitions(test5 PRIVATE EIGEN=1)
+# target_link_libraries(test5 GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++ ${BLAS_LIBRARIES})
+# https://gitlab.com/conradsnicta/armadillo-code/-/issues/272
 
 include(GoogleTest)
 gtest_discover_tests(test1)

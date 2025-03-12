@@ -1,7 +1,8 @@
 /**
  * Poisson accuracy test
  */
-
+#define ARMA_DONT_USE_WRAPPER
+// #define ARMA_USE_SUPERLU
 #include <gtest/gtest.h>
 #include <mole/laplacian.h>
 #include <mole/operators.h>
@@ -36,9 +37,9 @@ void run_test(int k, arma::vec grid_sizes)
 #ifdef EIGEN
     arma::vec computed_solution = Utils::spsolve_eigen(L, U);
 #elif LAPACK
-    arma::vec computed_solution = spsolve(L, U, "lapack"); // Will use LAPACK
+    arma::vec computed_solution = arma::spsolve(L, U, "lapack"); // Will use LAPACK
 #else
-    arma::vec computed_solution = spsolve(L, U); // Will use SuperLU
+    arma::vec computed_solution = arma::spsolve(L, U); // Will use SuperLU
 #endif
 
     arma::vec analytical_solution = arma::exp(grid);
