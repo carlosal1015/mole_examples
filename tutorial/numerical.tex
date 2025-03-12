@@ -466,11 +466,12 @@ Given the three-dimensional convection diffusion equation
     \begin{cases}
         \diffp{u}{t} + \nabla \cdot (\textbf{v} u) = \nabla \cdot (D \nabla u) + R,
                                       & u \in \Omega, t > 0     \\
-        u\left( \textbf{x},0\right)= \bar{\alpha} ,
+        u\left( \textbf{x},0\right)= \bar{\alpha},
                                       & \textbf{x} \in  \Omega.\\
         u\left(\textbf{x},t\right)= \bar{\alpha}_{0}, & t >0, \textbf{x} \in \partial  \Omega  
     \end{cases}
 \end{equation}
+
 where  $\Omega$  is the three-dimensional domain with  boundary $\partial  \Omega $.
 
 \begin{listing}[ht!]
@@ -503,11 +504,9 @@ where  $\Omega$  is the three-dimensional domain with  boundary $\partial  \Omeg
 
 \textbf{Line 30:} three-dimensional mimetic divergence operator $div3D(k,m,dx,n,dy,o,dz)=div3D(2,101,1,51,1,101,1)$\\
 
-\textbf{Line 31:} three-dimensional mimetic divergence operator $div3D(k,m,dx,n,dy,o,dz)=div3D(2,101,1,51,1,101,1)$\\
+\textbf{Line 31:} three-dimensional mimetic gradient operator $grad3D(k,m,dx,n,dy,o,dz)=grad3D(2,101,1,51,1,101,1)$\\
 
-\textbf{Line 32:} three-dimensional mimetic gradient operator $grad3D(k,m,dx,n,dy,o,dz)=grad3D(2,101,1,51,1,101,1)$\\
-
-\textbf{Line 33:} The three-dimensional mimetic interpolation operator 
+\textbf{Line 32:} The three-dimensional mimetic interpolation operator 
  $interpol3D(m, n, o, c1, c2, c3)$.  Where $c1$ : Left interpolation coeff, $c2$ : Bottom interpolation coeff, $c3$ : Front interpolation coeff.\\
 
 
