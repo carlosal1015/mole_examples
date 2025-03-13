@@ -66,25 +66,25 @@ The steps are outlined in the Program~\ref{code:installerubuntu.sh}.
 
 \chapter{Documentation}
 
-We split the documentation in three categories.
-
 \section{MOLE documentation}
 
+We split the MOLE documentation in three categories:
+
 \begin{description}
-	\item[General docs]
+	\item[General MOLE documentation]
 
 	      \url{https://carlosal1015.github.io/mole_examples/html}
 
-	\item[C++ docs]
+	\item[C++ MOLE documentation]
 
 	      \url{https://carlosal1015.github.io/mole_examples/doxygen/cpp/html}
 
-	\item[Octave docs]
+	\item[Octave MOLE documentation]
 
 	      \url{https://carlosal1015.github.io/mole_examples/doxygen/matlab}
 \end{description}
 
-\section{Programming language documentation}
+\section{Programming languages documentation}
 
 \begin{itemize}
 	\item \href{https://en.cppreference.com}{C++ docs}
@@ -129,8 +129,6 @@ We split the documentation in three categories.
 	      \url{https://arma.sourceforge.net/docs.html}
 \end{description}
 
-\section{Extra documentation}
-
 \begin{description}
 	\item[Gtest docs]
 
@@ -144,32 +142,46 @@ We split the documentation in three categories.
 
 	      \url{https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html}
 
-	\item[H5DF for Python docs]
+	\item[HDF5 for Python docs]
 	      \url{https://docs.h5py.org/en/stable}
 \end{description}
 
-\chapter{Armadillo Crash Course}
+\chapter{Sparse Linear Algebra software examples}
+
+\section{Armadillo}
 
 We follow this gentle
 \href{https://anderkve.github.io/FYS3150/book/introduction_to_cpp/intro_to_armadillo.html}{\emph{Introduction to Armadillo}}.
 
-\section{Vectors}
+\subsection{Vectors}
 
-\section{Matrices}
+\subsection{Matrices}
 
-\subsection{Dense Matrices}
+\subsubsection{Dense Matrices}
 
-\subsection{Sparse Matrices}
+\subsubsection{Sparse Matrices}
 
-\section{Solvers}
+\subsubsection{Solvers}
 
-\chapter{Julia bindings}
+\section{Eigen}
 
-\chapter{Python bindings}
+\section{SciPy Sparse}
 
-See \href{% https://github.com/nutrik/pymole}{pymole}.
+See \href{https://github.com/nutrik/pymole}{pymole}.
 
-\chapter{Fortran bindings}
+\section{Sparse Arrays Julia}
+
+See \href{https://robertsweeneyblanco.github.io/Programming_for_Mathematical_Applications/content/Sparse_Matrices/Sparse_Matrices_In_Julia.html}{}
+
+\section{Fortran Sparse}
+
+% https://www.intel.com/content/www/us/en/docs/onemkl/developer-reference-fortran/2024-0/inspector-executor-sparse-blas-routines.html
+\section{Sparse Linear Algebra in Rust}
+
+%https://github.com/sparsemat/sprs
+%https://www.nalgebra.org
+
+\section{PETSc sparse matrices in C}
 
 \nocite{*}
 \printbibliography[title={References}]

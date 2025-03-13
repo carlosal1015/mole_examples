@@ -1,9 +1,10 @@
-\documentclass[a4paper,abstract=true]{scrreprt}
+\documentclass[oneside,a5paper,abstract=true,8pt]{scrbook}
 
 \usepackage{fontspec}
 \usepackage[svgnames]{xcolor}
 \usepackage[many]{tcolorbox}
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{academicons}
 \usepackage{background}
 \usepackage{todonotes}
@@ -35,11 +36,11 @@
 
 \subtitle{
 	\color{NavyBlue}
-	based on commit \href{https://github.com/csrc-sdsu/mole/tree/723d18bac90696260bd29b12d04f03605a997557}{\mintinline{bash}|723d18b|}
+	based on commit \href{https://github.com/csrc-sdsu/mole/tree/c7030e6e9a552c5cb08906c55746b46f79c47d18}{\mintinline{bash}|c7030e6|}
 }
 
 \titlehead{\centering
-	\href{https://carlosal1015.github.io/mole_examples/html}{\includegraphics[width=.3\paperwidth]{logo}}
+	\href{https://carlosal1015.github.io/mole_examples/html}{\includegraphics[width=.35\paperwidth]{logo}}
 }
 
 \author{\normalfont\normalsize\scshape
@@ -199,3 +200,4 @@
 }
 
 \renewcommand{\qedsymbol}{\(\blacksquare\)}
+\setcounter{tocdepth}{2}
