@@ -1,9 +1,10 @@
-\documentclass[a4paper,abstract=true]{scrreprt}
+\documentclass[oneside,a5paper,abstract=true,8pt]{scrbook}
 
 \usepackage{fontspec}
 \usepackage[svgnames]{xcolor}
 \usepackage[many]{tcolorbox}
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{academicons}
 \usepackage{background}
 \usepackage{todonotes}
@@ -39,7 +40,7 @@
 }
 
 \titlehead{\centering
-	\href{https://carlosal1015.github.io/mole_examples/html}{\includegraphics[width=.3\paperwidth]{logo}}
+	\href{https://carlosal1015.github.io/mole_examples/html}{\includegraphics[width=.35\paperwidth]{logo}}
 }
 
 \author{\normalfont\normalsize\scshape
@@ -199,3 +200,4 @@
 }
 
 \renewcommand{\qedsymbol}{\(\blacksquare\)}
+\setcounter{tocdepth}{2}
