@@ -28,8 +28,8 @@ add_executable(test4 test4.cpp)
 target_link_libraries(test4 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++)
 
 add_executable(test5 test5.cpp)
-# target_compile_definitions(test5 PRIVATE LAPACK=1)
-# target_link_libraries(test5 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++ lapack)
+target_compile_definitions(test5 PRIVATE LAPACK=1)
+target_link_libraries(test5 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++ lapack)
 
 # target_link_libraries(test5 PUBLIC GTest::gtest_main ${ARMADILLO_LIBRARIES} mole_C++ ${BLAS_LIBRARIES} superlu)
 # target_compile_definitions(test5 PRIVATE EIGEN=1)
