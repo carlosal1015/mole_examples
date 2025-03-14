@@ -22,4 +22,6 @@ cmake \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -Wno-dev
 cmake --build build --target mole_C++
-cmake --build build --target install
+sudo cmake --build build --target install
+sudo install -d /usr/include/mole
+sudo install mole/src/cpp/*.h /usr/include/mole
