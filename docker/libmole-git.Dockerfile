@@ -67,4 +67,3 @@ RUN sudo pacman-key --init && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
-
