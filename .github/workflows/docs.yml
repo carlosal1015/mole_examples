@@ -17,7 +17,7 @@ jobs:
       - name: Docs
         run: |
           pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1
-          pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} \
+          pacman --needed --noconfirm --noprogressbar -S ${PACKAGES}
           git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
           pushd mole
           git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
