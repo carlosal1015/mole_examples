@@ -18,11 +18,10 @@
 \usepackage[ISO]{diffcoeff}
 \usepackage{mathtools}
 \usepackage{amssymb}
-\usepackage{bm}
-\usepackage{dsfont}
 \usepackage[makeroom]{cancel}
 \usepackage{nicematrix}
 \usepackage{amsthm}
+\usepackage{unicode-math}
 \usepackage[linesnumbered,ruled,boxed,vlined]{algorithm2e}
 \usepackage{algorithmicx}
 \usepackage{minted}
@@ -217,5 +216,8 @@
 }
 
 \renewcommand{\qedsymbol}{\(\blacksquare\)}
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
 \KOMAoptions{toc=chapterentrydotfill}
+
+\DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}

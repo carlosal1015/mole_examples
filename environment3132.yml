@@ -8,6 +8,6 @@ dependencies:
   - pip:
       - jupyter-matlab-proxy
       # - matlab_kernel
-      # - matlabengine==24.2.2
+      # - matlabengine==25.1.2
 # variables:
 #   LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$HOME/MATLAB/bin/glnxa64
