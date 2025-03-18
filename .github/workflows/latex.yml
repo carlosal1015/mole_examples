@@ -24,8 +24,7 @@ jobs:
           git sparse-checkout set homework tutorial project examples/cpp examples/octave
           git checkout
           git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
-          ls
-          pwd
+          git clone -q --filter=blob:none --depth=1 https://github.com/nutrik/pymole.git
 
       - uses: addnab/docker-run-action@v3
         with:
