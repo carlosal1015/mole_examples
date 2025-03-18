@@ -1,7 +1,12 @@
 \chapter{Mimetic Operadors List}
 
 \section{Divergence 1D}
+The one-dimensional mimetic divergence operator $div(k,m,k)$, where $k$: order of accuracy, $m$: number of cells and $dx$: step size. The operator $div$ is a matrix of order $m+2$ by $m+1$. Where $k$ can take values $​​2, 4, 6$ and $8$; $m > 2*k+1$, that is:\\
 
+if $k=2$, then the minimum value it takes $m=5$\\
+if $k=4$, then the minimum value it takes $m=9$\\
+if $k=6$, then the minimum value it takes $m=13$\\
+if $k=8$, then the minimum value it takes $m=17$\\
 \begin{listing}[ht!]
 	\tiny
 	\centering
@@ -9,6 +14,23 @@
 	\caption{Program~\texttt{div.m}}
 	\label{code:div.m}
 \end{listing}
+
+
+Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of order 7 by 6.
+
+\begin{equation}
+D= (\frac{1}{dx})\begin{pmatrix}
+0 & 0 & 0 & 0 & 0 & 0\\
+-1 & 1 & 0 & 0 & 0 & 0\\
+0 & -1 & 1 & 0 & 0 & 0\\
+0 & 0 & -1 & 1 & 0 & 0\\
+0 & 0 & 0 & -1 & 1 & 0\\
+0 & 0 & 0 & 0 & -1 & 1\\
+0 & 0 & 0 & 0 & 0 & 0\\
+\end{pmatrix}
+\end{equation} 
+
+
 
 \begin{listing}[ht!]
 	\tiny
