@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C++ API Documentation &mdash; mole 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MATLAB API Documentation" href="matlab_api.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c-api-reference">C++ API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv410Divergence"><code class="docutils literal notranslate"><span class="pre">Divergence</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N10Divergence10DivergenceE3u163u324Real"><code class="docutils literal notranslate"><span class="pre">Divergence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N10Divergence10DivergenceE3u163u323u324Real4Real"><code class="docutils literal notranslate"><span class="pre">Divergence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N10Divergence10DivergenceE3u163u323u323u324Real4Real4Real"><code class="docutils literal notranslate"><span class="pre">Divergence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N10Divergence4getQEv"><code class="docutils literal notranslate"><span class="pre">getQ()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N10Divergence1QE"><code class="docutils literal notranslate"><span class="pre">Q</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv48Gradient"><code class="docutils literal notranslate"><span class="pre">Gradient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Gradient8GradientE3u163u324Real"><code class="docutils literal notranslate"><span class="pre">Gradient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Gradient8GradientE3u163u323u324Real4Real"><code class="docutils literal notranslate"><span class="pre">Gradient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Gradient8GradientE3u163u323u323u324Real4Real4Real"><code class="docutils literal notranslate"><span class="pre">Gradient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Gradient4getPEv"><code class="docutils literal notranslate"><span class="pre">getP()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Gradient1PE"><code class="docutils literal notranslate"><span class="pre">P</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv48Interpol"><code class="docutils literal notranslate"><span class="pre">Interpol</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Interpol8InterpolE3u324Real"><code class="docutils literal notranslate"><span class="pre">Interpol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Interpol8InterpolE3u323u324Real4Real"><code class="docutils literal notranslate"><span class="pre">Interpol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Interpol8InterpolE3u323u323u324Real4Real4Real"><code class="docutils literal notranslate"><span class="pre">Interpol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Interpol8InterpolEb3u324Real"><code class="docutils literal notranslate"><span class="pre">Interpol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Interpol8InterpolEb3u323u324Real4Real"><code class="docutils literal notranslate"><span class="pre">Interpol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N8Interpol8InterpolEb3u323u323u324Real4Real4Real"><code class="docutils literal notranslate"><span class="pre">Interpol()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv49Laplacian"><code class="docutils literal notranslate"><span class="pre">Laplacian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N9Laplacian9LaplacianE3u163u324Real"><code class="docutils literal notranslate"><span class="pre">Laplacian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N9Laplacian9LaplacianE3u163u323u324Real4Real"><code class="docutils literal notranslate"><span class="pre">Laplacian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N9Laplacian9LaplacianE3u163u323u323u324Real4Real4Real"><code class="docutils literal notranslate"><span class="pre">Laplacian()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv47MixedBC"><code class="docutils literal notranslate"><span class="pre">MixedBC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N7MixedBC7MixedBCE3u163u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE"><code class="docutils literal notranslate"><span class="pre">MixedBC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N7MixedBC7MixedBCE3u163u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE"><code class="docutils literal notranslate"><span class="pre">MixedBC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N7MixedBC7MixedBCE3u163u324Real3u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE"><code class="docutils literal notranslate"><span class="pre">MixedBC()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv47RobinBC"><code class="docutils literal notranslate"><span class="pre">RobinBC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N7RobinBC7RobinBCE3u163u324Real4Real4Real"><code class="docutils literal notranslate"><span class="pre">RobinBC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N7RobinBC7RobinBCE3u163u324Real3u324Real4Real4Real"><code class="docutils literal notranslate"><span class="pre">RobinBC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N7RobinBC7RobinBCE3u163u324Real3u324Real3u324Real4Real4Real"><code class="docutils literal notranslate"><span class="pre">RobinBC()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv45Utils"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Utils8meshgridERK3vecRK3vecR3matR3mat"><code class="docutils literal notranslate"><span class="pre">meshgrid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Utils8meshgridERK3vecRK3vecRK3vecR4cubeR4cubeR4cube"><code class="docutils literal notranslate"><span class="pre">meshgrid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Utils6spkronERK6sp_matRK6sp_mat"><code class="docutils literal notranslate"><span class="pre">spkron()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Utils11spjoin_rowsERK6sp_matRK6sp_mat"><code class="docutils literal notranslate"><span class="pre">spjoin_rows()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Utils11spjoin_colsERK6sp_matRK6sp_mat"><code class="docutils literal notranslate"><span class="pre">spjoin_cols()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N5Utils13spsolve_eigenERK6sp_matRK3vec"><code class="docutils literal notranslate"><span class="pre">spsolve_eigen()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44arma"><code class="docutils literal notranslate"><span class="pre">arma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4mlRK10DivergenceRK8Gradient"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4plRK9LaplacianRK7RobinBC"><code class="docutils literal notranslate"><span class="pre">operator+()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4plRK9LaplacianRK7MixedBC"><code class="docutils literal notranslate"><span class="pre">operator+()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4mlRK10DivergenceRK3vec"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4mlRK8GradientRK3vec"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4mlRK9LaplacianRK3vec"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4mlRK8InterpolRK3vec"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c.UTILS_H"><code class="docutils literal notranslate"><span class="pre">UTILS_H</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44Real"><code class="docutils literal notranslate"><span class="pre">Real</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="matlab_api.html">MATLAB API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CODE_OF_CONDUCT.html">Code of Conduct</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">mole</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">C++ API Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/cpp_api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="c-api-documentation">
+<h1>C++ API Documentation<a class="headerlink" href="#c-api-documentation" title="Link to this heading"></a></h1>
+<p>The <strong>MOLE C++ API</strong> provides low-level access to the mimetic operators and boundary condition functions. This section describes the core classes, functions, and examples for utilizing the API in your C++ applications.</p>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Divergence Class</strong>: Handles the computation of divergence operators.</p></li>
+<li><p><strong>Gradient Class</strong>: Computes the gradient of scalar fields.</p></li>
+<li><p><strong>Laplacian Class</strong>: Supports Laplacian operations on grid-based structures.</p></li>
+<li><p><strong>Boundary Conditions</strong>: Manage Dirichlet, Neumann, and Robin boundary conditions.</p></li>
+</ul>
+</section>
+<section id="c-api-reference">
+<h2>C++ API Reference<a class="headerlink" href="#c-api-reference" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv410Divergence">
+<span id="_CPPv310Divergence"></span><span id="_CPPv210Divergence"></span><span id="Divergence"></span><span class="target" id="classDivergence"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Divergence</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><a class="headerlink" href="#_CPPv410Divergence" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;<a class="reference internal" href="#divergence_8h"><span class="std std-ref">divergence.h</span></a>&gt;</em></div>
+<p>Mimetic <a class="reference internal" href="#classDivergence"><span class="std std-ref">Divergence</span></a> operator. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Divergence10DivergenceE3u163u324Real">
+<span id="_CPPv3N10Divergence10DivergenceE3u163u324Real"></span><span id="_CPPv2N10Divergence10DivergenceE3u163u324Real"></span><span id="Divergence::Divergence__u16.u32.Real"></span><span class="target" id="classDivergence_1a9b42c5cfa0067fc9bae525d20e0ef75b"></span><span class="sig-name descname"><span class="n"><span class="pre">Divergence</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Divergence10DivergenceE3u163u324Real" title="Link to this definition"></a><br /></dt>
+<dd><p>1-D Mimetic <a class="reference internal" href="#classDivergence"><span class="std std-ref">Divergence</span></a> Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells </p></li>
+<li><p><strong>dx</strong> – Spacing between cells </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Divergence10DivergenceE3u163u323u324Real4Real">
+<span id="_CPPv3N10Divergence10DivergenceE3u163u323u324Real4Real"></span><span id="_CPPv2N10Divergence10DivergenceE3u163u323u324Real4Real"></span><span id="Divergence::Divergence__u16.u32.u32.Real.Real"></span><span class="target" id="classDivergence_1a2595df5ef9d63e852f47cd7c0097ded8"></span><span class="sig-name descname"><span class="n"><span class="pre">Divergence</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Divergence10DivergenceE3u163u323u324Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>2-D Mimetic <a class="reference internal" href="#classDivergence"><span class="std std-ref">Divergence</span></a> Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>dx</strong> – Spacing between cells in x-direction </p></li>
+<li><p><strong>dy</strong> – Spacing between cells in y-direction </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Divergence10DivergenceE3u163u323u323u324Real4Real4Real">
+<span id="_CPPv3N10Divergence10DivergenceE3u163u323u323u324Real4Real4Real"></span><span id="_CPPv2N10Divergence10DivergenceE3u163u323u323u324Real4Real4Real"></span><span id="Divergence::Divergence__u16.u32.u32.u32.Real.Real.Real"></span><span class="target" id="classDivergence_1a82c536fd470b56a1017ffebadbdbc315"></span><span class="sig-name descname"><span class="n"><span class="pre">Divergence</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">o</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Divergence10DivergenceE3u163u323u323u324Real4Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>3-D Mimetic <a class="reference internal" href="#classDivergence"><span class="std std-ref">Divergence</span></a> Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>o</strong> – Number of cells in z-direction </p></li>
+<li><p><strong>dx</strong> – Spacing between cells in x-direction </p></li>
+<li><p><strong>dy</strong> – Spacing between cells in y-direction </p></li>
+<li><p><strong>dz</strong> – Spacing between cells in z-direction </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10Divergence4getQEv">
+<span id="_CPPv3N10Divergence4getQEv"></span><span id="_CPPv2N10Divergence4getQEv"></span><span id="Divergence::getQ"></span><span class="target" id="classDivergence_1a9ab0da6ee16064012c164592648e66c5"></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getQ</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Divergence4getQEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the weights used in the Mimeitc <a class="reference internal" href="#classDivergence"><span class="std std-ref">Divergence</span></a> Operators. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>for informational purposes only, can be used in constructing new operators. </p>
+</div>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-members">Private Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N10Divergence1QE">
+<span id="_CPPv3N10Divergence1QE"></span><span id="_CPPv2N10Divergence1QE"></span><span id="Divergence::Q__vec"></span><span class="target" id="classDivergence_1aa2de26d9acde7caa7e0d8d409ffe85e7"></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Q</span></span></span><a class="headerlink" href="#_CPPv4N10Divergence1QE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv48Gradient">
+<span id="_CPPv38Gradient"></span><span id="_CPPv28Gradient"></span><span id="Gradient"></span><span class="target" id="classGradient"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Gradient</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><a class="headerlink" href="#_CPPv48Gradient" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;<a class="reference internal" href="#gradient_8h"><span class="std std-ref">gradient.h</span></a>&gt;</em></div>
+<p>Mimetic <a class="reference internal" href="#classGradient"><span class="std std-ref">Gradient</span></a> operator. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Gradient8GradientE3u163u324Real">
+<span id="_CPPv3N8Gradient8GradientE3u163u324Real"></span><span id="_CPPv2N8Gradient8GradientE3u163u324Real"></span><span id="Gradient::Gradient__u16.u32.Real"></span><span class="target" id="classGradient_1a8204a9fe5d8befed006900edd35b68c4"></span><span class="sig-name descname"><span class="n"><span class="pre">Gradient</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Gradient8GradientE3u163u324Real" title="Link to this definition"></a><br /></dt>
+<dd><p>1-D Mimetic <a class="reference internal" href="#classGradient"><span class="std std-ref">Gradient</span></a> Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells </p></li>
+<li><p><strong>dx</strong> – Spacing between cells </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Gradient8GradientE3u163u323u324Real4Real">
+<span id="_CPPv3N8Gradient8GradientE3u163u323u324Real4Real"></span><span id="_CPPv2N8Gradient8GradientE3u163u323u324Real4Real"></span><span id="Gradient::Gradient__u16.u32.u32.Real.Real"></span><span class="target" id="classGradient_1aa11106a1359db938b1f19f2dd3f2347e"></span><span class="sig-name descname"><span class="n"><span class="pre">Gradient</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Gradient8GradientE3u163u323u324Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>2-D Mimetic <a class="reference internal" href="#classGradient"><span class="std std-ref">Gradient</span></a> Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>dx</strong> – Spacing between cells in x-direction </p></li>
+<li><p><strong>dy</strong> – Spacing between cells in y-direction </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Gradient8GradientE3u163u323u323u324Real4Real4Real">
+<span id="_CPPv3N8Gradient8GradientE3u163u323u323u324Real4Real4Real"></span><span id="_CPPv2N8Gradient8GradientE3u163u323u323u324Real4Real4Real"></span><span id="Gradient::Gradient__u16.u32.u32.u32.Real.Real.Real"></span><span class="target" id="classGradient_1a69aa8ea8edca7baed115cec4e2e6317d"></span><span class="sig-name descname"><span class="n"><span class="pre">Gradient</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">o</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Gradient8GradientE3u163u323u323u324Real4Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>3-D Mimetic <a class="reference internal" href="#classGradient"><span class="std std-ref">Gradient</span></a> Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>o</strong> – Number of cells in z-direction </p></li>
+<li><p><strong>dx</strong> – Spacing between cells in x-direction </p></li>
+<li><p><strong>dy</strong> – Spacing between cells in y-direction </p></li>
+<li><p><strong>dz</strong> – Spacing between cells in z-direction </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Gradient4getPEv">
+<span id="_CPPv3N8Gradient4getPEv"></span><span id="_CPPv2N8Gradient4getPEv"></span><span id="Gradient::getP"></span><span class="target" id="classGradient_1a6099174246fa7784d9702b5cf26694d7"></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getP</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Gradient4getPEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the weights used in the Mimeitc <a class="reference internal" href="#classGradient"><span class="std std-ref">Gradient</span></a> Operators. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>for informational purposes only, can be used in constructing new operators. </p>
+</div>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-members">Private Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8Gradient1PE">
+<span id="_CPPv3N8Gradient1PE"></span><span id="_CPPv2N8Gradient1PE"></span><span id="Gradient::P__vec"></span><span class="target" id="classGradient_1af3007d2e1e57ee2a04ea300aa613c520"></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">P</span></span></span><a class="headerlink" href="#_CPPv4N8Gradient1PE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv48Interpol">
+<span id="_CPPv38Interpol"></span><span id="_CPPv28Interpol"></span><span id="Interpol"></span><span class="target" id="classInterpol"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interpol</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><a class="headerlink" href="#_CPPv48Interpol" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;<a class="reference internal" href="#interpol_8h"><span class="std std-ref">interpol.h</span></a>&gt;</em></div>
+<p>Mimetic Interpolator operator. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Interpol8InterpolE3u324Real">
+<span id="_CPPv3N8Interpol8InterpolE3u324Real"></span><span id="_CPPv2N8Interpol8InterpolE3u324Real"></span><span id="Interpol::Interpol__u32.Real"></span><span class="target" id="classInterpol_1a1a3cbc8871f096a37b1e859bdee5d788"></span><span class="sig-name descname"><span class="n"><span class="pre">Interpol</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Interpol8InterpolE3u324Real" title="Link to this definition"></a><br /></dt>
+<dd><p>1-D Mimetic Interpolator Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> – Number of cells </p></li>
+<li><p><strong>c</strong> – Weight for ends, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Interpol8InterpolE3u323u324Real4Real">
+<span id="_CPPv3N8Interpol8InterpolE3u323u324Real4Real"></span><span id="_CPPv2N8Interpol8InterpolE3u323u324Real4Real"></span><span id="Interpol::Interpol__u32.u32.Real.Real"></span><span class="target" id="classInterpol_1a54ae1f315bdaa0eba8176a1ac3756238"></span><span class="sig-name descname"><span class="n"><span class="pre">Interpol</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c1</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Interpol8InterpolE3u323u324Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>2-D Mimetic Interpolator Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>c1</strong> – Weight for ends in x-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+<li><p><strong>c2</strong> – Weight for ends in y-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Interpol8InterpolE3u323u323u324Real4Real4Real">
+<span id="_CPPv3N8Interpol8InterpolE3u323u323u324Real4Real4Real"></span><span id="_CPPv2N8Interpol8InterpolE3u323u323u324Real4Real4Real"></span><span id="Interpol::Interpol__u32.u32.u32.Real.Real.Real"></span><span class="target" id="classInterpol_1a55d895e0f5f190b24bc4a9d9695bcd69"></span><span class="sig-name descname"><span class="n"><span class="pre">Interpol</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">o</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c1</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c2</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Interpol8InterpolE3u323u323u324Real4Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>3-D Mimetic Interpolator Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>o</strong> – Number of cells in z-direction </p></li>
+<li><p><strong>c1</strong> – Weight for ends in x-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+<li><p><strong>c2</strong> – Weight for ends in y-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+<li><p><strong>c3</strong> – Weight for ends in z-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Interpol8InterpolEb3u324Real">
+<span id="_CPPv3N8Interpol8InterpolEb3u324Real"></span><span id="_CPPv2N8Interpol8InterpolEb3u324Real"></span><span id="Interpol::Interpol__b.u32.Real"></span><span class="target" id="classInterpol_1acd04ad5e9add7dccfba468aa4cc821c0"></span><span class="sig-name descname"><span class="n"><span class="pre">Interpol</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Interpol8InterpolEb3u324Real" title="Link to this definition"></a><br /></dt>
+<dd><p>1-D Mimetic Interpolator Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> – Dummy holder to trigger overloaded function </p></li>
+<li><p><strong>m</strong> – Number of cells </p></li>
+<li><p><strong>c</strong> – Weight for ends, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Interpol8InterpolEb3u323u324Real4Real">
+<span id="_CPPv3N8Interpol8InterpolEb3u323u324Real4Real"></span><span id="_CPPv2N8Interpol8InterpolEb3u323u324Real4Real"></span><span id="Interpol::Interpol__b.u32.u32.Real.Real"></span><span class="target" id="classInterpol_1a2efc6e31bcfbd0cac9b1a66b82823491"></span><span class="sig-name descname"><span class="n"><span class="pre">Interpol</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c1</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Interpol8InterpolEb3u323u324Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>2-D Mimetic Interpolator Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> – Dummy holder to trigger overloaded function </p></li>
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>c1</strong> – Weight for ends in x-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+<li><p><strong>c2</strong> – Weight for ends in y-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8Interpol8InterpolEb3u323u323u324Real4Real4Real">
+<span id="_CPPv3N8Interpol8InterpolEb3u323u323u324Real4Real4Real"></span><span id="_CPPv2N8Interpol8InterpolEb3u323u323u324Real4Real4Real"></span><span id="Interpol::Interpol__b.u32.u32.u32.Real.Real.Real"></span><span class="target" id="classInterpol_1a17290c4b037be2725c164516c309b823"></span><span class="sig-name descname"><span class="n"><span class="pre">Interpol</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">o</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c1</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c2</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">c3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8Interpol8InterpolEb3u323u323u324Real4Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>3-D Mimetic Interpolator Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> – Dummy holder to trigger overloaded function </p></li>
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>o</strong> – Number of cells in z-direction </p></li>
+<li><p><strong>c1</strong> – Weight for ends in x-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+<li><p><strong>c2</strong> – Weight for ends in y-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+<li><p><strong>c3</strong> – Weight for ends in z-direction, can be any value from 0.0&lt;=c&lt;=1.0 </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv49Laplacian">
+<span id="_CPPv39Laplacian"></span><span id="_CPPv29Laplacian"></span><span id="Laplacian"></span><span class="target" id="classLaplacian"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Laplacian</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><a class="headerlink" href="#_CPPv49Laplacian" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;<a class="reference internal" href="#laplacian_8h"><span class="std std-ref">laplacian.h</span></a>&gt;</em></div>
+<p>Mimetic <a class="reference internal" href="#classLaplacian"><span class="std std-ref">Laplacian</span></a> operator. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Laplacian9LaplacianE3u163u324Real">
+<span id="_CPPv3N9Laplacian9LaplacianE3u163u324Real"></span><span id="_CPPv2N9Laplacian9LaplacianE3u163u324Real"></span><span id="Laplacian::Laplacian__u16.u32.Real"></span><span class="target" id="classLaplacian_1a93f5709f140e54cfb5e5b1060fb3c304"></span><span class="sig-name descname"><span class="n"><span class="pre">Laplacian</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Laplacian9LaplacianE3u163u324Real" title="Link to this definition"></a><br /></dt>
+<dd><p>1-D Mimetic <a class="reference internal" href="#classLaplacian"><span class="std std-ref">Laplacian</span></a> Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells </p></li>
+<li><p><strong>dx</strong> – Spacing between cells </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Laplacian9LaplacianE3u163u323u324Real4Real">
+<span id="_CPPv3N9Laplacian9LaplacianE3u163u323u324Real4Real"></span><span id="_CPPv2N9Laplacian9LaplacianE3u163u323u324Real4Real"></span><span id="Laplacian::Laplacian__u16.u32.u32.Real.Real"></span><span class="target" id="classLaplacian_1a3d7e3fbdacb97048d2f05045b0ad7db1"></span><span class="sig-name descname"><span class="n"><span class="pre">Laplacian</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Laplacian9LaplacianE3u163u323u324Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>2-D Mimetic <a class="reference internal" href="#classLaplacian"><span class="std std-ref">Laplacian</span></a> Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>dx</strong> – Spacing between cells in x-direction </p></li>
+<li><p><strong>dy</strong> – Spacing between cells in y-direction </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N9Laplacian9LaplacianE3u163u323u323u324Real4Real4Real">
+<span id="_CPPv3N9Laplacian9LaplacianE3u163u323u323u324Real4Real4Real"></span><span id="_CPPv2N9Laplacian9LaplacianE3u163u323u323u324Real4Real4Real"></span><span id="Laplacian::Laplacian__u16.u32.u32.u32.Real.Real.Real"></span><span class="target" id="classLaplacian_1a0de6529680231ec75a13b9ec4ab58a40"></span><span class="sig-name descname"><span class="n"><span class="pre">Laplacian</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">o</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9Laplacian9LaplacianE3u163u323u323u324Real4Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>3-D Mimetic <a class="reference internal" href="#classLaplacian"><span class="std std-ref">Laplacian</span></a> Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells in x-direction </p></li>
+<li><p><strong>n</strong> – Number of cells in y-direction </p></li>
+<li><p><strong>o</strong> – Number of cells in z-direction </p></li>
+<li><p><strong>dx</strong> – Spacing between cells in x-direction </p></li>
+<li><p><strong>dy</strong> – Spacing between cells in y-direction </p></li>
+<li><p><strong>dz</strong> – Spacing between cells in z-direction </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47MixedBC">
+<span id="_CPPv37MixedBC"></span><span id="_CPPv27MixedBC"></span><span id="MixedBC"></span><span class="target" id="classMixedBC"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MixedBC</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><a class="headerlink" href="#_CPPv47MixedBC" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;<a class="reference internal" href="#mixedbc_8h"><span class="std std-ref">mixedbc.h</span></a>&gt;</em></div>
+<p>Mimetic Mixed Boundary Condition operator. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7MixedBC7MixedBCE3u163u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE">
+<span id="_CPPv3N7MixedBC7MixedBCE3u163u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE"></span><span id="_CPPv2N7MixedBC7MixedBCE3u163u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE"></span><span id="MixedBC::MixedBC__u16.u32.Real.ssCR.std::vector:Real:CR.ssCR.std::vector:Real:CR"></span><span class="target" id="classMixedBC_1ad8d4d972fb3fbe62200aaa0534084f2e"></span><span class="sig-name descname"><span class="n"><span class="pre">MixedBC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">left</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_left</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">right</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_right</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7MixedBC7MixedBCE3u163u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE" title="Link to this definition"></a><br /></dt>
+<dd><p>1-D Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells </p></li>
+<li><p><strong>dx</strong> – Spacing between cells </p></li>
+<li><p><strong>left</strong> – Type of boundary condition at the left boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_left</strong> – Coefficients for the left boundary condition </p></li>
+<li><p><strong>right</strong> – Type of boundary condition at the right boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_right</strong> – Coefficients for the right boundary condition </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7MixedBC7MixedBCE3u163u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE">
+<span id="_CPPv3N7MixedBC7MixedBCE3u163u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE"></span><span id="_CPPv2N7MixedBC7MixedBCE3u163u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE"></span><span id="MixedBC::MixedBC__u16.u32.Real.u32.Real.ssCR.std::vector:Real:CR.ssCR.std::vector:Real:CR.ssCR.std::vector:Real:CR.ssCR.std::vector:Real:CR"></span><span class="target" id="classMixedBC_1a94dbf382fbd88bba15cc8427d212a55b"></span><span class="sig-name descname"><span class="n"><span class="pre">MixedBC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">left</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_left</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">right</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_right</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">bottom</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_bottom</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">top</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_top</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7MixedBC7MixedBCE3u163u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE" title="Link to this definition"></a><br /></dt>
+<dd><p>2-D Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells along x-axis </p></li>
+<li><p><strong>dx</strong> – Spacing between cells along x-axis </p></li>
+<li><p><strong>n</strong> – Number of cells along y-axis </p></li>
+<li><p><strong>dy</strong> – Spacing between cells along y-axis </p></li>
+<li><p><strong>left</strong> – Type of boundary condition at the left boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_left</strong> – Coefficients for the left boundary condition </p></li>
+<li><p><strong>right</strong> – Type of boundary condition at the right boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_right</strong> – Coefficients for the right boundary condition </p></li>
+<li><p><strong>bottom</strong> – Type of boundary condition at the bottom boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_bottom</strong> – Coefficients for the bottom boundary condition </p></li>
+<li><p><strong>top</strong> – Type of boundary condition at the top boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_top</strong> – Coefficients for the top boundary condition </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7MixedBC7MixedBCE3u163u324Real3u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE">
+<span id="_CPPv3N7MixedBC7MixedBCE3u163u324Real3u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE"></span><span id="_CPPv2N7MixedBC7MixedBCE3u163u324Real3u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE"></span><span id="MixedBC::MixedBC__u16.u32.Real.u32.Real.u32.Real.ssCR.std::vector:Real:CR.ssCR.std::vector:Real:CR.ssCR.std::vector:Real:CR.ssCR.std::vector:Real:CR.ssCR.std::vector:Real:CR.ssCR.std::vector:Real:CR"></span><span class="target" id="classMixedBC_1a3f2ff6914cddbc8fba77ad91dc8d48a7"></span><span class="sig-name descname"><span class="n"><span class="pre">MixedBC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">o</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dz</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">left</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_left</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">right</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_right</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">bottom</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_bottom</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">top</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_top</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">front</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_front</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">back</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">coeffs_back</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7MixedBC7MixedBCE3u163u324Real3u324Real3u324RealRKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEERKNSt6stringERKNSt6vectorI4RealEE" title="Link to this definition"></a><br /></dt>
+<dd><p>3-D Constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – Order of accuracy </p></li>
+<li><p><strong>m</strong> – Number of cells along x-axis </p></li>
+<li><p><strong>dx</strong> – Spacing between cells along x-axis </p></li>
+<li><p><strong>n</strong> – Number of cells along y-axis </p></li>
+<li><p><strong>dy</strong> – Spacing between cells along y-axis </p></li>
+<li><p><strong>o</strong> – Number of cells along z-axis </p></li>
+<li><p><strong>dz</strong> – Spacing between cells along z-axis </p></li>
+<li><p><strong>left</strong> – Type of boundary condition at the left boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_left</strong> – Coefficients for the left boundary condition </p></li>
+<li><p><strong>right</strong> – Type of boundary condition at the right boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_right</strong> – Coefficients for the right boundary condition </p></li>
+<li><p><strong>bottom</strong> – Type of boundary condition at the bottom boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_bottom</strong> – Coefficients for the bottom boundary condition </p></li>
+<li><p><strong>top</strong> – Type of boundary condition at the top boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_top</strong> – Coefficients for the top boundary condition </p></li>
+<li><p><strong>front</strong> – Type of boundary condition at the front boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_front</strong> – Coefficients for the front boundary condition </p></li>
+<li><p><strong>back</strong> – Type of boundary condition at the back boundary (‘Dirichlet’, ‘Neumann’, ‘Robin’) </p></li>
+<li><p><strong>coeffs_back</strong> – Coefficients for the back boundary condition </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv47RobinBC">
+<span id="_CPPv37RobinBC"></span><span id="_CPPv27RobinBC"></span><span id="RobinBC"></span><span class="target" id="classRobinBC"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RobinBC</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><a class="headerlink" href="#_CPPv47RobinBC" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;<a class="reference internal" href="#robinbc_8h"><span class="std std-ref">robinbc.h</span></a>&gt;</em></div>
+<p>Mimetic Robin Boundary Condition operator. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7RobinBC7RobinBCE3u163u324Real4Real4Real">
+<span id="_CPPv3N7RobinBC7RobinBCE3u163u324Real4Real4Real"></span><span id="_CPPv2N7RobinBC7RobinBCE3u163u324Real4Real4Real"></span><span id="RobinBC::RobinBC__u16.u32.Real.Real.Real"></span><span class="target" id="classRobinBC_1a9760e8a40fb7436f9981d629e8eda46c"></span><span class="sig-name descname"><span class="n"><span class="pre">RobinBC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RobinBC7RobinBCE3u163u324Real4Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>1-D Robin boundary constructor </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – mimetic order of accuracy </p></li>
+<li><p><strong>m</strong> – number of cells in x-dimension </p></li>
+<li><p><strong>dx</strong> – cell width in x-direction </p></li>
+<li><p><strong>a</strong> – Coefficient of the Dirichlet function </p></li>
+<li><p><strong>b</strong> – Coefficient of the Neumann function </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7RobinBC7RobinBCE3u163u324Real3u324Real4Real4Real">
+<span id="_CPPv3N7RobinBC7RobinBCE3u163u324Real3u324Real4Real4Real"></span><span id="_CPPv2N7RobinBC7RobinBCE3u163u324Real3u324Real4Real4Real"></span><span id="RobinBC::RobinBC__u16.u32.Real.u32.Real.Real.Real"></span><span class="target" id="classRobinBC_1a547bb79bb3b07d1f180e365dae4b7947"></span><span class="sig-name descname"><span class="n"><span class="pre">RobinBC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RobinBC7RobinBCE3u163u324Real3u324Real4Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>2-D Robin boundary constructor </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Uses 1-D Robin to build the 2-D operator </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – mimetic order of accuracy </p></li>
+<li><p><strong>m</strong> – number of cells in x-dimension </p></li>
+<li><p><strong>dx</strong> – cell width in x-direction </p></li>
+<li><p><strong>n</strong> – number of cells in y-dimension </p></li>
+<li><p><strong>dy</strong> – cell width in y-direction </p></li>
+<li><p><strong>a</strong> – Coefficient of the Dirichlet function </p></li>
+<li><p><strong>b</strong> – Coefficient of the Neumann function</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7RobinBC7RobinBCE3u163u324Real3u324Real3u324Real4Real4Real">
+<span id="_CPPv3N7RobinBC7RobinBCE3u163u324Real3u324Real3u324Real4Real4Real"></span><span id="_CPPv2N7RobinBC7RobinBCE3u163u324Real3u324Real3u324Real4Real4Real"></span><span id="RobinBC::RobinBC__u16.u32.Real.u32.Real.u32.Real.Real.Real"></span><span class="target" id="classRobinBC_1ab71ad4759eb7d5abf0f0ccfed13c60d9"></span><span class="sig-name descname"><span class="n"><span class="pre">RobinBC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">u16</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dx</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dy</span></span>, <span class="n"><span class="pre">u32</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">o</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">dz</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span>, <a class="reference internal" href="#_CPPv44Real" title="Real"><span class="n"><span class="pre">Real</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RobinBC7RobinBCE3u163u324Real3u324Real3u324Real4Real4Real" title="Link to this definition"></a><br /></dt>
+<dd><p>3-D Robin boundary constructor </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Uses 1-D Robin to build the 3-D operator </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> – mimetic order of accuracy </p></li>
+<li><p><strong>m</strong> – number of cells in x-dimension </p></li>
+<li><p><strong>dx</strong> – cell width in x-direction </p></li>
+<li><p><strong>n</strong> – number of cells in y-dimension </p></li>
+<li><p><strong>dy</strong> – cell width in y-direction </p></li>
+<li><p><strong>o</strong> – number of cells in z-dimension </p></li>
+<li><p><strong>dz</strong> – cell width in z-direction </p></li>
+<li><p><strong>a</strong> – Coefficient of the Dirichlet function </p></li>
+<li><p><strong>b</strong> – Coefficient of the Neumann function</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv45Utils">
+<span id="_CPPv35Utils"></span><span id="_CPPv25Utils"></span><span id="Utils"></span><span class="target" id="classUtils"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Utils</span></span></span><a class="headerlink" href="#_CPPv45Utils" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;<a class="reference internal" href="#utils_8h"><span class="std std-ref">utils.h</span></a>&gt;</em></div>
+<p>Utility Functions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Utils8meshgridERK3vecRK3vecR3matR3mat">
+<span id="_CPPv3N5Utils8meshgridERK3vecRK3vecR3matR3mat"></span><span id="_CPPv2N5Utils8meshgridERK3vecRK3vecR3matR3mat"></span><span id="Utils::meshgrid__vecCR.vecCR.matR.matR"></span><span class="target" id="classUtils_1aa3e71c29029c65932dd1be9db524a177"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">meshgrid</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span>, <span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Utils8meshgridERK3vecRK3vecR3matR3mat" title="Link to this definition"></a><br /></dt>
+<dd><p>An analog to the MATLAB 2D meshgrid operation. </p>
+<p>returns 2-D grid coordinates based on the coordinates contained in vectors x and y. X is a matrix where each row is a copy of x, and Y is a matrix where each column is a copy of y. The grid represented by the coordinates X and Y has length(y) rows and length(x) columns. Key here is the rows is the y-coordinate, and the columns are the x-coordinate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – a vector of x-indices </p></li>
+<li><p><strong>y</strong> – a vector of y-indices </p></li>
+<li><p><strong>X</strong> – a sparse matrix, will be filled by the function </p></li>
+<li><p><strong>Y</strong> – a sparse matrix, will be filled by the function </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Utils8meshgridERK3vecRK3vecRK3vecR4cubeR4cubeR4cube">
+<span id="_CPPv3N5Utils8meshgridERK3vecRK3vecRK3vecR4cubeR4cubeR4cube"></span><span id="_CPPv2N5Utils8meshgridERK3vecRK3vecRK3vecR4cubeR4cubeR4cube"></span><span id="Utils::meshgrid__vecCR.vecCR.vecCR.cubeR.cubeR.cubeR"></span><span class="target" id="classUtils_1ae49c2bff1cd6d9469b1cd7fef823821d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">meshgrid</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">z</span></span>, <span class="n"><span class="pre">cube</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">cube</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Y</span></span>, <span class="n"><span class="pre">cube</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Z</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Utils8meshgridERK3vecRK3vecRK3vecR4cubeR4cubeR4cube" title="Link to this definition"></a><br /></dt>
+<dd><p>An analog to the MATLAB 3D meshgrid operation. </p>
+<p>meshgrid(x,y,z,X,Y,Z) returns 3-D grid coordinates defined by the vectors x, y, and z. The grid represented by X, Y, and Z has size length(y)-by-length(x)-by-length(z).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – a vector of x-indices </p></li>
+<li><p><strong>y</strong> – a vector of y-indices </p></li>
+<li><p><strong>z</strong> – a vector of z-indices </p></li>
+<li><p><strong>X</strong> – a sparse matrix, will be filled by the function </p></li>
+<li><p><strong>Y</strong> – a sparse matrix, will be filled by the function </p></li>
+<li><p><strong>Z</strong> – a sparse matrix, will be filled by the function </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Utils6spkronERK6sp_matRK6sp_mat">
+<span id="_CPPv3N5Utils6spkronERK6sp_matRK6sp_mat"></span><span id="_CPPv2N5Utils6spkronERK6sp_matRK6sp_mat"></span><span id="Utils::spkron__sp_matCR.sp_matCR"></span><span class="target" id="classUtils_1a6f8a5b8b6441b0d15ce7c8326e486658"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spkron</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Utils6spkronERK6sp_matRK6sp_mat" title="Link to this definition"></a><br /></dt>
+<dd><p>A wrappper for implementing a sparse Kroenecker product. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is available in Armadillo &gt;8.0 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – a sparse matrix </p></li>
+<li><p><strong>B</strong> – a sparse matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Utils11spjoin_rowsERK6sp_matRK6sp_mat">
+<span id="_CPPv3N5Utils11spjoin_rowsERK6sp_matRK6sp_mat"></span><span id="_CPPv2N5Utils11spjoin_rowsERK6sp_matRK6sp_mat"></span><span id="Utils::spjoin_rows__sp_matCR.sp_matCR"></span><span class="target" id="classUtils_1a29075e84565397491dce88c1db2779f8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spjoin_rows</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Utils11spjoin_rowsERK6sp_matRK6sp_mat" title="Link to this definition"></a><br /></dt>
+<dd><p>An in place operation for joining two matrices by rows. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is available in Armadillo &gt;8.0 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – a sparse matrix </p></li>
+<li><p><strong>B</strong> – a sparse matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Utils11spjoin_colsERK6sp_matRK6sp_mat">
+<span id="_CPPv3N5Utils11spjoin_colsERK6sp_matRK6sp_mat"></span><span id="_CPPv2N5Utils11spjoin_colsERK6sp_matRK6sp_mat"></span><span id="Utils::spjoin_cols__sp_matCR.sp_matCR"></span><span class="target" id="classUtils_1a02c4cbc4ed5860b69635b480c326cea4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spjoin_cols</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Utils11spjoin_colsERK6sp_matRK6sp_mat" title="Link to this definition"></a><br /></dt>
+<dd><p>An in place operation for joining two matrices by columns. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is available in Armadillo &gt;=8.5 </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – a sparse matrix </p></li>
+<li><p><strong>B</strong> – a sparse matrix</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Utils13spsolve_eigenERK6sp_matRK3vec">
+<span id="_CPPv3N5Utils13spsolve_eigenERK6sp_matRK3vec"></span><span id="_CPPv2N5Utils13spsolve_eigenERK6sp_matRK3vec"></span><span id="Utils::spsolve_eigen__sp_matCR.vecCR"></span><span class="target" id="classUtils_1a390c28ce7358c06eefe7cd12afce6829"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spsolve_eigen</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Utils13spsolve_eigenERK6sp_matRK3vec" title="Link to this definition"></a><br /></dt>
+<dd><p>A wrappper for implementing a sparse solve using Eigen from SuperLU. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function requires the EIGEN to be used when Armadillo is built </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – a sparse matrix LHS of Ax=b </p></li>
+<li><p><strong>b</strong> – a vector for the RHS of Ax=b</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv44arma">
+<span id="_CPPv34arma"></span><span id="_CPPv24arma"></span><span id="arma"></span><span class="target" id="namespacearma"></span><span class="k"><span class="pre">namespace</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arma</span></span></span><a class="headerlink" href="#_CPPv44arma" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="README_8md"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">README.md</span></span></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="divergence_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">divergence.cpp</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#divergence_8h"><span class="std std-ref">divergence.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="divergence_8h"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">divergence.h</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#utils_8h"><span class="std std-ref">utils.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include &lt;cassert&gt;</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="gradient_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">gradient.cpp</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#gradient_8h"><span class="std std-ref">gradient.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="gradient_8h"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">gradient.h</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#utils_8h"><span class="std std-ref">utils.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include &lt;cassert&gt;</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="interpol_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">interpol.cpp</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#interpol_8h"><span class="std std-ref">interpol.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="interpol_8h"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">interpol.h</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#utils_8h"><span class="std std-ref">utils.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include &lt;cassert&gt;</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="laplacian_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">laplacian.cpp</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#laplacian_8h"><span class="std std-ref">laplacian.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="laplacian_8h"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">laplacian.h</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#divergence_8h"><span class="std std-ref">divergence.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#gradient_8h"><span class="std std-ref">gradient.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="mixedbc_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">mixedbc.cpp</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#mixedbc_8h"><span class="std std-ref">mixedbc.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="mixedbc_8h"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">mixedbc.h</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#gradient_8h"><span class="std std-ref">gradient.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="mole_8h"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">mole.h</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#divergence_8h"><span class="std std-ref">divergence.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#gradient_8h"><span class="std std-ref">gradient.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#interpol_8h"><span class="std std-ref">interpol.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#laplacian_8h"><span class="std std-ref">laplacian.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#mixedbc_8h"><span class="std std-ref">mixedbc.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#operators_8h"><span class="std std-ref">operators.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#robinbc_8h"><span class="std std-ref">robinbc.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#utils_8h"><span class="std std-ref">utils.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="operators_8h"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">operators.h</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#interpol_8h"><span class="std std-ref">interpol.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#laplacian_8h"><span class="std std-ref">laplacian.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#mixedbc_8h"><span class="std std-ref">mixedbc.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include “<a class="reference internal" href="#robinbc_8h"><span class="std std-ref">robinbc.h</span></a>”</em></div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4mlRK10DivergenceRK8Gradient">
+<span id="_CPPv3mlRK10DivergenceRK8Gradient"></span><span id="_CPPv2mlRK10DivergenceRK8Gradient"></span><span id="mul-operator__DivergenceCR.GradientCR"></span><span class="target" id="operators_8h_1af587420d81213bb9cf4bdceba8adaec5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410Divergence" title="Divergence"><span class="n"><span class="pre">Divergence</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">div</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48Gradient" title="Gradient"><span class="n"><span class="pre">Gradient</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">grad</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4mlRK10DivergenceRK8Gradient" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4plRK9LaplacianRK7RobinBC">
+<span id="_CPPv3plRK9LaplacianRK7RobinBC"></span><span id="_CPPv2plRK9LaplacianRK7RobinBC"></span><span id="add-operator__LaplacianCR.RobinBCCR"></span><span class="target" id="operators_8h_1ae69e8bf57452fb217205d6eee3478144"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49Laplacian" title="Laplacian"><span class="n"><span class="pre">Laplacian</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lap</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv47RobinBC" title="RobinBC"><span class="n"><span class="pre">RobinBC</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">bc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4plRK9LaplacianRK7RobinBC" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4plRK9LaplacianRK7MixedBC">
+<span id="_CPPv3plRK9LaplacianRK7MixedBC"></span><span id="_CPPv2plRK9LaplacianRK7MixedBC"></span><span id="add-operator__LaplacianCR.MixedBCCR"></span><span class="target" id="operators_8h_1ab33810c53caef35987210a606cb3ed44"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">sp_mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49Laplacian" title="Laplacian"><span class="n"><span class="pre">Laplacian</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lap</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv47MixedBC" title="MixedBC"><span class="n"><span class="pre">MixedBC</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">bc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4plRK9LaplacianRK7MixedBC" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4mlRK10DivergenceRK3vec">
+<span id="_CPPv3mlRK10DivergenceRK3vec"></span><span id="_CPPv2mlRK10DivergenceRK3vec"></span><span id="mul-operator__DivergenceCR.vecCR"></span><span class="target" id="operators_8h_1aa0f3c6d9ffa98e3308f1c654d7cb0d07"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410Divergence" title="Divergence"><span class="n"><span class="pre">Divergence</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">div</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4mlRK10DivergenceRK3vec" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4mlRK8GradientRK3vec">
+<span id="_CPPv3mlRK8GradientRK3vec"></span><span id="_CPPv2mlRK8GradientRK3vec"></span><span id="mul-operator__GradientCR.vecCR"></span><span class="target" id="operators_8h_1a02455656721dcb2948197aa6c053313a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48Gradient" title="Gradient"><span class="n"><span class="pre">Gradient</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">grad</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4mlRK8GradientRK3vec" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4mlRK9LaplacianRK3vec">
+<span id="_CPPv3mlRK9LaplacianRK3vec"></span><span id="_CPPv2mlRK9LaplacianRK3vec"></span><span id="mul-operator__LaplacianCR.vecCR"></span><span class="target" id="operators_8h_1a221ecf61e403f612c8a4811c88038b42"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49Laplacian" title="Laplacian"><span class="n"><span class="pre">Laplacian</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lap</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4mlRK9LaplacianRK3vec" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4mlRK8InterpolRK3vec">
+<span id="_CPPv3mlRK8InterpolRK3vec"></span><span id="_CPPv2mlRK8InterpolRK3vec"></span><span id="mul-operator__InterpolCR.vecCR"></span><span class="target" id="operators_8h_1a25e80adf88a4f071196e7ca1920cd164"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48Interpol" title="Interpol"><span class="n"><span class="pre">Interpol</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">I</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4mlRK8InterpolRK3vec" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="robinbc_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">robinbc.cpp</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#robinbc_8h"><span class="std std-ref">robinbc.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="robinbc_8h"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">robinbc.h</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#gradient_8h"><span class="std std-ref">gradient.h</span></a>”</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="utils_8cpp"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">utils.cpp</span></span></dt>
+<dd><div class="docutils container">
+<em>#include “<a class="reference internal" href="#utils_8h"><span class="std std-ref">utils.h</span></a>”</em></div>
+<div class="docutils container">
+<em>#include &lt;cassert&gt;</em></div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="utils_8h"></span><em><span class="pre">file</span></em> <span class="sig-name descname"><span class="pre">utils.h</span></span></dt>
+<dd><div class="docutils container">
+<em>#include &lt;armadillo&gt;</em></div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.UTILS_H">
+<span class="target" id="utils_8h_1a4f4a6641716bd0f4b9fe38c4f18e6550"></span><span class="sig-name descname"><span class="n"><span class="pre">UTILS_H</span></span></span><a class="headerlink" href="#c.UTILS_H" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv44Real">
+<span id="_CPPv34Real"></span><span id="_CPPv24Real"></span><span class="target" id="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Real</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><a class="headerlink" href="#_CPPv44Real" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="dir_dfdbda394c3f7a3aa55229f33a559c41"></span><em><span class="pre">dir</span></em> <span class="sig-name descname"><span class="pre">src/cpp</span></span></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="dir_68267d1309a1af8e8297ef4c3efbcdba"></span><em><span class="pre">dir</span></em> <span class="sig-name descname"><span class="pre">src</span></span></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="indexpage"></span><em><span class="pre">page</span></em> <span class="sig-name descname"><span class="pre">MOLE:</span> <span class="pre">Mimetic</span> <span class="pre">Operators</span> <span class="pre">Library</span> <span class="pre">Enhanced</span></span></dt>
+<dd><p><span class="target" id="index_1md_README"></span></p>
+<p><em>1: Description </em></p>
+<p>MOLE is a high-quality (C++ &amp; MATLAB/Octave) library that implements high-order mimetic operators to solve partial differential equations. It provides discrete analogs of the most common vector calculus operators: <a class="reference internal" href="#classGradient"><span class="std std-ref">Gradient</span></a>, <a class="reference internal" href="#classDivergence"><span class="std std-ref">Divergence</span></a>, <a class="reference internal" href="#classLaplacian"><span class="std std-ref">Laplacian</span></a>, Bilaplacian, and Curl. These operators (highly sparse matrices) act on staggered grids (uniform, non-uniform, curvilinear) and satisfy local and global conservation laws.</p>
+<p>Mathematics is based on the work of <a class="reference external" href="https://doi.org/10.1016/j.cam.2019.06.042">Corbino and Castillo, 2020</a>. However, the user may find helpful previous publications, such as <a class="reference external" href="https://doi.org/10.1137/S0895479801398025">Castillo and Grone, 2003</a>, in which similar operators were derived using a matrix analysis approach.</p>
+<p><em>2: Licensing </em></p>
+<p>MOLE is distributed under a GNU General Public License; please refer to the <em>LICENSE</em> file for more details.</p>
+<p><em>3: Installation </em></p>
+<p><em>3.1 Packages Required</em></p>
+<p>To install the MOLE library on your system, certain packages must be installed and configured beforehand. The required packages vary by operating system.</p>
+<p>For the macOS, Homebrew needs to be installed to download the required packages. Invoke the following command in the terminal app <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span>
+</pre></div>
+</div>
+</p>
+<p>Remove Java dependencies <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">uninstall</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">dependencies</span> <span class="n">java</span>
+</pre></div>
+</div>
+</p>
+<p>Update Homebrew again <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">update</span>
+</pre></div>
+</div>
+</p>
+<p>If you encounter errors during Homebrew installation, please run the following commands before the installation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo chown -R $(whoami) /usr/local/Cellar
+git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
+</pre></div>
+</div>
+<p><em>3.1.1 CMake</em></p>
+<p><strong>Minimum Version Required</strong>: 3.10</p>
+<p><em>For Ubuntu systems:</em></p>
+<p>sudo apt install cmake <em>For Mac Systems</em></p>
+<p>brew install cmake <em>For Yum-based systems:</em></p>
+<p>sudo yum install cmake</p>
+<p><em>3.1.2 OpenBLAS</em></p>
+<p><strong>Minimum Version Required</strong>: OpenBLAS 0.3.10</p>
+<p><em>For Ubuntu systems:</em></p>
+<p>sudo apt install libopenblas-dev <em>For Mac Systems</em></p>
+<p>brew install openblas <em>For Yum-based systems:</em></p>
+<p>sudo yum install openblas-devel</p>
+<p><em>3.1.3 Eigen3</em></p>
+<p><strong>Minimum Version Required</strong>: eigen-3</p>
+<p><em>For Ubuntu systems</em></p>
+<p>sudo apt install libeigen3-dev <em>For Mac Systems</em></p>
+<p>brew install eigen <em>For Yum-based systems:</em></p>
+<p>sudo yum install eigen3-devel</p>
+<p><em>3.1.4 libomp</em></p>
+<p><em>For Mac Systems</em></p>
+<p>brew install libomp</p>
+<p><em>3.1.5 LAPACK</em></p>
+<p><em>For Mac Systems</em></p>
+<p>brew install lapack</p>
+<p><em>3.2 MOLE Library Installation</em></p>
+<p><strong>Clone the MOLE repository and build the library</strong> <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">csrc</span><span class="o">-</span><span class="n">sdsu</span><span class="o">/</span><span class="n">mole</span><span class="o">.</span><span class="n">git</span>  
+<span class="n">cd</span> <span class="n">mole</span>  
+<span class="n">mkdir</span> <span class="n">build</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">build</span>  
+<span class="n">cmake</span> <span class="o">..</span>
+<span class="n">make</span>
+</pre></div>
+</div>
+ To install the library in a custom location (Eg. home/mole)</p>
+<p>cmake &amp;#8212;install . &amp;#8212;prefix /path/to/location</p>
+<p>To install the library in a previledged location (Eg. /opt/mole)</p>
+<p>sudo cmake &amp;#8212;install . Or</p>
+<p>sudo cmake &amp;#8212;install . &amp;#8212;prefix /path/to/privileged/location </p>
+<p>To run the C++ tests manually, <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">run_tests</span>
+</pre></div>
+</div>
+</p>
+<p>To run the matlab tests manually, <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">run_matlab_tests</span>
+</pre></div>
+</div>
+</p>
+<p>Armadillo and SuperLu will be locally installed in the build directory once the cmake .. command is passed. By following the steps outlined above, you will successfully install the necessary packages and the MOLE library on your system. The library will be installed in the location provided. The tests and examples to be executed will also be built locally inside the build directory.</p>
+<p><em>4: Running Examples &amp; Tests </em></p>
+<p>Here are instructions on how to run the provided examples and tests for both the C++ and MATLAB versions of the library to help you quickly get started with MOLE.</p>
+<p><ul class="simple">
+<li><p><strong>tests/cpp:</strong> These tests, which are automatically executed upon constructing the library’s C++ version, play a crucial role in verifying the correct installation of MOLE and its dependencies. There are four tests in total.</p></li>
+<li><p><strong>tests/matlab:</strong> We encourage MATLAB users to execute these tests before using MOLE by entering the <code class="docutils literal notranslate"><span class="pre">tests/matlab</span></code> directory and executing <code class="docutils literal notranslate"><span class="pre">run_tests.m</span></code> from MATLAB. These tests are analogous to those contained in <code class="docutils literal notranslate"><span class="pre">tests/cpp</span></code>.</p></li>
+<li><p><strong>examples/cpp:</strong> These will be automatically built after calling <code class="docutils literal notranslate"><span class="pre">make</span></code>. We encourage C++ users to make this their entry point to familiarize themselves with this library version. The four examples are self-contained and adequately documented, and they solve typical PDEs.</p></li>
+<li><p><strong>examples/matlab:</strong> Most of our examples are provided in the MATLAB scripting language. Over 30 examples range from linear one-dimensional PDEs to highly nonlinear multidimensional PDEs.</p></li>
+</ul>
+</p>
+<p><em>5: Documentation </em></p>
+<p>For detailed documentation, including API references, tutorials, and examples, please refer to our Documentation Guide.</p>
+<p><strong>NOTE:</strong> Performing non-unary operations involving operands constructed over different grids may lead to unexpected results. While MOLE allows such operations without throwing errors, users must exercise caution when manipulating operators across different grids.</p>
+<p><em>6: Community Guidelines </em></p>
+<p>We welcome contributions to MOLE, whether they involve adding new functionalities, providing examples, addressing existing issues, reporting bugs, or requesting new features. Please refer to our <a class="reference external" href="https://github.com/csrc-sdsu/mole/blob/master/CONTRIBUTING.md">Contribution Guidelines</a> for more details.</p>
+<p><em>7: Citations </em></p>
+<p>Please cite our work if you use MOLE in your research or software. Citations are helpful for the continued development and maintenance of the library <a class="reference external" href="https://doi.org/10.21105/joss.06288"></a></p>
+<p><a class="reference external" href="https://www.mathworks.com/matlabcentral/fileexchange/124870-mole"></a></p>
+<p>Now, some cool pictures obtained with MOLE:</p>
+<p><img alt="../_images/4thOrder.png" src="../_images/4thOrder.png" /><img alt="../_images/4thOrder.png" src="../_images/4thOrder.png" /><img alt="../_images/4thOrder.png" src="../_images/4thOrder.png" /><img alt="../_images/4thOrder.png" src="../_images/4thOrder.png" /><img alt="../_images/4thOrder.png" src="../_images/4thOrder.png" /></p>
+<p><img alt="../_images/4thOrder2.png" src="../_images/4thOrder2.png" /><img alt="../_images/4thOrder2.png" src="../_images/4thOrder2.png" /><img alt="../_images/4thOrder2.png" src="../_images/4thOrder2.png" /><img alt="../_images/4thOrder2.png" src="../_images/4thOrder2.png" /><img alt="../_images/4thOrder2.png" src="../_images/4thOrder2.png" /></p>
+<p><img alt="../_images/4thOrder3.png" src="../_images/4thOrder3.png" /><img alt="../_images/4thOrder3.png" src="../_images/4thOrder3.png" /><img alt="../_images/4thOrder3.png" src="../_images/4thOrder3.png" /><img alt="../_images/4thOrder3.png" src="../_images/4thOrder3.png" /><img alt="../_images/4thOrder3.png" src="../_images/4thOrder3.png" /></p>
+<p><img alt="../_images/grid2.png" src="../_images/grid2.png" /><img alt="../_images/grid2.png" src="../_images/grid2.png" /><img alt="../_images/grid2.png" src="../_images/grid2.png" /><img alt="../_images/grid2.png" src="../_images/grid2.png" /><img alt="../_images/grid2.png" src="../_images/grid2.png" /></p>
+<p><img alt="../_images/grid.png" src="../_images/grid.png" /><img alt="../_images/grid.png" src="../_images/grid.png" /><img alt="../_images/grid.png" src="../_images/grid.png" /><img alt="../_images/grid.png" src="../_images/grid.png" /><img alt="../_images/grid.png" src="../_images/grid.png" /></p>
+<p><img alt="../_images/WavyGrid.png" src="../_images/WavyGrid.png" /><img alt="../_images/WavyGrid.png" src="../_images/WavyGrid.png" /><img alt="../_images/WavyGrid.png" src="../_images/WavyGrid.png" /><img alt="../_images/WavyGrid.png" src="../_images/WavyGrid.png" /><img alt="../_images/WavyGrid.png" src="../_images/WavyGrid.png" /></p>
+<p><img alt="../_images/wave2D.png" src="../_images/wave2D.png" /><img alt="../_images/wave2D.png" src="../_images/wave2D.png" /><img alt="../_images/wave2D.png" src="../_images/wave2D.png" /><img alt="../_images/wave2D.png" src="../_images/wave2D.png" /><img alt="../_images/wave2D.png" src="../_images/wave2D.png" /></p>
+<p><img alt="../_images/burgers.png" src="../_images/burgers.png" /><img alt="../_images/burgers.png" src="../_images/burgers.png" /><img alt="../_images/burgers.png" src="../_images/burgers.png" /><img alt="../_images/burgers.png" src="../_images/burgers.png" /><img alt="../_images/burgers.png" src="../_images/burgers.png" /></p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="matlab_api.html" class="btn btn-neutral float-right" title="MATLAB API Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, CSRC.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

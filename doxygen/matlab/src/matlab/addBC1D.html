@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of addBC1D</title>
+  <meta name="keywords" content="addBC1D">
+  <meta name="description" content="This function assumes that the unknown u, which represents the discrete">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab</a> &gt; addBC1D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>addBC1D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>This function assumes that the unknown u, which represents the discrete</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [A, b] = addBC1D(A, b, k, m, dx, dc, nc, v) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> This function assumes that the unknown u, which represents the discrete
+ solution the continuous second-order 1D PDE operator 
+                                   L U = f, 
+ with continuous boundary condition 
+                              a0 U + b0 dU/dn = g,
+ are given at the 1D cell centers and vertices. Furthermore, all discrete 
+ calculations are performed at the 1D cell centers and vertices.
+
+ The function receives as input quantities associated to the discrete
+ analog of the continuous problem given by the squared linear system 
+                                 A u = b 
+ where A is the discrete analog of L and b is the discrete analog of g,
+ both constructed by the user without boundary conditions.
+ The function output is the modified square linear system 
+                                 A u = b
+ where both A and b include boundary condition information.
+
+ The boundary condition is always one of the following forms:
+
+ For Dirichlet set: a0 not equal zero and b0 = 0.
+ For Neumann set  : a0 = 0 and b0 not equal zero.
+ For Robin set    : both a0 and b0 not equal zero.
+ For Periodic set : both a0 = 0 and b0 = 0.
+
+ For periodic bc, it is assumed that not only u but also du/dn are the same 
+ in both extremes of the domain since a second-order PDE is assumed.
+ 
+ The code assumes the following assertions:
+ assert(k &gt;= 2, 'k &gt;= 2');
+ assert(mod(k, 2) == 0, 'k % 2 = 0');
+ assert(m &gt;= 2*k+1, ['m &gt;= ' num2str(2*k+1) ' for k = ' num2str(k)]);
+
+ Parameters:
+ output
+         A : Linear operator with boundary conditions added
+         b : Right hand side with boundary conditions added
+
+ input
+         A : Linear operator without boundary conditions added
+         b : Right hand side without boundary conditions added
+         k : Order of accuracy
+         m : Number of cells
+        dx : Step size
+        dc : a0 (2x1 vector for left and right vertices, resp.)
+        nc : b0 (2x1 vector for left and right vertices, resp.)
+         v : g (2x1 vector for left and right vertices, resp.)
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addBC1Dlhs.html" class="code" title="function [Al, Ar] = addBC1Dlhs(k, m, dx, dc, nc)">addBC1Dlhs</a>	This functions uses geometry and boundary type conditions to create</li>
+<li><a href="addBC1Drhs.html" class="code" title="function b = addBC1Drhs(b, dc, nc, v, vec)">addBC1Drhs</a>	This function uses the boundary condition type of each vertex and the rhs b</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [A, b] = addBC1D(A, b, k, m, dx, dc, nc, v)</a>
+0002 <span class="comment">% This function assumes that the unknown u, which represents the discrete</span>
+0003 <span class="comment">% solution the continuous second-order 1D PDE operator</span>
+0004 <span class="comment">%                                   L U = f,</span>
+0005 <span class="comment">% with continuous boundary condition</span>
+0006 <span class="comment">%                              a0 U + b0 dU/dn = g,</span>
+0007 <span class="comment">% are given at the 1D cell centers and vertices. Furthermore, all discrete</span>
+0008 <span class="comment">% calculations are performed at the 1D cell centers and vertices.</span>
+0009 <span class="comment">%</span>
+0010 <span class="comment">% The function receives as input quantities associated to the discrete</span>
+0011 <span class="comment">% analog of the continuous problem given by the squared linear system</span>
+0012 <span class="comment">%                                 A u = b</span>
+0013 <span class="comment">% where A is the discrete analog of L and b is the discrete analog of g,</span>
+0014 <span class="comment">% both constructed by the user without boundary conditions.</span>
+0015 <span class="comment">% The function output is the modified square linear system</span>
+0016 <span class="comment">%                                 A u = b</span>
+0017 <span class="comment">% where both A and b include boundary condition information.</span>
+0018 <span class="comment">%</span>
+0019 <span class="comment">% The boundary condition is always one of the following forms:</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% For Dirichlet set: a0 not equal zero and b0 = 0.</span>
+0022 <span class="comment">% For Neumann set  : a0 = 0 and b0 not equal zero.</span>
+0023 <span class="comment">% For Robin set    : both a0 and b0 not equal zero.</span>
+0024 <span class="comment">% For Periodic set : both a0 = 0 and b0 = 0.</span>
+0025 <span class="comment">%</span>
+0026 <span class="comment">% For periodic bc, it is assumed that not only u but also du/dn are the same</span>
+0027 <span class="comment">% in both extremes of the domain since a second-order PDE is assumed.</span>
+0028 <span class="comment">%</span>
+0029 <span class="comment">% The code assumes the following assertions:</span>
+0030 <span class="comment">% assert(k &gt;= 2, 'k &gt;= 2');</span>
+0031 <span class="comment">% assert(mod(k, 2) == 0, 'k % 2 = 0');</span>
+0032 <span class="comment">% assert(m &gt;= 2*k+1, ['m &gt;= ' num2str(2*k+1) ' for k = ' num2str(k)]);</span>
+0033 <span class="comment">%</span>
+0034 <span class="comment">% Parameters:</span>
+0035 <span class="comment">% output</span>
+0036 <span class="comment">%         A : Linear operator with boundary conditions added</span>
+0037 <span class="comment">%         b : Right hand side with boundary conditions added</span>
+0038 <span class="comment">%</span>
+0039 <span class="comment">% input</span>
+0040 <span class="comment">%         A : Linear operator without boundary conditions added</span>
+0041 <span class="comment">%         b : Right hand side without boundary conditions added</span>
+0042 <span class="comment">%         k : Order of accuracy</span>
+0043 <span class="comment">%         m : Number of cells</span>
+0044 <span class="comment">%        dx : Step size</span>
+0045 <span class="comment">%        dc : a0 (2x1 vector for left and right vertices, resp.)</span>
+0046 <span class="comment">%        nc : b0 (2x1 vector for left and right vertices, resp.)</span>
+0047 <span class="comment">%         v : g (2x1 vector for left and right vertices, resp.)</span>
+0048 <span class="comment">% ----------------------------------------------------------------------------</span>
+0049 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0050 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0051 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0052 <span class="comment">% ----------------------------------------------------------------------------</span>
+0053 
+0054     <span class="comment">% verify bc sizes and square linear system</span>
+0055     assert(all(size(dc) == [2 1]), <span class="string">'dc is a 2x1 vector'</span>);
+0056     assert(all(size(nc) == [2 1]), <span class="string">'nc is a 2x1 vector'</span>);
+0057     assert(all(size(v) == [2 1]), <span class="string">'v is a 2x1 vector'</span>);
+0058     assert(size(A,1) == size(A,2), <span class="string">'A is a square matrix'</span>);
+0059     assert(size(A,2) == numel(b), <span class="string">'b size = A columns'</span>);
+0060 
+0061     <span class="comment">% remove first and last rows of A</span>
+0062     vec = sparse(2,1);
+0063     vec(1) = 1;
+0064     vec(2) = size(A,1);
+0065 
+0066     [rows,cols,s] = find(A(vec,:));
+0067     A = A - sparse(vec(rows), cols, s, size(A,1), size(A,2));
+0068 
+0069     <span class="comment">% remove first and last coefficients of right-hand-side vector b</span>
+0070     b(vec) = 0;
+0071     
+0072     [Abcl,Abcr] = <a href="addBC1Dlhs.html" class="code" title="function [Al, Ar] = addBC1Dlhs(k, m, dx, dc, nc)">addBC1Dlhs</a>(k, m, dx, dc, nc);
+0073     A = A + Abcl + Abcr;
+0074     b = <a href="addBC1Drhs.html" class="code" title="function b = addBC1Drhs(b, dc, nc, v, vec)">addBC1Drhs</a>(b, dc, nc, v, vec);
+0075 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Tue 18-Mar-2025 18:53:27 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>
