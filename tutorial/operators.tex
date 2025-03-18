@@ -1,6 +1,8 @@
-\chapter{Mimetic Operadors List}
+\chapter{Core Mimetic Operators}
 
-\section{Divergence 1D}
+\section{Divergence Operator}
+
+\subsection{1D Formulation}
 
 \begin{listing}[ht!]
 	\tiny
@@ -26,7 +28,29 @@
 	\label{code:div1D.py}
 \end{listing}
 
-\section{Gradient 1D}
+\subsection{2D Formulation}
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div2D.m}
+	\caption{Program~\texttt{div2D.m}}
+	\label{code:div2D.m}
+\end{listing}
+
+\subsection{3D Formulation}
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div3D.m}
+	\caption{Program~\texttt{div3D.m}}
+	\label{code:div3D.m}
+\end{listing}
+
+\section{Gradient Operator}
+
+\subsection{1D Formulation}
 
 \begin{listing}[ht!]
 	\tiny
@@ -44,7 +68,37 @@
 	\label{code:gradient.h}
 \end{listing}
 
-\section{Laplacian 1D}
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=100]{python}{grad1D.py}
+	\caption{Program~\texttt{grad1D.py}}
+	\label{code:grad1D.py}
+\end{listing}
+
+\subsection{2D Formulation}
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad2D.m}
+	\caption{Program~\texttt{grad2D.m}}
+	\label{code:grad2D.m}
+\end{listing}
+
+\subsection{3D Formulation}
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad3D.m}
+	\caption{Program~\texttt{grad3D.m}}
+	\label{code:grad3D.m}
+\end{listing}
+
+\section{Laplacian Operator}
+
+\subsection{1D Formulation}
 
 \begin{listing}[ht!]
 	\tiny
@@ -62,37 +116,15 @@
 	\label{code:laplacian.h}
 \end{listing}
 
-\section{Interpolation 1D}
-
 \begin{listing}[ht!]
 	\tiny
 	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol.m}
-	\caption{Program~\texttt{interpol.m}}
-	\label{code:interpol.m}
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=18]{python}{lap1D.py}
+	\caption{Program~\texttt{lap1D.py}}
+	\label{code:lap1D.py}
 \end{listing}
 
-\section{Divergence 2D}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div2D.m}
-	\caption{Program~\texttt{div2D.m}}
-	\label{code:div2D.m}
-\end{listing}
-
-\section{Gradient 2D}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad2D.m}
-	\caption{Program~\texttt{grad2D.m}}
-	\label{code:grad2D.m}
-\end{listing}
-
-\section{Laplacian 2D}
+\subsection{2D Formulation}
 
 \begin{listing}[ht!]
 	\tiny
@@ -102,37 +134,7 @@
 	\label{code:lap2D.m}
 \end{listing}
 
-\section{Interpolation 2D}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol2D.m}
-	\caption{Program~\texttt{interpol2D.m}}
-	\label{code:interpol2D.m}
-\end{listing}
-
-\section{Divergence 3D}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div3D.m}
-	\caption{Program~\texttt{div3D.m}}
-	\label{code:div3D.m}
-\end{listing}
-
-\section{Gradient 3D}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad3D.m}
-	\caption{Program~\texttt{grad3D.m}}
-	\label{code:grad3D.m}
-\end{listing}
-
-\section{Laplacian 3D}
+\subsection{3D Formulation}
 
 \begin{listing}[ht!]
 	\tiny
@@ -142,7 +144,23 @@
 	\label{code:lap3D.m}
 \end{listing}
 
-\section{Interpolation 3D}
+\section{Interpolation Operators}
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol.m}
+	\caption{Program~\texttt{interpol.m}}
+	\label{code:interpol.m}
+\end{listing}
+
+\begin{listing}[ht!]
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol2D.m}
+	\caption{Program~\texttt{interpol2D.m}}
+	\label{code:interpol2D.m}
+\end{listing}
 
 \begin{listing}[ht!]
 	\tiny
@@ -152,33 +170,27 @@
 	\label{code:interpol3D.m}
 \end{listing}
 
-\section{Interpolation 1D from center to nodes}
-
-\section{Interpolation 2D from center to nodes}
-
-\section{Interpolation 3D from center to nodes}
-
-\section{Interpolation 1D from center to faces}
+\subsection{Center $\Longleftrightarrow$ Nodes (1D, 2D, 3D)}
+\subsection{Center $\Longleftrightarrow$ Faces (1D, 2D, 3D)}
+\subsection{Nodes $\Longleftrightarrow$ Faces (1D, 2D, 3D)}
 
 % interpolCentersToFacesD1D.m
+% \section{Interpolation 1D from center to nodes}
+% \section{Interpolation 2D from center to nodes}
+% \section{Interpolation 3D from center to nodes}
+% \section{Interpolation 1D from center to faces}
+% \section{Interpolation 2D from center to faces}
+% \section{Interpolation 3D from center to faces}
+% \section{Interpolation 1D from nodes to center}
+% \section{Interpolation 2D from nodes to center}
+% \section{Interpolation 3D from nodes to center}
+% \section{Interpolation 1D from faces to center}
+% \section{Interpolation 2D from faces to center}
+% \section{Interpolation 3D from faces to center}
 
-\section{Interpolation 2D from center to faces}
+\section{Boundary Condition Implementation}
 
-\section{Interpolation 3D from center to faces}
-
-\section{Interpolation 1D from nodes to center}
-
-\section{Interpolation 2D from nodes to center}
-
-\section{Interpolation 3D from nodes to center}
-
-\section{Interpolation 1D from faces to center}
-
-\section{Interpolation 2D from faces to center}
-
-\section{Interpolation 3D from faces to center}
-
-\section{Add Boundary Conditions 1D}
+\subsection{1D Boundary Handling}
 
 \begin{listing}[ht!]
 	\tiny
@@ -187,3 +199,5 @@
 	\caption{Program~\texttt{addBC1D.m}}
 	\label{code:addBC1D.m}
 \end{listing}
+
+\subsection{2D/3D Boundary Handling}

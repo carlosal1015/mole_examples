@@ -1,14 +1,19 @@
-\part{Tests Cases in MOLE}
+\part{Validation and Test Cases}
 
-\chapter{Divergence}
+\chapter{Operator Validation}
 
-\section{Introduction and Objectives}
+\section{Divergence Operator Tests}
 
-\section{Background and Goals}
+\subsection{Test 1: Accuracy in 1D}
+\subsection{Test 2: Conservation in 2D}
+\subsection{Test 3: Boundary Compliance in 3D}
+\section{Gradient and Laplacian Tests}
+\section{Interpolation Robustness Checks}
+\section{Application-Driven Tests}
+\subsection{Stability Analysis for PDE Solvers}
+\subsection{Performance Benchmarking}
 
 MOLE uses \href{https://google.github.io/googletest}{GoogleTest} framework.
-
-\section{Test $1$}
 
 \begin{listing}[ht!]
 	\tiny
@@ -26,8 +31,6 @@ MOLE uses \href{https://google.github.io/googletest}{GoogleTest} framework.
 	\label{code:test1.m}
 \end{listing}
 
-\section{Test $2$}
-
 \begin{listing}[ht!]
 	\tiny
 	\centering
@@ -43,8 +46,6 @@ MOLE uses \href{https://google.github.io/googletest}{GoogleTest} framework.
 	\caption{Program~\texttt{test2.m}}
 	\label{code:test2.m}
 \end{listing}
-
-\section{Test $3$}
 
 \begin{listing}[ht!]
 	\tiny
@@ -62,8 +63,6 @@ MOLE uses \href{https://google.github.io/googletest}{GoogleTest} framework.
 	\label{code:test3.m}
 \end{listing}
 
-\section{Test $4$}
-
 \begin{listing}[ht!]
 	\tiny
 	\centering
@@ -79,8 +78,6 @@ MOLE uses \href{https://google.github.io/googletest}{GoogleTest} framework.
 	\caption{Program~\texttt{test4.m}}
 	\label{code:test4.m}
 \end{listing}
-
-\section{Test $5$}
 
 \begin{listing}[ht!]
 	\tiny

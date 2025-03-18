@@ -1,18 +1,22 @@
-\part{Numerical Exercises}
+\part{Practical Exercises with MOLE}
 
 \chapter{Getting started with MOLE}
 
 The official website is \url{https://csrc-sdsu.github.io/mole}.
-After skimming the description and reading the papers you will find out that this method never uses a ghost points.
-
+After skimming the description and reading the papers you will find
+out that this method never uses a ghost points.
 
 \url{https://www.csrc.sdsu.edu/research-reports}
 
-\section{Compiling and running the first code}
+\section{Installation and Setup}
 
-\subsection{Create the staggered grid}
+\section{Compiling and running Your First Simulation}
 
-\section{Transport 1D}
+% \subsection{Create the staggered grid}
+
+\chapter{1D Numerical Exercises}
+
+\section{Transport Equation in 1D}
 
 \begin{equation*}
     \diffp{u}{t}+c\diffp{u}{x}=
@@ -27,7 +31,7 @@ After skimming the description and reading the papers you will find out that thi
     \label{code:hyperbolic1Dupwind.cpp}
 \end{listing}
 
-\section{Poisson 1D}
+\section{Poisson Equation in 1D}
 
 \begin{listing}[ht!]
     \tiny
@@ -275,7 +279,7 @@ Por último, mostramos la tabla de los errores y el orden de convergencia numér
 \end{table}
 
 
-\section{The 1D Diffusion Equation}
+\section{Diffusion Equation in 1D}
 
 Given the one-dimensional heat equation
 
@@ -460,7 +464,12 @@ being in the code: $ L = -alpha*dt*L +speye(size(L))$.\\
 
 \textbf{Line 68:} In this line solve the $u^{n+1} =(dL)^{-1}*u^{n}$, thus finding the solution $U=dL \setminus U$.\\
 
+\section{Convection-Diffusion Equation in 1D}
 
+\chapter{2D/3D Numerical Exercises}
+\section{Extending Operators to Higher Dimensions}
+\section{Case Study: Heat Transfer in 2D}
+\section{Case Study: Fluid Flow in 3D}
 
 \section{Convection-diffusion}
 Given the three-dimensional convection diffusion equation

@@ -1,0 +1,337 @@
+\chapter{Mathematical and Numerical Foundations of the Mimetic Difference Method}
+
+\section{Introduction and Objectives}
+
+\section{Notation and Prerequisites}
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{cl}
+		$\Delta x$  & tamaño de paso de la malla en la dirección $x$ \\
+		$\Delta y$  & tamaño de paso de la malla en la dirección $y$ \\
+		$\Delta z$  & tamaño de paso de la malla en la dirección $z$ \\
+		$\symbf{D}$ & operador divergencia mimético                  \\
+		$\symbf{G}$ & operador gradiente mimético                    \\
+		$\symbf{L}$ & operador laplaciano mimético                   \\
+		$\symbf{C}$ & operador rotacional mimético                   \\
+		$\symbf{B}$ & operador frontera mimético
+	\end{tabular}
+\end{table}
+
+\section{Theoretical Considerations}
+
+\subsection{Consistency}
+
+\subsection{Stability}
+
+\subsection{Convergence}
+
+\section{A Short History of Numerical Mimetic Methods}
+
+\section{Summary and Conclusions}
+
+MOLE is an open-source library that implements high-order mimetic
+operators~\cite{Corbino2024}.
+Let $\Omega=\left[a,b\right]$.
+
+\begin{align*}
+	\symbf{G}f_{d}                           & =
+	\vec{0}.                                     \\
+	\symbf{D}\vec{v}_{d}                     & =
+	0.                                           \\
+	\symbf{C}\symbf{G}f                      & =
+	0.                                           \\
+	\symbf{D}\symbf{C}\vec{v}                & =
+	0.                                           \\
+	\symbf{D}\symbf{G}f_{d}                  & =
+	\symbf{L}f_{d}.                              \\
+	\int_{\Omega}
+	f\symbf{D}\vec{v}\dl V+
+	\int_{\Omega}
+	\vec{v}\cdot\left(\symbf{G}f\right)\dl V & =
+	\int_{\partial\Omega}
+	f\vec{v}\cdot\vec{n}\dl S.                   \\
+	{\left\langle
+	\symbf{D}\vec{v},
+	f
+	\right\rangle}_{Q}+
+	{\left\langle
+	\symbf{G}f,
+	\vec{v}
+	\right\rangle}_{P}                       & =
+	\left\langle
+	\symbf{B}\vec{v},
+	f
+	\right\rangle.                               \\
+	\left\langle
+	Q\symbf{D}\vec{v},
+	f
+	\right\rangle+
+	\left\langle
+	P\symbf{G}f,
+	\vec{v}
+	\right\rangle                            & =
+	\left\langle
+	\symbf{B}\vec{v},
+	f
+	\right\rangle.                               \\
+	\left\langle
+	Q\symbf{D}\vec{v}+
+	\symbf{G}^{T}P\vec{v},
+	f
+	\right\rangle                            & =
+	\left\langle
+	\symbf{B}\vec{v},
+	f
+	\right\rangle.                               \\
+	Q\symbf{D}\vec{v}+
+	\symbf{G}^{T}P\vec{v}                    & =
+	\symbf{B}\vec{v}.                            \\
+	Q\symbf{D}+
+	\symbf{G}^{T}P                           & =
+	\symbf{B}.
+\end{align*}
+
+\begin{equation*}
+	\int_{0}^{1}
+	\diff{v}{x}f\dl x+
+	\int_{0}^{1}
+	\diff{f}{x}\dl x=
+	v\left(1\right)f\left(1\right)-
+	v\left(0\right)f\left(0\right).
+\end{equation*}
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=0.8\paperwidth]{staggered}
+	\caption{1D Staggered grid.}
+\end{figure}
+
+\begin{equation*}
+	D^{\left(2\right)}=
+	\frac{1}{h}
+	\begin{bNiceMatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bNiceMatrix}.
+\end{equation*}
+
+\begin{equation*}
+	A=
+	\begin{bNiceMatrix}
+		a_{11} & \cdots & a_{1c} \\
+		\vdots & \ddots & \vdots \\
+		a_{r1} & \cdots & a_{rc}
+	\end{bNiceMatrix},
+	B=
+	\begin{bNiceMatrix}
+		b_{11} & \cdots & b_{1q} \\
+		\vdots & \ddots & \vdots \\
+		b_{p1} & \cdots & a_{pq}
+	\end{bNiceMatrix}
+	A\otimes B\coloneqq
+	\begin{bNiceMatrix}
+		a_{11}B & \cdots & a_{1c}B \\
+		\vdots  & \ddots & \vdots  \\
+		a_{r1}B & \cdots & a_{rc}B
+	\end{bNiceMatrix}.
+\end{equation*}
+
+\begin{equation*}
+	D^{\left(k\right)}_{xy}=
+	\begin{bNiceMatrix}
+		\widehat{I}_{n}\otimes D^{\left(k\right)}_{x} &
+		D^{\left(k\right)}_{y}\otimes \widehat{I}_{m}
+	\end{bNiceMatrix}.
+\end{equation*}
+
+\begin{equation*}
+	D^{\left(k\right)}_{xyz}=
+	\begin{bNiceMatrix}
+		\widehat{I}_{o}\otimes
+		\widehat{I}_{n}\otimes
+		D^{\left(k\right)}_{x} &
+		\widehat{I}_{o}\otimes
+		D^{\left(k\right)}_{y}\otimes
+		\widehat{I}_{m}        &
+		D^{\left(k\right)}_{z}\otimes
+		\widehat{I}_{n}\otimes
+		\widehat{I}_{m}        &
+	\end{bNiceMatrix}.
+\end{equation*}
+
+\begin{equation*}
+	G^{\left(k\right)}_{xy}=
+	\begin{bNiceMatrix}
+		\widehat{I}^{T}_{n}\otimes
+		G^{\left(k\right)}_{x} \\
+		G^{\left(k\right)}_{y}\otimes
+		\widehat{I}^{T}_{m}
+	\end{bNiceMatrix}.
+\end{equation*}
+
+\begin{equation*}
+	G^{\left(k\right)}_{xyz}=
+	\begin{bNiceMatrix}
+		\widehat{I}^{T}_{o}\otimes
+		\widehat{I}^{T}_{n}\otimes
+		G^{\left(k\right)}_{x} \\
+		\widehat{I}^{T}_{o}\otimes
+		G^{\left(k\right)}_{y}\otimes
+		\widehat{I}^{T}_{m}    \\
+		G^{\left(k\right)}_{z}\otimes
+		\widehat{I}^{T}_{n}\otimes
+		\widehat{I}^{T}_{m}
+	\end{bNiceMatrix}.
+\end{equation*}
+
+Compact operators
+
+\begin{align*}
+	D & =DR. \\
+	G & =LG  \\
+\end{align*}
+
+\input{operators}
+
+Let be
+\begin{math}
+	f,g\colon\Omega\subset\mathbb{R}^{n}\to
+	\mathbb{R}
+\end{math}
+are scalar fields.
+Let be
+\begin{math}
+	\vec{v},\vec{w}\colon\Omega\subset\mathbb{R}^{n}\to
+	\mathbb{R}^{m}
+\end{math}
+are vector fields.
+
+\begin{align*}
+	\left\langle
+	f,g
+	\right\rangle & =
+	\int_{\Omega}fg \dl V. \\
+	\left\langle
+	\vec{v},\vec{w}
+	\right\rangle & =
+	\int_{\Omega}\vec{v}\vec{w}\dl V.
+\end{align*}
+
+\begin{align*}
+	\left\langle
+	\symbf{D}\vec{v},
+	f
+	\right\rangle+
+	\left\langle
+	\vec{v},
+	\symbf{G}f
+	\right\rangle & =
+	\int_{\partial\Omega}
+	f\vec{v}\cdot\vec{n}\dl S.
+\end{align*}
+
+\begin{align*}
+	\symbf{G}\colon\mathbb{R}^{n+2} & \longrightarrow
+	\mathbb{R}^{n+1}                                  \\
+	f                               & \longmapsto
+	\symbf{G}f.
+\end{align*}
+
+\begin{align*}
+	\symbf{D}\colon\mathbb{R}^{n+1} & \longrightarrow
+	\mathbb{R}^{n}                                    \\
+	\vec{v}                         & \longmapsto
+	\symbf{D}\vec{v}.
+\end{align*}
+
+\begin{align*}
+	\symbf{B}\colon\mathbb{R}^{n+2} & \longrightarrow
+	\mathbb{R}^{n+1}                                  \\
+	\vec{v}                         & \longmapsto
+	\symbf{B}\vec{v}.
+\end{align*}
+
+\begin{theorem}{}{}
+	Let be
+	\begin{math}
+		f=
+		\begin{bNiceMatrix}
+			f_{0}             &
+			f_{\frac{1}{2}}   &
+			f_{\frac{3}{2}}   &
+			\cdots            &
+			f_{n-\frac{1}{2}} &
+			f_{n}
+		\end{bNiceMatrix}^{T}\in\mathbb{R}^{n+2}
+	\end{math}
+	a discretized function defined at the cell centers and
+	at the boundary of the 1D mesh.
+	Let be
+	\begin{math}
+		v=
+		\begin{bNiceMatrix}
+			v_{0}  &
+			v_{1}  &
+			\cdots &
+			v_{n}
+		\end{bNiceMatrix}^{T}\in\mathbb{R}^{n+1}
+	\end{math}
+	a discretized function defined on the nodes of the 1D mesh.
+
+	\begin{itemize}
+		\item
+
+		      \begin{math}
+			      \symbf{G}f=
+			      0\iff f=
+			      c
+		      \end{math}.
+
+		\item
+
+		      \begin{math}
+			      \symbf{D}\vec{v}=
+			      0\iff\vec{v}=
+			      c
+		      \end{math}.
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}\leavevmode
+	\begin{itemize}
+		\item
+
+		      \begin{align*}
+			      \symbf{D}\vec{v} & =
+			      \frac{v_{i+1}-v_{i}}{\Delta x}. \\
+			      0                & =
+			      \frac{v_{i+1}-v_{i}}{\Delta x}.
+		      \end{align*}
+
+		\item
+
+		      \begin{align*}
+			      \symbf{G}f & =
+			      \frac{f_{i+\frac{1}{2}}-f_{i-\frac{1}{2}}}{\Delta x}.
+		      \end{align*}
+	\end{itemize}
+\end{proof}
+
+\begin{equation*}
+	\symbf{G}_{x}u=
+	\symbf{G}u\left(x_{i},y_{j+\frac{1}{2}}\right)=
+	\symbf{G}_{i,j+\frac{1}{2}}.
+\end{equation*}
+
+\begin{equation*}
+	\symbf{G}_{y}u=
+	\symbf{G}u\left(x_{i+\frac{1}{2}},y_{j}\right)=
+	\symbf{G}_{i+\frac{1}{2},j}.
+\end{equation*}
+
+\begin{equation*}
+	\symbf{D}_{\vec{v}}\left(x_{i+\frac{1}{2}},y_{j+\frac{1}{2}}\right)=
+	\symbf{D}\vec{v}_{i+\frac{1}{2},j+\frac{1}{2}}.
+\end{equation*}

@@ -1,6 +1,8 @@
-\chapter{Numerical Methods for ODEs}
+\chapter{Numerical Methods for Differential Equations}
 
-\section{Numerical Solution of Initial Value Problems}
+\section{Ordinary Differential Equations (ODEs)}
+
+\subsection{Initial Value Problems}
 
 \todo{Only the methods used in the tutorials: Verlett, RK4, Explicit Euler}
 
@@ -15,7 +17,7 @@ Consider the Initial Value Problem
 	\end{cases}
 \end{equation*}
 
-\subsection{Backward Euler Method}
+\subsubsection{Backward Euler Method}
 % https://www.youtube.com/watch?v=HeVsOss1w78
 \begin{equation*}
 	f\left(t_{n+1},y_{n+1}\right)
@@ -147,7 +149,7 @@ $u\left(x\right)=e^{x}$.
 % \url{https://docs.octave.org/v9.4.0/Basic-Vectorization.html}
 % \url{https://docs.octave.org/v9.4.0/Ordinary-Differential-Equations.html}
 
-\subsection{Explicit Runge-Kutta 2}
+\subsubsection{Explicit Runge-Kutta 2}
 % https://www.youtube.com/watch?v=HeVsOss1w78
 \begin{align*}
 	\widetilde{y}_{n+1} & =
@@ -201,7 +203,7 @@ The Butcher table is
 	\caption{Numerical solution by the Runge-Kutta 2 Method.}
 \end{figure}
 
-\subsection{Explicit Runge-Kutta 4}
+\subsubsection{Explicit Runge-Kutta 4}
 % https://jonshiach.github.io/ODEs-book/_pages/2.3_RK4_Derivation.html
 % https://www.youtube.com/watch?v=qUe_kR7QoBU
 
@@ -252,12 +254,12 @@ The Butcher table is
 	\caption{Numerical solution by the Runge-Kutta 4 Method.}
 \end{figure}
 
-\subsection{Verlett}
+\subsubsection{Verlett}
 
-\section{Numerical Solutions of Boundary Value Problems}
+\subsection{Boundary Value Problems}
 
-\chapter{Numerical Methods for PDEs}
+\section{Partial Differential Equations (PDEs)}
 
-\section{von Neumann Stability Criterion}
+\subsection{von Neumann Stability Criterion}
 
-\section{Stability and Convergence Analysis}
+\subsection{Stability and Convergence Analysis}
