@@ -6,6 +6,7 @@ on:
     paths:
       - homework/**
       - tutorial/**
+      - project/**
 
 jobs:
   build_latex:
@@ -22,6 +23,9 @@ jobs:
           git clone -q --filter=blob:none --no-checkout --depth=1  --sparse $REPO .
           git sparse-checkout set homework tutorial project examples/cpp examples/octave
           git checkout
+          git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
+          ls
+          pwd
 
       - uses: addnab/docker-run-action@v3
         with:
