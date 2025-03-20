@@ -21,15 +21,15 @@ if $k=8$, then the minimum value it takes $m=17$\\
 Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of order 7 by 6.
 
 \begin{equation}
-D= (\frac{1}{dx})\begin{pmatrix}
-0 & 0 & 0 & 0 & 0 & 0\\
--1 & 1 & 0 & 0 & 0 & 0\\
-0 & -1 & 1 & 0 & 0 & 0\\
-0 & 0 & -1 & 1 & 0 & 0\\
-0 & 0 & 0 & -1 & 1 & 0\\
-0 & 0 & 0 & 0 & -1 & 1\\
-0 & 0 & 0 & 0 & 0 & 0\\
-\end{pmatrix}
+	D= (\frac{1}{dx})\begin{pmatrix}
+		0  & 0  & 0  & 0  & 0  & 0 \\
+		-1 & 1  & 0  & 0  & 0  & 0 \\
+		0  & -1 & 1  & 0  & 0  & 0 \\
+		0  & 0  & -1 & 1  & 0  & 0 \\
+		0  & 0  & 0  & -1 & 1  & 0 \\
+		0  & 0  & 0  & 0  & -1 & 1 \\
+		0  & 0  & 0  & 0  & 0  & 0 \\
+	\end{pmatrix}
 \end{equation}
 
 
@@ -223,3 +223,144 @@ D= (\frac{1}{dx})\begin{pmatrix}
 \end{listing}
 
 \subsection{2D/3D Boundary Handling}
+
+Let be
+\begin{math}
+	f,g\colon\Omega\subset\mathbb{R}^{n}\to
+	\mathbb{R}
+\end{math}
+are scalar fields.
+Let be
+\begin{math}
+	\vec{v},\vec{w}\colon\Omega\subset\mathbb{R}^{n}\to
+	\mathbb{R}^{m}
+\end{math}
+are vector fields.
+
+\begin{align*}
+	\left\langle
+	f,g
+	\right\rangle & =
+	\int_{\Omega}fg \dl V. \\
+	\left\langle
+	\vec{v},\vec{w}
+	\right\rangle & =
+	\int_{\Omega}\vec{v}\vec{w}\dl V.
+\end{align*}
+
+\begin{align*}
+	\left\langle
+	\symbf{D}\vec{v},
+	f
+	\right\rangle+
+	\left\langle
+	\vec{v},
+	\symbf{G}f
+	\right\rangle & =
+	\int_{\partial\Omega}
+	f\vec{v}\cdot\vec{n}\dl S.
+\end{align*}
+
+\begin{align*}
+	\symbf{G}\colon\mathbb{R}^{n+2} & \longrightarrow
+	\mathbb{R}^{n+1}                                  \\
+	f                               & \longmapsto
+	\symbf{G}f.
+\end{align*}
+
+\begin{align*}
+	\symbf{D}\colon\mathbb{R}^{n+1} & \longrightarrow
+	\mathbb{R}^{n}                                    \\
+	\vec{v}                         & \longmapsto
+	\symbf{D}\vec{v}.
+\end{align*}
+
+\begin{align*}
+	\symbf{B}\colon\mathbb{R}^{n+2} & \longrightarrow
+	\mathbb{R}^{n+1}                                  \\
+	\vec{v}                         & \longmapsto
+	\symbf{B}\vec{v}.
+\end{align*}
+
+\begin{theorem}{}{}
+	Let be
+	\begin{math}
+		f=
+		\begin{bNiceMatrix}
+			f_{0}             &
+			f_{\frac{1}{2}}   &
+			f_{\frac{3}{2}}   &
+			\cdots            &
+			f_{n-\frac{1}{2}} &
+			f_{n}
+		\end{bNiceMatrix}^{T}\in\mathbb{R}^{n+2}
+	\end{math}
+	a discretized function defined at the cell centers and
+	at the boundary of the 1D mesh.
+	Let be
+	\begin{math}
+		v=
+		\begin{bNiceMatrix}
+			v_{0}  &
+			v_{1}  &
+			\cdots &
+			v_{n}
+		\end{bNiceMatrix}^{T}\in\mathbb{R}^{n+1}
+	\end{math}
+	a discretized function defined on the nodes of the 1D mesh.
+
+	\begin{itemize}
+		\item
+
+		      \begin{math}
+			      \symbf{G}f=
+			      0\iff f=
+			      c
+		      \end{math}.
+
+		\item
+
+		      \begin{math}
+			      \symbf{D}\vec{v}=
+			      0\iff\vec{v}=
+			      c
+		      \end{math}.
+	\end{itemize}
+\end{theorem}
+
+\begin{proof}\leavevmode
+	\begin{itemize}
+		\item
+
+		      \begin{align*}
+			      \symbf{D}\vec{v} & =
+			      \frac{v_{i+1}-v_{i}}{\Delta x}. \\
+			      0                & =
+			      \frac{v_{i+1}-v_{i}}{\Delta x}.
+		      \end{align*}
+
+		\item
+
+		      \begin{align*}
+			      \symbf{G}f & =
+			      \frac{f_{i+\frac{1}{2}}-f_{i-\frac{1}{2}}}{\Delta x}.
+		      \end{align*}
+	\end{itemize}
+\end{proof}
+
+\begin{equation*}
+	\symbf{G}_{x}u=
+	\symbf{G}u\left(x_{i},y_{j+\frac{1}{2}}\right)=
+	\symbf{G}_{i,j+\frac{1}{2}}.
+\end{equation*}
+
+\begin{equation*}
+	\symbf{G}_{y}u=
+	\symbf{G}u\left(x_{i+\frac{1}{2}},y_{j}\right)=
+	\symbf{G}_{i+\frac{1}{2},j}.
+\end{equation*}
+
+\begin{equation*}
+	\symbf{D}_{\vec{v}}\left(x_{i+\frac{1}{2}},y_{j+\frac{1}{2}}\right)=
+	\symbf{D}\vec{v}_{i+\frac{1}{2},j+\frac{1}{2}}.
+\end{equation*}

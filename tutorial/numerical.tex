@@ -1,6 +1,6 @@
 \part{Practical Exercises with MOLE}
 
-\chapter{Getting started with MOLE}
+\chapter{Getting Started}
 
 MOLE is a high-quality (C++ and GNU Octave) library that
 implements high-order mimetic methods to solve 1D, 2D and 3D
@@ -20,9 +20,9 @@ out that this method never uses a ghost points.
 
 % \subsection{Create the staggered grid}
 
-\chapter{1D Numerical Exercises}
+\chapter{1D Case Studies}
 
-\section{Transport Equation in 1D}
+\section{Hyperbolic Problems: Transport Equation}
 
 \begin{equation*}
     \diffp{u}{t}+c\diffp{u}{x}=
@@ -37,7 +37,7 @@ out that this method never uses a ghost points.
     \label{code:hyperbolic1Dupwind.cpp}
 \end{listing}
 
-\section{Poisson Equation in 1D}
+\section{Elliptic Problems: Poisson Equation}
 
 \begin{listing}[ht!]
     \tiny
@@ -472,10 +472,13 @@ being in the code: $ L = -alpha*dt*L +speye(size(L))$.\\
 
 \section{Stationary Convection-Diffusion Equation in 1D}
 
-\chapter{2D/3D Numerical Exercises}
+\chapter{2D and 3D Case Studies}
+
 \section{Extending Operators to Higher Dimensions}
-\section{Case Study: Heat Transfer in 2D}
-\section{Case Study: Fluid Flow in 3D}
+
+\section{Heat Transfer in 2D}
+
+\section{Fluid Flow in 3D}
 
 \section{Convection-diffusion}
 Given the three-dimensional convection diffusion equation
@@ -543,5 +546,5 @@ where  $\Omega$  is the three-dimensional domain with  boundary $\partial  \Omeg
 
 
 
-
+\section{Advanced Applications: Coupled PDEs}
 \input{tests}
