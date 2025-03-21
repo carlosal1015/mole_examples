@@ -1,6 +1,6 @@
 pkgbase = libmole-git
 	pkgdesc = The Mimetic Operators Library Enhanced
-	pkgver = 1.0.r162.g723d18b
+	pkgver = 1.0.r170.g0105617
 	pkgrel = 1
 	url = https://github.com/csrc-sdsu/mole
 	arch = x86_64

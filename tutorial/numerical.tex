@@ -18,6 +18,77 @@ out that this method never uses a ghost points.
 
 \section{Compiling and running Your First Simulation}
 
+% TODO: Crear tablas por categorías
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{|l|l|}
+		\toprule
+		Program                                                                                                                    & Description \\
+		\midrule
+		\href{https://github.com/csrc-sdsu/mole/blob/master/examples/matlab/backward_euler.m}{\mintinline{text}|backward_euler.m|} & Programa    \\
+		\mintinline{text}|burgers1D.m|                                                                                             & Programa    \\
+		\mintinline{text}|compact_operators|                                                                                       & Programa    \\
+		\mintinline{text}|convection_diffusion3D.m|                                                                                & Programa    \\
+		\mintinline{text}|elliptic1DaddBC.m|                                                                                       & Programa    \\
+		\mintinline{text}|elliptic1DHomogeneousDirichlet.m|                                                                        & Programa    \\
+		\mintinline{text}|elliptic1DLeftDirichletRightNeumann.m|                                                                   & Programa    \\
+		\mintinline{text}|elliptic1DLeftDirichletRightRobin.m|                                                                     & Programa    \\
+		\mintinline{text}|elliptic1DLeftNeumannRightNeumann.m|                                                                     & Programa    \\
+		\mintinline{text}|elliptic1DLeftNeumannRightRobin.m|                                                                       & Programa    \\
+		\mintinline{text}|elliptic1DLeftRobinRightRobin.m|                                                                         & Programa    \\
+		\mintinline{text}|elliptic1D.m|                                                                                            & Programa    \\
+		\mintinline{text}|elliptic1DNonHomogeneousDirichlet.m|                                                                     & Programa    \\
+		\mintinline{text}|elliptic1DPeriodicBC.m|                                                                                  & Programa    \\
+		\mintinline{text}|elliptic2D_case2.m|                                                                                      & Programa    \\
+		\mintinline{text}|elliptic2D.m|                                                                                            & Programa    \\
+		\mintinline{text}|elliptic2D_nodal_curv.m|                                                                                 & Programa    \\
+		\mintinline{text}|elliptic2D_nodal_curv_sinusoidal.m|                                                                      & Programa    \\
+		\mintinline{text}|elliptic2DXDirichletYDirichlet.m|                                                                        & Programa    \\
+		\mintinline{text}|elliptic2DXPeriodicYPeriodic.m|                                                                          & Programa    \\
+		\mintinline{text}|elliptic3DaddBC.m|                                                                                       & Programa    \\
+		\mintinline{text}|elliptic3D.m|                                                                                            & Programa    \\
+		\mintinline{text}|elliptic3DXDirichletYDirichletZDirichlet.m|                                                              & Programa    \\
+		\mintinline{text}|elliptic3DXDirichletYPeriodicZPeriodic.m|                                                                & Programa    \\
+		\mintinline{text}|elliptic3DXNeumannYPeriodicZPeriodic.m|                                                                  & Programa    \\
+		\mintinline{text}|genCurvGrid.m|                                                                                           & Programa    \\
+		\mintinline{text}|helmholtz2D_wifi.m|                                                                                      & Programa    \\
+		\mintinline{text}|hyperbolic1D_lax_friedrichs.m|                                                                           & Programa    \\
+		\mintinline{text}|hyperbolic1D.m|                                                                                          & Programa    \\
+		\mintinline{text}|hyperbolic1D_upwind.m|                                                                                   & Programa    \\
+		\mintinline{text}|KG_product.m|                                                                                            & Programa    \\
+		\mintinline{text}|lock_exchange.m|                                                                                         & Programa    \\
+		\mintinline{text}|minimal_poisson2D.m|                                                                                     & Programa    \\
+		\mintinline{text}|parabolic1D.m|                                                                                           & Programa    \\
+		\mintinline{text}|richards.m|                                                                                              & Programa    \\
+		\mintinline{text}|RK2.m|                                                                                                   & Programa    \\
+		\mintinline{text}|RK4.m|                                                                                                   & Programa    \\
+		\mintinline{text}|schrodinger2D.m|                                                                                         & Programa    \\
+		\mintinline{text}|sturmLiouvilleBessel.m|                                                                                  & Programa    \\
+		\mintinline{text}|sturmLiouvilleChebyshev.m|                                                                               & Programa    \\
+		\mintinline{text}|sturmLiouvilleHelmholtzDirichletDirichlet.m|                                                             & Programa    \\
+		\mintinline{text}|sturmLiouvilleHelmholtzDirichletRobin.m|                                                                 & Programa    \\
+		\mintinline{text}|sturmLiouvilleHermite.m|                                                                                 & Programa    \\
+		\mintinline{text}|sturmLiouvilleLaguerre.m|                                                                                & Programa    \\
+		\mintinline{text}|sturmLiouvilleLegendre.m|                                                                                & Programa    \\
+		\mintinline{text}|test_curl.m|                                                                                             & Programa    \\
+		\mintinline{text}|test_div2DCurv.m|                                                                                        & Programa    \\
+		\mintinline{text}|test_div3DCurv.m|                                                                                        & Programa    \\
+		\mintinline{text}|test_grad2DCurv.m|                                                                                       & Programa    \\
+		\mintinline{text}|test_grad3DCurv.m|                                                                                       & Programa    \\
+		\mintinline{text}|test_lap3DCurv_case2.m|                                                                                  & Programa    \\
+		\mintinline{text}|test_lap3DCurv.m|                                                                                        & Programa    \\
+		\mintinline{text}|test_nodal2DCurv.m|                                                                                      & Programa    \\
+		\mintinline{text}|van_der_pol.m|                                                                                           & Programa    \\
+		\mintinline{text}|wave1D_case2.m|                                                                                          & Programa    \\
+		\mintinline{text}|wave1D.m|                                                                                                & Programa    \\
+		\mintinline{text}|wave1DTimeVaryingBC.m|                                                                                   & Programa    \\
+		\mintinline{text}|wave2D_case2.m|                                                                                          & Programa    \\
+		\mintinline{text}|wave2D.m|                                                                                                & Programa    \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 % \subsection{Create the staggered grid}
 
 \chapter{1D Case Studies}
@@ -25,212 +96,212 @@ out that this method never uses a ghost points.
 \section{Hyperbolic Problems: Transport Equation}
 
 \begin{equation*}
-    \diffp{u}{t}+c\diffp{u}{x}=
-    0.
+	\diffp{u}{t}+c\diffp{u}{x}=
+	0.
 \end{equation*}
 
 \begin{listing}[ht!]
-    \tiny
-    \centering
-    \pathinputminted[frame=single,framesep=10pt,linenos,firstline=9,lastline=35,highlightlines={9}]{cpp}{hyperbolic1D_upwind.cpp}
-    \caption{Program~\texttt{hyperbolic1Dupwind.cpp}}
-    \label{code:hyperbolic1Dupwind.cpp}
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=9,lastline=35,highlightlines={9}]{cpp}{hyperbolic1D_upwind.cpp}
+	\caption{Program~\texttt{hyperbolic1Dupwind.cpp}}
+	\label{code:hyperbolic1Dupwind.cpp}
 \end{listing}
 
 \section{Elliptic Problems: Poisson Equation}
 
 \begin{listing}[ht!]
-    \tiny
-    \centering
-    \pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=53,highlightlines={21,29}]{octave}{elliptic1D.m}
-    \caption{Program~\texttt{elliptic1D.m}}
-    \label{code:elliptic1D.m}
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=53,highlightlines={21,29}]{octave}{elliptic1D.m}
+	\caption{Program~\texttt{elliptic1D.m}}
+	\label{code:elliptic1D.m}
 \end{listing}
 
 \begin{equation}\label{eq:poisson1drobindconditions}
-    \left\{
-    \begin{aligned}
-        \diff[2]{u}{x}
-         & =e^{x},
-        \text{ para }x\in\left[0,1\right].     \\
-        0
-         & = u\left(0\right)-\diff{u}{x}[x=0]. \\
-        2e
-         & =u\left(1\right)+\diff{u}{x}[x=1].
-    \end{aligned}
-    \right.
+	\left\{
+	\begin{aligned}
+		\diff[2]{u}{x}
+		 & =e^{x},
+		\text{ para }x\in\left[0,1\right].     \\
+		0
+		 & = u\left(0\right)-\diff{u}{x}[x=0]. \\
+		2e
+		 & =u\left(1\right)+\diff{u}{x}[x=1].
+	\end{aligned}
+	\right.
 \end{equation}
 
 \begin{itemize}
-    \item
+	\item
 
-          En la línea $1$ encontramos el
-          \emph{shebang}\footnote{\url{https://en.wikipedia.org/wiki/Shebang_(Unix)}},
-          esto permite ejecutar un script de Octave
-          \mintinline{bash}|./elliptic1D.m| con la opción de modo de
-          procesamiento por lotes (batch), para esto se necesita
-          tener permisos de ejecución (por ejemplo,
-          \mintinline{bash}|chmod +x elliptic1D.m|).
+	      En la línea $1$ encontramos el
+	      \emph{shebang}\footnote{\url{https://en.wikipedia.org/wiki/Shebang_(Unix)}},
+	      esto permite ejecutar un script de Octave
+	      \mintinline{bash}|./elliptic1D.m| con la opción de modo de
+	      procesamiento por lotes (batch), para esto se necesita
+	      tener permisos de ejecución (por ejemplo,
+	      \mintinline{bash}|chmod +x elliptic1D.m|).
 
-    \item
+	\item
 
-          En las líneas $2$ al $10$ tenemos un comentario sobre el
-          Program de modo que ayude al codificador a obtener un
-          contexto del problema a resolver.
+	      En las líneas $2$ al $10$ tenemos un comentario sobre el
+	      Program de modo que ayude al codificador a obtener un
+	      contexto del problema a resolver.
 
-    \item
+	\item
 
-          En la línea $12$, la función
-          \href{https://docs.octave.org/v9.3.0/Manipulating-the-Load-Path.html#index-addpath}{\mintinline{octave}|addpath|}
-          agrega el directorio
-          \mintinline{octave}|"/usr/share/mole/matlab/"| a la ruta de
-          búsqueda de la función.
-          Allí se encuentran el conjunto de scripts Octave / MATLAB
-          de la biblioteca MOLE.
-          Vea el Program~\ref{code:moledirectoriesoctave.txt}.
+	      En la línea $12$, la función
+	      \href{https://docs.octave.org/v9.3.0/Manipulating-the-Load-Path.html#index-addpath}{\mintinline{octave}|addpath|}
+	      agrega el directorio
+	      \mintinline{octave}|"/usr/share/mole/matlab/"| a la ruta de
+	      búsqueda de la función.
+	      Allí se encuentran el conjunto de scripts Octave / MATLAB
+	      de la biblioteca MOLE.
+	      Vea el Program~\ref{code:moledirectoriesoctave.txt}.
 
-    \item
+	\item
 
-          En las líneas $14$ y $15$, se inicializan los identicadores
-          \mintinline{octave}|west| (oeste, izquierda),
-          \mintinline{octave}|east| (este, derecha) con los valores
-          de $0$ y $1$, respectivamente, estos representan los
-          valores de frontera del dominio espacial
-          en~\eqref{eq:poisson1drobindconditions}.
+	      En las líneas $14$ y $15$, se inicializan los identicadores
+	      \mintinline{octave}|west| (oeste, izquierda),
+	      \mintinline{octave}|east| (este, derecha) con los valores
+	      de $0$ y $1$, respectivamente, estos representan los
+	      valores de frontera del dominio espacial
+	      en~\eqref{eq:poisson1drobindconditions}.
 
-    \item
+	\item
 
-          En la línea $21$, llamamos a la función
-          \href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/lap.html}{\mintinline{octave}|lap|},
-          este genera un operador Laplaciano discreto extendido que
-          requiere como argumentos obligatorios el orden de precisión
-          \mintinline{octave}|k|, el número  de celdas
-          \mintinline{octave}|m| y el tamaño de paso
-          \mintinline{octave}|dx|.
-          \begin{equation*}
-              L=L^{\left(k\right)}=
-              D^{\left(k\right)}
-              G^{\left(k\right)}=
-              DG.\qquad\qquad
-              \left(
-              \difc.L.{}{}=\nabla\cdot\nabla
-              \right),
-          \end{equation*}
-          donde $D$ y $G$ son los operadores miméticos de divergencia
-          y gradiente, respectivamente.
-          Dado que
-          \begin{math}
-              D\in
-              \mathbb{R}^{\left(m+2\right)\times\left(m+1\right)}
-          \end{math}
-          y
-          \begin{math}
-              G\in
-              \mathbb{R}^{\left(m+1\right)\times\left(m+2\right)}
-          \end{math},
-          entonces
-          \begin{math}
-              L\in
-              \mathbb{R}^{\left(m+2\right)\times\left(m+2\right)}
-          \end{math}.
+	      En la línea $21$, llamamos a la función
+	      \href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/lap.html}{\mintinline{octave}|lap|},
+	      este genera un operador Laplaciano discreto extendido que
+	      requiere como argumentos obligatorios el orden de precisión
+	      \mintinline{octave}|k|, el número  de celdas
+	      \mintinline{octave}|m| y el tamaño de paso
+	      \mintinline{octave}|dx|.
+	      \begin{equation*}
+		      L=L^{\left(k\right)}=
+		      D^{\left(k\right)}
+		      G^{\left(k\right)}=
+		      DG.\qquad\qquad
+		      \left(
+		      \difc.L.{}{}=\nabla\cdot\nabla
+		      \right),
+	      \end{equation*}
+	      donde $D$ y $G$ son los operadores miméticos de divergencia
+	      y gradiente, respectivamente.
+	      Dado que
+	      \begin{math}
+		      D\in
+		      \mathbb{R}^{\left(m+2\right)\times\left(m+1\right)}
+	      \end{math}
+	      y
+	      \begin{math}
+		      G\in
+		      \mathbb{R}^{\left(m+1\right)\times\left(m+2\right)}
+	      \end{math},
+	      entonces
+	      \begin{math}
+		      L\in
+		      \mathbb{R}^{\left(m+2\right)\times\left(m+2\right)}
+	      \end{math}.
 
-    \item
+	\item
 
-          En la línea $22$, con la función
-          \href{https://docs.octave.org/v9.3.0/Figure-Properties.html#index-figure-visible}{\mintinline{octave}|figure|}
-          desactivamos que se muestre la figura en la pantalla,
-          preferimos solamente guardar la gráfica.
+	      En la línea $22$, con la función
+	      \href{https://docs.octave.org/v9.3.0/Figure-Properties.html#index-figure-visible}{\mintinline{octave}|figure|}
+	      desactivamos que se muestre la figura en la pantalla,
+	      preferimos solamente guardar la gráfica.
 
-    \item
+	\item
 
-          En la línea $23$, con la función
-          \href{https://docs.octave.org/latest/Information.html#index-spy}{\mintinline{octave}|spy|}
-          graficamos (no se mostrará) el patrón de dispersidad de
-          $L$.
+	      En la línea $23$, con la función
+	      \href{https://docs.octave.org/latest/Information.html#index-spy}{\mintinline{octave}|spy|}
+	      graficamos (no se mostrará) el patrón de dispersidad de
+	      $L$.
 
-          \begin{figure}[ht!]
-              \centering
-              \includegraphics[width=.39\paperwidth]{../examples/octave/elliptic1Dsparsebefore.pdf}
-              \includegraphics[width=.39\paperwidth]{../examples/octave/elliptic1Dsparseafter.pdf}
-              \caption{Izquierda: Representación dispersa de $L$ hasta la línea
-                  21.
-                  La primera y la última fila son vectores de ceros.
-                  Derecha: Representación dispersa de $L$ hasta la línea 29.
-                  La matriz $L\in\mathbb{R}^{15\times 15}$.}
-          \end{figure}
+	      \begin{figure}[ht!]
+		      \centering
+		      \includegraphics[width=.39\paperwidth]{elliptic1Dsparsebefore.pdf}
+		      \includegraphics[width=.39\paperwidth]{elliptic1Dsparseafter.pdf}
+		      \caption{Izquierda: Representación dispersa de $L$ hasta la línea
+			      21.
+			      La primera y la última fila son vectores de ceros.
+			      Derecha: Representación dispersa de $L$ hasta la línea 29.
+			      La matriz $L\in\mathbb{R}^{15\times 15}$.}
+	      \end{figure}
 
-    \item
+	\item
 
-          En la línea $24$, con la función
-          \href{https://docs.octave.org/latest/Printing-and-Saving-Plots.html}{\mintinline{octave}|saveas|}
-          guardamos esta gráfica en formato PDF y recortado.
+	      En la línea $24$, con la función
+	      \href{https://docs.octave.org/latest/Printing-and-Saving-Plots.html}{\mintinline{octave}|saveas|}
+	      guardamos esta gráfica en formato PDF y recortado.
 
-    \item
+	\item
 
-          En la línea $29$, llamamos a la función
-          \href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/robinBC.html}{\mintinline{octave}|robinBC|},
-          este requiere como argumentos obligatorios el orden de
-          precisión \mintinline{octave}|k|, el número  de celdas
-          \mintinline{octave}|m|, el tamaño de paso
-          \mintinline{octave}|dx|, el coeficiente Dirichlet
-          \mintinline{octave}|a| y el coeficiente Neumann
-          \mintinline{octave}|b|.
-          Esta función devuelve una matriz en
-          \begin{math}
-              \mathbb{R}^{\left(m+2\right)\times\left(m+2\right)}
-          \end{math}.
-          Actualizamos la matriz \mintinline{octave}|L| según el
-          Algoritmo~\ref{algo:updateL}.
+	      En la línea $29$, llamamos a la función
+	      \href{https://carlosal1015.github.io/mole_examples/api_docs/matlab/src/matlab/robinBC.html}{\mintinline{octave}|robinBC|},
+	      este requiere como argumentos obligatorios el orden de
+	      precisión \mintinline{octave}|k|, el número  de celdas
+	      \mintinline{octave}|m|, el tamaño de paso
+	      \mintinline{octave}|dx|, el coeficiente Dirichlet
+	      \mintinline{octave}|a| y el coeficiente Neumann
+	      \mintinline{octave}|b|.
+	      Esta función devuelve una matriz en
+	      \begin{math}
+		      \mathbb{R}^{\left(m+2\right)\times\left(m+2\right)}
+	      \end{math}.
+	      Actualizamos la matriz \mintinline{octave}|L| según el
+	      Algoritmo~\ref{algo:updateL}.
 
-          \begin{algorithm}[H]
-              \caption{Actualizaciones del operador Laplaciano discreto extendido.}\label{algo:updateL}
-              $A\leftarrow L$\;
-              $F\leftarrow f$\;
-              $A\leftarrow A+R_{G}$\;
-              $U\leftarrow \text{solve}\left(A, F\right)$\;
-          \end{algorithm}
+	      \begin{algorithm}[H]
+		      \caption{Actualizaciones del operador Laplaciano discreto extendido.}\label{algo:updateL}
+		      $A\leftarrow L$\;
+		      $F\leftarrow f$\;
+		      $A\leftarrow A+R_{G}$\;
+		      $U\leftarrow \text{solve}\left(A, F\right)$\;
+	      \end{algorithm}
 
-    \item
+	\item
 
-          En la línea $34$, creamos la malla escalonada
-          unidimensional, note que los puntos internos son los
-          centros de las celdas equiespaciados por
-          \mintinline{octave}|dx|.
-          La distancia entre el extremo izquierdo y el posterior
-          punto malla, así como del extremo derecho y el anterior
-          punto malla es \mintinline{octave}|dx/2|.
+	      En la línea $34$, creamos la malla escalonada
+	      unidimensional, note que los puntos internos son los
+	      centros de las celdas equiespaciados por
+	      \mintinline{octave}|dx|.
+	      La distancia entre el extremo izquierdo y el posterior
+	      punto malla, así como del extremo derecho y el anterior
+	      punto malla es \mintinline{octave}|dx/2|.
 
-    \item
+	\item
 
-          En las líneas $35$ y $43$, guardamos
-          \href{https://docs.octave.org/latest/Simple-File-I_002fO.html#index-save-6}{\mintinline{octave}|save|}
-          la malla computacional y la solución en el formato HDF5
-          para posterior post procesamiento.
+	      En las líneas $35$ y $43$, guardamos
+	      \href{https://docs.octave.org/latest/Simple-File-I_002fO.html#index-save-6}{\mintinline{octave}|save|}
+	      la malla computacional y la solución en el formato HDF5
+	      para posterior post procesamiento.
 
-    \item
+	\item
 
-          En la líneas $39$ y $40$, aplicamos las condiciones de
-          frontera Robin, empleamos la función
-          \href{https://docs.octave.org/latest/Exponents-and-Logarithms.html#XREFexp}{\mintinline{octave}|exp|}.
-          El signo menos que antecede al coeficiente Neumann
-          \mintinline{octave}|b| se debe a que en el borde izquierdo
-          de la malla el vector normal hacia afuera apunta hacia la
-          izquierda, mientras que en el borde derecho el vector
-          normal hacia afuera apunta hacia la derecha.
+	      En la líneas $39$ y $40$, aplicamos las condiciones de
+	      frontera Robin, empleamos la función
+	      \href{https://docs.octave.org/latest/Exponents-and-Logarithms.html#XREFexp}{\mintinline{octave}|exp|}.
+	      El signo menos que antecede al coeficiente Neumann
+	      \mintinline{octave}|b| se debe a que en el borde izquierdo
+	      de la malla el vector normal hacia afuera apunta hacia la
+	      izquierda, mientras que en el borde derecho el vector
+	      normal hacia afuera apunta hacia la derecha.
 
-    \item
+	\item
 
-          En la línea $42$, resolvemos el sistema de ecuaciones lineales
-          disperso con la función \href{https://docs.octave.org/latest/Arithmetic-Ops.html#index-mldivide}{\mintinline{octave}|mldivide|}.
+	      En la línea $42$, resolvemos el sistema de ecuaciones lineales
+	      disperso con la función \href{https://docs.octave.org/latest/Arithmetic-Ops.html#index-mldivide}{\mintinline{octave}|mldivide|}.
 
-          \begin{figure}[ht!]
-              \centering
-              \includegraphics[width=.3\paperwidth]{mldivide_sparse}
-              \caption{Diagrama de flujo del solucionador
-                  \mintinline{octave}|mldivide| para matrices
-                  disperas que emplea MATLAB.
-                  Recuperado de~\url{https://www.mathworks.com/help/matlab/ref/double.mldivide.html}.}
-          \end{figure}
+	      \begin{figure}[ht!]
+		      \centering
+		      \includegraphics[width=.3\paperwidth]{mldivide_sparse}
+		      \caption{Diagrama de flujo del solucionador
+			      \mintinline{octave}|mldivide| para matrices
+			      disperas que emplea MATLAB.
+			      Recuperado de~\url{https://www.mathworks.com/help/matlab/ref/double.mldivide.html}.}
+	      \end{figure}
 \end{itemize}
 
 \section*{Resultados del Program~\ref{code:elliptic1D.m}}
@@ -239,49 +310,49 @@ En primer lugar, mostramos la gráfica a escala 1:1 de la solución
 exacta y de la solución mimética obtenida en el Program~\ref{code:elliptic1D.m}.
 
 \begin{figure}[ht!]
-    \centering
-    % \includegraphics[width=.6\paperwidth]{../examples/octave/elliptic1D.pdf}
-    \includegraphics[width=.39\paperwidth]{elliptic1D.pdf}
-    \includegraphics[width=.39\paperwidth]{elliptic1Derror.pdf}
-    \caption{Izquierda: Solución de~\eqref{eq:poisson1drobindconditions}
-        usando \mintinline{octave}|k=6| y \mintinline{octave}|m=2k+1=13|.
-        Derecha: Error en la malla escalonada
-        \begin{math}
-            \left\{
-            0,
-            \dotsc,
-            x_{j-\frac{1}{2}}
-            \dotsc,
-            1
-            \right\}
-        \end{math}}
+	\centering
+	% \includegraphics[width=.6\paperwidth]{elliptic1D.pdf}
+	\includegraphics[width=.39\paperwidth]{elliptic1D.pdf}
+	\includegraphics[width=.39\paperwidth]{elliptic1Derror.pdf}
+	\caption{Izquierda: Solución de~\eqref{eq:poisson1drobindconditions}
+		usando \mintinline{octave}|k=6| y \mintinline{octave}|m=2k+1=13|.
+		Derecha: Error en la malla escalonada
+		\begin{math}
+			\left\{
+			0,
+			\dotsc,
+			x_{j-\frac{1}{2}}
+			\dotsc,
+			1
+			\right\}
+		\end{math}}
 \end{figure}
 
 En segundo lugar, mostramos una gráfica del error en cada punto de la malla computacional
 dada por
 \begin{equation*}
-    \text{Error de $u$ en $x_{j-\frac{1}{2}}$}=
-    \left|
-    u\left(x_{j-\frac{1}{2}}\right)-
-    u_{j-\frac{1}{2}}
-    \right|.
+	\text{Error de $u$ en $x_{j-\frac{1}{2}}$}=
+	\left|
+	u\left(x_{j-\frac{1}{2}}\right)-
+	u_{j-\frac{1}{2}}
+	\right|.
 \end{equation*}
 
 Por último, mostramos la tabla de los errores y el orden de convergencia numérico.
 
 \begin{table}[ht!]
-    \centering
-    \begin{tabular}{ccc}
-        \toprule
-        $\Delta x$            & Error $\ell_1$        & Orden    \\
-        \midrule
-        $1.562\times 10^{-2}$ & $4.410\times 10^{-2}$ & -        \\
-        $1.535\times 10^{-2}$ & $4.464\times 10^{-2}$ & $-0.678$ \\
-        \bottomrule
-    \end{tabular}
-    \caption{Tabla de errores de aproximación de $U$ en
-        $x_{j-\frac{1}{2}}$ y el orden convergencia numérico obtenido.}
-    \label{table:errors}
+	\centering
+	\begin{tabular}{ccc}
+		\toprule
+		$\Delta x$            & Error $\ell_1$        & Orden    \\
+		\midrule
+		$1.562\times 10^{-2}$ & $4.410\times 10^{-2}$ & -        \\
+		$1.535\times 10^{-2}$ & $4.464\times 10^{-2}$ & $-0.678$ \\
+		\bottomrule
+	\end{tabular}
+	\caption{Tabla de errores de aproximación de $U$ en
+		$x_{j-\frac{1}{2}}$ y el orden convergencia numérico obtenido.}
+	\label{table:errors}
 \end{table}
 
 
@@ -290,20 +361,20 @@ Por último, mostramos la tabla de los errores y el orden de convergencia numér
 Given the one-dimensional heat equation
 
 \begin{equation}\label{eq:IBVPheat1d}
-    \begin{cases}
-        \diffp{u}{t}=
-        \kappa\diffp[2]{u}{x},
-                                      & \left(x,t\right)\in
-        \left(a,b \right)\times\left(0, \infty \right).     \\
-        u\left(x,0\right)=f(x),
-                                      & x\in
-        \left[a,b\right].                                   \\
-        u\left(a,t\right)= \alpha(t), & t\in
-        \left(0,\infty\right),                              \\
-        u\left(b,t\right)= \beta(t),
-                                      & t\in
-        \left(0,\infty\right),
-    \end{cases}
+	\begin{cases}
+		\diffp{u}{t}=
+		\kappa\diffp[2]{u}{x},
+		                              & \left(x,t\right)\in
+		\left(a,b \right)\times\left(0, \infty \right).     \\
+		u\left(x,0\right)=f(x),
+		                              & x\in
+		\left[a,b\right].                                   \\
+		u\left(a,t\right)= \alpha(t), & t\in
+		\left(0,\infty\right),                              \\
+		u\left(b,t\right)= \beta(t),
+		                              & t\in
+		\left(0,\infty\right),
+	\end{cases}
 \end{equation}
 
 where $\kappa$ is the thermal diffusivity.\\
@@ -312,11 +383,11 @@ The 1D heat equation code by mimetic methods
 
 
 \begin{listing}[ht!]
-    \tiny
-    \centering
-    \pathinputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=80,highlightlines={20,29}]{octave}{parabolic1D.m}
-    \caption{Program~\texttt{parabolic1D.m}}
-    \label{code:parabolic1D.m}
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=80,highlightlines={20,29}]{octave}{parabolic1D.m}
+	\caption{Program~\texttt{parabolic1D.m}}
+	\label{code:parabolic1D.m}
 \end{listing}
 
 
@@ -324,20 +395,20 @@ In the one-dimensional heat equation in the parabolic1D.m code, the PDE being so
 
 
 \begin{equation}\label{eq:IBVPheat1d}
-    \begin{cases}
-        \diffp{u}{t}=
-        \kappa\diffp[2]{u}{x},
-                                 & \left(x,t\right)\in
-        \left(0,1 \right)\times\left(0, 1 \right).     \\
-        u\left(x,0\right)= 0,
-                                 & x\in
-        \left[0,1\right].                              \\
-        u\left(0,t\right)= 100., & t\in
-        \left(0,1 \right),                             \\
-        u\left(1,t\right)= 100.,
-                                 & t\in
-        \left(0, 1\right),
-    \end{cases}
+	\begin{cases}
+		\diffp{u}{t}=
+		\kappa\diffp[2]{u}{x},
+		                         & \left(x,t\right)\in
+		\left(0,1 \right)\times\left(0, 1 \right).     \\
+		u\left(x,0\right)= 0,
+		                         & x\in
+		\left[0,1\right].                              \\
+		u\left(0,t\right)= 100., & t\in
+		\left(0,1 \right),                             \\
+		u\left(1,t\right)= 100.,
+		                         & t\in
+		\left(0, 1\right),
+	\end{cases}
 \end{equation}
 
 
@@ -369,7 +440,7 @@ In the one-dimensional heat equation in the parabolic1D.m code, the PDE being so
 
 \begin{center}
 
-    grid = $[0$ $\frac{1}{10}: \frac{1}{5}: \frac{9}{10}$ $1]$ = $  \{0, \frac{1}{10}, \frac{3}{10}, \frac{5}{10}, \frac{7}{10}, \frac{9}{10}, 1 \}$
+	grid = $[0$ $\frac{1}{10}: \frac{1}{5}: \frac{9}{10}$ $1]$ = $  \{0, \frac{1}{10}, \frac{3}{10}, \frac{5}{10}, \frac{7}{10}, \frac{9}{10}, 1 \}$
 
 \end{center}
 
@@ -380,26 +451,26 @@ In the one-dimensional heat equation in the parabolic1D.m code, the PDE being so
 \textbf{Line 36:} The value of L is obtained by:
 
 \begin{equation}
-    \frac{\partial u}{\partial t} = \kappa \frac{\partial^{2} u}{\partial x^{2}}
+	\frac{\partial u}{\partial t} = \kappa \frac{\partial^{2} u}{\partial x^{2}}
 \end{equation}
 
 Discretizing $\frac{\partial u}{\partial t}$ by forward finite differences, and $\frac{\partial^{2} u}{\partial x^{2}}$ by applying mimetic methods
 
 \begin{equation}
-    \frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \kappa L 	u^{n}_{i}
+	\frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \kappa L 	u^{n}_{i}
 \end{equation}
 
 then clearing $u^{n+1}_{i}$ we obtain:
 
 
 \begin{equation}
-    u^{n+1}_{i} = u^{n}_{i}  +  \kappa dt L u^{n}_{i}
+	u^{n+1}_{i} = u^{n}_{i}  +  \kappa dt L u^{n}_{i}
 \end{equation}
 
 Factoring $u^{n}_{i}$ we have:
 
 \begin{equation}
-    u^{n+1}_{i} = (I  +  \kappa dt L )u^{n}_{i}
+	u^{n+1}_{i} = (I  +  \kappa dt L )u^{n}_{i}
 \end{equation}
 
 where $I$ is the identity matrix of general order $m+2$ by $m+2$, for this exercise of order $7$ by $7$, being
@@ -409,7 +480,7 @@ $$  L = (\kappa dt L +I )$$
 being in the code: $ L = alpha*dt*L + speye(size(L))$; finally to obtain the solution
 
 \begin{equation}
-    u^{n+1}_{i} = L *u^{n}_{i}
+	u^{n+1}_{i} = L *u^{n}_{i}
 \end{equation}
 
 in the code on line 47 we have $ U = L*U.$\\
@@ -444,20 +515,20 @@ in the code on line 47 we have $ U = L*U.$\\
 \textbf{Line 53:} The value of L is obtained by:
 
 \begin{equation}
-    \frac{\partial u}{\partial t} = \kappa \frac{\partial^{2} u}{\partial x^{2}}
+	\frac{\partial u}{\partial t} = \kappa \frac{\partial^{2} u}{\partial x^{2}}
 \end{equation}
 
 Discretizing $\frac{\partial u}{\partial t}$ by forward finite differences, and $\frac{\partial^{2} u}{\partial x^{2}}$ by applying mimetic methods
 
 \begin{equation}
-    \frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \kappa L 	u^{n+1}_{i}
+	\frac{u^{n+1}_{i} - u^{n}_{i} }{dt} = \kappa L 	u^{n+1}_{i}
 \end{equation}
 
 then clearing $u^{n+1}_{i}$ we obtain:
 
 
 \begin{equation}
-    u^{n+1}_{i}(I - \kappa dt L ) = u^{n}_{i}
+	u^{n+1}_{i}(I - \kappa dt L ) = u^{n}_{i}
 \end{equation}
 
 where $I$ is the identity matrix of general order $m+2$ by $m+2$, for this exercise of order $7$ by $7$, being
@@ -484,23 +555,23 @@ being in the code: $ L = -alpha*dt*L +speye(size(L))$.\\
 Given the three-dimensional convection diffusion equation
 
 \begin{equation}\label{eq:IBVP3d}
-    \begin{cases}
-        \diffp{u}{t} + \nabla \cdot (\textbf{v} u) = \nabla \cdot (D \nabla u) + R,
-                                      & \textbf{x} \in \Omega, t > 0     \\
-        u\left( \textbf{x},0\right)= \bar{\alpha},
-                                      & \textbf{x} \in  \Omega.\\
-        u\left(\textbf{x},t\right)= \bar{\alpha}_{0}, & t >0, \textbf{x} \in \partial  \Omega
-    \end{cases}
+	\begin{cases}
+		\diffp{u}{t} + \nabla \cdot (\textbf{v} u) = \nabla \cdot (D \nabla u) + R,
+		                                              & \textbf{x} \in \Omega, t > 0          \\
+		u\left( \textbf{x},0\right)= \bar{\alpha},
+		                                              & \textbf{x} \in  \Omega.               \\
+		u\left(\textbf{x},t\right)= \bar{\alpha}_{0}, & t >0, \textbf{x} \in \partial  \Omega
+	\end{cases}
 \end{equation}
 
 where  $\Omega$  is the three-dimensional domain with  boundary $\partial  \Omega $.
 
 \begin{listing}[ht!]
-    \tiny
-    \centering
-    \pathinputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=32,highlightlines={20,29}]{octave}{convection_diffusion.m}
-    \caption{Program~\texttt{convection\_diffusion.m}}
-    \label{code:convection_diffusion.m}
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=32,highlightlines={20,29}]{octave}{convection_diffusion.m}
+	\caption{Program~\texttt{convection\_diffusion.m}}
+	\label{code:convection_diffusion.m}
 \end{listing}
 
 \textbf{Line 11:} The Operator's order of accuracy $k = 2$.\\
@@ -528,14 +599,14 @@ where  $\Omega$  is the three-dimensional domain with  boundary $\partial  \Omeg
 \textbf{Line 31:} three-dimensional mimetic gradient operator $grad3D(k,m,dx,n,dy,o,dz)=grad3D(2,101,1,51,1,101,1)$\\
 
 \textbf{Line 32:} The three-dimensional mimetic interpolation operator
- $interpol3D(m, n, o, c1, c2, c3)$.  Where $c1$ : Left interpolation coeff, $c2$ : Bottom interpolation coeff, $c3$ : Front interpolation coeff.\\
+$interpol3D(m, n, o, c1, c2, c3)$.  Where $c1$ : Left interpolation coeff, $c2$ : Bottom interpolation coeff, $c3$ : Front interpolation coeff.\\
 
 \begin{listing}[ht!]
-    \tiny
-    \centering
-    \pathinputminted[frame=single,framesep=12pt,linenos,firstline=33,lastline=55,highlightlines={20,29}]{octave}{convection_diffusion.m}
-    \caption{Program~\texttt{convection\_diffusion.m}}
-    \label{code:convection_diffusion.m}
+	\tiny
+	\centering
+	\pathinputminted[frame=single,framesep=12pt,linenos,firstline=33,lastline=55,highlightlines={20,29}]{octave}{convection_diffusion.m}
+	\caption{Program~\texttt{convection\_diffusion.m}}
+	\label{code:convection_diffusion.m}
 \end{listing}
 
 \textbf{Line 35:} size(G,1) calculates the size of matrix G, 1 indicates that it calculates the number of rows in matrix G. Then zeros(a,1) is a zeros matrix of a rows and 1 column
