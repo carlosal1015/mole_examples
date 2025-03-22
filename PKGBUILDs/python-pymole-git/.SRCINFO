@@ -1,0 +1,26 @@
+pkgbase = python-pymole-git
+	pkgdesc = Mimetic Methods for Python
+	pkgver = r12.629ebdd
+	pkgrel = 1
+	url = https://github.com/carlosal1015/pymole
+	arch = any
+	license = GPL-3.0-or-later
+	checkdepends = python-pytest
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools-scm
+	makedepends = python-wheel
+	makedepends = python-nbsphinx
+	makedepends = python-sphinx_rtd_theme
+	makedepends = python-nbsphinx-link
+	makedepends = python-sphinx_mdinclude
+	makedepends = pandoc-cli
+	makedepends = git
+	depends = python-scipy
+	provides = python-pymole
+	conflicts = python-pymole
+	source = git+https://github.com/carlosal1015/pymole.git?signed#branch=main
+	validpgpkeys = 3880BDA725DE92E7BE7C1A2F6225FD2615EB3DEE
+	sha512sums = SKIP
+
+pkgname = python-pymole-git

@@ -50,3 +50,5 @@ _minted*
 *.tar.zst
 mole
 *.h5
+
+.python-version

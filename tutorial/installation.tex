@@ -1,9 +1,9 @@
-\chapter{Installation Guides}
+\chapter{Installation Notes}
 
 To work through this tutorial requires to have a working installation
 of MOLE.
 It relies on
-\href{https://gitlab.com/conradsnicta/armadillo-code}{\mintinline{cpp}|armadillo|}~\cite{Sanderson2025},
+\href{https://gitlab.com/conradsnicta/armadillo-code}{\mintinline{text}|armadillo|}~\cite{Sanderson2019},
 a C++ library that provides data structures for sparse matrices.
 We explain the step-by-step process for
 \href{https://wiki.archlinux.org/title/Pacman/Rosetta}{Arch Linux}
@@ -12,7 +12,7 @@ as both systems have been successfully tested by us.
 % We believe that the best choice for getting started in scientific computing is GNU/Linux.
 % \href{https://books.goalkicker.com/LinuxBook}{Linux commands Notes for Professionals book}.
 
-\section{GNU/Linux (Arch, Ubuntu)}
+\section{Arch Linux}
 
 This distribution is supported by a proactive group of
 \href{https://archlinux.org/people/developers}{developers},
@@ -24,7 +24,7 @@ The steps are outlined in the Program~\ref{code:installerarchlinux.sh}.
 \begin{listing}[ht!]
 	\tiny
 	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=18,highlightlines={9,15},escapeinside=||]{bash}{installerarchlinux.sh}
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=21,highlightlines={9,15},escapeinside=||]{bash}{installerarchlinux.sh}
 	\caption{Steps for a system-wide installation both C++ and Octave
 		MOLE library via
 		\href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/tutorial/installerarchlinux.sh}{\texttt{installerarchlinux.sh}}.}
@@ -56,7 +56,7 @@ The steps are outlined in the Program~\ref{code:installerubuntu.sh}.
 \begin{listing}[ht!]
 	\tiny
 	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=25,highlightlines={9,15}]{bash}{installerubuntu.sh}
+	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=28,highlightlines={10}]{bash}{installerubuntu.sh}
 	\caption{Steps for a system-wide installation both C++ and Octave
 		MOLE library vía \href{https://raw.githubusercontent.com/carlosal1015/mole_examples/main/tutorial/installerubuntu.sh}{\texttt{installerubuntu.sh}}.}
 	\label{code:installerubuntu.sh}

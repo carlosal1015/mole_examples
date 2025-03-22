@@ -108,6 +108,8 @@ out that this method never uses a ghost points.
 	\label{code:hyperbolic1Dupwind.cpp}
 \end{listing}
 
+\subsection{Animating the Transport Equation}
+
 \section{Elliptic Problems: Poisson Equation}
 
 \begin{listing}[ht!]
@@ -540,6 +542,8 @@ being in the code: $ L = -alpha*dt*L +speye(size(L))$.\\
 \textbf{Line 54:} In this line $dL=$ decomputation($L$) the matrix L is decomposed into lower triangular matrix $L$ and upper triangular matrix $U$ using LU decomposition method.\\
 
 \textbf{Line 68:} In this line solve the $u^{n+1} =(dL)^{-1}*u^{n}$, thus finding the solution $U=dL \setminus U$.\\
+
+\subsection{Time Evolution of Diffusion}
 
 \section{Stationary Convection-Diffusion Equation in 1D}
 

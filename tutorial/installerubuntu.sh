@@ -3,7 +3,8 @@
 sudo apt-get update
 sudo apt-get --no-install-recommends --yes install \
     build-essential cmake git octave \
-    libarmadillo-dev libsuperlu-dev libeigen3-dev libgtest-dev
+    libarmadillo-dev libsuperlu-dev libeigen3-dev \
+    ffmpeg libgtest-dev python3-matplotlib python3-scipy texlive-full
 sudo apt-get install --reinstall ca-certificates
 
 git clone --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
