@@ -1,0 +1,10 @@
+[project]
+name = "pymole"
+version = "0.1.0"
+description = "MOLE examples in Python"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pymole @ git+https://github.com/carlosal1015/pymole.git#egg=pymole",
+    "matplotlib",
+]
