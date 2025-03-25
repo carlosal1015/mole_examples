@@ -192,3 +192,42 @@ Let $\Omega=\left[a,b\right]$.
 	D & =DR. \\
 	G & =LG  \\
 \end{align*}
+
+Let's consider an uniform mesh
+
+\begin{equation*}
+	x_0<x_{1}<\cdots<x_{n-1}<x_{n}
+\end{equation*}
+
+of $\Omega=\left[a,b\right]$.
+
+$i=0,\dotsc,N$.
+
+$x_{i}=i+i\Delta x$
+
+$\Delta x=\frac{b-a}{n}$
+
+$x_{i+\frac{1}{2}}=\frac{x_{i}+x_{i+1}}{2}$
+
+
+$u=\left(u_{0},u_{\frac{1}{2}},u_{\frac{3}{2}},\dotsc,u_{n-\frac{1}{2}},u_{n}\right)$.
+$v=\left(v_{0},v_{1},\dotsc,v_{n-1},v_{n}\right)$.
+
+$u_{i}=\frac{u_{i+\frac{1}{2}}-u_{i-\frac{1}{2}}}{h_{i}}$, $1\leq i\leq N-1$
+
+
+\begin{equation*}
+	G\vec{u}=
+	\begin{bNiceMatrix}
+		u_0     \\
+		u_1     \\
+		\vdots  \\
+		u_{n-1} \\
+		u_n
+	\end{bNiceMatrix}=
+	\frac{1}{h}
+	\begin{bNiceMatrix}
+		-\frac{8}{3} & 3  & -\frac{1}{3} & 0 \cdots & 0 \\
+		0            & -1 & 1            & 0        & 0 \\
+	\end{bNiceMatrix}
+\end{equation*}
