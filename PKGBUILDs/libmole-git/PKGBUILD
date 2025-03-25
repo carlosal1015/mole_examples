@@ -3,7 +3,7 @@
 _base=mole
 pkgname=lib${_base}-git
 pkgdesc="The Mimetic Operators Library Enhanced"
-pkgver=1.0.r170.g0105617
+pkgver=1.0.r188.gd0cde7f
 pkgrel=1
 arch=(x86_64)
 url="https://github.com/csrc-sdsu/${_base}"
@@ -11,10 +11,10 @@ license=(GPL-3.0-only)
 depends=(armadillo octave superlu)
 makedepends=(cmake doxygen eigen graphviz git python-sphinx_rtd_theme
   python-pillow python-docutils python-sphinxcontrib-bibtex python-altair
-  python-breathe python-myst-parser python-linkify-it-py
+  python-breathe python-myst-parser python-linkify-it-py python-sphinxcontrib-mermaid
   texlive-binextra texlive-luatex texlive-latexrecommended texlive-fontsrecommended
   ttf-dejavu texlive-latexextra)
-# python-sphinxcontrib-katex python-sphinxcontrib-svg2pdfconverter python-sphinxcontrib-mermaid python-sphinx-hoverxref python-sphinx_design | python-standard-imghdr
+# python-sphinxcontrib-katex python-sphinxcontrib-svg2pdfconverter python-sphinx-hoverxref python-sphinx_design | python-standard-imghdr
 checkdepends=(gtest)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'

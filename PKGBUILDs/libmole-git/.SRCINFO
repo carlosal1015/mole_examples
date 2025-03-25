@@ -1,6 +1,6 @@
 pkgbase = libmole-git
 	pkgdesc = The Mimetic Operators Library Enhanced
-	pkgver = 1.0.r170.g0105617
+	pkgver = 1.0.r188.gd0cde7f
 	pkgrel = 1
 	url = https://github.com/csrc-sdsu/mole
 	arch = x86_64
@@ -19,6 +19,7 @@ pkgbase = libmole-git
 	makedepends = python-breathe
 	makedepends = python-myst-parser
 	makedepends = python-linkify-it-py
+	makedepends = python-sphinxcontrib-mermaid
 	makedepends = texlive-binextra
 	makedepends = texlive-luatex
 	makedepends = texlive-latexrecommended
