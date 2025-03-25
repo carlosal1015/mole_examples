@@ -1,6 +1,6 @@
 pkgbase = python-pymole-git
 	pkgdesc = Mimetic Methods for Python
-	pkgver = r12.629ebdd
+	pkgver = 0.0.post14+g9d0eddb
 	pkgrel = 1
 	url = https://github.com/carlosal1015/pymole
 	arch = any
