@@ -14,7 +14,7 @@ makedepends=(cmake doxygen eigen graphviz git python-sphinx_rtd_theme
   python-breathe python-myst-parser python-linkify-it-py python-sphinxcontrib-mermaid
   texlive-binextra texlive-luatex texlive-latexrecommended texlive-fontsrecommended
   ttf-dejavu texlive-latexextra)
-# python-sphinxcontrib-katex python-sphinxcontrib-svg2pdfconverter python-sphinx-hoverxref python-sphinx_design | python-standard-imghdr
+# python-sphinxcontrib-katex python-sphinx-hoverxref python-sphinx_design | python-standard-imghdr
 checkdepends=(gtest)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'
