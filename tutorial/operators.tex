@@ -40,6 +40,41 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 	\label{code:divergence.h}
 \end{listing}
 
+\textbf{Line 1 and 55:} In this part the code defines the function $D = div(k, m, dx)$\\
+\textbf{Line 15:} The assert command is the function used to verify the validity of an expression. In this case, $k \geq 2$.
+\textbf{Line 16:} Verify the validity of an expression. In this case, let $k$ be an even number.\\
+\textbf{Line 17:} Verify that $m \geq 2*k+1$.\\
+\textbf{Line 19:} The command $D = sparse(m+2, m+1)$ creates a sparse matrix of order $m+2$ by $m+1$.
+\textbf{Line 21 and 53:} The switch command is used to perform a multiple comparison, $k$ in this case analyzing for the different values ​​that $k$ can take, the maximum being 8.\\
+\textbf{Line 22:} The case when k=2\\
+\textbf{Line 23 to 24:}  The main diagonal takes values ​​of -1 from the second column onwards, and below the main diagonal it takes values ​​of 1 from the first column to the last column; the other components are zeros.\\
+\textbf{Line 27:} The case when k=4\\
+
+\textbf{Line 28:} Define a vector $A$ with 1 row and 5 columns with the indicated fractional values.\\
+
+\textbf{Line 29:} $D(2, 1:5) = A$ refers to row 2 and the first 5 columns of matrix $D$. Then, vector A is placed at those positions in matrix $D$.\\
+
+\textbf{Line 30:} The fliplr(A) command reverses the order of the elements of $A$, and then multiplies by -1.\\
+
+\textbf{Line 32:} $D(i, i-2:i+1) = [1/24 -9/8 9/8 -1/24]$ at each iteration of the loop, a 4-valued vector is being assigned to a portion of row $i$ of matrix $D$.\\
+
+
+\textbf{Line XX:} Defines the matrix $A$ of order $2$ by $7$.\\
+
+
+\textbf{Line XX:} In $D(2:3, 1:7) = A$ assigns matrix A to rows 2 and 3 of matrix D, and columns 1 to 7 of matrix D. That is, the elements of A are placed into that submatrix of D.\\
+
+
+\textbf{Line XX:} In $D(m:m+1, m-5:end) = -rot90(A,2)$ rot90(A, 2) rotates matrix A 180 degrees, which is equivalent to rotating it counterclockwise twice by 90 degrees. It is then multiplied by -1 and assigned to a subsegment of matrix D located in rows m to m+1 and columns from m-5 to the end.
+
+
+\textbf{Line XX:} In this for loop, index $i$ is traversed from 4 to $m-1$. At each iteration, a vector of specific values ​​is assigned to a subarray within $D$. The subarray affects rows $i$ and columns from $i-3$ to $i+2$. The sequence of values ​​assigned is: $[-3/640 25/384 -75/64 75/64 -25/384 3/640]$, This is repeated for each value of $i$ between 4 and $m-1$.
+
+\textbf{Line XX:} The matrix $A$ is defined as $3x93x9$, and its elements are fractions. This matrix will be used to fill specific portions of another matrix $D$.\\
+
+\textbf{Line XX:} $D(2:4, 1:9) = A$ matrix $A$ are assigned to rows 2, 3, and 4, and columns 1 through 9 of matrix $D$. In other words, rows 2 through 4 of $D$ (3 rows) and the first 9 columns of $D$ are filled with values ​​from matrix $A$.
+
+
 \begin{listing}[ht!]
 	\tiny
 	\centering
@@ -79,6 +114,10 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 	\caption{Program~\texttt{grad.m}}
 	\label{code:grad.m}
 \end{listing}
+
+
+
+
 
 \begin{listing}[ht!]
 	\tiny
