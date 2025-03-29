@@ -3,261 +3,42 @@
 \section{Divergence operator}
 
 \subsection{1D Formulation}
-The one-dimensional mimetic divergence operator $div(k,m,k)$, where $k$: order of accuracy, $m$: number of cells and $dx$: step size. The operator $div$ is a matrix of order $m+2$ by $m+1$. Where $k$ can take values $​​2, 4, 6$ and $8$; $m > 2*k+1$, that is:\\
 
-if $k=2$, then the minimum value it takes $m=5$\\
-if $k=4$, then the minimum value it takes $m=9$\\
-if $k=6$, then the minimum value it takes $m=13$\\
-if $k=8$, then the minimum value it takes $m=17$\\
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div.m}
-	\caption{Program~\texttt{div.m}}
-	\label{code:div.m}
-\end{listing}
-
-
-Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of order 7 by 6.
-
-\begin{equation}
-	D= (\frac{1}{dx})\begin{pmatrix}
-		0  & 0  & 0  & 0  & 0  & 0 \\
-		-1 & 1  & 0  & 0  & 0  & 0 \\
-		0  & -1 & 1  & 0  & 0  & 0 \\
-		0  & 0  & -1 & 1  & 0  & 0 \\
-		0  & 0  & 0  & -1 & 1  & 0 \\
-		0  & 0  & 0  & 0  & -1 & 1 \\
-		0  & 0  & 0  & 0  & 0  & 0 \\
-	\end{pmatrix}
-\end{equation}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{divergence.h}
-	\caption{Program~\texttt{divergence.h}}
-	\label{code:divergence.h}
-\end{listing}
-
-\textbf{Line 1 and 55:} In this part the code defines the function $D = div(k, m, dx)$\\
-\textbf{Line 15:} The assert command is the function used to verify the validity of an expression. In this case, $k \geq 2$.
-\textbf{Line 16:} Verify the validity of an expression. In this case, let $k$ be an even number.\\
-\textbf{Line 17:} Verify that $m \geq 2*k+1$.\\
-\textbf{Line 19:} The command $D = sparse(m+2, m+1)$ creates a sparse matrix of order $m+2$ by $m+1$.
-\textbf{Line 21 and 53:} The switch command is used to perform a multiple comparison, $k$ in this case analyzing for the different values ​​that $k$ can take, the maximum being 8.\\
-\textbf{Line 22:} The case when k=2\\
-\textbf{Line 23 to 24:}  The main diagonal takes values ​​of -1 from the second column onwards, and below the main diagonal it takes values ​​of 1 from the first column to the last column; the other components are zeros.\\
-\textbf{Line 27:} The case when k=4\\
-
-\textbf{Line 28:} Define a vector $A$ with 1 row and 5 columns with the indicated fractional values.\\
-
-\textbf{Line 29:} $D(2, 1:5) = A$ refers to row 2 and the first 5 columns of matrix $D$. Then, vector A is placed at those positions in matrix $D$.\\
-
-\textbf{Line 30:} The fliplr(A) command reverses the order of the elements of $A$, and then multiplies by -1.\\
-
-\textbf{Line 32:} $D(i, i-2:i+1) = [1/24 -9/8 9/8 -1/24]$ at each iteration of the loop, a 4-valued vector is being assigned to a portion of row $i$ of matrix $D$.\\
-
-
-\textbf{Line XX:} Defines the matrix $A$ of order $2$ by $7$.\\
-
-
-\textbf{Line XX:} In $D(2:3, 1:7) = A$ assigns matrix A to rows 2 and 3 of matrix D, and columns 1 to 7 of matrix D. That is, the elements of A are placed into that submatrix of D.\\
-
-
-\textbf{Line XX:} In $D(m:m+1, m-5:end) = -rot90(A,2)$ rot90(A, 2) rotates matrix A 180 degrees, which is equivalent to rotating it counterclockwise twice by 90 degrees. It is then multiplied by -1 and assigned to a subsegment of matrix D located in rows m to m+1 and columns from m-5 to the end.
-
-
-\textbf{Line XX:} In this for loop, index $i$ is traversed from 4 to $m-1$. At each iteration, a vector of specific values ​​is assigned to a subarray within $D$. The subarray affects rows $i$ and columns from $i-3$ to $i+2$. The sequence of values ​​assigned is: $[-3/640 25/384 -75/64 75/64 -25/384 3/640]$, This is repeated for each value of $i$ between 4 and $m-1$.
-
-\textbf{Line XX:} The matrix $A$ is defined as $3x93x9$, and its elements are fractions. This matrix will be used to fill specific portions of another matrix $D$.\\
-
-\textbf{Line XX:} $D(2:4, 1:9) = A$ matrix $A$ are assigned to rows 2, 3, and 4, and columns 1 through 9 of matrix $D$. In other words, rows 2 through 4 of $D$ (3 rows) and the first 9 columns of $D$ are filled with values ​​from matrix $A$.
-
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=100]{python}{div1D.py}
-	\caption{Program~\texttt{div1D.py}}
-	\label{code:div1D.py}
-\end{listing}
+\subsubsection{Orden 2}
+\subsubsection{Orden 4}
+\subsubsection{Orden 6}
+\subsubsection{Orden 8}
 
 \subsection{2D Formulation}
 
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div2D.m}
-	\caption{Program~\texttt{div2D.m}}
-	\label{code:div2D.m}
-\end{listing}
-
 \subsection{3D Formulation}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div3D.m}
-	\caption{Program~\texttt{div3D.m}}
-	\label{code:div3D.m}
-\end{listing}
 
 \section{Gradient Operator}
 
 \subsection{1D Formulation}
 
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad.m}
-	\caption{Program~\texttt{grad.m}}
-	\label{code:grad.m}
-\end{listing}
-
-
-
-
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{gradient.h}
-	\caption{Program~\texttt{gradient.h}}
-	\label{code:gradient.h}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=100]{python}{grad1D.py}
-	\caption{Program~\texttt{grad1D.py}}
-	\label{code:grad1D.py}
-\end{listing}
+\subsubsection{Orden 2}
+\subsubsection{Orden 4}
+\subsubsection{Orden 6}
+\subsubsection{Orden 8}
 
 \subsection{2D Formulation}
 
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad2D.m}
-	\caption{Program~\texttt{grad2D.m}}
-	\label{code:grad2D.m}
-\end{listing}
-
 \subsection{3D Formulation}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad3D.m}
-	\caption{Program~\texttt{grad3D.m}}
-	\label{code:grad3D.m}
-\end{listing}
 
 \section{Laplacian Operator}
 
 \subsection{1D Formulation}
 
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{lap.m}
-	\caption{Program~\texttt{lap.m}}
-	\label{code:lap.m}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{laplacian.h}
-	\caption{Program~\texttt{laplacian.h}}
-	\label{code:laplacian.h}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=19]{python}{lap1D.py}
-	\caption{Program~\texttt{lap1D.py}}
-	\label{code:lap1D.py}
-\end{listing}
-
 \subsection{2D Formulation}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{lap2D.m}
-	\caption{Program~\texttt{lap2D.m}}
-	\label{code:lap2D.m}
-\end{listing}
 
 \subsection{3D Formulation}
 
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{lap3D.m}
-	\caption{Program~\texttt{lap3D.m}}
-	\label{code:lap3D.m}
-\end{listing}
-
 \section{Interpolation Operators}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol.m}
-	\caption{Program~\texttt{interpol.m}}
-	\label{code:interpol.m}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol2D.m}
-	\caption{Program~\texttt{interpol2D.m}}
-	\label{code:interpol2D.m}
-\end{listing}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol3D.m}
-	\caption{Program~\texttt{interpol3D.m}}
-	\label{code:interpol3D.m}
-\end{listing}
-
-% \subsection{Center $\longleftrightarrow$ Nodes (1D, 2D, 3D)}
-% \subsection{Center $\longleftrightarrow$ Faces (1D, 2D, 3D)}
-% \subsection{Nodes $\longleftrightarrow$ Faces (1D, 2D, 3D)}
-
-% interpolCentersToFacesD1D.m
-% \section{Interpolation 1D from center to nodes}
-% \section{Interpolation 2D from center to nodes}
-% \section{Interpolation 3D from center to nodes}
-% \section{Interpolation 1D from center to faces}
-% \section{Interpolation 2D from center to faces}
-% \section{Interpolation 3D from center to faces}
-% \section{Interpolation 1D from nodes to center}
-% \section{Interpolation 2D from nodes to center}
-% \section{Interpolation 3D from nodes to center}
-% \section{Interpolation 1D from faces to center}
-% \section{Interpolation 2D from faces to center}
-% \section{Interpolation 3D from faces to center}
 
 \section{Boundary Condition Implementation}
 
 \subsection{1D Boundary Handling}
-
-\begin{listing}[ht!]
-	\tiny
-	\centering
-	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{addBC1D.m}
-	\caption{Program~\texttt{addBC1D.m}}
-	\label{code:addBC1D.m}
-\end{listing}
 
 \subsection{2D/3D Boundary Handling}
 
