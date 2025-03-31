@@ -15,14 +15,14 @@ if $k=2$, then the minimum value it takes $m=5$\\
 if $k=4$, then the minimum value it takes $m=9$\\
 if $k=6$, then the minimum value it takes $m=13$\\
 if $k=8$, then the minimum value it takes $m=17$\\
-\begin{listing}[ht!]
+
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div.m}
 	\caption{Program~\texttt{div.m}}
 	\label{code:div.m}
-\end{listing}
-
+\end{octavelisting}
 
 Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of order 7 by 6.
 
@@ -38,13 +38,13 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 	\end{pmatrix}
 \end{equation}
 
-\begin{listing}[ht!]
+\begin{cpplisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{divergence.h}
 	\caption{Program~\texttt{divergence.h}}
 	\label{code:divergence.h}
-\end{listing}
+\end{cpplisting}
 
 \textbf{Line 1 and 55:} In this part the code defines the function $D = div(k, m, dx)$\\
 \textbf{Line 15:} The assert command is the function used to verify the validity of an expression. In this case, $k \geq 2$.
@@ -80,34 +80,33 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 
 \textbf{Line XX:} $D(2:4, 1:9) = A$ matrix $A$ are assigned to rows 2, 3, and 4, and columns 1 through 9 of matrix $D$. In other words, rows 2 through 4 of $D$ (3 rows) and the first 9 columns of $D$ are filled with values ​​from matrix $A$.
 
-
-\begin{listing}[ht!]
+\begin{pythonlisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=100]{python}{div1D.py}
 	\caption{Program~\texttt{div1D.py}}
 	\label{code:div1D.py}
-\end{listing}
+\end{pythonlisting}
 
 \subsection{2D Formulation}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div2D.m}
 	\caption{Program~\texttt{div2D.m}}
 	\label{code:div2D.m}
-\end{listing}
+\end{octavelisting}
 
 \subsection{3D Formulation}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{div3D.m}
 	\caption{Program~\texttt{div3D.m}}
 	\label{code:div3D.m}
-\end{listing}
+\end{octavelisting}
 
 \section{Gradient Operator}
 
@@ -118,123 +117,123 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 \subsubsection{Orden 6}
 \subsubsection{Orden 8}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad.m}
 	\caption{Program~\texttt{grad.m}}
 	\label{code:grad.m}
-\end{listing}
+\end{octavelisting}
 
-\begin{listing}[ht!]
+\begin{cpplisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{gradient.h}
 	\caption{Program~\texttt{gradient.h}}
 	\label{code:gradient.h}
-\end{listing}
+\end{cpplisting}
 
-\begin{listing}[ht!]
+\begin{pythonlisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=100]{python}{grad1D.py}
 	\caption{Program~\texttt{grad1D.py}}
 	\label{code:grad1D.py}
-\end{listing}
+\end{pythonlisting}
 
 \subsection{2D Formulation}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad2D.m}
 	\caption{Program~\texttt{grad2D.m}}
 	\label{code:grad2D.m}
-\end{listing}
+\end{octavelisting}
 
 \subsection{3D Formulation}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{grad3D.m}
 	\caption{Program~\texttt{grad3D.m}}
 	\label{code:grad3D.m}
-\end{listing}
+\end{octavelisting}
 
 \section{Laplacian Operator}
 
 \subsection{1D Formulation}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{lap.m}
 	\caption{Program~\texttt{lap.m}}
 	\label{code:lap.m}
-\end{listing}
+\end{octavelisting}
 
-\begin{listing}[ht!]
+\begin{cpplisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{laplacian.h}
 	\caption{Program~\texttt{laplacian.h}}
 	\label{code:laplacian.h}
-\end{listing}
+\end{cpplisting}
 
-\begin{listing}[ht!]
+\begin{pythonlisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=19]{python}{lap1D.py}
 	\caption{Program~\texttt{lap1D.py}}
 	\label{code:lap1D.py}
-\end{listing}
+\end{pythonlisting}
 
 \subsection{2D Formulation}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{lap2D.m}
 	\caption{Program~\texttt{lap2D.m}}
 	\label{code:lap2D.m}
-\end{listing}
+\end{octavelisting}
 
 \subsection{3D Formulation}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{lap3D.m}
 	\caption{Program~\texttt{lap3D.m}}
 	\label{code:lap3D.m}
-\end{listing}
+\end{octavelisting}
 
 \section{Interpolation Operators}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol.m}
 	\caption{Program~\texttt{interpol.m}}
 	\label{code:interpol.m}
-\end{listing}
+\end{octavelisting}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol2D.m}
 	\caption{Program~\texttt{interpol2D.m}}
 	\label{code:interpol2D.m}
-\end{listing}
+\end{octavelisting}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{interpol3D.m}
 	\caption{Program~\texttt{interpol3D.m}}
 	\label{code:interpol3D.m}
-\end{listing}
+\end{octavelisting}
 
 % \subsection{Center $\longleftrightarrow$ Nodes (1D, 2D, 3D)}
 % \subsection{Center $\longleftrightarrow$ Faces (1D, 2D, 3D)}
@@ -258,13 +257,13 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 
 \subsection{1D Boundary Handling}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos]{octave}{addBC1D.m}
 	\caption{Program~\texttt{addBC1D.m}}
 	\label{code:addBC1D.m}
-\end{listing}
+\end{octavelisting}
 
 \subsection{2D/3D Boundary Handling}
 

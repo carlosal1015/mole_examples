@@ -27,7 +27,7 @@
 \usepackage{unicode-math}
 \usepackage[linesnumbered,ruled,boxed,vlined]{algorithm2e}
 \usepackage{algorithmicx}
-\usepackage{minted}
+\usepackage[newfloat=true]{minted}
 \usepackage[
 	citestyle=numeric,
 	style=numeric,
@@ -70,7 +70,16 @@
 \setmonofont{Fira Code}[Contextuals=Alternate,Scale=MatchLowercase]
 \addbibresource{references.bib}
 
-\renewcommand{\listingscaption}{Program}
+% Enable newfloat
+\SetupFloatingEnvironment{listing}{placement=htp}
+\SetupFloatingEnvironment{listing}{name=Program code}
+\SetupFloatingEnvironment{listing}{listname=List of Program Code}
+
+% Disable newfloat (default)
+% \renewcommand{\listingscaption}{Program}
+% \renewcommand{\listoflistingscaption}{Octave Scripts}
+% \renewcommand{\listoflistingscaption}{C++ Scripts}
+% \renewcommand{\listoflistingscaption}{Python Scripts}
 
 \makeatletter
 % latex.ltx, line 8262:
@@ -230,3 +239,24 @@
 
 \DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+\DeclareFloatingEnvironment[
+	fileext=lom,
+	name=Código Octave,
+	listname={Octave/MATLAB Scripts},
+	placement=ht!,
+]{octavelisting}
+
+\DeclareFloatingEnvironment[
+	fileext=loc,
+	name=Código C++,
+	listname={C++ Scripts},
+	placement=ht!,
+]{cpplisting}
+
+\DeclareFloatingEnvironment[
+	fileext=lop,
+	name=Código Python,
+	listname={Python Scripts},
+	placement=ht!,
+]{pythonlisting}

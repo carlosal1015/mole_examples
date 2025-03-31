@@ -100,33 +100,33 @@ out that this method never uses a ghost points.
 	0.
 \end{equation*}
 
-\begin{listing}[ht!]
+\begin{cpplisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=9,lastline=35,highlightlines={9}]{cpp}{hyperbolic1D_upwind.cpp}
 	\caption{Program~\texttt{hyperbolic1Dupwind.cpp}}
 	\label{code:hyperbolic1Dupwind.cpp}
-\end{listing}
+\end{cpplisting}
 
 \subsection{Animating the Transport Equation}
 
 \section{Elliptic Problems: Poisson Equation}
 
-\begin{listing}[ht!]
+\begin{pythonlisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=23,highlightlines={13}]{python}{elliptic1D.py}
 	\caption{Program~\texttt{elliptic1D.py}}
 	\label{code:elliptic1D.py}
-\end{listing}
+\end{pythonlisting}
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=10pt,linenos,firstline=1,lastline=53,highlightlines={21,29}]{octave}{elliptic1D.m}
 	\caption{Program~\texttt{elliptic1D.m}}
 	\label{code:elliptic1D.m}
-\end{listing}
+\end{octavelisting}
 
 \begin{equation}\label{eq:poisson1drobindconditions}
 	\left\{
@@ -391,14 +391,13 @@ where $\kappa$ is the thermal diffusivity.\\
 
 The 1D heat equation code by mimetic methods
 
-
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=80,highlightlines={20,29}]{octave}{parabolic1D.m}
 	\caption{Program~\texttt{parabolic1D.m}}
 	\label{code:parabolic1D.m}
-\end{listing}
+\end{octavelisting}
 
 
 In the one-dimensional heat equation in the parabolic1D.m code, the PDE being solved is given by:
@@ -578,13 +577,13 @@ Given the three-dimensional convection diffusion equation
 
 where  $\Omega$  is the three-dimensional domain with  boundary $\partial  \Omega $.
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=12pt,linenos,firstline=1,lastline=32,highlightlines={20,29}]{octave}{convection_diffusion.m}
 	\caption{Program~\texttt{convection\_diffusion.m}}
 	\label{code:convection_diffusion.m}
-\end{listing}
+\end{octavelisting}
 
 \textbf{Line 11:} The Operator's order of accuracy $k = 2$.\\
 
@@ -613,13 +612,13 @@ where  $\Omega$  is the three-dimensional domain with  boundary $\partial  \Omeg
 \textbf{Line 32:} The three-dimensional mimetic interpolation operator
 $interpol3D(m, n, o, c1, c2, c3)$.  Where $c1$ : Left interpolation coeff, $c2$ : Bottom interpolation coeff, $c3$ : Front interpolation coeff.\\
 
-\begin{listing}[ht!]
+\begin{octavelisting}
 	\tiny
 	\centering
 	\pathinputminted[frame=single,framesep=12pt,linenos,firstline=33,lastline=55,highlightlines={20,29}]{octave}{convection_diffusion.m}
 	\caption{Program~\texttt{convection\_diffusion.m}}
 	\label{code:convection_diffusion.m}
-\end{listing}
+\end{octavelisting}
 
 \textbf{Line 35:} size(G,1) calculates the size of matrix G, 1 indicates that it calculates the number of rows in matrix G. Then zeros(a,1) is a zeros matrix of a rows and 1 column
 
