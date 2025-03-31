@@ -18,6 +18,7 @@
 \usepackage{todonotes}
 \usepackage[shortlabels]{enumitem}
 \usepackage{booktabs}
+\usepackage{imakeidx}
 \usepackage[ISO]{diffcoeff}
 \usepackage{mathtools}
 \usepackage{amssymb}
@@ -242,21 +243,28 @@
 
 \DeclareFloatingEnvironment[
 	fileext=lom,
-	name=Código Octave,
+	name=Octave script,
 	listname={Octave/MATLAB Scripts},
 	placement=ht!,
 ]{octavelisting}
 
 \DeclareFloatingEnvironment[
 	fileext=loc,
-	name=Código C++,
+	name=C++ script,
 	listname={C++ Scripts},
 	placement=ht!,
 ]{cpplisting}
 
 \DeclareFloatingEnvironment[
 	fileext=lop,
-	name=Código Python,
+	name=Python script,
 	listname={Python Scripts},
 	placement=ht!,
 ]{pythonlisting}
+
+\makeindex[
+	columns=2,
+	title=Indexx,
+	options= -s header.ist,
+	intoc
+]

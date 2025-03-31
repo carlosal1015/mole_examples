@@ -1,0 +1,5 @@
+headings_flag 1
+
+headings_prefix "\\bfseries\\color{DarkBlue}%"
+
+headings_sufix "\}"

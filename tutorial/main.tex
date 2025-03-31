@@ -1,7 +1,7 @@
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'idx', 'loc', 'lof', 'log',
-% arara: --> 'lol', 'lom', 'lop', 'mst', 'out', 'pdf', 'run.xml', 'toc']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'idx', 'ilg', 'ind', 'loc', 'lof',
+% arara: --> 'log', 'lol', 'lom', 'lop', 'mst', 'out', 'pdf', 'run.xml', 'toc']
 % arara: --> }
 % arara: lualatex: {
 % arara: --> shell: yes,
@@ -9,6 +9,7 @@
 % arara: --> interaction: batchmode
 % arara: --> }
 % arara: biber
+% arara: makeindex
 % arara: lualatex: {
 % arara: --> shell: yes,
 % arara: --> draft: yes,
@@ -26,8 +27,8 @@
 % arara: --> }
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'idx', 'loc', 'lof', 'log',
-% arara: --> 'lol', 'lom', 'lop', 'mst', 'out', 'run.xml', 'toc']
+% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'idx', 'ilg', 'ind', 'loc', 'lof',
+% arara: --> 'log', 'lol', 'lom', 'lop', 'mst', 'out', 'run.xml', 'toc']
 % arara: --> }
 \input{preamble}
 
@@ -51,4 +52,5 @@
 \backmatter
 \nocite{*}
 \printbibliography[title={References}]
+\printindex
 \end{document}
