@@ -50,7 +50,7 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 \textbf{Line 15:} The assert command is the function used to verify the validity of an expression. In this case, $k \geq 2$.
 \textbf{Line 16:} Verify the validity of an expression. In this case, let $k$ be an even number.\\
 \textbf{Line 17:} Verify that $m \geq 2*k+1$.\\
-\textbf{Line 19:} The command $D = sparse(m+2, m+1)$ creates a sparse matrix of order $m+2$ by $m+1$.
+\textbf{Line 19:} The command $D = sparse(m+2, m+1)$ creates a sparse matrix of order $m+2$ by $m+1$.\\
 \textbf{Line 21 and 53:} The switch command is used to perform a multiple comparison, $k$ in this case analyzing for the different values ​​that $k$ can take, the maximum being 8.\\
 \textbf{Line 22:} The case when k=2\\
 \textbf{Line 23 to 24:}  The main diagonal takes values ​​of -1 from the second column onwards, and below the main diagonal it takes values ​​of 1 from the first column to the last column; the other components are zeros.\\
@@ -65,20 +65,21 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 \textbf{Line 32:} $D(i, i-2:i+1) = [1/24 -9/8 9/8 -1/24]$ at each iteration of the loop, a 4-valued vector is being assigned to a portion of row $i$ of matrix $D$.\\
 
 
-\textbf{Line XX:} Defines the matrix $A$ of order $2$ by $7$.\\
+\textbf{Line 36:} Defines the matrix $A$ of order $2$ by $7$.\\
 
 
-\textbf{Line XX:} In $D(2:3, 1:7) = A$ assigns matrix A to rows 2 and 3 of matrix D, and columns 1 to 7 of matrix D. That is, the elements of A are placed into that submatrix of D.\\
+\textbf{Line 38:} In $D(2:3, 1:7) = A$ assigns matrix A to rows 2 and 3 of matrix D, and columns 1 to 7 of matrix D. That is, the elements of A are placed into that submatrix of D.\\
 
 
-\textbf{Line XX:} In $D(m:m+1, m-5:end) = -rot90(A,2)$ rot90(A, 2) rotates matrix A 180 degrees, which is equivalent to rotating it counterclockwise twice by 90 degrees. It is then multiplied by -1 and assigned to a subsegment of matrix D located in rows m to m+1 and columns from m-5 to the end.
+\textbf{Line 39:} In $D(m:m+1, m-5:end) = -rot90(A,2)$ rot90(A, 2) rotates matrix A 180 degrees, which is equivalent to rotating it counterclockwise twice by 90 degrees. It is then multiplied by -1 and assigned to a subsegment of matrix D located in rows m to m+1 and columns from m-5 to the end.
 
 
-\textbf{Line XX:} In this for loop, index $i$ is traversed from 4 to $m-1$. At each iteration, a vector of specific values ​​is assigned to a subarray within $D$. The subarray affects rows $i$ and columns from $i-3$ to $i+2$. The sequence of values ​​assigned is: $[-3/640 25/384 -75/64 75/64 -25/384 3/640]$, This is repeated for each value of $i$ between 4 and $m-1$.
+\textbf{Line 40:} In this for loop, index $i$ is traversed from 4 to $m-1$. At each iteration, a vector of specific values ​​is assigned to a subarray within $D$. The subarray affects rows $i$ and columns from $i-3$ to $i+2$. The sequence of values ​​assigned is: $[-3/640 25/384 -75/64 75/64 -25/384 3/640]$, This is repeated for each value of $i$ between 4 and $m-1$.
 
-\textbf{Line XX:} The matrix $A$ is defined as $3x93x9$, and its elements are fractions. This matrix will be used to fill specific portions of another matrix $D$.\\
+\textbf{Line 45:} The matrix $A$ is defined as $3x93x9$, and its elements are fractions. This matrix will be used to fill specific portions of another matrix $D$.\\
 
-\textbf{Line XX:} $D(2:4, 1:9) = A$ matrix $A$ are assigned to rows 2, 3, and 4, and columns 1 through 9 of matrix $D$. In other words, rows 2 through 4 of $D$ (3 rows) and the first 9 columns of $D$ are filled with values ​​from matrix $A$.
+\textbf{Line 48:} $D(2:4, 1:9) = A$ matrix $A$ are assigned to rows 2, 3, and 4, and columns 1 through 9 of matrix $D$. In other words, rows 2 through 4 of $D$ (3 rows) and the first 9 columns of $D$ are filled with values ​​from matrix $A$.
+
 
 \begin{pythonlisting}
 	\tiny
@@ -97,6 +98,27 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 	\caption{Program~\texttt{div2D.m}}
 	\label{code:div2D.m}
 \end{octavelisting}
+
+\textbf{Line 1 and 29:} In this part the code defines the function $D = div2D(k, m, dx,n,dy)$ where $k$ is the order of accuracy, $m$ is the number of points on the $x$-axis, $dx$ is the step size on the $x$-axis, $n$ is the number of cells on the $y$-axis, $dy$ is the step size on the $y$-axis\\
+
+\textbf{Line 16:} Calculates the divergence in one dimension on the x-axis $Dx = div(k, m, dx)$ this command is calling divergence in 1D. \\
+
+\textbf{Line 17:} Calculates the divergence in one dimension on the $y$-axis $Dy = div(k, n, dy)$ this command is calling divergence in 1D. \\
+
+\textbf{Line 19:} $Im = sparse(m+2,m)$ is a sparse matrix of size $m+2$ by $m$.
+
+\textbf{Line 20:} $In = sparse(n+2,n)$ is a sparse matrix of size $n+2$ by $n$.
+
+\textbf{linea 22} $Im$ has size $(m+2)$ by $m$ as seen on line 19. Then the command $speye(m, m)$ creates a sparse identity matrix of size $m$ by $m$. and $Im(2:m+1, :)$ selects from row 2 to row $m+1$, all columns. Finally, this puts the identity inside $Im$ but starting at row 2 , leaving row 1 and row $m+2$ as zeros.\\
+
+\textbf{linea 23} $In$ has size $(n+2)$ by $n$ as seen on line 19. Then the command $speye(n, n)$ creates a sparse identity matrix of size $n$ by $n$. and $In(2:n+1, :)$ selects from row 2 to row $n+1$, all columns. Finally, this puts the identity inside $In$ but starting at row 2 , leaving row 1 and row $n+2$ as zeros.\\
+
+\textbf{linea 25} In this part $Sx = kron(In, Dx)$; This is a sparse $1D$ differential operator, using the Kronecker product using kron. This operator applies $Dx$ in the $x$ direction, repeating for each row in $y$. Derivatives in $x$ for each row of the $2D$ mesh. Where the size of $Sx$ is: $(n+2)*m$ by $n*m$, since $Dx$ is $m$ by $m$ and $In$ is $(n+2)$ by $n$.\\
+
+
+\textbf{linea 26} In this part $Sy = kron(Dy, Im)$; This is a sparse $1D$ differential operator, using the Kronecker product using kron. This operator applies $Dy$ in the $y$ direction, repeating for each row in $y$. Derivatives in $y$ for each row of the $2D$ mesh. Where the size of $Sy$ is: $n*(m+2)$ by $n*m$.\\
+
+\textbf{linea 28} $D$ is the horizontal concatenation of the two matrices $Sx$ and $Sy$, the order of the matrix $D$ being, the number of rows is $(n+2)$ by $n$ and columns is $2*n^{2}$
 
 \subsection{3D Formulation}
 
