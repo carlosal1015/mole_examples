@@ -118,7 +118,7 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 
 \textbf{linea 26} In this part $Sy = kron(Dy, Im)$; This is a sparse $1D$ differential operator, using the Kronecker product using kron. This operator applies $Dy$ in the $y$ direction, repeating for each row in $y$. Derivatives in $y$ for each row of the $2D$ mesh. Where the size of $Sy$ is: $n*(m+2)$ by $n*m$.\\
 
-\textbf{linea 28} $D$ is the horizontal concatenation of the two matrices $Sx$ and $Sy$, the order of the matrix $D$ being, the number of rows is $(n+2)$ by $n$ and columns is $2*n^{2}$
+\textbf{linea 28} $D$ is the horizontal concatenation of the two matrices $Sx$ and $Sy$, the order of the matrix $D$ being, the number of rows is $(n+2)$ by $n$ and columns is $2*n^{2}$\\
 
 \subsection{3D Formulation}
 
@@ -129,6 +129,36 @@ Example: If  $K=2$, $m=5$ and $dx=1$, then the divergence matrix is ​​of ord
 	\caption{Program~\texttt{div3D.m}}
 	\label{code:div3D.m}
 \end{octavelisting}
+
+\textbf{Line 1 and 38:} In this part the code defines the function $D = div3D(k, m, dx,n,dy, o, dz)$ where $k$ is the order of accuracy, $m$ is the number of points on the $x$-axis, $dx$ is the step size on the $x$-axis, $n$ is the number of cells on the $y$-axis, $dy$ is the step size on the $y$-axis, $o$ is the number of cells on the $z$-axis, $dz$ is the step size on the $z$-axis. \\
+
+\textbf{Line 18:} $Im = sparse(m+2,m)$ is equal to the code of div2D line 19.\\
+
+\textbf{Line 19:} $ Im(2:(m + 2) - 1, :) = speye(m, m)$ is equal to the code of div2D line 22.\\
+
+\textbf{Line 21:} $Dx = div(k, m, dx)$ This is calling for divergence in one dimension, on the x-axis.\\
+
+\textbf{Line 23:} $In = sparse(n+2,n)$ is equal to the code of div2D line 20.\\
+
+\textbf{Line 24:} $ In(2:(n + 2) - 1, :) = speye(n, n)$ is equal to the code of div2D line 23.\\
+
+\textbf{Line 26:} $Dy = div(k, n, dy)$ This is calling for divergence in one dimension, on the $y$-axis.\\
+
+\textbf{Line 28:} $Io = sparse(o+2,o)$ is equal to the code of div2D line 20.\\
+
+\textbf{Line 29:} $ Io(2:(o + 2) - 1, :) = speye(o, o)$ is equal to the code of div2D line 23.\\
+
+\textbf{Line 31:} $Dz = div(k, o, dz)$ This is calling for divergence in one dimension, on the $z$-axis.\\
+
+\textbf{Line 33:} $Sx = kron(kron(Io, In), Dx)$ applies the derivative at $x$, keeping $y$ and $z$ fixed using the Kronecker product, the 1D operator is expanded to operate on the entire 3D mesh.\\
+
+\textbf{Line 34:} $Sy = kron(kron(Io, Dy), Im)$ applies the derivative at $y$, keeping $x$ and $z$ fixed using the Kronecker product, the 1D operator is expanded to operate on the entire 3D mesh.\\
+
+\textbf{Line 35:} $Sz = kron(kron(Dz, In), Im)$ applies the derivative at $z$, keeping $x$ and $y$ fixed using the Kronecker product, the 1D operator is expanded to operate on the entire 3D mesh.\\
+
+\textbf{linea 28} $D$ is the horizontal concatenation of the three matrices $Sx$, $Sy$ and $Sz$.\\
+
+
 
 \section{Gradient Operator}
 
