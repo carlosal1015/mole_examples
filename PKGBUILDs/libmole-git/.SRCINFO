@@ -1,6 +1,6 @@
 pkgbase = libmole-git
 	pkgdesc = The Mimetic Operators Library Enhanced
-	pkgver = 1.0.r188.gd0cde7f
+	pkgver = 1.0.r235.gded9051
 	pkgrel = 1
 	url = https://github.com/csrc-sdsu/mole
 	arch = x86_64
@@ -26,6 +26,7 @@ pkgbase = libmole-git
 	makedepends = texlive-fontsrecommended
 	makedepends = ttf-dejavu
 	makedepends = texlive-latexextra
+	makedepends = inkscape
 	depends = armadillo
 	depends = octave
 	depends = superlu
