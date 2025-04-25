@@ -1,9 +1,9 @@
-name: matlab2024b
+name: matlab2025a
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.13.2
+  - python=3.13.3
   - pip
   - pip:
       - jupyter-matlab-proxy
