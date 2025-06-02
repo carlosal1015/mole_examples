@@ -37,7 +37,7 @@ jobs:
           mv mole/doc/sphinx/build/latex/MOLE.pdf docs
 
       - name: Download artifact
-        uses: dawidd6/action-download-artifact@v9
+        uses: dawidd6/action-download-artifact@v10
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: latex.yml
