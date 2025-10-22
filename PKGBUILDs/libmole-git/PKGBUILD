@@ -2,18 +2,19 @@
 _base=mole
 pkgname=lib${_base}-git
 pkgdesc="The Mimetic Operators Library Enhanced"
-pkgver=1.0.r235.gded9051
+pkgver=1.0.r373.g732d57a
 pkgrel=1
 arch=(x86_64)
 url="https://github.com/csrc-sdsu/${_base}"
 license=(GPL-3.0-only)
 depends=(armadillo octave superlu)
-makedepends=(cmake doxygen eigen graphviz git python-sphinx_rtd_theme
-  python-pillow python-docutils python-sphinxcontrib-bibtex python-altair
-  python-breathe python-myst-parser python-linkify-it-py python-sphinxcontrib-mermaid
-  texlive-binextra texlive-luatex texlive-latexrecommended texlive-fontsrecommended
-  ttf-dejavu texlive-latexextra inkscape)
-# python-sphinxcontrib-katex python-sphinx-hoverxref python-sphinx_design | python-standard-imghdr
+makedepends=(cmake eigen3 git)
+  # doxygen graphviz inkscape texlive-binextra texlive-luatex texlive-latexrecommended texlive-fontsrecommended ttf-dejavu texlive-latexextra
+  # python-setuptools python-sphinx-book-theme python-sphinx_design python-sphinx-copybutton python-sphinx-togglebutton
+  # python-docutils python-pillow python-breathe python-myst-parser python-sphinx_rtd_theme
+  # python-sphinxcontrib-bibtex python-sphinxcontrib-katex python-standard-imghdr python-altair python-sphinx-hoverxref
+  # python-sphinxcontrib-serializinghtml python-sphinxcontrib-htmlhelp
+  # python-sphinxcontrib-matlabdomain
 checkdepends=(gtest)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'
@@ -21,7 +22,7 @@ optdepends=('matlab: for MATLAB support'
 source=(git+${url}.git#branch=master
   git+https://github.com/gllmflndn/m2html.git#branch=main)
 sha512sums=('SKIP'
-  'SKIP')
+            'SKIP')
 provides=(${_base})
 conflicts=(${_base})
 
@@ -31,12 +32,16 @@ pkgver() {
 }
 
 prepare() {
+  # Similar issue https://lists.altlinux.org/pipermail/sisyphus-cybertalk/2025-May/126338.html
+  sed -i 's/^set(CMAKE_CXX_STANDARD 14/set(CMAKE_CXX_STANDARD 17/' ${_base}/CMakeLists.txt
+  sed -i '/^if(U/,+6 s/^/#/' ${_base}/CMakeLists.txt
   sed -i '/^set(ARMADILLO_VERSION/,+68 s/^/#/' ${_base}/CMakeLists.txt
   sed -i '/^set(LINK_LIBS/,+3 s/^/#/' ${_base}/CMakeLists.txt
   sed -i '118i set(LINK_LIBS ${ARMADILLO_LIBRARIES} ${OpenBLAS_LIBRARIES} ${SUPERLU_INSTALL_DIR}/lib/libsuperlu.so ${LAPACK_LIBRARY})' ${_base}/CMakeLists.txt # ${EIGEN3_LIBRARIES}
   sed -i '/^include(/,+9 s/^/#/' ${_base}/tests/cpp/CMakeLists.txt
   sed -i 's/^	@python/	#@python/' ${_base}/doc/sphinx/Makefile
   mv m2html ${_base}
+  mkdir -p ${_base}/doc/doxygen/cpp
   # exit 0
   # sed -i 's/svg/pdf/' ${_base}/README.md
   # mkdir -p ${_base}/doc/sphinx/source/api/intros/doc/assets/img
@@ -52,18 +57,18 @@ build() {
     -B build \
     -DBUILD_SHARED_LIBS=TRUE \
     -DCMAKE_BUILD_TYPE=None \
-    -DCMAKE_CXX_STANDARD=14 \
+    -DCMAKE_CXX_STANDARD=17 \
     -DCMAKE_CXX_COMPILER=g++ \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -Wno-dev
   cmake --build build --target mole_C++
 
   cd ${_base}
-  octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/doxygen/matlab', 'global', 'on', 'template', 'blue')"
-  cd doc/sphinx/
-  make doc-doxygen doc-html doc-latexpdf
-  cd build/latex
-  make
+  octave -q -p m2html --eval "m2html('mfiles', 'src/matlab_octave', 'htmldir', 'doc/doxygen/matlab_octave', 'global', 'on', 'template', 'blue')"
+  # cd doc/sphinx/
+  # make doc-doxygen doc-html doc-latexpdf
+  # cd build/latex
+  # make
 }
 
 check() {
@@ -76,18 +81,18 @@ package() {
   install ${_base}/src/cpp/*.h ${pkgdir}/usr/include/${_base}
 
   install -d "${pkgdir}/usr/share/${_base}"
-  mv ${_base}/src/matlab ${pkgdir}/usr/share/${_base}
+  mv ${_base}/src/matlab_octave ${pkgdir}/usr/share/${_base}
 
   # install docs
   install -d ${pkgdir}/usr/share/doc/${_base}
-  mv ${_base}/doc/sphinx/build/html ${pkgdir}/usr/share/doc/${_base}
-  mv ${_base}/doc/sphinx/build/latex/PDF/MOLE-docs.pdf ${pkgdir}/usr/share/doc/${_base}
+  # mv ${_base}/doc/sphinx/build/html ${pkgdir}/usr/share/doc/${_base}
+  # mv ${_base}/doc/sphinx/build/latex/PDF/MOLE-docs.pdf ${pkgdir}/usr/share/doc/${_base}
   mv ${_base}/doc/doxygen ${pkgdir}/usr/share/doc/${_base}
 
   # install tutorials
   install -d ${pkgdir}/usr/share/doc/${_base}/examples
   mv ${_base}/examples/cpp ${pkgdir}/usr/share/doc/${_base}/examples
-  mv ${_base}/examples/matlab ${pkgdir}/usr/share/doc/${_base}/examples
+  mv ${_base}/examples/matlab_octave ${pkgdir}/usr/share/doc/${_base}/examples
 
   install -Dm 644 ${_base}/LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }
