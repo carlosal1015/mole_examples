@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-24.04
     container: archlinux:latest
     env:
+      M2HTML_REPO: "https://github.com/gllmflndn/m2html.git"
+      MOLE_REPO: "https://github.com/csrc-sdsu/mole.git"
       PACKAGES: "make doxygen graphviz git octave python-sphinx_rtd_theme python-pillow python-docutils python-sphinxcontrib-bibtex python-altair python-breathe python-myst-parser python-linkify-it-py texlive-binextra texlive-luatex texlive-latexrecommended texlive-fontsrecommended ttf-dejavu texlive-latexextra"
 
     steps:
@@ -18,12 +20,12 @@ jobs:
         run: |
           pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1
           pacman --needed --noconfirm --noprogressbar -S ${PACKAGES}
-          git clone -q --filter=blob:none --depth=1 https://github.com/csrc-sdsu/mole.git
+          git clone -q --filter=blob:none --depth=1 ${MOLE_REPO}
           pushd mole
-          git clone -q --filter=blob:none --depth=1 https://github.com/gllmflndn/m2html.git
-          sed -i 's/^	@pip/	#@pip/' doc/sphinx/Makefile
-          sed -i 's/..\/..\/..\/..\/..\/doc\/doxygen\/matlab\/index.html/..\/..\/..\/..\/..\/mole_examples\/doxygen\/matlab\/index.html/' doc/sphinx/source/api/matlab_api.rst
-          octave -q -p m2html --eval "m2html('mfiles', 'src/matlab', 'htmldir', 'doc/doxygen/matlab', 'global', 'on', 'template', 'blue')"
+          git clone -q --filter=blob:none --depth=1 ${M2HTML_REPO}
+          sed -i 's/^	@python/	#@python/' doc/sphinx/Makefile
+          # sed -i 's/..\/..\/..\/..\/..\/doc\/doxygen\/matlab\/index.html/..\/..\/..\/..\/..\/mole_examples\/doxygen\/matlab\/index.html/' doc/sphinx/source/api/matlab_api.rst
+          octave -q -p m2html --eval "m2html('mfiles', 'src/matlab_octave', 'htmldir', 'doc/doxygen/matlab_octave', 'global', 'on', 'template', 'blue')"
           pushd doc/sphinx/
           make doc-all
           pushd build/latex
