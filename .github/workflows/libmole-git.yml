@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - docker/libmole-git.Dockerfile
+      - PKGBUILDs/libmole-git/PKGBUILD
   schedule:
     - cron: "0 2 * * 5"
 
