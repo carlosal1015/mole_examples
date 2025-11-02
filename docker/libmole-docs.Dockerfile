@@ -13,7 +13,7 @@ ARG AUR_PACKAGES="\
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   yay --mflags --nocheck --needed --noconfirm -S ${AUR_PACKAGES}
 # 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-FROM ghcr.io/cpp-review-dune/introductory-review/python-fenics-dolfinx
+FROM ghcr.io/carlosal1015/mole_examples/libmole-git
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Libmole docs Arch" \
