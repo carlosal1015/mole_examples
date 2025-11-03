@@ -67,8 +67,8 @@ RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
   sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
-  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} >/dev/null 2>&1 && \
+  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst >/dev/null 2>&1 && \
   rm /tmp/*.pkg.tar.zst && \
   find /tmp/ ! -name '*.log' ! -name 'mystmd-*.pkg.tar.zst' -type f -exec rm -f {} + && \
   sudo pacman -Scc <<< Y <<< Y && \

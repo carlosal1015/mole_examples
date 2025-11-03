@@ -17,7 +17,6 @@ jobs:
     steps:
       - name: Docs
         run: |
-          pwd
           git clone -q --filter=blob:none --depth=1 ${MOLE_REPO}
           pushd mole
           git clone -q --filter=blob:none --depth=1 ${M2HTML_REPO}
@@ -28,15 +27,12 @@ jobs:
           octave -q -p m2html --eval "m2html('mfiles', 'src/matlab_octave', 'htmldir', 'doc/doxygen/matlab_octave', 'global', 'on', 'template', 'blue')"
           pushd doc/sphinx/
           make doc-all
-          pushd build/latex
-          make
-          popd
           popd
           popd
           mkdir -p docs
           mv mole/doc/doxygen docs
           mv mole/doc/sphinx/build/html docs
-          mv mole/doc/sphinx/build/latex/MOLE.pdf docs
+          mv mole/doc/sphinx/build/latex/PDF/MOLE-docs.pdf docs
 
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v11
