@@ -1,0 +1,841 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MOLE Open-Source Ecosystem Organization &#8212; MOLE User Manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=fe6f0a95" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/announcement.css?v=03d73680" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=051bfb12"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=08f3124f"></script>
+    <script src="../_static/mathconf.js?v=c2619059"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intros/ose_organization_wrapper';</script>
+    <script src="../_static/js/theme-custom.js?v=639921fc"></script>
+    <script src="../_static/js/theme-mode-toggle.js?v=3544c490"></script>
+    <script src="../_static/js/announcement.js?v=7d524de4"></script>
+    <link rel="canonical" href="https://mole-pdes.readthedocs.io/intros/ose_organization_wrapper.html" />
+    <link rel="icon" href="../_static/logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MOLE Open-Source Ecosystem Governance" href="ose_governance_wrapper.html" />
+    <link rel="prev" title="Contributing to MOLE: Comprehensive Guide" href="contributing_wrapper.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="Nov 02, 2025"/>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const headers = document.querySelectorAll('.collapsible-header');
+    
+    headers.forEach(header => {
+      header.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const content = this.nextElementSibling;
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+        } else {
+          content.style.display = 'block';
+        }
+      });
+    });
+  });
+</script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="MOLE User Manual - Home"/>
+    <img src="../_static/logo-dark.png" class="logo__image only-dark pst-js-only" alt="MOLE User Manual - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/csrc-sdsu/mole" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.mathworks.com/matlabcentral/fileexchange/124870-mole" title="MATLAB" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-cube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">MATLAB</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    MOLE: Mimetic Operators Library Enhanced
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_readme_wrapper.html">Documentation Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/cpp/index.html">C++</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/boundary.html">Boundary Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/utils.html">Utilities</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/matlab_octave/index-beta.html">MATLAB/Octave</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/matlab_octave/matlab_index.html">Function Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/matlab_octave/api.html">API</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematical Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math_functions/index.html">Mathematical Functions Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/CSRCReportOnMOLE.html">CSRC Report on MOLE Library</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/StaggeredGrids.html">Why Staggered Grids?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/Jacobian.html">Jacobian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/NonUniformGradAndDiv.html">Non-Uniform Gradient and Divergence Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/IntegrationByParts.html">Mimetic Discretization of the Integration by Parts Formula</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Elliptic/index.html">Elliptic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Elliptic/1D/index.html">1D Elliptic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D.html">Elliptic1D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-add-Scalar-BC.html">Elliptic1D Add Scalar Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Homogeneous-Dirichlet.html">Elliptic1D Homogenous Dirichlet Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Dirichlet-Right-Neumann.html">Elliptic1D Left Dirichlet and Right Neumann Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Dirichlet-Right-Robin.html">Elliptic1D Left Dirichlet and Right Robin Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Neumann-Right-Neumann.html">Elliptic1D Pure Neumann Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Neumann-Right-Robin.html">Elliptic1D Left Neumann Right Robin Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Robin-Right-Robin.html">Elliptic1D Pure Robin Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Non-Homogeneous-Dirichlet.html">Elliptic1D Non-Homogenous Dirichlet Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Non-Periodic-BC.html">Elliptic1D Non-Periodic Dirichlet Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Periodic-BC.html">Elliptic1D Periodic Dirichlet Boundary Conditions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Elliptic/2D/index.html">2D Elliptic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Elliptic2D.html">Elliptic2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Elliptic2D-Case-2.html">Elliptic2D Case 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Elliptic2D-Nodal-Curv.html">Elliptic2D Nodal Curv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Elliptic2D-Nodal-Curv-Sinusoidal.html">Elliptic2D Nodal Curv Sinusoidal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Minimal-Poisson-2D.html">Minimal Poisson 2D</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Elliptic/3D/index.html">3D Elliptic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/3D/Elliptic3D.html">Elliptic3D</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Parabolic/index.html">Parabolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Parabolic/1D/index.html">1D Parabolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Parabolic/1D/Parabolic1D.html">1D Heat Equation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Parabolic/1D/Terzaghi1D.html">Terzaghi One-Dimensional Consolidation</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Hyperbolic/index.html">Hyperbolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Hyperbolic/1D/index.html">1D Hyperbolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Hyperbolic1D.html">Hyperbolic1D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Hyperbolic1D-upwind.html">Hyperbolic1D upwind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Hyperbolic1D-Lax-Friedrichs.html">Hyperbolic1D Lax Friedrichs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Wave-1D.html">Wave 1D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Wave-1D-Case-2.html">Wave 1D Case 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Burgers1D.html">Burgers1D</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Hyperbolic/2D/index.html">2D Hyperbolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/2D/Wave-2D.html">Wave 2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/2D/Wave-2D-Case-2.html">Wave 2D Case 2</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Schrodinger/index.html">Schrödinger Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Schrodinger/1D/index.html">1D Schrödinger Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Schrodinger/1D/Schrodinger1D.html">Schrodinger1D</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Sturm-Liouville/index.html">Sturm-Liouville Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Sturm-Liouville/Chebyshev.html">Chebyshev Sturm-Liouville Problem</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Navier-Stokes/index.html">Navier-Stokes Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Navier-Stokes/Lock-Exchange.html">Lock Exchange Problem</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Mixed/index.html">Mixed Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Mixed/1D/index.html">1D Mixed Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Mixed/1D/Transport1D.html">Transport1D</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Mixed/2D/index.html">2D Mixed Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Mixed/2D/work-in-progress.html">Work in Progress</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Mixed/3D/index.html">3D Mixed Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Mixed/3D/Convection-Diffusion.html">3D Convection-Diffusion Equation</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Integration/index.html">Integration Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Integration/Integration1D.html">Integration1D.m</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Time-Integrators/index.html">Time Integrators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Time-Integrators/RK2.html">Second-Order Runge-Kutta Method (RK2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Time-Integrators/RK4.html">4th-Order Runge-Kutta Method (RK4)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Tutorials/Two_Way_Wave_Equation/Two_Way_Wave_Equation.html">Mimetic Difference Operators Vs Finite Differences</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="community_roles_wrapper.html">MOLE Community Roles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_wrapper.html">Contributing to MOLE</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MOLE OSE Organization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ose_governance_wrapper.html">MOLE OSE Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct_wrapper.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications_wrapper.html">Publications</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/csrc-sdsu/mole" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/csrc-sdsu/mole/blob/main/doc/sphinx/source/intros/ose_organization_wrapper.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/csrc-sdsu/mole/edit/main/doc/sphinx/source/intros/ose_organization_wrapper.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/intros/ose_organization_wrapper.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>MOLE Open-Source Ecosystem Organization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-of-purpose">Statement of Purpose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-ose-organization-pillars">MOLE OSE Organization Pillars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#community-engagement-pillar">Community Engagement Pillar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organization-and-governance-pillar">Organization and Governance Pillar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustainable-infrastructure-pillar">Sustainable Infrastructure Pillar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-and-growth-pillar">Evaluation and Growth Pillar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-ose-governance-model">MOLE OSE Governance Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-steering-council">MOLE Steering Council</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-community-engagement-circle">MOLE Community Engagement Circle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-software-engineering-circle">MOLE Software Engineering Circle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-computational-sciences-circle">MOLE Computational Sciences Circle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-mimetic-differences-circle">MOLE Mimetic Differences Circle</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mole-open-source-ecosystem-organization">
+<h1>MOLE Open-Source Ecosystem Organization<a class="headerlink" href="#mole-open-source-ecosystem-organization" title="Link to this heading">#</a></h1>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="#statement-of-purpose">Statement of Purpose</a></p></li>
+<li><p><a class="reference external" href="#mole-ose-organization-pillars">MOLE OSE Organization Pillars</a></p></li>
+<li><p><a class="reference external" href="#community-engagement-pillar">Community Engagement Pillar</a></p></li>
+<li><p><a class="reference external" href="#organization-and-governance-pillar">Organization and Governance Pillar</a></p></li>
+<li><p><a class="reference external" href="#sustainable-infrastructure-pillar">Sustainable Infrastructure Pillar</a></p></li>
+<li><p><a class="reference external" href="#evaluation-and-growth-pillar">Evaluation And Growth Pillar</a></p></li>
+<li><p><a class="reference external" href="#mole-ose-governance-model">MOLE OSE Governance Model</a></p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="#mole-steering-council">MOLE Steering Council</a></p></li>
+<li><p><a class="reference external" href="#mole-community-engagement-circle">Community Engagement Governing Circle</a></p></li>
+<li><p><a class="reference external" href="#mole-software-engineering-circle">Software Engineering Governing Circle</a></p></li>
+<li><p><a class="reference external" href="#mole-computational-sciences-circle">Computational Sciences Governing Circle</a></p></li>
+<li><p><a class="reference external" href="#mole-mimetic-methods-circle">Mimetic Differences Governing Circle</a></p></li>
+</ol>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="statement-of-purpose">
+<h2>Statement of Purpose<a class="headerlink" href="#statement-of-purpose" title="Link to this heading">#</a></h2>
+<p>First, it is important to state the purpose and scope of the MOLE OSE organization to provide context for the MOLE OSE structural organization depicted in Figure 1.  The MOLE Open-Source Ecosystem organization was established to support the MOLE library’s ecosystem as a sustainable, robust, secure, and more readily available library of high-order mimetic differential operators. The MOLE OSE serves academic and industrial communities that require high-performance solvers for PDEs.</p>
+</section>
+<hr class="docutils" />
+<section id="mole-ose-organization-pillars">
+<h2>MOLE OSE Organization Pillars<a class="headerlink" href="#mole-ose-organization-pillars" title="Link to this heading">#</a></h2>
+<p>The MOLE organization is strategically supported by four working pillars;</p>
+<p><img alt="MOLE OSE Pillar" src="../_images/MOLE_pillars.png" />
+<strong>Figure 1.</strong> The four pillars of the MOLE Ecosystem Organization.</p>
+</section>
+<hr class="docutils" />
+<section id="community-engagement-pillar">
+<h2>Community Engagement Pillar<a class="headerlink" href="#community-engagement-pillar" title="Link to this heading">#</a></h2>
+<p>This pillar hosts all activities and actions related to the management and support of a leadership team of experts in the fields of computational sciences, software engineering, and high-performance computing working cohesively with external collaborators, contributors and users of the MOLE library. Further, the leadership team, collaborators, contributors and users form <strong><em>the MOLE community</em></strong>.</p>
+<p>In order to engage and recruit new members, this pillar fosters the organization of the Annual MOLE Users meeting and in person community engagements like national and international workshops, active participation in conferences, and integration of MOLE into courses taught at SDSU. The production of the quarterly newsletters and targetted communications are managed also under this pillar.</p>
+</section>
+<hr class="docutils" />
+<section id="organization-and-governance-pillar">
+<h2>Organization and Governance Pillar<a class="headerlink" href="#organization-and-governance-pillar" title="Link to this heading">#</a></h2>
+<p>This pillar results from a well-defined governance model, the pillar fosters and promotes work interactions between the leadership team and all the MOLE OSE stakeholders. For instance, the creation and update the <a class="reference external" href="https://mole-docs.readthedocs.io/en/main/intros/ose_governance_wrapper.html">Governance</a> and <a class="reference external" href="https://mole-docs.readthedocs.io/en/main/intros/code_of_conduct_wrapper.html">Code of Conduct</a> documents, the prompt resolution of conflicts, the design and implementation of the MOLE OSE strategic plan. Under this pillar, the leadership team ensures that all the pillars and organizational circles are relevant and effective to the MOLE OSE operations.</p>
+</section>
+<hr class="docutils" />
+<section id="sustainable-infrastructure-pillar">
+<h2>Sustainable Infrastructure Pillar<a class="headerlink" href="#sustainable-infrastructure-pillar" title="Link to this heading">#</a></h2>
+<p>This pillar supports the work of an interdisciplinary, multilocation, and cohesive MOLE community, including hands-on tutorials, documentation, and online tools to promote active and timely communications between members of the MOLE Community.</p>
+<p>It adopts agile and distributed open-source development practices, ensuring regular releases, responsive maintenance, and integration of community contributions. The OSE sustainable infrastructure is built on a well-maintained GitHub repository to support active collaborations between contributors and other sustainable OSEs.</p>
+</section>
+<hr class="docutils" />
+<section id="evaluation-and-growth-pillar">
+<h2>Evaluation and Growth Pillar<a class="headerlink" href="#evaluation-and-growth-pillar" title="Link to this heading">#</a></h2>
+<p>This pillar hosts the implementation and management of a set of well-defined metrics and performance indicators that guarantee the sustainability and relevancy of the MOLE library and the OSE organization, their growth,  their evolution and the library’s adoption within third-party academic and commercial software projects.</p>
+<p>We have established proactive policies for software quality assurance, security audits, and mitigation of technical and governance risks within the MOLE OSE Evaluation and Growth pillar, where we have feedback loops to produce measurable performance indicators of the effectiveness of our 4-pillars OSE.</p>
+</section>
+<hr class="docutils" />
+<section id="mole-ose-governance-model">
+<h2>MOLE OSE Governance Model<a class="headerlink" href="#mole-ose-governance-model" title="Link to this heading">#</a></h2>
+<p>The four MOLE OSE pillars have interconnected and synergetic activities that sustain the MOLE OSE Organization which actively relies on input from the MOLE community. Our governance model has well-defined processes for contributions, library operations and management. Thus, the management of the MOLE organization is led by a steering council, and four governing circles.</p>
+<p><img alt="MOLE OSE Governance Model" src="../_images/MOLE_OSE_circles.png" />
+<strong>Figure 2.</strong>  The MOLE OSE governance and leadership is organized in four strategic areas reflecting the domains of expertise and competence of the members in the Leadership team and founders of MOLE library. These domains are; software engineering, computational sciences, mimetic differences, and community engagement.</p>
+<p>See <a class="reference external" href="https://mole-docs.readthedocs.io/en/main/intros/ose_governance_wrapper.html">the MOLE OSE Governance</a> document for more information on how the steering council or any of the governance circles onboard or offboard their members.</p>
+<hr class="docutils" />
+<section id="mole-steering-council">
+<h3>MOLE Steering Council<a class="headerlink" href="#mole-steering-council" title="Link to this heading">#</a></h3>
+<p>The members of council are responsible for facilitating the establishment of community consensus, for stewarding project resources, and in some situations they may need to make project decisions whenever the normal decision-making process fails at reaching consensus by the community. The council members are formed by the leadership team members, chairs from the MOLE governing circles, MOLE founders, and strategic partners who financially support the MOLE OSE.</p>
+<p>All council members possess the required expertise in the software engineering and numerical areas relevant to the purpose and scope of the MOLE organization.</p>
+</section>
+<hr class="docutils" />
+<section id="mole-community-engagement-circle">
+<h3>MOLE Community Engagement Circle<a class="headerlink" href="#mole-community-engagement-circle" title="Link to this heading">#</a></h3>
+<p>The members of this circle oversee some of the activities in the <a class="reference external" href="#community-engagement-pillar">MOLE Community Engagement</a> and <a class="reference external" href="#organization-and-governance-pillar">MOLE Organization and Governance</a> pillars pertaining to outreach and education events, promotion of the MOLE library functionality, and onboarding of new members to the MOLE community.</p>
+<p>The circle is chaired by members of the MOLE Leadership team, and it is open to any member of the MOLE community, as long as they agree to comply with the <a class="reference external" href="https://mole-docs.readthedocs.io/en/main/intros/code_of_conduct_wrapper.html">MOLE OSE Code of Conduct</a>, and there are no objections.</p>
+</section>
+<hr class="docutils" />
+<section id="mole-software-engineering-circle">
+<h3>MOLE Software Engineering Circle<a class="headerlink" href="#mole-software-engineering-circle" title="Link to this heading">#</a></h3>
+<p>The members of this circle oversee most of the activities in the <a class="reference external" href="#sustainable-infrastructure-pillar">MOLE OSE Sustainable Infrastructure</a> pillar and some in the <a class="reference external" href="#organization-and-governance-pillar">MOLE OSE Organization and Governance</a> pillar. This includes: security of computer programs, library design and implementations, MOLE software ecosystem, and ecosystems of MOLE-required software, build systems, documentation systems, test harness, design and implementation of the MOLE APIs in the targeted languages, and compliance up-to-date software engineering standards, MOLE library licensing and periodic MOLE library releases.</p>
+<p>Membership of this circle will require demonstrated software engineering competency, in particular within the scope of the MOLE Ecosystem.</p>
+</section>
+<hr class="docutils" />
+<section id="mole-computational-sciences-circle">
+<h3>MOLE Computational Sciences Circle<a class="headerlink" href="#mole-computational-sciences-circle" title="Link to this heading">#</a></h3>
+<p>The members of this circle safeguard the relevancy of the MOLE library by fostering strategic collaborations to solve PDE’s using mimetic differences in emerging computational applications and challenges in sciences and engineering. Members of this circle support activities in the <a class="reference external" href="#community-engagement-pillar">MOLE Community Engagement</a> and <a class="reference external" href="#evaluation-and-growth-pillar">MOLE OSE Evaluation and Growth</a> pillars. In particular, they produce MiniApps to showcase and demonstrate the applicability of the MOLE library, and also make decisions on library extensions to support needs from the community.</p>
+<p>Membership to this circle is extended to anyone who possesses expertise in computational areas where the MOLE library can be used.</p>
+</section>
+<hr class="docutils" />
+<section id="mole-mimetic-differences-circle">
+<h3>MOLE Mimetic Differences Circle<a class="headerlink" href="#mole-mimetic-differences-circle" title="Link to this heading">#</a></h3>
+<p>The members of this circle are responsible for maintaining and advancing the implementation of Mimetic Differences methods (MD) and for promoting and recruiting applications that can benefit from the use of MD as new users of MD, or members from industry and academia who already use MD but are in need of robust, reliable and scalable MD implementations.  This circle supports the sustainability of key algorithmic and MOLE library functionalities through activities under the <a class="reference external" href="#evaluation-and-growth-pillar">OSE Evaluation and Growth</a> pillar.</p>
+<p>Membership to this circle is extended to anyone who possesses expertise in mathematics and scientific computing, in particular in numerical solutions to partial differential equations.</p>
+<p><strong><em>Participants can be removed from any of the governance circles whenever a proposal to do so passes the consensus process as described in the MOLE OSE Governance document.</em></strong></p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="contributing_wrapper.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Contributing to MOLE: Comprehensive Guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ose_governance_wrapper.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MOLE Open-Source Ecosystem Governance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-of-purpose">Statement of Purpose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-ose-organization-pillars">MOLE OSE Organization Pillars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#community-engagement-pillar">Community Engagement Pillar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#organization-and-governance-pillar">Organization and Governance Pillar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sustainable-infrastructure-pillar">Sustainable Infrastructure Pillar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-and-growth-pillar">Evaluation and Growth Pillar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-ose-governance-model">MOLE OSE Governance Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-steering-council">MOLE Steering Council</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-community-engagement-circle">MOLE Community Engagement Circle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-software-engineering-circle">MOLE Software Engineering Circle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-computational-sciences-circle">MOLE Computational Sciences Circle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-mimetic-differences-circle">MOLE Mimetic Differences Circle</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+, Angel Boada
+, Jared Brzenski
+, Jose Castillo
+, Prit Chakalasiya
+, Surinder Chhabra Singh
+, Johnny Delgado Corbino
+, Tony Drummond
+, Miguel Dumett
+, Joe Hellmers
+, Arshia Ilaty
+, Katayoon Kaviani
+, Oluchi Nzerem
+, Giulia Pagallo
+, Christopher Paolini
+, Valentina Rosano
+, Aneesh Murthy Srinivas
+, Janani Priyadharshini Srinivasan
+, Manuel Valera
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023, CSRC SDSU.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Nov 02, 2025.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  
+        <div class="footer-extra">
+            <p>MOLE is a project by CSRC SDSU.</p>
+        </div>
+    
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

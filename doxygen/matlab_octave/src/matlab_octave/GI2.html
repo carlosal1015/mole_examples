@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of GI2</title>
+  <meta name="keywords" content="GI2">
+  <meta name="description" content="----------------------------------------------------------------------------">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; GI2.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>GI2
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>----------------------------------------------------------------------------</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function I = GI2(M, m, n, type) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="grad2DCurv.html" class="code" title="function G = grad2DCurv(k, X, Y)">grad2DCurv</a>	Returns a 2D curvilinear mimetic gradient</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function I = GI2(M, m, n, type)</a>
+0002 <span class="comment">% ----------------------------------------------------------------------------</span>
+0003 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0004 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0005 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0006 <span class="comment">% ----------------------------------------------------------------------------</span>
+0007 
+0008     <span class="keyword">if</span> strcmp(type, <span class="string">'Gn'</span>)
+0009         I = zeros(4*n*(m-1)+12*n, 1);
+0010         J = I;
+0011         V = J;
+0012         k = 1;
+0013         kt = 4*(m-1)-1;
+0014         
+0015         <span class="keyword">for</span> idx = 0 : n-1
+0016             i = idx*(m+1);
+0017             j = idx*m;
+0018             
+0019             I(k:k+kt, 1) = [i+2:i+m   i+2:i+m i+2:i+m i+2:i+m];
+0020             J(k:k+kt, 1) = [j+1:j+m-1 j+2:j+m j+m+1:j+2*m-1 j+m+2:j+2*m];
+0021             V(k:k+kt, 1) = .25;
+0022             
+0023             k = k+kt+1;
+0024         <span class="keyword">end</span>
+0025         
+0026         <span class="keyword">for</span> idx = 0 : n-1
+0027             i = idx*(m+1);
+0028             j = idx*m;
+0029             
+0030             I(k:k+5, 1) = [i+1 i+1 i+1 i+1 i+1 i+1];
+0031             J(k:k+5, 1) = [j+1 j+2 j+3 j+m+1 j+m+2 j+m+3];
+0032             V(k:k+5, 1) = [.5 .25 -.25 .5 .25 -.25];
+0033             k = k+6;
+0034             
+0035             I(k:k+5, 1) = [i+m+1 i+m+1 i+m+1 i+m+1 i+m+1 i+m+1];
+0036             J(k:k+5, 1) = [j+m-2 j+m-1 j+m j+2*m-2 j+2*m-1 j+2*m];
+0037             V(k:k+5, 1) = [-.25 .25 .5 -.25 .25 .5];
+0038             k = k+6;
+0039         <span class="keyword">end</span>
+0040         
+0041         I = sparse(I, J, V)*M;
+0042     <span class="keyword">else</span>
+0043         I = zeros(4*m*(n-1)+12*m, 1);
+0044         J = I;
+0045         V = J;
+0046         k = 1;
+0047         kt = 4*m;
+0048         
+0049         jt = 1;
+0050         it = m;
+0051         
+0052         <span class="keyword">for</span> idx = 0 : n-2
+0053             ib = it+1;
+0054             it = ib+m-1;
+0055             jb = jt;
+0056             jt = jb+m+1;
+0057             
+0058             I(k:kt) = [ib:it ib:it ib:it ib:it];
+0059             J(k:kt) = [jb:jt-2 jb+1:jt-1 jt:jt+m-1 jt+1:jt+m];
+0060             V(k:kt) = .25;
+0061             
+0062             k = kt+1;
+0063             kt = kt+4*m;
+0064         <span class="keyword">end</span>
+0065         
+0066         ib = 1;
+0067         it = m;
+0068         kt = k+6*m-1;
+0069         jb = 1;
+0070         jm = m+2;
+0071         jt = 2*m+3;
+0072         
+0073         E = ones(m, 1);
+0074         
+0075         I(k:kt) = [ib:it ib:it ib:it ib:it ib:it ib:it];
+0076         J(k:kt) = [jb:jm-2 jb+1:jm-1 jm:jt-2 jm+1:jt-1 jt:jt+m-1 jt+1:jt+m];
+0077         V(k:kt) = [.5*E .5*E .25*E .25*E -.25*E -.25*E];
+0078         
+0079         ib = n*m+1;
+0080         it = ib+m-1;
+0081         jb = (n-3) * (m+1)+1;
+0082         jm = jb+m+1;
+0083         jt = jm+m+1;
+0084         k = kt+1;
+0085         kt = k+6*m-1;
+0086         
+0087         I(k:kt) = [ib:it ib:it ib:it ib:it ib:it ib:it];
+0088         J(k:kt) = [jb:jm-2 jb+1:jm-1 jm:jt-2 jm+1:jt-1 jt:jt+m-1 jt+1:jt+m];
+0089         V(k:kt) = [-.25*E -.25*E .25*E .25*E .5*E .5*E];
+0090         
+0091         I = sparse(I, J, V)*M;
+0092     <span class="keyword">end</span>
+0093 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

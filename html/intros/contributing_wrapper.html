@@ -1,0 +1,1800 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Contributing to MOLE: Comprehensive Guide &#8212; MOLE User Manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=fe6f0a95" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/announcement.css?v=03d73680" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=051bfb12"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=08f3124f"></script>
+    <script src="../_static/mathconf.js?v=c2619059"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intros/contributing_wrapper';</script>
+    <script src="../_static/js/theme-custom.js?v=639921fc"></script>
+    <script src="../_static/js/theme-mode-toggle.js?v=3544c490"></script>
+    <script src="../_static/js/announcement.js?v=7d524de4"></script>
+    <link rel="canonical" href="https://mole-pdes.readthedocs.io/intros/contributing_wrapper.html" />
+    <link rel="icon" href="../_static/logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MOLE Open-Source Ecosystem Organization" href="ose_organization_wrapper.html" />
+    <link rel="prev" title="MOLE Open-Source Ecosystem Community Roles" href="community_roles_wrapper.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="Nov 02, 2025"/>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const headers = document.querySelectorAll('.collapsible-header');
+    
+    headers.forEach(header => {
+      header.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const content = this.nextElementSibling;
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+        } else {
+          content.style.display = 'block';
+        }
+      });
+    });
+  });
+</script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="MOLE User Manual - Home"/>
+    <img src="../_static/logo-dark.png" class="logo__image only-dark pst-js-only" alt="MOLE User Manual - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/csrc-sdsu/mole" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.mathworks.com/matlabcentral/fileexchange/124870-mole" title="MATLAB" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-cube fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">MATLAB</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    MOLE: Mimetic Operators Library Enhanced
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="doc_readme_wrapper.html">Documentation Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/cpp/index.html">C++</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/boundary.html">Boundary Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/utils.html">Utilities</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/matlab_octave/index-beta.html">MATLAB/Octave</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/matlab_octave/matlab_index.html">Function Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/matlab_octave/api.html">API</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematical Framework</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math_functions/index.html">Mathematical Functions Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/CSRCReportOnMOLE.html">CSRC Report on MOLE Library</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/StaggeredGrids.html">Why Staggered Grids?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/Jacobian.html">Jacobian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/NonUniformGradAndDiv.html">Non-Uniform Gradient and Divergence Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math_functions/IntegrationByParts.html">Mimetic Discretization of the Integration by Parts Formula</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples/index.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Elliptic/index.html">Elliptic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Elliptic/1D/index.html">1D Elliptic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D.html">Elliptic1D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-add-Scalar-BC.html">Elliptic1D Add Scalar Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Homogeneous-Dirichlet.html">Elliptic1D Homogenous Dirichlet Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Dirichlet-Right-Neumann.html">Elliptic1D Left Dirichlet and Right Neumann Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Dirichlet-Right-Robin.html">Elliptic1D Left Dirichlet and Right Robin Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Neumann-Right-Neumann.html">Elliptic1D Pure Neumann Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Neumann-Right-Robin.html">Elliptic1D Left Neumann Right Robin Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Left-Robin-Right-Robin.html">Elliptic1D Pure Robin Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Non-Homogeneous-Dirichlet.html">Elliptic1D Non-Homogenous Dirichlet Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Non-Periodic-BC.html">Elliptic1D Non-Periodic Dirichlet Boundary Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/1D/Elliptic1D-Periodic-BC.html">Elliptic1D Periodic Dirichlet Boundary Conditions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Elliptic/2D/index.html">2D Elliptic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Elliptic2D.html">Elliptic2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Elliptic2D-Case-2.html">Elliptic2D Case 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Elliptic2D-Nodal-Curv.html">Elliptic2D Nodal Curv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Elliptic2D-Nodal-Curv-Sinusoidal.html">Elliptic2D Nodal Curv Sinusoidal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/2D/Minimal-Poisson-2D.html">Minimal Poisson 2D</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Elliptic/3D/index.html">3D Elliptic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Elliptic/3D/Elliptic3D.html">Elliptic3D</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Parabolic/index.html">Parabolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Parabolic/1D/index.html">1D Parabolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Parabolic/1D/Parabolic1D.html">1D Heat Equation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Parabolic/1D/Terzaghi1D.html">Terzaghi One-Dimensional Consolidation</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Hyperbolic/index.html">Hyperbolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Hyperbolic/1D/index.html">1D Hyperbolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Hyperbolic1D.html">Hyperbolic1D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Hyperbolic1D-upwind.html">Hyperbolic1D upwind</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Hyperbolic1D-Lax-Friedrichs.html">Hyperbolic1D Lax Friedrichs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Wave-1D.html">Wave 1D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Wave-1D-Case-2.html">Wave 1D Case 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/1D/Burgers1D.html">Burgers1D</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Hyperbolic/2D/index.html">2D Hyperbolic Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/2D/Wave-2D.html">Wave 2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Hyperbolic/2D/Wave-2D-Case-2.html">Wave 2D Case 2</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Schrodinger/index.html">Schrödinger Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Schrodinger/1D/index.html">1D Schrödinger Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Schrodinger/1D/Schrodinger1D.html">Schrodinger1D</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Sturm-Liouville/index.html">Sturm-Liouville Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Sturm-Liouville/Chebyshev.html">Chebyshev Sturm-Liouville Problem</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Navier-Stokes/index.html">Navier-Stokes Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Navier-Stokes/Lock-Exchange.html">Lock Exchange Problem</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Mixed/index.html">Mixed Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Mixed/1D/index.html">1D Mixed Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Mixed/1D/Transport1D.html">Transport1D</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Mixed/2D/index.html">2D Mixed Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Mixed/2D/work-in-progress.html">Work in Progress</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../examples/Mixed/3D/index.html">3D Mixed Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/Mixed/3D/Convection-Diffusion.html">3D Convection-Diffusion Equation</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Integration/index.html">Integration Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Integration/Integration1D.html">Integration1D.m</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Time-Integrators/index.html">Time Integrators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Time-Integrators/RK2.html">Second-Order Runge-Kutta Method (RK2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Time-Integrators/RK4.html">4th-Order Runge-Kutta Method (RK4)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/Tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/Tutorials/Two_Way_Wave_Equation/Two_Way_Wave_Equation.html">Mimetic Difference Operators Vs Finite Differences</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="community_roles_wrapper.html">MOLE Community Roles</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contributing to MOLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ose_organization_wrapper.html">MOLE OSE Organization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ose_governance_wrapper.html">MOLE OSE Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_of_conduct_wrapper.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications_wrapper.html">Publications</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/csrc-sdsu/mole" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/csrc-sdsu/mole/blob/main/doc/sphinx/source/intros/contributing_wrapper.md?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/csrc-sdsu/mole/edit/main/doc/sphinx/source/intros/contributing_wrapper.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/intros/contributing_wrapper.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Contributing to MOLE: Comprehensive Guide</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-development-environment">Setting Up Development Environment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-to-core-functionality">Contributing to Core Functionality</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-api-structure">Core API Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-octave-core-functions">MATLAB/Octave Core Functions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-core-classes">C++ Core Classes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-function-categories">Core Function Categories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-function-requirements">Core Function Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-adding-a-new-operator">Example: Adding a New Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-examples">Contributing Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-structure-and-organization">Example Structure and Organization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-categories">Example Categories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-octave-example-template">MATLAB/Octave Example Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-example-template">C++ Example Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-requirements">Example Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-documentation-requirements">Mathematical Documentation Requirements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-to-documentation">Contributing to Documentation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-structure">Documentation Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-documentation-template">Example Documentation Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-guidelines">Documentation Guidelines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-standards-and-guidelines">Code Standards and Guidelines</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-octave-standards">MATLAB/Octave Standards</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-standards">C++ Standards</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-guidelines">General Guidelines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-and-validation">Testing and Validation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-your-contributions">Testing Your Contributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-methods">Validation Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-process">Submission Process</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-submitting">Before Submitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-request-template">Pull Request Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-process">Review Process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting Help</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-license-agreement">Contributing License Agreement</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authorship-and-recognition">Authorship and Recognition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authorship-criteria">Authorship Criteria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recognition-process">Recognition Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publication-guidelines">Publication Guidelines</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-software-publications">MOLE Software Publications</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#publications-using-mole-features">Publications Using MOLE Features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#publications-using-mole-for-research">Publications Using MOLE for Research</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citing-mole">Citing MOLE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-significant-contributions">Examples of Significant Contributions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-contributors">Our Contributors</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="contributing-to-mole-comprehensive-guide">
+<h1>Contributing to MOLE: Comprehensive Guide<a class="headerlink" href="#contributing-to-mole-comprehensive-guide" title="Link to this heading">#</a></h1>
+<p>Thank you for considering contributing to MOLE (Mimetic Operators Library Enhanced)! This guide provides detailed instructions for contributing to the MOLE project, whether you’re adding core functionality, examples, or documentation.</p>
+<hr class="docutils" />
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="#getting-started">Getting Started</a></p></li>
+<li><p><a class="reference external" href="#contributing-to-core-functionality">Contributing to Core Functionality</a></p></li>
+<li><p><a class="reference external" href="#contributing-examples">Contributing Examples</a></p></li>
+<li><p><a class="reference external" href="#contributing-to-documentation">Contributing to Documentation</a></p></li>
+<li><p><a class="reference external" href="#code-standards-and-guidelines">Code Standards and Guidelines</a></p></li>
+<li><p><a class="reference external" href="#testing-and-validation">Testing and Validation</a></p></li>
+<li><p><a class="reference external" href="#submission-process">Submission Process</a></p></li>
+<li><p><a class="reference external" href="#getting-help">Getting Help</a></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h3>
+<p>Before contributing, ensure you have:</p>
+<ul class="simple">
+<li><p><strong>For MATLAB/Octave</strong>: MATLAB R2016b+ or GNU Octave 4.0+</p></li>
+<li><p><strong>For C++</strong>: CMake 3.10+, OpenBLAS, Eigen3, Armadillo</p></li>
+<li><p><strong>For Documentation</strong>: Python 3.7+, Sphinx, Doxygen</p></li>
+</ul>
+</section>
+<section id="setting-up-development-environment">
+<h3>Setting Up Development Environment<a class="headerlink" href="#setting-up-development-environment" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Fork the Repository</strong>: Fork the <a class="reference external" href="https://github.com/csrc-sdsu/mole">MOLE repository</a> to your GitHub account</p></li>
+<li><p><strong>Clone Your Fork</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_USERNAME/mole.git
+<span class="nb">cd</span><span class="w"> </span>mole
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create a Development Branch</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create an Issue or start from an existing one</strong>:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Tackle an existing issue. We keep a list of <a class="reference external" href="https://github.com/csrc-sdsu/mole/issues?q=state%3Aopen%20label%3A%22Good%20first%20issue%22">good first issues</a> that are self-contained and suitable for a newcomer to try and work on.</p></li>
+<li><p>If there is no existing Issue describing what you want to report/discuss/propose to the community, please create a new <a class="reference external" href="https://github.com/csrc-sdsu/mole/issues">Issue</a></p></li>
+<li><p>Once you are ready with your contribution (whether it is for core functionality, examples, or documentation), follow the guidelines below and remember to link your open Pull Request (PR) with the Issue describing what you propose to contribute. It is very important for the community project management to keep organized PR-Issue pairs. If you are not sure how to link a PR with an Issue, please review these <a class="reference external" href="https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue">Linking a Pull Request to an Issue</a> guidelines from GitHub.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="contributing-to-core-functionality">
+<h2>Contributing to Core Functionality<a class="headerlink" href="#contributing-to-core-functionality" title="Link to this heading">#</a></h2>
+<p>Core functionality includes mimetic operators, boundary conditions, and utility functions that form the foundation of the MOLE library.</p>
+<section id="core-api-structure">
+<h3>Core API Structure<a class="headerlink" href="#core-api-structure" title="Link to this heading">#</a></h3>
+<p>The MOLE library follows a consistent structure across MATLAB and C++ implementations:</p>
+<section id="matlab-octave-core-functions">
+<h4>MATLAB/Octave Core Functions<a class="headerlink" href="#matlab-octave-core-functions" title="Link to this heading">#</a></h4>
+<p>Core functions are located in <code class="docutils literal notranslate"><span class="pre">src/matlab_octave/</span></code> and follow this pattern:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>OUTPUT<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">functionName</span><span class="p">(</span>k, m, dx, ...<span class="p">)</span>
+<span class="c">% BRIEF_DESCRIPTION</span>
+<span class="c">%</span>
+<span class="c">% Parameters:</span>
+<span class="c">%                k : Order of accuracy</span>
+<span class="c">%                m : Number of cells (along x-axis for multidimensional)</span>
+<span class="c">%               dx : Step size (along x-axis for multidimensional)</span>
+<span class="c">%    (additional parameters as needed)</span>
+<span class="c">%</span>
+<span class="c">% Returns:</span>
+<span class="c">%          OUTPUT : Sparse matrix representing the operator</span>
+<span class="c">%</span>
+<span class="c">% ----------------------------------------------------------------------------</span>
+<span class="c">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+<span class="c">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+<span class="c">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+<span class="c">% ----------------------------------------------------------------------------</span>
+
+<span class="w">    </span><span class="c">% Input validation</span>
+<span class="w">    </span><span class="nb">assert</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Order of accuracy k must be &gt;= 2&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">assert</span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Order of accuracy k must be even&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">assert</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&#39;Number of cells m must be &gt;= &#39;</span><span class="w"> </span><span class="nb">num2str</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="s">&#39; for k = &#39;</span><span class="w"> </span><span class="nb">num2str</span><span class="p">(</span><span class="n">k</span><span class="p">)]);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Implementation</span>
+<span class="w">    </span><span class="c">% ...</span>
+<span class="w">    </span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+<section id="c-core-classes">
+<h4>C++ Core Classes<a class="headerlink" href="#c-core-classes" title="Link to this heading">#</a></h4>
+<p>C++ implementations are in <code class="docutils literal notranslate"><span class="pre">src/cpp/</span></code> and follow this pattern:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * SPDX-License-Identifier: GPL-3.0-or-later</span>
+<span class="cm"> * © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+<span class="cm"> * See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @file classname.h</span>
+<span class="cm"> * @brief Brief description</span>
+<span class="cm"> * @date Creation date</span>
+<span class="cm"> */</span>
+
+<span class="cp">#ifndef CLASSNAME_H</span>
+<span class="cp">#define CLASSNAME_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;required_headers.h&quot;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief Brief class description</span>
+<span class="cm"> */</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ClassName</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">sp_mat</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">sp_mat</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * @brief Constructor description</span>
+<span class="cm">     * @param k Order of accuracy</span>
+<span class="cm">     * @param m Number of cells</span>
+<span class="cm">     * @param dx Step size</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="n">ClassName</span><span class="p">(</span><span class="n">u16</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">u32</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">Real</span><span class="w"> </span><span class="n">dx</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Additional constructors for 2D, 3D, etc.</span>
+<span class="p">};</span>
+
+<span class="cp">#endif </span><span class="c1">// CLASSNAME_H</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="core-function-categories">
+<h3>Core Function Categories<a class="headerlink" href="#core-function-categories" title="Link to this heading">#</a></h3>
+<p>When contributing core functionality, identify which category your contribution fits:</p>
+<ol class="arabic simple">
+<li><p><strong>Differential Operators</strong>: <code class="docutils literal notranslate"><span class="pre">grad</span></code>, <code class="docutils literal notranslate"><span class="pre">div</span></code>, <code class="docutils literal notranslate"><span class="pre">lap</span></code>, <code class="docutils literal notranslate"><span class="pre">curl</span></code></p></li>
+<li><p><strong>Interpolation Functions</strong>: <code class="docutils literal notranslate"><span class="pre">interpol</span></code>, <code class="docutils literal notranslate"><span class="pre">interpol2D</span></code>, <code class="docutils literal notranslate"><span class="pre">interpol3D</span></code></p></li>
+<li><p><strong>Boundary Conditions</strong>: <code class="docutils literal notranslate"><span class="pre">robinBC</span></code>, <code class="docutils literal notranslate"><span class="pre">mixedBC</span></code>, <code class="docutils literal notranslate"><span class="pre">addScalarBC</span></code></p></li>
+<li><p><strong>Utility Functions</strong>: <code class="docutils literal notranslate"><span class="pre">jacobian2D</span></code>, <code class="docutils literal notranslate"><span class="pre">jacobian3D</span></code>, <code class="docutils literal notranslate"><span class="pre">weights</span></code></p></li>
+<li><p><strong>Grid Functions</strong>: Curvilinear and non-uniform grid support</p></li>
+</ol>
+</section>
+<section id="core-function-requirements">
+<h3>Core Function Requirements<a class="headerlink" href="#core-function-requirements" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Consistent Interface</strong>: Follow the parameter ordering convention: <code class="docutils literal notranslate"><span class="pre">(k,</span> <span class="pre">m,</span> <span class="pre">dx,</span> <span class="pre">n,</span> <span class="pre">dy,</span> <span class="pre">o,</span> <span class="pre">dz,</span> <span class="pre">...)</span></code></p></li>
+<li><p><strong>Input Validation</strong>: Validate all input parameters with clear error messages</p></li>
+<li><p><strong>Sparse Matrix Output</strong>: Return sparse matrices for efficiency</p></li>
+<li><p><strong>Boundary Condition Support</strong>: Consider how your operator interacts with boundary conditions</p></li>
+<li><p><strong>Multidimensional Support</strong>: Provide 1D, 2D, and 3D versions where applicable</p></li>
+<li><p><strong>Documentation</strong>: Include comprehensive function documentation</p></li>
+</ol>
+</section>
+<section id="example-adding-a-new-operator">
+<h3>Example: Adding a New Operator<a class="headerlink" href="#example-adding-a-new-operator" title="Link to this heading">#</a></h3>
+<p>If adding a new operator, follow this checklist:</p>
+<ol class="arabic">
+<li><p><strong>MATLAB Implementation</strong> (<code class="docutils literal notranslate"><span class="pre">src/matlab_octave/newoperator.m</span></code>):</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>OP<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">newoperator</span><span class="p">(</span>k, m, dx<span class="p">)</span>
+<span class="c">% Returns a new mimetic operator</span>
+<span class="c">%</span>
+<span class="c">% Parameters:</span>
+<span class="c">%                k : Order of accuracy</span>
+<span class="c">%                m : Number of cells</span>
+<span class="c">%               dx : Step size</span>
+
+<span class="w">    </span><span class="c">% Validation</span>
+<span class="w">    </span><span class="nb">assert</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">mod</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;k must be even and &gt;= 2&#39;</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Implementation using existing operators</span>
+<span class="w">    </span><span class="n">G</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">grad</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">);</span>
+<span class="w">    </span><span class="n">D</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">div</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Combine operators as needed</span>
+<span class="w">    </span><span class="n">OP</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">someOperation</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="p">);</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>C++ Implementation</strong> (<code class="docutils literal notranslate"><span class="pre">src/cpp/newoperator.h</span></code> and <code class="docutils literal notranslate"><span class="pre">src/cpp/newoperator.cpp</span></code>)</p></li>
+<li><p><strong>Add to API Documentation</strong> (<code class="docutils literal notranslate"><span class="pre">doc/sphinx/source/api/</span></code>)</p></li>
+<li><p><strong>Create Test Examples</strong> (see Examples section)</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="contributing-examples">
+<h2>Contributing Examples<a class="headerlink" href="#contributing-examples" title="Link to this heading">#</a></h2>
+<p>Examples demonstrate how to use MOLE to solve specific PDEs and are crucial for user education.</p>
+<section id="example-structure-and-organization">
+<h3>Example Structure and Organization<a class="headerlink" href="#example-structure-and-organization" title="Link to this heading">#</a></h3>
+<p>Examples are organized by PDE type in the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>examples/
+├── matlab_octave/         # MATLAB/Octave examples
+│   ├── elliptic1D.m       # Basic examples
+│   ├── parabolic2D.m      # 2D examples
+│   └── compact_operators/ # Specialized examples
+└── cpp/                   # C++ examples
+    ├── elliptic1D.cpp
+    └── transport1D.cpp
+</pre></div>
+</div>
+</section>
+<section id="example-categories">
+<h3>Example Categories<a class="headerlink" href="#example-categories" title="Link to this heading">#</a></h3>
+<p>Organize your examples by PDE type:</p>
+<ol class="arabic simple">
+<li><p><strong>Elliptic</strong>: Steady-state problems (Poisson, Laplace)</p></li>
+<li><p><strong>Parabolic</strong>: Time-dependent diffusion (heat equation, reaction-diffusion)</p></li>
+<li><p><strong>Hyperbolic</strong>: Wave-like phenomena (advection, wave equation)</p></li>
+<li><p><strong>Mixed</strong>: Problems involving multiple PDE types</p></li>
+<li><p><strong>Specialized</strong>: Navier-Stokes, Schrödinger, etc.</p></li>
+</ol>
+</section>
+<section id="matlab-octave-example-template">
+<h3>MATLAB/Octave Example Template<a class="headerlink" href="#matlab-octave-example-template" title="Link to this heading">#</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% Solves the [EQUATION NAME] with [BOUNDARY CONDITIONS]</span>
+<span class="c">% [Brief description of the physics and mathematical formulation]</span>
+
+<span class="nb">clc</span>
+<span class="nb">close</span><span class="w"> </span><span class="nb">all</span>
+
+<span class="nb">addpath</span><span class="p">(</span><span class="s">&#39;../../src/matlab_octave&#39;</span><span class="p">)</span><span class="w">  </span><span class="c">% REQUIRED: Add path to MOLE library</span>
+
+<span class="c">%% Problem Parameters</span>
+<span class="c">% [Describe each parameter with physical meaning]</span>
+<span class="n">k</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">              </span><span class="c">% Order of accuracy</span>
+<span class="n">m</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w">             </span><span class="c">% Number of cells</span>
+<span class="n">west</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">           </span><span class="c">% Domain limits</span>
+<span class="n">east</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">dx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">east</span><span class="o">-</span><span class="n">west</span><span class="p">)</span><span class="o">/</span><span class="n">m</span><span class="p">;</span><span class="w"> </span><span class="c">% Grid spacing</span>
+
+<span class="c">%% Physical Parameters</span>
+<span class="c">% [Define problem-specific parameters]</span>
+<span class="nb">alpha</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">          </span><span class="c">% Thermal diffusivity (example)</span>
+<span class="n">t_final</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">        </span><span class="c">% Simulation time</span>
+
+<span class="c">%% Grid Setup</span>
+<span class="c">% 1D Staggered grid</span>
+<span class="n">xgrid</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">west</span><span class="w"> </span><span class="n">west</span><span class="o">+</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">east</span><span class="o">-</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="n">east</span><span class="p">];</span>
+
+<span class="c">%% Operator Construction</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">lap</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">);</span><span class="w">                    </span><span class="c">% Laplacian operator</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">robinBC</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w">      </span><span class="c">% Add boundary conditions</span>
+
+<span class="c">%% Initial and Boundary Conditions</span>
+<span class="n">U</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">initial_condition</span><span class="p">(</span><span class="n">xgrid</span><span class="p">);</span><span class="w">         </span><span class="c">% Define initial condition</span>
+<span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">boundary_value_west</span><span class="p">;</span><span class="w">           </span><span class="c">% West boundary</span>
+<span class="n">U</span><span class="p">(</span><span class="k">end</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">boundary_value_east</span><span class="p">;</span><span class="w">         </span><span class="c">% East boundary</span>
+
+<span class="c">%% Time Integration (if applicable)</span>
+<span class="n">dt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">dx</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="nb">alpha</span><span class="p">);</span><span class="w">                  </span><span class="c">% CFL condition</span>
+<span class="n">L_time</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">alpha</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">speye</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">L</span><span class="p">));</span><span class="w"> </span><span class="c">% Time-stepping operator</span>
+
+<span class="k">for</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="n">dt</span><span class="p">:</span><span class="n">t_final</span>
+<span class="w">    </span><span class="c">% Plotting</span>
+<span class="w">    </span><span class="nb">plot</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">title</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s">&#39;Time = %.3f&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
+<span class="w">    </span><span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;u(x,t)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="nb">drawnow</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Time step</span>
+<span class="w">    </span><span class="n">U</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">L_time</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">U</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="c">%% Analytical Solution Comparison (if available)</span>
+<span class="n">U_analytical</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">analytical_solution</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span><span class="w"> </span><span class="n">t_final</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;o-&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">xgrid</span><span class="p">,</span><span class="w"> </span><span class="n">U_analytical</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;--&#39;</span><span class="p">)</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Numerical&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Analytical&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="c-example-template">
+<h3>C++ Example Template<a class="headerlink" href="#c-example-template" title="Link to this heading">#</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * @file example_name.cpp</span>
+<span class="cm"> * @brief Solves the [EQUATION NAME] with [BOUNDARY CONDITIONS]</span>
+<span class="cm"> * </span>
+<span class="cm"> * [Detailed description of the physics and mathematical formulation]</span>
+<span class="cm"> * </span>
+<span class="cm"> * Equation: [Mathematical equation in LaTeX-style comments]</span>
+<span class="cm"> * Domain: [Domain description]</span>
+<span class="cm"> * Boundary Conditions: [BC description]</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;mole.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">arma</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Problem parameters</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">u16</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">        </span><span class="c1">// Order of accuracy</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">u32</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w">       </span><span class="c1">// Number of cells</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">Real</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="o">/</span><span class="n">m</span><span class="p">;</span><span class="w">  </span><span class="c1">// Grid spacing</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Physical parameters</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">Real</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Thermal diffusivity</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">Real</span><span class="w"> </span><span class="n">t_final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Construct operators</span>
+<span class="w">    </span><span class="n">Laplacian</span><span class="w"> </span><span class="n">L</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">);</span>
+<span class="w">    </span><span class="n">RobinBC</span><span class="w"> </span><span class="n">BC</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">    </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BC</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Initial conditions</span>
+<span class="w">    </span><span class="n">vec</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initial_condition</span><span class="p">();</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Time integration</span>
+<span class="w">    </span><span class="n">Real</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">alpha</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sp_mat</span><span class="w"> </span><span class="n">L_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">alpha</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">speye</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">L</span><span class="p">));</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Real</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">t_final</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Output current solution</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Time: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fixed</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="c1">// Time step</span>
+<span class="w">        </span><span class="n">U</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">L_time</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">U</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Output final solution</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Final solution:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">U</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="example-requirements">
+<h3>Example Requirements<a class="headerlink" href="#example-requirements" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Self-contained</strong>: Each example should run independently</p></li>
+<li><p><strong>Well-commented</strong>: Explain the physics, mathematics, and implementation</p></li>
+<li><p><strong>Parameter Documentation</strong>: Describe all parameters and their physical meaning</p></li>
+<li><p><strong>Clear Output</strong>: Include appropriate visualization or numerical output</p></li>
+<li><p><strong>Validation</strong>: Compare with analytical solutions when possible</p></li>
+<li><p><strong>Consistent Naming</strong>: Use descriptive variable names following MOLE conventions</p></li>
+</ol>
+</section>
+<section id="mathematical-documentation-requirements">
+<h3>Mathematical Documentation Requirements<a class="headerlink" href="#mathematical-documentation-requirements" title="Link to this heading">#</a></h3>
+<p>Each example should include:</p>
+<ol class="arabic simple">
+<li><p><strong>Mathematical Formulation</strong>: Clear statement of the PDE being solved</p></li>
+<li><p><strong>Domain Description</strong>: Spatial and temporal domains</p></li>
+<li><p><strong>Boundary Conditions</strong>: Precise specification of BCs</p></li>
+<li><p><strong>Initial Conditions</strong>: For time-dependent problems</p></li>
+<li><p><strong>Analytical Solution</strong>: If available, for validation</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="contributing-to-documentation">
+<h2>Contributing to Documentation<a class="headerlink" href="#contributing-to-documentation" title="Link to this heading">#</a></h2>
+<p>Documentation contributions help users understand and effectively use MOLE.</p>
+<section id="documentation-structure">
+<h3>Documentation Structure<a class="headerlink" href="#documentation-structure" title="Link to this heading">#</a></h3>
+<p>MOLE uses Sphinx for user documentation and Doxygen for API reference:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>doc/
+├── sphinx/                 # User documentation
+│   └── source/
+│       ├── examples/       # Example documentation
+│       ├── api/           # API references
+│       └── math_functions/ # Mathematical background
+└── doxygen/               # API documentation
+</pre></div>
+</div>
+</section>
+<section id="example-documentation-template">
+<h3>Example Documentation Template<a class="headerlink" href="#example-documentation-template" title="Link to this heading">#</a></h3>
+<p>Create documentation for examples in <code class="docutils literal notranslate"><span class="pre">doc/sphinx/source/examples/[Category]/[Dimension]/</span></code>:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">### ExampleName</span>
+
+Brief description of what this example solves.
+
+$$
+\text{Mathematical equation in LaTeX}
+$$
+
+with domain $x \in [a,b]$ and boundary conditions:
+
+$$
+\text{Boundary condition equations}
+$$
+
+<span class="gu">#### Mathematical Background</span>
+
+[Detailed explanation of the physics and mathematics]
+
+<span class="gu">#### Implementation Details</span>
+
+[Key implementation considerations, numerical methods used]
+
+<span class="gu">#### Results</span>
+
+[Description of expected results, plots, validation]
+
+---
+
+This example is implemented in:
+<span class="k">-</span><span class="w"> </span>[<span class="nt">MATLAB/Octave</span>](<span class="na">https://github.com/csrc-sdsu/mole/blob/main/examples/matlab_octave/example_name.m</span>)
+<span class="k">-</span><span class="w"> </span>[<span class="nt">C++</span>](<span class="na">https://github.com/csrc-sdsu/mole/blob/main/examples/cpp/example_name.cpp</span>) <span class="ge">*(if available)*</span>
+
+<span class="gu">#### Variants</span>
+
+Additional variants with different boundary conditions or parameters:
+<span class="k">-</span><span class="w"> </span>[<span class="nt">Variant 1</span>](<span class="na">link_to_variant</span>)
+<span class="k">-</span><span class="w"> </span>[<span class="nt">Variant 2</span>](<span class="na">link_to_variant</span>)
+</pre></div>
+</div>
+</section>
+<section id="documentation-guidelines">
+<h3>Documentation Guidelines<a class="headerlink" href="#documentation-guidelines" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Mathematical Notation</strong>: Use LaTeX for equations</p></li>
+<li><p><strong>Code References</strong>: Link to actual implementation files</p></li>
+<li><p><strong>Cross-references</strong>: Link related examples and API functions</p></li>
+<li><p><strong>Images</strong>: Include plots and diagrams where helpful</p></li>
+<li><p><strong>Consistent Structure</strong>: Follow the established template</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="code-standards-and-guidelines">
+<h2>Code Standards and Guidelines<a class="headerlink" href="#code-standards-and-guidelines" title="Link to this heading">#</a></h2>
+<section id="matlab-octave-standards">
+<h3>MATLAB/Octave Standards<a class="headerlink" href="#matlab-octave-standards" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Function Names</strong>: Use descriptive names following the existing convention</p></li>
+<li><p><strong>Variable Names</strong>: Use clear, descriptive variable names</p></li>
+<li><p><strong>Comments</strong>: Document complex algorithms and physics</p></li>
+<li><p><strong>Error Handling</strong>: Use <code class="docutils literal notranslate"><span class="pre">assert</span></code> for input validation</p></li>
+<li><p><strong>Performance</strong>: Use sparse matrices, avoid loops when possible</p></li>
+</ol>
+</section>
+<section id="c-standards">
+<h3>C++ Standards<a class="headerlink" href="#c-standards" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Naming Convention</strong>:</p>
+<ul class="simple">
+<li><p>Classes: <code class="docutils literal notranslate"><span class="pre">PascalCase</span></code></p></li>
+<li><p>Functions: <code class="docutils literal notranslate"><span class="pre">camelCase</span></code></p></li>
+<li><p>Variables: <code class="docutils literal notranslate"><span class="pre">snake_case</span></code> for local, <code class="docutils literal notranslate"><span class="pre">camelCase</span></code> for members</p></li>
+</ul>
+</li>
+<li><p><strong>Headers</strong>: Include proper copyright and license headers</p></li>
+<li><p><strong>Documentation</strong>: Use Doxygen-style comments</p></li>
+<li><p><strong>Memory Management</strong>: Use smart pointers when appropriate</p></li>
+<li><p><strong>Performance</strong>: Leverage Armadillo’s optimizations</p></li>
+</ol>
+</section>
+<section id="general-guidelines">
+<h3>General Guidelines<a class="headerlink" href="#general-guidelines" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Consistency</strong>: Follow existing code patterns</p></li>
+<li><p><strong>Testing</strong>: Ensure your contributions work with provided examples</p></li>
+<li><p><strong>Documentation</strong>: Document all public interfaces</p></li>
+<li><p><strong>License</strong>: Include appropriate license headers</p></li>
+<li><p><strong>Dependencies</strong>: Minimize external dependencies</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="testing-and-validation">
+<h2>Testing and Validation<a class="headerlink" href="#testing-and-validation" title="Link to this heading">#</a></h2>
+<section id="testing-your-contributions">
+<h3>Testing Your Contributions<a class="headerlink" href="#testing-your-contributions" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Unit Testing</strong>: Test individual functions with known inputs/outputs</p></li>
+<li><p><strong>Integration Testing</strong>: Test how your contribution works with existing code</p></li>
+<li><p><strong>Convergence Testing</strong>: Verify order of accuracy for new operators</p></li>
+<li><p><strong>Example Testing</strong>: Ensure examples run and produce expected results</p></li>
+</ol>
+</section>
+<section id="validation-methods">
+<h3>Validation Methods<a class="headerlink" href="#validation-methods" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Analytical Solutions</strong>: Compare with known exact solutions</p></li>
+<li><p><strong>Convergence Studies</strong>: Verify theoretical order of accuracy</p></li>
+<li><p><strong>Conservation Laws</strong>: Check that operators preserve conservation properties</p></li>
+<li><p><strong>Cross-platform Testing</strong>: Test on both MATLAB and Octave (for MATLAB code)</p></li>
+</ol>
+</section>
+<section id="performance-considerations">
+<h3>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Sparse Matrix Efficiency</strong>: Ensure operators are sparse</p></li>
+<li><p><strong>Memory Usage</strong>: Monitor memory consumption for large problems</p></li>
+<li><p><strong>Computational Complexity</strong>: Document algorithmic complexity</p></li>
+<li><p><strong>Scalability</strong>: Test with various problem sizes</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="submission-process">
+<h2>Submission Process<a class="headerlink" href="#submission-process" title="Link to this heading">#</a></h2>
+<section id="before-submitting">
+<h3>Before Submitting<a class="headerlink" href="#before-submitting" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Code Review</strong>: Review your code for style and functionality</p></li>
+<li><p><strong>Testing</strong>: Run all relevant tests and examples</p></li>
+<li><p><strong>Documentation</strong>: Ensure documentation is complete and accurate</p></li>
+<li><p><strong>Commit Messages</strong>: Write clear, descriptive commit messages</p></li>
+<li><p><strong>Atomic commits</strong>: Please make your commits well-organized and atomic, using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">--interactive</span></code> as needed</p></li>
+</ol>
+</section>
+<section id="pull-request-guidelines">
+<h3>Pull Request Guidelines<a class="headerlink" href="#pull-request-guidelines" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Title</strong>: Use descriptive title indicating what was added/changed</p></li>
+<li><p><strong>Description</strong>: Provide detailed description of changes</p></li>
+<li><p><strong>Testing</strong>: Describe testing performed</p></li>
+<li><p><strong>Examples</strong>: Include or reference relevant examples</p></li>
+<li><p><strong>Documentation</strong>: Link to any new documentation</p></li>
+<li><p><strong>PR/Issue pair</strong>: Link your PR to an existing Issue that describes your intended contribution</p></li>
+</ol>
+</section>
+<section id="pull-request-template">
+<h3>Pull Request Template<a class="headerlink" href="#pull-request-template" title="Link to this heading">#</a></h3>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">## Description</span>
+Brief description of changes made.
+
+<span class="gu">## Type of Change</span>
+<span class="k">- [ ]</span> New core functionality
+<span class="k">- [ ]</span> New example
+<span class="k">- [ ]</span> Documentation update
+<span class="k">- [ ]</span> Bug fix
+<span class="k">- [ ]</span> Performance improvement
+
+<span class="gu">## Mathematical Details</span>
+[For new operators] Mathematical formulation and properties.
+
+<span class="gu">## Testing</span>
+<span class="k">- [ ]</span> Unit tests pass
+<span class="k">- [ ]</span> Examples run successfully
+<span class="k">- [ ]</span> Convergence studies completed (if applicable)
+<span class="k">- [ ]</span> Cross-platform compatibility verified
+
+<span class="gu">## Documentation</span>
+<span class="k">- [ ]</span> Code is well-commented
+<span class="k">- [ ]</span> API documentation updated
+<span class="k">- [ ]</span> Example documentation added (if applicable)
+<span class="k">- [ ]</span> Mathematical background provided
+
+<span class="gu">## Related Issues</span>
+Fixes #(issue number)
+
+<span class="gu">## Additional Notes</span>
+Any additional information or context.
+</pre></div>
+</div>
+</section>
+<section id="review-process">
+<h3>Review Process<a class="headerlink" href="#review-process" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Automated Checks</strong>: CI/CD will run automated tests</p></li>
+<li><p><strong>Code Review</strong>: Maintainers will review code quality and consistency</p></li>
+<li><p><strong>Mathematical Review</strong>: Mathematical correctness will be verified</p></li>
+<li><p><strong>Documentation Review</strong>: Documentation completeness will be checked</p></li>
+<li><p><strong>Performance Review</strong>: Performance impact will be assessed</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading">#</a></h2>
+<section id="resources">
+<h3>Resources<a class="headerlink" href="#resources" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Documentation</strong>: Read the <a class="reference external" href="https://mole-docs.readthedocs.io/">online documentation</a></p></li>
+<li><p><strong>Examples</strong>: Study existing examples for patterns and best practices</p></li>
+<li><p><strong>Issues</strong>: Check <a class="reference external" href="https://github.com/csrc-sdsu/mole/issues">GitHub issues</a> for known problems</p></li>
+<li><p><strong>Discussions</strong>: Use <a class="reference external" href="https://github.com/csrc-sdsu/mole/discussions">GitHub Discussions</a> for questions and ideas</p></li>
+</ol>
+</section>
+<section id="contact">
+<h3>Contact<a class="headerlink" href="#contact" title="Link to this heading">#</a></h3>
+<p>For questions, support, or contributions, contact the MOLE maintainers at:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="mailto:jcastillo&#37;&#52;&#48;sdsu&#46;edu">jcastillo<span>&#64;</span>sdsu<span>&#46;</span>edu</a></p></li>
+<li><p><a class="reference external" href="mailto:mdumett&#37;&#52;&#48;sdsu&#46;edu">mdumett<span>&#64;</span>sdsu<span>&#46;</span>edu</a></p></li>
+<li><p><a class="reference external" href="mailto:paolini&#37;&#52;&#48;engineering&#46;sdsu&#46;edu">paolini<span>&#64;</span>engineering<span>&#46;</span>sdsu<span>&#46;</span>edu</a></p></li>
+<li><p><a class="reference external" href="mailto:jjbrzenski&#37;&#52;&#48;sdsu&#46;edu">jjbrzenski<span>&#64;</span>sdsu<span>&#46;</span>edu</a></p></li>
+<li><p><a class="reference external" href="mailto:vbarra&#37;&#52;&#48;sdsu&#46;edu">vbarra<span>&#64;</span>sdsu<span>&#46;</span>edu</a></p></li>
+</ul>
+<p>For specific types of support:</p>
+<ul class="simple">
+<li><p><strong>GitHub Issues</strong>: For bug reports and feature requests</p></li>
+<li><p><strong>GitHub Discussions</strong>: For general questions and discussions</p></li>
+</ul>
+</section>
+<section id="contributing-license-agreement">
+<h3>Contributing License Agreement<a class="headerlink" href="#contributing-license-agreement" title="Link to this heading">#</a></h3>
+<p>By contributing to MOLE, you agree that your contributions will be licensed under the GNU General Public License v3.0 or later. Ensure you have the right to license your contributions under this license.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="authorship-and-recognition">
+<h2>Authorship and Recognition<a class="headerlink" href="#authorship-and-recognition" title="Link to this heading">#</a></h2>
+<p>MOLE contains components authored by many individuals from the computational science community. We believe it is essential that contributors receive appropriate recognition through both informal acknowledgment and academically-recognized credit systems such as publications and citations.</p>
+<section id="authorship-criteria">
+<h3>Authorship Criteria<a class="headerlink" href="#authorship-criteria" title="Link to this heading">#</a></h3>
+<p>Status as a named author in MOLE publications, the user manual, and DOI-bearing archives will be granted to those who:</p>
+<ol class="arabic simple">
+<li><p><strong>Make significant contributions to MOLE</strong> in any of the following areas:</p>
+<ul class="simple">
+<li><p>Implementation of core functionality (operators, boundary conditions, utilities)</p></li>
+<li><p>Creation of comprehensive examples and tutorials</p></li>
+<li><p>Documentation and mathematical framework development</p></li>
+<li><p>Conceptualization of new features or mathematical approaches</p></li>
+<li><p>Code review, testing, and validation</p></li>
+<li><p>Community building and user support</p></li>
+</ul>
+</li>
+<li><p><strong>Maintain and support their contributions</strong> over time, including:</p>
+<ul class="simple">
+<li><p>Responding to issues related to their contributions</p></li>
+<li><p>Updating code to maintain compatibility</p></li>
+<li><p>Providing ongoing documentation and support</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="recognition-process">
+<h3>Recognition Process<a class="headerlink" href="#recognition-process" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Automatic Recognition</strong>: Maintainers will monitor contributions and add qualifying contributors to the <code class="docutils literal notranslate"><span class="pre">AUTHORS</span></code> file</p></li>
+<li><p><strong>Self-Nomination</strong>: If you believe your contributions meet the authorship criteria but haven’t been acknowledged, please:</p>
+<ul>
+<li><p>Email the maintainers (see <a class="reference external" href="#contact">Contact</a> section)</p></li>
+<li><p>Create a GitHub issue describing your contributions</p></li>
+</ul>
+</li>
+<li><p><strong>Periodic Review</strong>: The maintainer team regularly reviews the contributor list to ensure proper recognition</p></li>
+</ul>
+</section>
+<section id="publication-guidelines">
+<h3>Publication Guidelines<a class="headerlink" href="#publication-guidelines" title="Link to this heading">#</a></h3>
+<section id="mole-software-publications">
+<h4>MOLE Software Publications<a class="headerlink" href="#mole-software-publications" title="Link to this heading">#</a></h4>
+<p>Authors of publications about MOLE as a whole, including:</p>
+<ul class="simple">
+<li><p>Software papers and technical reports</p></li>
+<li><p>DOI-bearing software archives</p></li>
+<li><p>Major release announcements</p></li>
+<li><p>Comprehensive method descriptions</p></li>
+</ul>
+<p><strong>shall offer co-authorship to all individuals listed in the <code class="docutils literal notranslate"><span class="pre">AUTHORS</span></code> file</strong> at the time of submission.</p>
+</section>
+<section id="publications-using-mole-features">
+<h4>Publications Using MOLE Features<a class="headerlink" href="#publications-using-mole-features" title="Link to this heading">#</a></h4>
+<p>Authors of publications that describe <strong>specific MOLE contributions or new features</strong> shall:</p>
+<ol class="arabic simple">
+<li><p>Review the <code class="docutils literal notranslate"><span class="pre">AUTHORS</span></code> file to identify relevant contributors</p></li>
+<li><p>Evaluate the intellectual contributions of listed authors to the specific work</p></li>
+<li><p>Offer co-authorship to those who made significant intellectual contributions to the featured work</p></li>
+<li><p>At minimum, acknowledge MOLE and cite appropriate references</p></li>
+</ol>
+</section>
+<section id="publications-using-mole-for-research">
+<h4>Publications Using MOLE for Research<a class="headerlink" href="#publications-using-mole-for-research" title="Link to this heading">#</a></h4>
+<p><strong>No co-authorship expectation</strong> exists for those publishing research that uses MOLE as a computational tool (versus creating new features in MOLE). However:</p>
+<ul class="simple">
+<li><p><strong>Citation</strong>: Please cite MOLE appropriately (see <a class="reference external" href="../CITATION.cff">CITATION.cff</a>)</p></li>
+<li><p><strong>Acknowledgment</strong>: Consider acknowledging significant support or advice received from MOLE developers</p></li>
+<li><p><strong>Judgment</strong>: Use your best judgment regarding the significance of support received in developing your use case and interpreting results</p></li>
+</ul>
+</section>
+</section>
+<section id="citing-mole">
+<h3>Citing MOLE<a class="headerlink" href="#citing-mole" title="Link to this heading">#</a></h3>
+<p>When using MOLE in your research, please cite:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@misc</span><span class="p">{</span><span class="nl">mole</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{{MOLE}: Mimetic Operators Library Enhanced}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{[See AUTHORS file for complete list]}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{https://github.com/csrc-sdsu/mole}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">note</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Version X.X.X}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2024}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For specific mathematical methods or operators, also cite the relevant publications listed in our <a class="reference external" href="https://mole-docs.readthedocs.io/">documentation</a>.</p>
+</section>
+<section id="examples-of-significant-contributions">
+<h3>Examples of Significant Contributions<a class="headerlink" href="#examples-of-significant-contributions" title="Link to this heading">#</a></h3>
+<p>To clarify what constitutes “significant contributions,” here are examples:</p>
+<p><strong>Core Development:</strong></p>
+<ul class="simple">
+<li><p>Implementing new differential operators or boundary conditions</p></li>
+<li><p>Adding support for new grid types or geometries</p></li>
+<li><p>Developing new mathematical formulations</p></li>
+<li><p>Creating fundamental algorithmic improvements</p></li>
+</ul>
+<p><strong>Documentation and Education:</strong></p>
+<ul class="simple">
+<li><p>Writing comprehensive tutorials or guides</p></li>
+<li><p>Creating educational examples with mathematical background</p></li>
+<li><p>Developing API documentation for major components</p></li>
+<li><p>Contributing to the mathematical framework documentation</p></li>
+</ul>
+<p><strong>Testing and Validation:</strong></p>
+<ul class="simple">
+<li><p>Developing comprehensive test suites</p></li>
+<li><p>Conducting convergence studies and validation</p></li>
+<li><p>Cross-platform compatibility work</p></li>
+<li><p>Performance optimization and benchmarking</p></li>
+</ul>
+<p><strong>Community Building:</strong></p>
+<ul class="simple">
+<li><p>Mentoring new contributors</p></li>
+<li><p>Organizing workshops or educational events</p></li>
+<li><p>Significant bug reporting and issue management</p></li>
+<li><p>Long-term maintenance and support</p></li>
+</ul>
+<hr class="docutils" />
+<p>Thank you for contributing to MOLE! Your contributions help advance computational science and benefit the entire research community.</p>
+<p>Thank you for considering contributing to MOLE!</p>
+</section>
+</section>
+<section id="our-contributors">
+<h2>Our Contributors<a class="headerlink" href="#our-contributors" title="Link to this heading">#</a></h2>
+<p>We’re grateful to all our contributors who have helped make MOLE better:</p>
+<div class="contributors-grid docutils container">
+<style>.contributors-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }</style><div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/jcorbino" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/24197859?v=4" alt="jcorbino" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>jcorbino</div>
+                            <div style="font-size: 0.8em; color: #666;">553 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/jbrzensk" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/4073757?v=4" alt="jbrzensk" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>jbrzensk</div>
+                            <div style="font-size: 0.8em; color: #666;">96 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/JananiPSrinivasan" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/180591914?v=4" alt="JananiPSrinivasan" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>JananiPSrinivasan</div>
+                            <div style="font-size: 0.8em; color: #666;">91 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/pritkc" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/74728118?v=4" alt="pritkc" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>pritkc</div>
+                            <div style="font-size: 0.8em; color: #666;">61 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/Tony-Drummond" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/208699149?v=4" alt="Tony-Drummond" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>Tony-Drummond</div>
+                            <div style="font-size: 0.8em; color: #666;">32 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/arrowguy234" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/93762514?v=4" alt="arrowguy234" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>arrowguy234</div>
+                            <div style="font-size: 0.8em; color: #666;">27 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/aneeshs1729" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/78006458?v=4" alt="aneeshs1729" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>aneeshs1729</div>
+                            <div style="font-size: 0.8em; color: #666;">26 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/mdumett" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/114712722?v=4" alt="mdumett" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>mdumett</div>
+                            <div style="font-size: 0.8em; color: #666;">25 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/katayoonk" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/122122167?v=4" alt="katayoonk" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>katayoonk</div>
+                            <div style="font-size: 0.8em; color: #666;">24 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/cpaolini" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/1870173?v=4" alt="cpaolini" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>cpaolini</div>
+                            <div style="font-size: 0.8em; color: #666;">17 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/valeriabarra" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/39932030?v=4" alt="valeriabarra" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>valeriabarra</div>
+                            <div style="font-size: 0.8em; color: #666;">13 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/onzerem" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/84254273?v=4" alt="onzerem" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>onzerem</div>
+                            <div style="font-size: 0.8em; color: #666;">7 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/edfink234" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/84761455?v=4" alt="edfink234" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>edfink234</div>
+                            <div style="font-size: 0.8em; color: #666;">5 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/joehellmers" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/24215846?v=4" alt="joehellmers" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>joehellmers</div>
+                            <div style="font-size: 0.8em; color: #666;">3 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/valdeluxedition" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/148279402?v=4" alt="valdeluxedition" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>valdeluxedition</div>
+                            <div style="font-size: 0.8em; color: #666;">3 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/ArshiaIlaty" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/58371460?v=4" alt="ArshiaIlaty" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>ArshiaIlaty</div>
+                            <div style="font-size: 0.8em; color: #666;">2 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/joehellmersNOAA" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/101886836?v=4" alt="joehellmersNOAA" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>joehellmersNOAA</div>
+                            <div style="font-size: 0.8em; color: #666;">2 commits</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/Amey-kulkarni19" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/179423326?v=4" alt="Amey-kulkarni19" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>Amey-kulkarni19</div>
+                            <div style="font-size: 0.8em; color: #666;">1 commit</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/aboada" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/15724233?v=4" alt="aboada" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>aboada</div>
+                            <div style="font-size: 0.8em; color: #666;">1 commit</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/SavannaSpayd" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/u/132537819?v=4" alt="SavannaSpayd" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>SavannaSpayd</div>
+                            <div style="font-size: 0.8em; color: #666;">1 commit</div>
+                        </a>
+                    </div>
+                    </div>
+<div class="contributor docutils container">
+
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <a href="https://github.com/apps/dependabot" target="_blank" style="text-decoration: none;">
+                            <img src="https://avatars.githubusercontent.com/in/29110?v=4" alt="dependabot[bot]" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px;" />
+                            <div>dependabot[bot]</div>
+                            <div style="font-size: 0.8em; color: #666;">1 commit</div>
+                        </a>
+                    </div>
+                    </div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="community_roles_wrapper.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">MOLE Open-Source Ecosystem Community Roles</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ose_organization_wrapper.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MOLE Open-Source Ecosystem Organization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-development-environment">Setting Up Development Environment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-to-core-functionality">Contributing to Core Functionality</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-api-structure">Core API Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-octave-core-functions">MATLAB/Octave Core Functions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-core-classes">C++ Core Classes</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-function-categories">Core Function Categories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-function-requirements">Core Function Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-adding-a-new-operator">Example: Adding a New Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-examples">Contributing Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-structure-and-organization">Example Structure and Organization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-categories">Example Categories</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-octave-example-template">MATLAB/Octave Example Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-example-template">C++ Example Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-requirements">Example Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-documentation-requirements">Mathematical Documentation Requirements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-to-documentation">Contributing to Documentation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-structure">Documentation Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-documentation-template">Example Documentation Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-guidelines">Documentation Guidelines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-standards-and-guidelines">Code Standards and Guidelines</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matlab-octave-standards">MATLAB/Octave Standards</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-standards">C++ Standards</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-guidelines">General Guidelines</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-and-validation">Testing and Validation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-your-contributions">Testing Your Contributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-methods">Validation Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-process">Submission Process</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-submitting">Before Submitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-request-guidelines">Pull Request Guidelines</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pull-request-template">Pull Request Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-process">Review Process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">Getting Help</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources">Resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-license-agreement">Contributing License Agreement</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authorship-and-recognition">Authorship and Recognition</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#authorship-criteria">Authorship Criteria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recognition-process">Recognition Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publication-guidelines">Publication Guidelines</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mole-software-publications">MOLE Software Publications</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#publications-using-mole-features">Publications Using MOLE Features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#publications-using-mole-for-research">Publications Using MOLE for Research</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citing-mole">Citing MOLE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-significant-contributions">Examples of Significant Contributions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-contributors">Our Contributors</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Valeria Barra
+, Angel Boada
+, Jared Brzenski
+, Jose Castillo
+, Prit Chakalasiya
+, Surinder Chhabra Singh
+, Johnny Delgado Corbino
+, Tony Drummond
+, Miguel Dumett
+, Joe Hellmers
+, Arshia Ilaty
+, Katayoon Kaviani
+, Oluchi Nzerem
+, Giulia Pagallo
+, Christopher Paolini
+, Valentina Rosano
+, Aneesh Murthy Srinivas
+, Janani Priyadharshini Srinivasan
+, Manuel Valera
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023, CSRC SDSU.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Nov 02, 2025.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  
+        <div class="footer-extra">
+            <p>MOLE is a project by CSRC SDSU.</p>
+        </div>
+    
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

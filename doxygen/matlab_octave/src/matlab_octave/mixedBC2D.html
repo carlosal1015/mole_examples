@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of mixedBC2D</title>
+  <meta name="keywords" content="mixedBC2D">
+  <meta name="description" content="Constructs a 2D mimetic mixed boundary conditions operator">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; mixedBC2D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>mixedBC2D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Constructs a 2D mimetic mixed boundary conditions operator</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function BC = mixedBC2D(k, m, dx, n, dy, left, coeffs_left, right, coeffs_right, bottom, coeffs_bottom, top, coeffs_top) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Constructs a 2D mimetic mixed boundary conditions operator
+
+ Parameters:
+    k             : Order of accuracy
+    m             : Number of cells in x-direction
+    dx            : Step size in x-direction
+    n             : Number of cells in y-direction
+    dy            : Step size in y-direction
+    left          : Type of boundary condition at the left boundary ('Dirichlet', 'Neumann', 'Robin')
+    coeffs_left   : Coefficients for the left boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)
+    right         : Type of boundary condition at the right boundary ('Dirichlet', 'Neumann', 'Robin')
+    coeffs_right  : Coefficients for the right boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)
+    bottom        : Type of boundary condition at the bottom boundary ('Dirichlet', 'Neumann', 'Robin')
+    coeffs_bottom : Coefficients for the bottom boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)
+    top           : Type of boundary condition at the top boundary ('Dirichlet', 'Neumann', 'Robin')
+    coeffs_top    : Coefficients for the top boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="mixedBC.html" class="code" title="function BC = mixedBC(k, m, dx, left, coeffs_left, right, coeffs_right)">mixedBC</a>	Constructs a 1D mimetic mixed boundary conditions operator</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function BC = mixedBC2D(k, m, dx, n, dy, left, coeffs_left, right, coeffs_right, bottom, coeffs_bottom, top, coeffs_top)</a>
+0002 <span class="comment">% Constructs a 2D mimetic mixed boundary conditions operator</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% Parameters:</span>
+0005 <span class="comment">%    k             : Order of accuracy</span>
+0006 <span class="comment">%    m             : Number of cells in x-direction</span>
+0007 <span class="comment">%    dx            : Step size in x-direction</span>
+0008 <span class="comment">%    n             : Number of cells in y-direction</span>
+0009 <span class="comment">%    dy            : Step size in y-direction</span>
+0010 <span class="comment">%    left          : Type of boundary condition at the left boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0011 <span class="comment">%    coeffs_left   : Coefficients for the left boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0012 <span class="comment">%    right         : Type of boundary condition at the right boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0013 <span class="comment">%    coeffs_right  : Coefficients for the right boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0014 <span class="comment">%    bottom        : Type of boundary condition at the bottom boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0015 <span class="comment">%    coeffs_bottom : Coefficients for the bottom boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0016 <span class="comment">%    top           : Type of boundary condition at the top boundary ('Dirichlet', 'Neumann', 'Robin')</span>
+0017 <span class="comment">%    coeffs_top    : Coefficients for the top boundary condition (a, b for Robin, otherwise coeff. for Dirichlet or Neumann)</span>
+0018 <span class="comment">% ----------------------------------------------------------------------------</span>
+0019 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0020 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0021 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0022 <span class="comment">% ----------------------------------------------------------------------------</span>
+0023 
+0024     <span class="comment">% 1-D boundary operators</span>
+0025     Bm = <a href="mixedBC.html" class="code" title="function BC = mixedBC(k, m, dx, left, coeffs_left, right, coeffs_right)">mixedBC</a>(k, m, dx, left, coeffs_left, right, coeffs_right);
+0026     Bn = <a href="mixedBC.html" class="code" title="function BC = mixedBC(k, m, dx, left, coeffs_left, right, coeffs_right)">mixedBC</a>(k, n, dy, bottom, coeffs_bottom, top, coeffs_top);
+0027     
+0028     Im = speye(m+2);
+0029     
+0030     In = speye(n+2);
+0031     In(1, 1) = 0;
+0032     In(<span class="keyword">end</span>, end) = 0;
+0033     
+0034     BC1 = kron(In, Bm);
+0035     BC2 = kron(Bn, Im);
+0036     
+0037     BC = BC1 + BC2;
+0038 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

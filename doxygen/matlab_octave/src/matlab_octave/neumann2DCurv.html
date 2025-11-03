@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of neumann2DCurv</title>
+  <meta name="keywords" content="neumann2DCurv">
+  <meta name="description" content="Returns a 2D curvilinear Neumann BC operator">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; neumann2DCurv.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>neumann2DCurv
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns a 2D curvilinear Neumann BC operator</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function N = neumann2DCurv(G, m, n, b) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a 2D curvilinear Neumann BC operator
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function N = neumann2DCurv(G, m, n, b)</a>
+0002 <span class="comment">% Returns a 2D curvilinear Neumann BC operator</span>
+0003 
+0004     <span class="comment">% G is the curvilinear gradient and b is the Neumann coeff.</span>
+0005 <span class="comment">% ----------------------------------------------------------------------------</span>
+0006 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0007 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0008 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0009 <span class="comment">% ----------------------------------------------------------------------------</span>
+0010 
+0011     Bm = sparse(m+2, m+1);
+0012     Bm(1, 1) = -b;
+0013     Bm(<span class="keyword">end</span>, end) = b;
+0014    
+0015     Bn = sparse(n+2, n+1);
+0016     Bn(1, 1) = -b;
+0017     Bn(<span class="keyword">end</span>, end) = b;
+0018    
+0019     Im = sparse(m + 2, m);
+0020     In = sparse(n + 2, n);
+0021    
+0022     Im(2:(m+2)-1, :) = speye(m, m);
+0023     In(2:(n+2)-1, :) = speye(n, n);
+0024    
+0025     Bm = kron(In, Bm);
+0026     Bn = kron(Bn, Im);
+0027     
+0028     N = [Bm Bn]*G;
+0029     
+0030     N(1, :) = [N(2, 2:end) 0];
+0031     N(m+2, :) = [0 N(m+1, 1:end-1)];
+0032     N(end-m-1, :) = [N(end-m, 2:end) 0];
+0033     N(<span class="keyword">end</span>, :) = [0 N(end-1, 1:end-1)];
+0034 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

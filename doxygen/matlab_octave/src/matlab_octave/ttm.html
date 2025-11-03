@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of ttm</title>
+  <meta name="keywords" content="ttm">
+  <meta name="description" content="https://www.sciencedirect.com/science/article/pii/0022247X78902172?via%3Dihub">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; ttm.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>ttm
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>https://www.sciencedirect.com/science/article/pii/0022247X78902172?via%3Dihub</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [X, Y] = ttm(grid_name, m, n, iters, plot_grid) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> https://www.sciencedirect.com/science/article/pii/0022247X78902172?via%3Dihub
+ Returns X and Y which are both m by n matrices that contains the physical
+ coordinates
+
+ Parameters:
+        grid_name : String with the name of the grid folder
+                m : Number of nodes along the horizontal axis
+                n : Number of nodes along the vertical axis
+        plot_grid : If defined -&gt; grid will be plotted
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="gridGen.html" class="code" title="function [X, Y] = gridGen(method, grid_name, m, n, plot_grid, varargin)">gridGen</a>	Returns X and Y which are both m by n matrices that contains the physical</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">% https://www.sciencedirect.com/science/article/pii/0022247X78902172?via%3Dihub</span>
+0002 <a name="_sub0" href="#_subfunctions" class="code">function [X, Y] = ttm(grid_name, m, n, iters, plot_grid)</a>
+0003 <span class="comment">% Returns X and Y which are both m by n matrices that contains the physical</span>
+0004 <span class="comment">% coordinates</span>
+0005 <span class="comment">%</span>
+0006 <span class="comment">% Parameters:</span>
+0007 <span class="comment">%        grid_name : String with the name of the grid folder</span>
+0008 <span class="comment">%                m : Number of nodes along the horizontal axis</span>
+0009 <span class="comment">%                n : Number of nodes along the vertical axis</span>
+0010 <span class="comment">%        plot_grid : If defined -&gt; grid will be plotted</span>
+0011 <span class="comment">% ----------------------------------------------------------------------------</span>
+0012 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0013 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0014 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0015 <span class="comment">% ----------------------------------------------------------------------------</span>
+0016     
+0017     assert(m &gt; 4 &amp;&amp; n &gt; 4, <span class="string">'m and n must be greater than 4'</span>)
+0018     
+0019     addpath([<span class="string">'grids/'</span> grid_name])
+0020     
+0021     <span class="comment">% Error tolerance for iterative method</span>
+0022     tol = 10^-6;
+0023     
+0024     <span class="comment">% Preallocation</span>
+0025     X = zeros(m, n);
+0026     Y = zeros(m, n);
+0027     alpha = zeros(m, n);
+0028     beta = zeros(m, n);
+0029     gamma = zeros(m, n);
+0030     
+0031     <span class="comment">% BCs</span>
+0032     <span class="keyword">for</span> i = 1 : m
+0033         xi = (i-1)/(m-1);
+0034         XY = top(xi);
+0035         X(i, end) = XY(1);
+0036         Y(i, end) = XY(2);
+0037         XY = bottom(xi);
+0038         X(i, 1) = XY(1);
+0039         Y(i, 1) = XY(2);
+0040     <span class="keyword">end</span>
+0041     <span class="keyword">for</span> j = 1 : n
+0042         eta = (j-1)/(n-1);
+0043         XY = left(eta);
+0044         X(1, j) = XY(1);
+0045         Y(1, j) = XY(2);
+0046         XY = right(eta);
+0047         X(<span class="keyword">end</span>, j) = XY(1);
+0048         Y(<span class="keyword">end</span>, j) = XY(2);
+0049     <span class="keyword">end</span>
+0050     
+0051     newX = X;
+0052     newY = Y;
+0053     
+0054     errX = zeros(1, iters);
+0055     errY = zeros(1, iters);
+0056     
+0057     <span class="comment">% SOR</span>
+0058     <span class="keyword">for</span> t = 1 : iters
+0059         i = 2 : m-1;
+0060         j = 2 : n-1;
+0061         
+0062         alpha(i, j) = 0.25*((X(i, j+1)-X(i, j-1)).^2+(Y(i, j+1)-Y(i, j-1)).^2);
+0063         beta(i, j) = 0.0625*((X(i+1, j)-X(i-1, j)).*(X(i, j+1)-X(i, j-1))+(Y(i+1, j)<span class="keyword">...</span>
+0064            -Y(i-1, j)).*(Y(i, j+1)-Y(i, j-1)));
+0065         gamma(i, j) = 0.25*((X(i+1, j)-X(i-1, j)).^2+(Y(i+1, j)-Y(i-1, j)).^2);
+0066         
+0067         newX(i, j) = ((-0.5)./(alpha(i, j)+gamma(i, j)+1e-10)).*(2*beta(i, j)<span class="keyword">...</span>
+0068             .*(X(i+1, j+1)-X(i-1, j+1)-X(i+1, j-1)+X(i-1, j-1))-alpha(i, j)<span class="keyword">...</span>
+0069             .*(X(i+1, j)+X(i-1, j))-gamma(i, j).*(X(i, j+1)+X(i, j-1)));
+0070         newY(i, j) = ((-0.5)./(alpha(i, j)+gamma(i, j)+1e-10)).*(2*beta(i, j)<span class="keyword">...</span>
+0071             .*(Y(i+1, j+1)-Y(i-1, j+1)-Y(i+1, j-1)+Y(i-1, j-1))-alpha(i, j)<span class="keyword">...</span>
+0072             .*(Y(i+1, j)+Y(i-1, j))-gamma(i, j).*(Y(i, j+1)+Y(i, j-1)));
+0073         
+0074         errX(1, t) = max(max(abs(newX-X)));
+0075         errY(1, t) = max(max(abs(newY-Y)));
+0076         
+0077         <span class="comment">% Update</span>
+0078         X = newX;
+0079         Y = newY;
+0080         
+0081         <span class="keyword">if</span> errX(t) &lt; tol &amp;&amp; errY(t) &lt; tol
+0082             <span class="keyword">break</span>
+0083         <span class="keyword">end</span>
+0084     <span class="keyword">end</span>
+0085     
+0086     <span class="keyword">if</span> plot_grid
+0087         figure
+0088         mesh(X, Y, zeros(m, n), <span class="string">'Marker'</span>, <span class="string">'.'</span>, <span class="string">'MarkerSize'</span>, 10, <span class="string">'EdgeColor'</span>, <span class="string">'b'</span>)
+0089         title([<span class="string">'Physical grid. m = '</span> num2str(m) <span class="string">', n = '</span> num2str(n)])
+0090         set(gcf, <span class="string">'color'</span>, <span class="string">'w'</span>)
+0091         axis equal
+0092         axis off
+0093         view([0 90])
+0094     <span class="keyword">end</span>
+0095 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

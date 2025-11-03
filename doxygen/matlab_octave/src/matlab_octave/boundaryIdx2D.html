@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of boundaryIdx2D</title>
+  <meta name="keywords" content="boundaryIdx2D">
+  <meta name="description" content="Returns the indices of the nodes that lie on the boundary of a 2D nodal">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; boundaryIdx2D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>boundaryIdx2D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns the indices of the nodes that lie on the boundary of a 2D nodal</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function idx = boundaryIdx2D(m, n) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns the indices of the nodes that lie on the boundary of a 2D nodal
+ grid
+
+ Parameters:
+           m : Number of nodes along x-axis
+           n : Number of nodes along y-axis
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function idx = boundaryIdx2D(m, n)</a>
+0002 <span class="comment">% Returns the indices of the nodes that lie on the boundary of a 2D nodal</span>
+0003 <span class="comment">% grid</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% Parameters:</span>
+0006 <span class="comment">%           m : Number of nodes along x-axis</span>
+0007 <span class="comment">%           n : Number of nodes along y-axis</span>
+0008 <span class="comment">% ----------------------------------------------------------------------------</span>
+0009 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0010 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0011 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0012 <span class="comment">% ----------------------------------------------------------------------------</span>
+0013 
+0014     idx = zeros(2*m+2*(n-2), 1);
+0015     
+0016     mn = m*n;
+0017     
+0018     idx(1:m) = 1:m;
+0019     idx(end-m+1:end) = mn-m+1:mn;
+0020     
+0021     k = m+1;
+0022     <span class="keyword">for</span> i = m+1:m:mn-m
+0023         idx(k) = i;
+0024         idx(k+1) = i+m-1;
+0025         k = k+2;
+0026     <span class="keyword">end</span>
+0027 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of gradNonPeriodic</title>
+  <meta name="keywords" content="gradNonPeriodic">
+  <meta name="description" content="Returns a m+1 by m+2 one-dimensional mimetic gradient operator">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; gradNonPeriodic.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>gradNonPeriodic
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns a m+1 by m+2 one-dimensional mimetic gradient operator</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function G = gradNonPeriodic(k, m, dx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a m+1 by m+2 one-dimensional mimetic gradient operator
+
+ Parameters:
+                k : Order of accuracy
+                m : Number of cells
+               dx : Step size
+
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="grad.html" class="code" title="function G = grad(k, m, dx, dc, nc)">grad</a>	Returns a one-dimensional mimetic gradient operator depending on whether</li>
+<li><a href="grad2D.html" class="code" title="function G = grad2D(k, m, dx, n, dy, dc, nc)">grad2D</a>	Returns a two-dimensional mimetic gradient operator depending on whether</li>
+<li><a href="grad3D.html" class="code" title="function G = grad3D(k, m, dx, n, dy, o, dz, dc, nc)">grad3D</a>	Returns a three-dimensional mimetic gradient operator depending on whether</li>
+<li><a href="gradNonPeriodic2D.html" class="code" title="function G = gradNonPeriodic2D(k, m, dx, n, dy)">gradNonPeriodic2D</a>	Returns a two-dimensional mimetic gradient operator</li>
+<li><a href="gradNonPeriodic3D.html" class="code" title="function G = gradNonPeriodic3D(k, m, dx, n, dy, o, dz)">gradNonPeriodic3D</a>	Returns a three-dimensional mimetic gradient operator</li>
+<li><a href="lapNonPeriodic.html" class="code" title="function L = lapNonPeriodic(k, m, dx)">lapNonPeriodic</a>	Returns a m+2 by m+2 one-dimensional mimetic laplacian operator</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function G = gradNonPeriodic(k, m, dx)</a>
+0002 <span class="comment">% Returns a m+1 by m+2 one-dimensional mimetic gradient operator</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% Parameters:</span>
+0005 <span class="comment">%                k : Order of accuracy</span>
+0006 <span class="comment">%                m : Number of cells</span>
+0007 <span class="comment">%               dx : Step size</span>
+0008 <span class="comment">%</span>
+0009 <span class="comment">% ----------------------------------------------------------------------------</span>
+0010 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0011 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0012 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0013 <span class="comment">% ----------------------------------------------------------------------------</span>
+0014 <span class="comment">%</span>
+0015 
+0016     <span class="comment">% Assertions:</span>
+0017     assert(k &gt;= 2, <span class="string">'k &gt;= 2'</span>);
+0018     assert(mod(k, 2) == 0, <span class="string">'k % 2 = 0'</span>);
+0019     assert(m &gt;= 2*k, [<span class="string">'m &gt;= '</span> num2str(2*k) <span class="string">' for k = '</span> num2str(k)]);
+0020 
+0021     G = sparse(m+1, m+2);
+0022 
+0023     <span class="keyword">switch</span> k
+0024         <span class="keyword">case</span> 2
+0025             A = [-8/3 3 -1/3];
+0026             G(1, 1:3) = A; 
+0027             G(<span class="keyword">end</span>, end-2:end) = -fliplr(A);
+0028             <span class="keyword">for</span> i = 2:m
+0029                G(i, i:i+1) = [-1 1];
+0030             <span class="keyword">end</span>
+0031 
+0032         <span class="keyword">case</span> 4
+0033             A = [-352/105  35/8  -35/24 21/40 -5/56; <span class="keyword">...</span>
+0034                    16/105 -31/24  29/24 -3/40  1/168];
+0035             G(1:2, 1:5) = A;
+0036             G(m:m+1, m-2:end) = -rot90(A,2);
+0037             <span class="keyword">for</span> i = 3:m-1
+0038                G(i, i-1:i+2) = [1/24 -9/8 9/8 -1/24];
+0039             <span class="keyword">end</span>
+0040 
+0041         <span class="keyword">case</span> 6
+0042             A = [-13016/3465  693/128  -385/128 693/320 -495/448  385/1152 -63/1408; <span class="keyword">...</span>
+0043                     496/3465 -811/640   449/384 -29/960  -11/448   13/1152 -37/21120; <span class="keyword">...</span>
+0044                      -8/385   179/1920 -153/128 381/320 -101/1344   1/128   -3/7040];
+0045             G(1:3, 1:7) = A;
+0046             G(m-1:m+1, m-4:end) = -rot90(A,2);
+0047             <span class="keyword">for</span> i = 4:m-2
+0048                 G(i, i-2:i+3) = [-3/640 25/384 -75/64 75/64 -25/384 3/640];
+0049             <span class="keyword">end</span>
+0050 
+0051         <span class="keyword">case</span> 8
+0052             A = [-182144/45045     6435/1024    -5005/1024  27027/5120  -32175/7168  25025/9216  -12285/11264  3465/13312   -143/5120; <span class="keyword">...</span>
+0053                    86048/675675 -131093/107520  49087/46080 10973/76800  -4597/21504  4019/27648 -10331/168960 2983/199680 -2621/1612800; <span class="keyword">...</span>
+0054                    -3776/225225    8707/107520 -17947/15360 29319/25600   -533/21504  -263/9216     903/56320  -283/66560    257/537600; <span class="keyword">...</span>
+0055                       32/9009      -543/35840     265/3072  -1233/1024    8625/7168   -775/9216     639/56320  -15/13312       1/21504];
+0056             G(1:4, 1:9) = A;
+0057             G(m-2:m+1, m-6:end) = -rot90(A,2);
+0058             <span class="keyword">for</span> i = 5:m-3
+0059                 G(i, i-3:i+4) = [5/7168 -49/5120 245/3072 -1225/1024 1225/1024 -245/3072 49/5120 -5/7168];
+0060             <span class="keyword">end</span>
+0061     <span class="keyword">end</span>
+0062     G = (1/dx).*G;
+0063 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

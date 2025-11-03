@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of interpol</title>
+  <meta name="keywords" content="interpol">
+  <meta name="description" content="Returns a m+1 by m+2 one-dimensional interpolator of 2nd-order">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; interpol.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>interpol
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns a m+1 by m+2 one-dimensional interpolator of 2nd-order</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function I = interpol(m, c) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a m+1 by m+2 one-dimensional interpolator of 2nd-order
+
+ Parameters:
+               m : Number of cells
+               c : Left interpolation coeff.
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="interpol2D.html" class="code" title="function I = interpol2D(m, n, c1, c2)">interpol2D</a>	Returns a two-dimensional interpolator of 2nd-order</li>
+<li><a href="interpol3D.html" class="code" title="function I = interpol3D(m, n, o, c1, c2, c3)">interpol3D</a>	Returns a three-dimensional interpolator of 2nd-order</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function I = interpol(m, c)</a>
+0002 <span class="comment">% Returns a m+1 by m+2 one-dimensional interpolator of 2nd-order</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% Parameters:</span>
+0005 <span class="comment">%               m : Number of cells</span>
+0006 <span class="comment">%               c : Left interpolation coeff.</span>
+0007 <span class="comment">% ----------------------------------------------------------------------------</span>
+0008 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0009 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0010 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0011 <span class="comment">% ----------------------------------------------------------------------------</span>
+0012 
+0013     <span class="comment">% Assertions:</span>
+0014     assert(m &gt;= 4, <span class="string">'m &gt;= 4'</span>);
+0015     assert(c &gt;= 0 &amp;&amp; c &lt;= 1, <span class="string">'0 &lt;= c &lt;= 1'</span>);
+0016 
+0017     <span class="comment">% Dimensions of I:</span>
+0018     n_rows = m+1;
+0019     n_cols = m+2;
+0020     
+0021     I = sparse(n_rows, n_cols);
+0022     
+0023     I(1, 1) = 1;
+0024     I(<span class="keyword">end</span>, end) = 1;
+0025     
+0026     <span class="comment">% Average between two continuous cells</span>
+0027     avg = [c 1-c];
+0028     
+0029     j = 2;
+0030     <span class="keyword">for</span> i = 2 : n_rows - 1
+0031         I(i, j:j+2-1) = avg;
+0032         j = j + 1;
+0033     <span class="keyword">end</span>
+0034 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

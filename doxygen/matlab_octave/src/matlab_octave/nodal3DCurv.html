@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of nodal3DCurv</title>
+  <meta name="keywords" content="nodal3DCurv">
+  <meta name="description" content="----------------------------------------------------------------------------">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; nodal3DCurv.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>nodal3DCurv
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>----------------------------------------------------------------------------</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [Nx, Ny, Nz] = nodal3DCurv(k, X, Y, Z) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="jacobian3D.html" class="code" title="function [J, Xe, Xn, Xc, Ye, Yn, Yc, Ze, Zn, Zc] = jacobian3D(k, X, Y, Z)">jacobian3D</a>	Returns:</li>
+<li><a href="nodal3D.html" class="code" title="function N = nodal3D(k, m, dx, n, dy, o, dz)">nodal3D</a>	Returns a three-dimensional operator that approximates the first-order</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [Nx, Ny, Nz] = nodal3DCurv(k, X, Y, Z)</a>
+0002 <span class="comment">% ----------------------------------------------------------------------------</span>
+0003 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0004 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0005 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0006 <span class="comment">% ----------------------------------------------------------------------------</span>
+0007 
+0008     <span class="comment">% Get the determinant of the jacobian and the metrics</span>
+0009     [J, Xe, Xn, Xc, Ye, Yn, Yc, Ze, Zn, Zc] = <a href="jacobian3D.html" class="code" title="function [J, Xe, Xn, Xc, Ye, Yn, Yc, Ze, Zn, Zc] = jacobian3D(k, X, Y, Z)">jacobian3D</a>(k, X, Y, Z);
+0010     
+0011     <span class="comment">% Dimensions of nodal grid</span>
+0012     [n, m, o] = size(X);
+0013     
+0014     len = n*m*o;
+0015     
+0016     <span class="comment">% Convert metrics to diagonal matrices</span>
+0017     J = spdiags(1./J, 0, numel(len), numel(len));
+0018     A = spdiags(Yn.*Zc-Zn.*Yc, 0, len, len);
+0019     B = spdiags(Zn.*Xc-Xn.*Zc, 0, len, len);
+0020     C = spdiags(Xn.*Yc-Yn.*Xc, 0, len, len);
+0021     D = spdiags(Ze.*Yc-Ye.*Zc, 0, len, len);
+0022     E = spdiags(Xe.*Zc-Ze.*Xc, 0, len, len);
+0023     F = spdiags(Ye.*Xc-Xe.*Yc, 0, len, len);
+0024     G = spdiags(Ye.*Zn-Ze.*Yn, 0, len, len);
+0025     H = spdiags(Ze.*Xn-Xe.*Zn, 0, len, len);
+0026     I = spdiags(Xe.*Yn-Ye.*Xn, 0, len, len);
+0027     
+0028     <span class="comment">% Construct 3D uniform nodal operator</span>
+0029     N = <a href="nodal3D.html" class="code" title="function N = nodal3D(k, m, dx, n, dy, o, dz)">nodal3D</a>(k, m, 1, n, 1, o, 1); <span class="comment">% N is tall and skinny</span>
+0030     Ne = N(1:len, :);
+0031     Nn = N(len+1:2*len, :);
+0032     Nc = N(2*len+1:<span class="keyword">end</span>, :);
+0033     
+0034     <span class="comment">% Apply transformation</span>
+0035     Nx = J*(A*Ne+D*Nn+G*Nc);
+0036     Ny = J*(B*Ne+E*Nn+H*Nc);
+0037     Nz = J*(C*Ne+F*Nn+I*Nc);
+0038     
+0039     <span class="comment">%  [J*A J*D J*G;</span>
+0040     <span class="comment">%   J*B J*E J*H;</span>
+0041     <span class="comment">%   J*C J*F J*I]*[Ne; Nn; Nc]</span>
+0042 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

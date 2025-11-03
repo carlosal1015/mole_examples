@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of addScalarBC3D</title>
+  <meta name="keywords" content="addScalarBC3D">
+  <meta name="description" content="This function assumes that the unknown u, which represents the discrete">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; addScalarBC3D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>addScalarBC3D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>This function assumes that the unknown u, which represents the discrete</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [A, b] = addScalarBC3D(A, b, k, m, dx, n, dy, o, dz, dc, nc, v) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> This function assumes that the unknown u, which represents the discrete
+ solution the continuous second-order 3D PDE operator 
+                                   L U = f, 
+ with continuous boundary condition 
+                              a0 U + b0 dU/dn = g,
+ are given at the 3D cell centers and boundary face centers. Furthermore,
+ all discrete calculations are performed at the 3D cell centers and boundary 
+ face centers.
+
+ The function receives as input quantities associated to the discrete
+ analog of the continuous problem given by the squared linear system 
+                                 A u = b 
+ where A is the discrete analog of L and b is the discrete analog of g,
+ both constructed by the user without boundary conditions.
+ The function output is the modified square linear system 
+                                 A u = b
+ where both A and b include boundary condition information.
+
+ The boundary condition is always one of the following forms:
+
+ For Dirichlet set: a0 not equal zero and b0 = 0.
+ For Neumann set  : a0 = 0 and b0 not equal zero.
+ For Robin set    : both a0 and b0 not equal zero.
+ For Periodic set : both a0 = 0 and b0 = 0.
+
+ For periodic bc, it is assumed that not only u but also du/dn are the same 
+ in both extremes of the domain since a second-order PDE is assumed.
+
+ Periodic boundary conditions can be applied along some axes and
+ non-periodic to some others.
+ 
+ For consistence with the way boundary operators are calculated to avoid 
+ overwriting of the values v, the left and right boundary conditions are
+ assumed to be column vectors of n*o components, the bottom and top
+ boundary conditions are assumed to be column vectors of (m+2)*o
+ components, and the front and back faces are assumed to be vectors of
+ (m+2)*(n+2) components. 
+
+ The order of these components is as follows:
+ For left and right faces, the ordering is the one by columns of the
+ matrix where y increase along rows, and z increase along columns.
+ For bottom and top faces, the ordering is the one by columns of the
+ matrix where x increase along rows, and z increase along columns.
+ For front and back faces, the ordering is the one by columns of the
+ matrix where x increase along rows, and y increase along columns.
+ 
+ The code assumes the following assertions:
+ assert(k &gt;= 2, 'k &gt;= 2');
+ assert(mod(k, 2) == 0, 'k % 2 = 0');
+ assert(m &gt;= 2*k+1, ['m &gt;= ' num2str(2*k+1) ' for k = ' num2str(k)]);
+
+ Parameters:
+ output
+         A : Linear operator with boundary conditions added
+         b : Right hand side with boundary conditions added
+
+ input
+         A : Linear operator without boundary conditions added
+         b : Right hand side without boundary conditions added
+         k : Order of accuracy
+         m : Number of horizontal cells
+        dx : Step size of horizontal
+         n : Number of vertical cells
+        dy : Step size of vertical cells
+         o : Number of depth cells
+        dz : Step size of depth cells
+        dc : a0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)
+        nc : b0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)
+         v : g (6x1 vector of arrays for left, right, bottom, top, front, back boundaries, resp.)
+
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------    
+
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addScalarBC3Dlhs.html" class="code" title="function [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = addScalarBC3Dlhs(k, m, dx, n, dy, o, dz, dc, nc)">addScalarBC3Dlhs</a>	This functions uses geometry and boundary type conditions to create</li>
+<li><a href="addScalarBC3Drhs.html" class="code" title="function b = addScalarBC3Drhs(b, dc, nc, v, rl, rr, rb, rt, rf, rz)">addScalarBC3Drhs</a>	This function uses the boundary condition type of each face and the rhs b</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [A, b] = addScalarBC3D(A, b, k, m, dx, n, dy, o, dz, dc, nc, v)</a>
+0002 <span class="comment">% This function assumes that the unknown u, which represents the discrete</span>
+0003 <span class="comment">% solution the continuous second-order 3D PDE operator</span>
+0004 <span class="comment">%                                   L U = f,</span>
+0005 <span class="comment">% with continuous boundary condition</span>
+0006 <span class="comment">%                              a0 U + b0 dU/dn = g,</span>
+0007 <span class="comment">% are given at the 3D cell centers and boundary face centers. Furthermore,</span>
+0008 <span class="comment">% all discrete calculations are performed at the 3D cell centers and boundary</span>
+0009 <span class="comment">% face centers.</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% The function receives as input quantities associated to the discrete</span>
+0012 <span class="comment">% analog of the continuous problem given by the squared linear system</span>
+0013 <span class="comment">%                                 A u = b</span>
+0014 <span class="comment">% where A is the discrete analog of L and b is the discrete analog of g,</span>
+0015 <span class="comment">% both constructed by the user without boundary conditions.</span>
+0016 <span class="comment">% The function output is the modified square linear system</span>
+0017 <span class="comment">%                                 A u = b</span>
+0018 <span class="comment">% where both A and b include boundary condition information.</span>
+0019 <span class="comment">%</span>
+0020 <span class="comment">% The boundary condition is always one of the following forms:</span>
+0021 <span class="comment">%</span>
+0022 <span class="comment">% For Dirichlet set: a0 not equal zero and b0 = 0.</span>
+0023 <span class="comment">% For Neumann set  : a0 = 0 and b0 not equal zero.</span>
+0024 <span class="comment">% For Robin set    : both a0 and b0 not equal zero.</span>
+0025 <span class="comment">% For Periodic set : both a0 = 0 and b0 = 0.</span>
+0026 <span class="comment">%</span>
+0027 <span class="comment">% For periodic bc, it is assumed that not only u but also du/dn are the same</span>
+0028 <span class="comment">% in both extremes of the domain since a second-order PDE is assumed.</span>
+0029 <span class="comment">%</span>
+0030 <span class="comment">% Periodic boundary conditions can be applied along some axes and</span>
+0031 <span class="comment">% non-periodic to some others.</span>
+0032 <span class="comment">%</span>
+0033 <span class="comment">% For consistence with the way boundary operators are calculated to avoid</span>
+0034 <span class="comment">% overwriting of the values v, the left and right boundary conditions are</span>
+0035 <span class="comment">% assumed to be column vectors of n*o components, the bottom and top</span>
+0036 <span class="comment">% boundary conditions are assumed to be column vectors of (m+2)*o</span>
+0037 <span class="comment">% components, and the front and back faces are assumed to be vectors of</span>
+0038 <span class="comment">% (m+2)*(n+2) components.</span>
+0039 <span class="comment">%</span>
+0040 <span class="comment">% The order of these components is as follows:</span>
+0041 <span class="comment">% For left and right faces, the ordering is the one by columns of the</span>
+0042 <span class="comment">% matrix where y increase along rows, and z increase along columns.</span>
+0043 <span class="comment">% For bottom and top faces, the ordering is the one by columns of the</span>
+0044 <span class="comment">% matrix where x increase along rows, and z increase along columns.</span>
+0045 <span class="comment">% For front and back faces, the ordering is the one by columns of the</span>
+0046 <span class="comment">% matrix where x increase along rows, and y increase along columns.</span>
+0047 <span class="comment">%</span>
+0048 <span class="comment">% The code assumes the following assertions:</span>
+0049 <span class="comment">% assert(k &gt;= 2, 'k &gt;= 2');</span>
+0050 <span class="comment">% assert(mod(k, 2) == 0, 'k % 2 = 0');</span>
+0051 <span class="comment">% assert(m &gt;= 2*k+1, ['m &gt;= ' num2str(2*k+1) ' for k = ' num2str(k)]);</span>
+0052 <span class="comment">%</span>
+0053 <span class="comment">% Parameters:</span>
+0054 <span class="comment">% output</span>
+0055 <span class="comment">%         A : Linear operator with boundary conditions added</span>
+0056 <span class="comment">%         b : Right hand side with boundary conditions added</span>
+0057 <span class="comment">%</span>
+0058 <span class="comment">% input</span>
+0059 <span class="comment">%         A : Linear operator without boundary conditions added</span>
+0060 <span class="comment">%         b : Right hand side without boundary conditions added</span>
+0061 <span class="comment">%         k : Order of accuracy</span>
+0062 <span class="comment">%         m : Number of horizontal cells</span>
+0063 <span class="comment">%        dx : Step size of horizontal</span>
+0064 <span class="comment">%         n : Number of vertical cells</span>
+0065 <span class="comment">%        dy : Step size of vertical cells</span>
+0066 <span class="comment">%         o : Number of depth cells</span>
+0067 <span class="comment">%        dz : Step size of depth cells</span>
+0068 <span class="comment">%        dc : a0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)</span>
+0069 <span class="comment">%        nc : b0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)</span>
+0070 <span class="comment">%         v : g (6x1 vector of arrays for left, right, bottom, top, front, back boundaries, resp.)</span>
+0071 <span class="comment">%</span>
+0072 <span class="comment">% ----------------------------------------------------------------------------</span>
+0073 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0074 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0075 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0076 <span class="comment">% ----------------------------------------------------------------------------</span>
+0077 <span class="comment">%</span>
+0078 
+0079     <span class="comment">% verify bc sizes and square linear system</span>
+0080     cellsz = cellfun(@size,v,<span class="string">'uni'</span>,false);
+0081     assert(all(size(dc) == [6 1]), <span class="string">'dc is a 6x1 vector'</span>);
+0082     assert(all(size(nc) == [6 1]), <span class="string">'nc is a 6x1 vector'</span>);
+0083     assert(all(size(v) == [6 1]), <span class="string">'v is a 6x1 vector'</span>);
+0084     assert(all(size(A,1) == size(A,2)), <span class="string">'A is a square matrix'</span>);
+0085     assert(all(size(A,2) == numel(b)), <span class="string">'b size = A columns'</span>);
+0086 
+0087     <span class="comment">% A and b changes depend on whether bc is periodic or not in each axis</span>
+0088     qrl = find(dc(1:2).*dc(1:2) + nc(1:2).*nc(1:2),1);
+0089     qbt = find(dc(3:4).*dc(3:4) + nc(3:4).*nc(3:4),1);
+0090     qzf = find(dc(5:6).*dc(5:6) + nc(5:6).*nc(5:6),1);
+0091 
+0092     <span class="keyword">if</span> ~isempty(qrl)    
+0093         assert(all(cellsz{1} == [o*n 1]), <span class="string">'v{1} is a (o*n)x1 vector'</span>); <span class="comment">% left</span>
+0094         assert(all(cellsz{2} == [o*n 1]), <span class="string">'v{2} is a (o*n)x1 vector'</span>); <span class="comment">% right</span>
+0095     <span class="keyword">end</span>
+0096 
+0097     <span class="keyword">if</span> ~isempty(qbt)    
+0098         <span class="keyword">if</span> ~isempty(qrl)    
+0099             assert(all(cellsz{3} == [o*(m+2) 1]), <span class="string">'v{3} is a (o*(m+2))x1 vector'</span>); <span class="comment">% bottom</span>
+0100             assert(all(cellsz{4} == [o*(m+2) 1]), <span class="string">'v{4} is a (o*(m+2))x1 vector'</span>); <span class="comment">% top</span>
+0101         <span class="keyword">else</span>
+0102             assert(all(cellsz{3} == [o*m 1]), <span class="string">'v{3} is a (o*m)x1 vector'</span>); <span class="comment">% bottom</span>
+0103             assert(all(cellsz{4} == [o*m 1]), <span class="string">'v{4} is a (o*m)x1 vector'</span>); <span class="comment">% top</span>
+0104         <span class="keyword">end</span>
+0105     <span class="keyword">end</span>
+0106 
+0107     <span class="keyword">if</span> ~isempty(qzf)    
+0108         <span class="keyword">if</span> ~isempty(qrl)    
+0109             <span class="keyword">if</span> ~isempty(qbt)
+0110                 assert(all(cellsz{5} == [(n+2)*(m+2) 1]), <span class="string">'v{5} is a ((n+2)*(m+2))x1 vector'</span>); <span class="comment">% front</span>
+0111                 assert(all(cellsz{6} == [(n+2)*(m+2) 1]), <span class="string">'v{6} is a ((n+2)*(m+2))x1 vector'</span>); <span class="comment">% back</span>
+0112             <span class="keyword">else</span>
+0113                 assert(all(cellsz{5} == [n*(m+2) 1]), <span class="string">'v{5} is a (n*(m+2))x1 vector'</span>); <span class="comment">% front</span>
+0114                 assert(all(cellsz{6} == [n*(m+2) 1]), <span class="string">'v{6} is a (n*(m+2))x1 vector'</span>); <span class="comment">% back</span>
+0115             <span class="keyword">end</span>
+0116         <span class="keyword">else</span>
+0117             <span class="keyword">if</span> ~isempty(qbt)
+0118                 assert(all(cellsz{5} == [(n+2)*m 1]), <span class="string">'v{5} is a ((n+2)*m)x1 vector'</span>); <span class="comment">% front</span>
+0119                 assert(all(cellsz{6} == [(n+2)*m 1]), <span class="string">'v{6} is a ((n+2)*m)x1 vector'</span>); <span class="comment">% back</span>
+0120             <span class="keyword">else</span>
+0121                 assert(all(cellsz{5} == [n*m 1]), <span class="string">'v{5} is a (n*m)x1 vector'</span>); <span class="comment">% front</span>
+0122                 assert(all(cellsz{6} == [n*m 1]), <span class="string">'v{6} is a (n*m)x1 vector'</span>); <span class="comment">% back</span>
+0123             <span class="keyword">end</span>
+0124         <span class="keyword">end</span>
+0125     <span class="keyword">end</span>
+0126 
+0127     rl = 0; rr = 0; rb = 0; rt = 0; rf = 0; rz = 0; <span class="comment">% periodic case</span>
+0128 
+0129     <span class="comment">% get modifications of A for left, right, bottom, top, front, back faces, resp.</span>
+0130     [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = <a href="addScalarBC3Dlhs.html" class="code" title="function [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = addScalarBC3Dlhs(k, m, dx, n, dy, o, dz, dc, nc)">addScalarBC3Dlhs</a>(k, m, dx, n, dy, o, dz, dc, nc);
+0131 
+0132     <span class="comment">% get rhs entries affected by bcs for left, right, bottom, top, front, back faces, resp.</span>
+0133     <span class="keyword">if</span> ~isempty(qrl)    
+0134         [rl,~,~] = find(Abcl);
+0135         [rr,~,~] = find(Abcr);
+0136         rl = unique(rl);
+0137         rr = unique(rr);
+0138         <span class="comment">% remove rows of A associated to boundary</span>
+0139         Abc1 = Abcl + Abcr;
+0140         [rowsbc1,~,~] = find(Abc1);
+0141         [rows1,cols1,s1] = find(A(rowsbc1,:));
+0142         A = A - sparse(rows1, cols1, s1, size(A,1), size(A,2));
+0143         <span class="comment">% update matrix A with boundary information</span>
+0144         A = A + Abc1;    
+0145         <span class="comment">% remove b entries associated to bcs</span>
+0146         b(rowsbc1) = 0;    
+0147     <span class="keyword">end</span>
+0148 
+0149     <span class="keyword">if</span> ~isempty(qbt)
+0150         [rb,~,~] = find(Abcb);
+0151         [rt,~,~] = find(Abct);
+0152         rb = unique(rb);
+0153         rt = unique(rt);
+0154         <span class="comment">% remove rows of A associated to boundary</span>
+0155         Abc2 = Abct + Abcb;
+0156         [rowsbc2,~,~] = find(Abc2);
+0157         [rows2,cols2,s2] = find(A(rowsbc2,:));
+0158         A = A - sparse(rows2, cols2, s2, size(A,1), size(A,2));
+0159         <span class="comment">% update matrix A with boundary information</span>
+0160         A = A + Abc2;
+0161         <span class="comment">% remove b entries associated to bcs</span>
+0162         b(rowsbc2) = 0;    
+0163     <span class="keyword">end</span>
+0164 
+0165     <span class="keyword">if</span> ~isempty(qzf)    
+0166         [rz,~,~] = find(Abcz);
+0167         [rf,~,~] = find(Abcf);
+0168         rf = unique(rf);
+0169         rz = unique(rz);
+0170         <span class="comment">% remove rows of A associated to boundary</span>
+0171         Abc3 = Abcf + Abcz;
+0172         [rowsbc3,~,~] = find(Abc3);
+0173         [rows3,cols3,s3] = find(A(rowsbc3,:));
+0174         A = A - sparse(rows3, cols3, s3, size(A,1), size(A,2));
+0175         <span class="comment">% update matrix A with boundary information</span>
+0176         A = A + Abc3;    
+0177         <span class="comment">% remove b entries associated to bcs</span>
+0178         b(rowsbc3) = 0;    
+0179     <span class="keyword">end</span>
+0180 
+0181     <span class="comment">% update b with boundary information</span>
+0182     <span class="keyword">if</span> ~(isempty(qrl) &amp;&amp; isempty(qbt) &amp;&amp; isempty(qzf))  
+0183         b = <a href="addScalarBC3Drhs.html" class="code" title="function b = addScalarBC3Drhs(b, dc, nc, v, rl, rr, rb, rt, rf, rz)">addScalarBC3Drhs</a>(b, dc, nc, v, rl, rr, rb, rt, rf, rz);
+0184     <span class="keyword">end</span>
+0185 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

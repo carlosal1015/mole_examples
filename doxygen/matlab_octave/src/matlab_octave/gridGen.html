@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of gridGen</title>
+  <meta name="keywords" content="gridGen">
+  <meta name="description" content="Returns X and Y which are both m by n matrices that contains the physical">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; gridGen.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>gridGen
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns X and Y which are both m by n matrices that contains the physical</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [X, Y] = gridGen(method, grid_name, m, n, plot_grid, varargin) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns X and Y which are both m by n matrices that contains the physical
+ coordinates
+
+ Parameters:
+        grid_name : String with the name of the grid folder
+                m : Number of nodes along the horizontal axis
+                n : Number of nodes along the vertical axis
+        plot_grid : If true -&gt; plot the grid
+         varargin : Maximum number of iterations (Required for TTM)
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="tfi.html" class="code" title="function [X, Y] = tfi(grid_name, m, n, plot_grid)">tfi</a>	https://en.wikipedia.org/wiki/Transfinite_interpolation</li>
+<li><a href="ttm.html" class="code" title="function [X, Y] = ttm(grid_name, m, n, iters, plot_grid)">ttm</a>	https://www.sciencedirect.com/science/article/pii/0022247X78902172?via%3Dihub</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [X, Y] = gridGen(method, grid_name, m, n, plot_grid, varargin)</a>
+0002 <span class="comment">% Returns X and Y which are both m by n matrices that contains the physical</span>
+0003 <span class="comment">% coordinates</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% Parameters:</span>
+0006 <span class="comment">%        grid_name : String with the name of the grid folder</span>
+0007 <span class="comment">%                m : Number of nodes along the horizontal axis</span>
+0008 <span class="comment">%                n : Number of nodes along the vertical axis</span>
+0009 <span class="comment">%        plot_grid : If true -&gt; plot the grid</span>
+0010 <span class="comment">%         varargin : Maximum number of iterations (Required for TTM)</span>
+0011 <span class="comment">% ----------------------------------------------------------------------------</span>
+0012 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0013 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0014 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0015 <span class="comment">% ----------------------------------------------------------------------------</span>
+0016     
+0017     <span class="keyword">if</span> strcmp(method, <span class="string">'TFI'</span>)
+0018         [X, Y] = <a href="tfi.html" class="code" title="function [X, Y] = tfi(grid_name, m, n, plot_grid)">tfi</a>(grid_name, m, n, plot_grid);
+0019     <span class="keyword">elseif</span> strcmp(method, <span class="string">'TTM'</span>)
+0020         <span class="keyword">if</span> ~isempty(varargin)
+0021             [X, Y] = <a href="ttm.html" class="code" title="function [X, Y] = ttm(grid_name, m, n, iters, plot_grid)">ttm</a>(grid_name, m, n, varargin{1}, plot_grid);
+0022         <span class="keyword">else</span>
+0023             disp(<span class="string">'Must specify maximum number of iterations for SOR algorithm.'</span>)
+0024         <span class="keyword">end</span>
+0025     <span class="keyword">else</span>
+0026         disp(<span class="string">'Method must be TFI or TTM.'</span>)
+0027     <span class="keyword">end</span>
+0028 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

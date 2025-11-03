@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of lapNonPeriodic3D</title>
+  <meta name="keywords" content="lapNonPeriodic3D">
+  <meta name="description" content="Returns a three-dimensional mimetic laplacian operator">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; lapNonPeriodic3D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>lapNonPeriodic3D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns a three-dimensional mimetic laplacian operator</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function L = lapNonPeriodic3D(k, m, dx, n, dy, o, dz) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a three-dimensional mimetic laplacian operator
+
+ Parameters:
+                k : Order of accuracy
+                m : Number of cells along x-axis
+               dx : Step size along x-axis
+                n : Number of cells along y-axis
+               dy : Step size along y-axis
+                o : Number of cells along z-axis
+               dz : Step size along z-axis
+
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="divNonPeriodic3D.html" class="code" title="function D = divNonPeriodic3D(k, m, dx, n, dy, o, dz)">divNonPeriodic3D</a>	Returns a three-dimensional mimetic divergence operator</li>
+<li><a href="gradNonPeriodic3D.html" class="code" title="function G = gradNonPeriodic3D(k, m, dx, n, dy, o, dz)">gradNonPeriodic3D</a>	Returns a three-dimensional mimetic gradient operator</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="lap3D.html" class="code" title="function L = lap3D(k, m, dx, n, dy, o, dz, dc, nc)">lap3D</a>	Returns a three-dimensional mimetic Laplacian operator depending on whether</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function L = lapNonPeriodic3D(k, m, dx, n, dy, o, dz)</a>
+0002 <span class="comment">% Returns a three-dimensional mimetic laplacian operator</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% Parameters:</span>
+0005 <span class="comment">%                k : Order of accuracy</span>
+0006 <span class="comment">%                m : Number of cells along x-axis</span>
+0007 <span class="comment">%               dx : Step size along x-axis</span>
+0008 <span class="comment">%                n : Number of cells along y-axis</span>
+0009 <span class="comment">%               dy : Step size along y-axis</span>
+0010 <span class="comment">%                o : Number of cells along z-axis</span>
+0011 <span class="comment">%               dz : Step size along z-axis</span>
+0012 <span class="comment">%</span>
+0013 <span class="comment">% ----------------------------------------------------------------------------</span>
+0014 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0015 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0016 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0017 <span class="comment">% ----------------------------------------------------------------------------</span>
+0018 <span class="comment">%</span>
+0019 
+0020     D = <a href="divNonPeriodic3D.html" class="code" title="function D = divNonPeriodic3D(k, m, dx, n, dy, o, dz)">divNonPeriodic3D</a>(k, m, dx, n, dy, o, dz);
+0021     G = <a href="gradNonPeriodic3D.html" class="code" title="function G = gradNonPeriodic3D(k, m, dx, n, dy, o, dz)">gradNonPeriodic3D</a>(k, m, dx, n, dy, o, dz);
+0022     
+0023     L = D*G;
+0024 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

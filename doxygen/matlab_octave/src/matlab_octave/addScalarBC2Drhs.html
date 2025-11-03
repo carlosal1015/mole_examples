@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of addScalarBC2Drhs</title>
+  <meta name="keywords" content="addScalarBC2Drhs">
+  <meta name="description" content="function b = addBC2Drhs(b, m, n, dc, nc, v, vec)">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; addScalarBC2Drhs.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>addScalarBC2Drhs
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function b = addBC2Drhs(b, m, n, dc, nc, v, vec)</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function b = addScalarBC2Drhs(b, dc, nc, v, rl, rr, rb, rt) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> function b = addBC2Drhs(b, m, n, dc, nc, v, vec)
+ This function uses the boundary condition type of each face and the rhs b 
+ indices and values associated to left, right, bottom, top, front, back 
+ faces to modify the rhs vector b.
+
+ Parameters:
+ output
+         b : Right hand side with boundary conditions added
+
+ input
+         b : Right hand side without boundary conditions added
+        dc : a0 (4x1 vector for left, right, bottom, top boundary types, resp.)
+        nc : b0 (4x1 vector for left, right, bottom, top boundary types, resp.)
+         v : g (4x1 vector of arrays for left, right, bottom, top boundaries, resp.)
+        rl : indices of rhs left indices    
+        rr : indices of rhs right indices    
+        rb : indices of rhs bottom indices    
+        rt : indices of rhs top indices    
+        vec: vector with indices of rhs associated to bc
+
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------    
+
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addScalarBC2D.html" class="code" title="function [A, b] = addScalarBC2D(A, b, k, m, dx, n, dy, dc, nc, v)">addScalarBC2D</a>	This function assumes that the unknown u, which represents the discrete</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function b = addScalarBC2Drhs(b, dc, nc, v, rl, rr, rb, rt)</a>
+0002 <span class="comment">% function b = addBC2Drhs(b, m, n, dc, nc, v, vec)</span>
+0003 <span class="comment">% This function uses the boundary condition type of each face and the rhs b</span>
+0004 <span class="comment">% indices and values associated to left, right, bottom, top, front, back</span>
+0005 <span class="comment">% faces to modify the rhs vector b.</span>
+0006 <span class="comment">%</span>
+0007 <span class="comment">% Parameters:</span>
+0008 <span class="comment">% output</span>
+0009 <span class="comment">%         b : Right hand side with boundary conditions added</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% input</span>
+0012 <span class="comment">%         b : Right hand side without boundary conditions added</span>
+0013 <span class="comment">%        dc : a0 (4x1 vector for left, right, bottom, top boundary types, resp.)</span>
+0014 <span class="comment">%        nc : b0 (4x1 vector for left, right, bottom, top boundary types, resp.)</span>
+0015 <span class="comment">%         v : g (4x1 vector of arrays for left, right, bottom, top boundaries, resp.)</span>
+0016 <span class="comment">%        rl : indices of rhs left indices</span>
+0017 <span class="comment">%        rr : indices of rhs right indices</span>
+0018 <span class="comment">%        rb : indices of rhs bottom indices</span>
+0019 <span class="comment">%        rt : indices of rhs top indices</span>
+0020 <span class="comment">%        vec: vector with indices of rhs associated to bc</span>
+0021 <span class="comment">%</span>
+0022 <span class="comment">% ----------------------------------------------------------------------------</span>
+0023 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0024 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0025 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0026 <span class="comment">% ----------------------------------------------------------------------------</span>
+0027 <span class="comment">%</span>
+0028     
+0029     <span class="comment">% rhs for non-periodic boundary conditions (assumes data given in cell array)</span>
+0030     qrl = find(dc(1:2).*dc(1:2) + nc(1:2).*nc(1:2),1);
+0031     <span class="keyword">if</span> ~isempty(qrl)
+0032         b(rl,1) = v{1}; <span class="comment">% left boundary</span>
+0033         b(rr,1) = v{2}; <span class="comment">% right boundary</span>
+0034     <span class="keyword">end</span>
+0035 
+0036     qbt = find(dc(3:4).*dc(3:4) + nc(3:4).*nc(3:4),1);
+0037     <span class="keyword">if</span> ~isempty(qbt)
+0038         b(rb,1) = v{3}; <span class="comment">% bottom boundary</span>
+0039         b(rt,1) = v{4}; <span class="comment">% top boundary</span>
+0040     <span class="keyword">end</span>
+0041 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

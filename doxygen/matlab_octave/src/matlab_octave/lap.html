@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of lap</title>
+  <meta name="keywords" content="lap">
+  <meta name="description" content="Returns a one-dimensional mimetic Laplacian operator depending on whether">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; lap.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>lap
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns a one-dimensional mimetic Laplacian operator depending on whether</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function L = lap(k, m, dx, dc, nc) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a one-dimensional mimetic Laplacian operator depending on whether
+ or not the operator will contain a periodic boundary condition type
+                              a0 U + b0 dU/dn = g,
+
+ Parameters:
+                k : Order of accuracy
+                m : Number of cells
+               dx : Step size
+    (optional) dc : a0 (2x1 vector for left and right vertices, resp.)
+    (optional) nc : b0 (2x1 vector for left and right vertices, resp.)
+
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="div.html" class="code" title="function D = div(k, m, dx, dc, nc)">div</a>	Returns a one-dimensional mimetic divergence operator depending on whether</li>
+<li><a href="grad.html" class="code" title="function G = grad(k, m, dx, dc, nc)">grad</a>	Returns a one-dimensional mimetic gradient operator depending on whether</li>
+<li><a href="lapNonPeriodic.html" class="code" title="function L = lapNonPeriodic(k, m, dx)">lapNonPeriodic</a>	Returns a m+2 by m+2 one-dimensional mimetic laplacian operator</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function L = lap(k, m, dx, dc, nc)</a>
+0002 <span class="comment">% Returns a one-dimensional mimetic Laplacian operator depending on whether</span>
+0003 <span class="comment">% or not the operator will contain a periodic boundary condition type</span>
+0004 <span class="comment">%                              a0 U + b0 dU/dn = g,</span>
+0005 <span class="comment">%</span>
+0006 <span class="comment">% Parameters:</span>
+0007 <span class="comment">%                k : Order of accuracy</span>
+0008 <span class="comment">%                m : Number of cells</span>
+0009 <span class="comment">%               dx : Step size</span>
+0010 <span class="comment">%    (optional) dc : a0 (2x1 vector for left and right vertices, resp.)</span>
+0011 <span class="comment">%    (optional) nc : b0 (2x1 vector for left and right vertices, resp.)</span>
+0012 <span class="comment">%</span>
+0013 <span class="comment">% ----------------------------------------------------------------------------</span>
+0014 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0015 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0016 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0017 <span class="comment">% ----------------------------------------------------------------------------</span>
+0018 <span class="comment">%</span>
+0019 
+0020     <span class="keyword">if</span> nargin ~= 3 &amp;&amp; nargin ~= 5
+0021         error(<span class="string">'lap:InvalidNumArgs'</span>, <span class="string">'lap expects 3 or 5 arguments'</span>);
+0022     <span class="keyword">end</span>
+0023     
+0024     <span class="comment">% for legacy code</span>
+0025     <span class="keyword">if</span> nargin == 3
+0026         L = <a href="lapNonPeriodic.html" class="code" title="function L = lapNonPeriodic(k, m, dx)">lapNonPeriodic</a>(k, m, dx);
+0027         <span class="keyword">return</span>;
+0028     <span class="keyword">end</span>
+0029 
+0030     D = <a href="div.html" class="code" title="function D = div(k, m, dx, dc, nc)">div</a>(k, m, dx, dc, nc);
+0031     G = <a href="grad.html" class="code" title="function G = grad(k, m, dx, dc, nc)">grad</a>(k, m, dx, dc, nc);
+0032     
+0033     L = D*G;
+0034 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of curl2D</title>
+  <meta name="keywords" content="curl2D">
+  <meta name="description" content="Returns a two-dimensional mimetic curl operator">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; curl2D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>curl2D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns a two-dimensional mimetic curl operator</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function C = curl2D(k, m, dx, n, dy, west, east, south, north, U, V) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a two-dimensional mimetic curl operator
+
+ Parameters:
+                k : Order of accuracy
+                m : Number of cells along x-axis
+               dx : Step size along x-axis
+                n : Number of cells along y-axis
+               dy : Step size along y-axis
+      west, east,
+     south, north : west, east, south, north limits
+                U : Vector space function acting on x-direction
+                    U(X,Y) must be defined as function handle
+                V : Vector space function acting on y-direction
+                    V(X,Y) must be defined as function handle
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="div2D.html" class="code" title="function D = div2D(k, m, dx, n, dy, dc, nc)">div2D</a>	Returns a two-dimensional mimetic divergence operator depending on whether</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function C = curl2D(k, m, dx, n, dy, west, east, south, north, U, V)</a>
+0002 <span class="comment">% Returns a two-dimensional mimetic curl operator</span>
+0003 <span class="comment">%</span>
+0004 <span class="comment">% Parameters:</span>
+0005 <span class="comment">%                k : Order of accuracy</span>
+0006 <span class="comment">%                m : Number of cells along x-axis</span>
+0007 <span class="comment">%               dx : Step size along x-axis</span>
+0008 <span class="comment">%                n : Number of cells along y-axis</span>
+0009 <span class="comment">%               dy : Step size along y-axis</span>
+0010 <span class="comment">%      west, east,</span>
+0011 <span class="comment">%     south, north : west, east, south, north limits</span>
+0012 <span class="comment">%                U : Vector space function acting on x-direction</span>
+0013 <span class="comment">%                    U(X,Y) must be defined as function handle</span>
+0014 <span class="comment">%                V : Vector space function acting on y-direction</span>
+0015 <span class="comment">%                    V(X,Y) must be defined as function handle</span>
+0016 <span class="comment">% ----------------------------------------------------------------------------</span>
+0017 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0018 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0019 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0020 <span class="comment">% ----------------------------------------------------------------------------</span>
+0021 
+0022 
+0023 <span class="comment">% Arguments validation</span>
+0024     assert(isa(U, <span class="string">'function_handle'</span>) &amp;&amp; isa(V, <span class="string">'function_handle'</span>), <span class="keyword">...</span>
+0025            <span class="string">'U and V must be defined as function handle'</span>);
+0026     assert(nargin(U) == 2 &amp;&amp; nargin(V) == 2, <span class="keyword">...</span>
+0027            <span class="string">'U and V must be defined as 2D vector functions'</span>);
+0028     assert(west &lt; east &amp;&amp; south &lt; north , <span class="string">'west &lt; east, south &lt; north'</span>);
+0029 
+0030 <span class="comment">% Variables initialization</span>
+0031     F = sparse(2*m*n+m+n, 1);
+0032     xaxis = west : (dx/2) : east;
+0033     yaxis = south : (dy/2) : north;
+0034 
+0035 <span class="comment">% Linearizing F as function of U and V: F = V_x - U_y</span>
+0036     f = 1;
+0037     <span class="keyword">for</span> j = 2 : 2 : 2*n+1
+0038         <span class="keyword">for</span> i = 1 : 2 : 2*m+1
+0039             F(f) = V(xaxis(i), yaxis(j));  <span class="comment">% F in the x direction (V_x)</span>
+0040             f = f + 1;
+0041         <span class="keyword">end</span>
+0042     <span class="keyword">end</span>
+0043 
+0044     <span class="keyword">for</span> j = 1 : 2 : 2*n+1
+0045         <span class="keyword">for</span> i = 2 : 2 : 2*m+1
+0046             F(f) = -U(xaxis(i), yaxis(j));  <span class="comment">% F in the y direction (-U_y)</span>
+0047             f = f + 1;
+0048         <span class="keyword">end</span>
+0049     <span class="keyword">end</span>
+0050 
+0051     C = <a href="div2D.html" class="code" title="function D = div2D(k, m, dx, n, dy, dc, nc)">div2D</a>(k, m, dx, n, dy)*F;  <span class="comment">% Mimetic curl as C = Div2D*F</span>
+0052     C = reshape(C, m+2, n+2);      <span class="comment">% Reshaping C as matrix</span>
+0053     C = C(2:end-1, 2:end-1);       <span class="comment">% Removing boundaries</span>
+0054 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

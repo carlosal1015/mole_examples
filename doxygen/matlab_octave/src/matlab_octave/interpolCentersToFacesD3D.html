@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of interpolCentersToFacesD3D</title>
+  <meta name="keywords" content="interpolCentersToFacesD3D">
+  <meta name="description" content="3D interpolation from centers to faces">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; interpolCentersToFacesD3D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>interpolCentersToFacesD3D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>3D interpolation from centers to faces</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function I = interpolCentersToFacesD3D(k, m, n, o) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> 3D interpolation from centers to faces
+ logical centers are [1 1.5 ... m-0.5 m]x[1 1.5 ... n-0.5 n]x[1 1.5 ... o-0.5 o]
+ m, n, o, are the number of cells in the logical x-, y-, z- axes
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="interpolCentersToFacesD1D.html" class="code" title="function I = interpolCentersToFacesD1D(k, m)">interpolCentersToFacesD1D</a>	1D interpolation from centers to faces.</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function I = interpolCentersToFacesD3D(k, m, n, o)</a>
+0002 <span class="comment">% 3D interpolation from centers to faces</span>
+0003 <span class="comment">% logical centers are [1 1.5 ... m-0.5 m]x[1 1.5 ... n-0.5 n]x[1 1.5 ... o-0.5 o]</span>
+0004 <span class="comment">% m, n, o, are the number of cells in the logical x-, y-, z- axes</span>
+0005 <span class="comment">% ----------------------------------------------------------------------------</span>
+0006 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0007 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0008 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0009 <span class="comment">% ----------------------------------------------------------------------------</span>
+0010 
+0011     cells = (o+2)*(n+2)*(m+2);
+0012 
+0013     Ix = <a href="interpolCentersToFacesD1D.html" class="code" title="function I = interpolCentersToFacesD1D(k, m)">interpolCentersToFacesD1D</a>(k, m);
+0014     Iy = <a href="interpolCentersToFacesD1D.html" class="code" title="function I = interpolCentersToFacesD1D(k, m)">interpolCentersToFacesD1D</a>(k, n);
+0015     Iz = <a href="interpolCentersToFacesD1D.html" class="code" title="function I = interpolCentersToFacesD1D(k, m)">interpolCentersToFacesD1D</a>(k, o);
+0016 
+0017     Im = sparse(m + 2, m);
+0018     In = sparse(n + 2, n);
+0019     Io = sparse(o + 2, o);
+0020 
+0021     Im(2:(m+2)-1, :) = speye(m, m);
+0022     In(2:(n+2)-1, :) = speye(n, n);
+0023     Io(2:(o+2)-1, :) = speye(o, o);
+0024 
+0025     Sx = kron(kron(Io', In'), Ix);
+0026     Sy = kron(kron(Io', Iy), Im');
+0027     Sz = kron(kron(Iz, In'), Im');
+0028 
+0029     I = sparse(o*n*(m+1)+o*(n+1)*m+(o+1)*n*m, 3*cells);
+0030     
+0031     I(1:o*n*(m+1), 1:cells) = Sx; 
+0032     I(o*n*(m+1)+1:o*n*(m+1)+o*(n+1)*m, cells+1:2*cells) = Sy;
+0033     I(o*n*(m+1)+o*(n+1)*m+1:<span class="keyword">end</span>, 2*cells+1:end) = Sz;
+0034 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of neumann3DCurv</title>
+  <meta name="keywords" content="neumann3DCurv">
+  <meta name="description" content="Returns a 3D curvilinear Neumann BC operator">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; neumann3DCurv.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>neumann3DCurv
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns a 3D curvilinear Neumann BC operator</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function N = neumann3DCurv(G, m, n, o, b) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a 3D curvilinear Neumann BC operator
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function N = neumann3DCurv(G, m, n, o, b)</a>
+0002 <span class="comment">% Returns a 3D curvilinear Neumann BC operator</span>
+0003 
+0004     <span class="comment">% G is the curvilinear gradient and b is the Neumann coeff.</span>
+0005 
+0006 <span class="comment">% ----------------------------------------------------------------------------</span>
+0007 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0008 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0009 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0010 <span class="comment">% ----------------------------------------------------------------------------</span>
+0011     
+0012     Bm = sparse(m+2, m+1);
+0013     Bm(1, 1) = -b;
+0014     Bm(<span class="keyword">end</span>, end) = b;
+0015     
+0016     Bn = sparse(n+2, n+1);
+0017     Bn(1, 1) = -b;
+0018     Bn(<span class="keyword">end</span>, end) = b;
+0019     
+0020     Bo = sparse(o+2, o+1);
+0021     Bo(1, 1) = -b;
+0022     Bo(<span class="keyword">end</span>, end) = b;
+0023     
+0024     Im = sparse(m+2, m);
+0025     In = sparse(n+2, n);
+0026     Io = sparse(o+2, o);
+0027     
+0028     Im(2:(m+2)-1, :) = speye(m, m);
+0029     In(2:(n+2)-1, :) = speye(n, n);
+0030     Io(2:(o+2)-1, :) = speye(o, o);
+0031     
+0032     Bm = kron(kron(Io, In), Bm);
+0033     Bn = kron(kron(Io, Bn), Im);
+0034     Bo = kron(kron(Bo, In), Im);
+0035     
+0036     N = [Bm Bn Bo]*G;
+0037     
+0038     N(1, :) = [N(m+4, m+4:end) zeros(1, m+3)];
+0039     
+0040     N(2:m+1, :) = circshift(N(m+4:m+4+m-1, :), -m-2, 2);
+0041     
+0042     N(m+2, :) = [0 N(m+1, 1:end-1)];
+0043     
+0044     i = m+3;
+0045     <span class="keyword">for</span> j = 1 : n
+0046         N(i, :) = [N(i+1, 2:end) 0];
+0047         N(i+m+1, :) = [0 N(i+m, 1:end-1)];
+0048         i = i+m+2;
+0049     <span class="keyword">end</span>
+0050     
+0051     N(i, :) = [zeros(1, m+1) N(i-m-1, 1:end-m-1)];
+0052     
+0053     N(i+1:i+m, :) = circshift(N(i-m-1:i-2, :), m+2, 2);
+0054     
+0055     N(i+m+1, :) = [0 N(i+m, 1:end-1)];
+0056     
+0057     i = i+m+2;
+0058     <span class="keyword">for</span> j = 1 : o
+0059         N(i, :) = [N(i+1, 2:end) 0];
+0060         N(i+m+1, :) = [0 N(i+m, 1:end-1)];
+0061         N(i+(n+1)*(m+2), :) = [N(i+(n+1)*(m+2)+1, 2:end) 0];
+0062         N(i+(n+1)*(m+2)+m+1, :) = [0 N(i+(n+1)*(m+2)+m, 1:end-1)];
+0063         i = i+(m+2)*(n+2);
+0064     <span class="keyword">end</span>
+0065     
+0066     N(<span class="keyword">end</span>, :) = [zeros(1, m+3) N(end-m-3, 1:end-m-3)];
+0067     
+0068     N(end-m-1, :) = [zeros(1, m+1) N(end-2*(m+1), 1:end-m-1)];
+0069     
+0070     i = (m+2)*(n+2)*(o+1)+1;
+0071     N(i, :) = [N(i+m+3, m+4:end) zeros(1, m+3)];
+0072     
+0073     i = i+m+1;
+0074     N(i, :) = [N(i+m+1, m+2:end) zeros(1, m+1)];
+0075     
+0076     i = i+1;
+0077     <span class="keyword">for</span> j = 1 : n
+0078         N(i, :) = [N(i+1, 2:end) 0];
+0079         N(i+m+1, :) = [0 N(i+m, 1:end-1)];
+0080         i = i+m+2;
+0081     <span class="keyword">end</span>
+0082     
+0083     i = (m+2)*(n+2)*(o+1)+2;
+0084     N(i:i+m-1, :) = circshift(N(i+m+2:i+m+2+m-1, :), -m-2, 2);
+0085     
+0086     i = (m+2)*(n+2)*(o+2)-m;
+0087     N(i:i+m-1, :) = circshift(N(i-m-2:i-3, :), m+2, 2);
+0088 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

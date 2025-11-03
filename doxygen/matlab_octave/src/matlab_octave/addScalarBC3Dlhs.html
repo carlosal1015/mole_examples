@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of addScalarBC3Dlhs</title>
+  <meta name="keywords" content="addScalarBC3Dlhs">
+  <meta name="description" content="This functions uses geometry and boundary type conditions to create">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; addScalarBC3Dlhs.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>addScalarBC3Dlhs
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>This functions uses geometry and boundary type conditions to create</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = addScalarBC3Dlhs(k, m, dx, n, dy, o, dz, dc, nc) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> This functions uses geometry and boundary type conditions to create
+ modifications of matrix A associated to each of the boundary faces.
+
+ Parameters:
+ output
+      Abcl : Matrix coefficients associated to boundary conditions for left face
+      Abcr : Matrix coefficients associated to boundary conditions for right face
+      Abcb : Matrix coefficients associated to boundary conditions for bottom face
+      Abct : Matrix coefficients associated to boundary conditions for top face
+      Abcf : Matrix coefficients associated to boundary conditions for front face
+      Abcz : Matrix coefficients associated to boundary conditions for back face
+
+ input
+         k : Order of accuracy
+         m : Number of the horizontal cells
+        dx : Step size
+         n : Number of the vertical cells
+        dy : Horizonttal cell size
+         o : Number of the depth cells
+        dz : Depth cell size
+        dc : a0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)
+        nc : b0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)
+
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------    
+
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addScalarBC1Dlhs.html" class="code" title="function [Al, Ar] = addScalarBC1Dlhs(k, m, dx, dc, nc)">addScalarBC1Dlhs</a>	This functions uses geometry and boundary type conditions to create</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="addScalarBC3D.html" class="code" title="function [A, b] = addScalarBC3D(A, b, k, m, dx, n, dy, o, dz, dc, nc, v)">addScalarBC3D</a>	This function assumes that the unknown u, which represents the discrete</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [Abcl,Abcr,Abcb,Abct,Abcf,Abcz] = addScalarBC3Dlhs(k, m, dx, n, dy, o, dz, dc, nc)</a>
+0002 <span class="comment">% This functions uses geometry and boundary type conditions to create</span>
+0003 <span class="comment">% modifications of matrix A associated to each of the boundary faces.</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% Parameters:</span>
+0006 <span class="comment">% output</span>
+0007 <span class="comment">%      Abcl : Matrix coefficients associated to boundary conditions for left face</span>
+0008 <span class="comment">%      Abcr : Matrix coefficients associated to boundary conditions for right face</span>
+0009 <span class="comment">%      Abcb : Matrix coefficients associated to boundary conditions for bottom face</span>
+0010 <span class="comment">%      Abct : Matrix coefficients associated to boundary conditions for top face</span>
+0011 <span class="comment">%      Abcf : Matrix coefficients associated to boundary conditions for front face</span>
+0012 <span class="comment">%      Abcz : Matrix coefficients associated to boundary conditions for back face</span>
+0013 <span class="comment">%</span>
+0014 <span class="comment">% input</span>
+0015 <span class="comment">%         k : Order of accuracy</span>
+0016 <span class="comment">%         m : Number of the horizontal cells</span>
+0017 <span class="comment">%        dx : Step size</span>
+0018 <span class="comment">%         n : Number of the vertical cells</span>
+0019 <span class="comment">%        dy : Horizonttal cell size</span>
+0020 <span class="comment">%         o : Number of the depth cells</span>
+0021 <span class="comment">%        dz : Depth cell size</span>
+0022 <span class="comment">%        dc : a0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)</span>
+0023 <span class="comment">%        nc : b0 (6x1 vector for left, right, bottom, top, front, back boundary types, resp.)</span>
+0024 <span class="comment">%</span>
+0025 <span class="comment">% ----------------------------------------------------------------------------</span>
+0026 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0027 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0028 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0029 <span class="comment">% ----------------------------------------------------------------------------</span>
+0030 <span class="comment">%</span>
+0031 
+0032     Abcl = 0; Abcr = 0; Abcb = 0; Abct = 0; Abcf = 0; Abcz = 0; <span class="comment">% periodic case</span>
+0033 
+0034     <span class="comment">% A and b changes depend on whether bc is periodic or not in each axis</span>
+0035     qrl = find(dc(1:2).*dc(1:2) + nc(1:2).*nc(1:2),1);
+0036     qbt = find(dc(3:4).*dc(3:4) + nc(3:4).*nc(3:4),1);
+0037     qzf = find(dc(5:6).*dc(5:6) + nc(5:6).*nc(5:6),1);
+0038 
+0039     <span class="comment">% 3D boundary operator</span>
+0040     <span class="keyword">if</span> ~isempty(qrl)    
+0041         [Abcl0,Abcr0] = <a href="addScalarBC1Dlhs.html" class="code" title="function [Al, Ar] = addScalarBC1Dlhs(k, m, dx, dc, nc)">addScalarBC1Dlhs</a>(k, m, dx, dc(1:2,1), nc(1:2,1));
+0042         <span class="keyword">if</span> isempty(qbt) 
+0043             In = speye(n);
+0044         <span class="keyword">else</span>
+0045             In = speye(n+2);
+0046             In(1, 1) = 0;
+0047             In(<span class="keyword">end</span>, end) = 0;
+0048         <span class="keyword">end</span>
+0049         <span class="keyword">if</span> isempty(qzf) 
+0050             Io = speye(o);
+0051         <span class="keyword">else</span>
+0052             Io = speye(o+2);
+0053             Io(1, 1) = 0;
+0054             Io(<span class="keyword">end</span>, end) = 0;        
+0055         <span class="keyword">end</span>
+0056         <span class="comment">% left and right faces</span>
+0057         Abcl = kron(kron(Io, In), Abcl0);
+0058         Abcr = kron(kron(Io, In), Abcr0);
+0059     <span class="keyword">end</span>
+0060 
+0061     <span class="keyword">if</span> ~isempty(qbt)    
+0062         [Abcb0,Abct0] = <a href="addScalarBC1Dlhs.html" class="code" title="function [Al, Ar] = addScalarBC1Dlhs(k, m, dx, dc, nc)">addScalarBC1Dlhs</a>(k, n, dy, dc(3:4,1), nc(3:4,1));
+0063         <span class="keyword">if</span> isempty(qrl) 
+0064             Im = speye(m);
+0065         <span class="keyword">else</span>
+0066             Im = speye(m+2);
+0067         <span class="keyword">end</span>
+0068         <span class="keyword">if</span> isempty(qzf) 
+0069             Io = speye(o);
+0070         <span class="keyword">else</span>
+0071             Io = speye(o+2);
+0072             Io(1, 1) = 0;
+0073             Io(<span class="keyword">end</span>, end) = 0;
+0074         <span class="keyword">end</span>
+0075         <span class="comment">% bottom and top faces</span>
+0076         Abcb = kron(kron(Io, Abcb0), Im);
+0077         Abct = kron(kron(Io, Abct0), Im);
+0078     <span class="keyword">end</span>    
+0079 
+0080     <span class="keyword">if</span> ~isempty(qzf)    
+0081         [Abcf0,Abcz0] = <a href="addScalarBC1Dlhs.html" class="code" title="function [Al, Ar] = addScalarBC1Dlhs(k, m, dx, dc, nc)">addScalarBC1Dlhs</a>(k, o, dz, dc(5:6,1), nc(5:6,1));
+0082         <span class="keyword">if</span> isempty(qrl) 
+0083             Im = speye(m);
+0084         <span class="keyword">else</span>
+0085             Im = speye(m+2);
+0086         <span class="keyword">end</span>
+0087         <span class="keyword">if</span> isempty(qbt) 
+0088             In = speye(n);
+0089         <span class="keyword">else</span>
+0090             In = speye(n+2);
+0091         <span class="keyword">end</span>
+0092         <span class="comment">% front and back faces</span>
+0093         Abcf = kron(kron(Abcf0, In), Im);
+0094         Abcz = kron(kron(Abcz0, In), Im);
+0095     <span class="keyword">end</span>
+0096 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

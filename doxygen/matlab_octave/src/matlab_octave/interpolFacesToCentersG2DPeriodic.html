@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of interpolFacesToCentersG2DPeriodic</title>
+  <meta name="keywords" content="interpolFacesToCentersG2DPeriodic">
+  <meta name="description" content="2D interpolation from faces to centers">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; interpolFacesToCentersG2DPeriodic.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>interpolFacesToCentersG2DPeriodic
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>2D interpolation from faces to centers</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function I = interpolFacesToCentersG2DPeriodic(k, m, n) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> 2D interpolation from faces to centers
+ when the boundary condition is periodic
+ centers logical coordinates [1,1.5:m-0.5,m]x[1,1.5:n-0.5,n]
+ m, n, are the number of cells in the logical x- and y- axes
+
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="interpolFacesToCentersG1DPeriodic.html" class="code" title="function I = interpolFacesToCentersG1DPeriodic(k, m)">interpolFacesToCentersG1DPeriodic</a>	1D interpolation from faces to centers</li>
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="interpolCentersToFacesD2DPeriodic.html" class="code" title="function I = interpolCentersToFacesD2DPeriodic(k, m, n)">interpolCentersToFacesD2DPeriodic</a>	2D interpolation from centers to faces.</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function I = interpolFacesToCentersG2DPeriodic(k, m, n)</a>
+0002 <span class="comment">% 2D interpolation from faces to centers</span>
+0003 <span class="comment">% when the boundary condition is periodic</span>
+0004 <span class="comment">% centers logical coordinates [1,1.5:m-0.5,m]x[1,1.5:n-0.5,n]</span>
+0005 <span class="comment">% m, n, are the number of cells in the logical x- and y- axes</span>
+0006 <span class="comment">%</span>
+0007 <span class="comment">% ----------------------------------------------------------------------------</span>
+0008 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0009 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0010 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0011 <span class="comment">% ----------------------------------------------------------------------------</span>
+0012 <span class="comment">%</span>
+0013 
+0014     Ix = <a href="interpolFacesToCentersG1DPeriodic.html" class="code" title="function I = interpolFacesToCentersG1DPeriodic(k, m)">interpolFacesToCentersG1DPeriodic</a>(k, m);
+0015     Iy = <a href="interpolFacesToCentersG1DPeriodic.html" class="code" title="function I = interpolFacesToCentersG1DPeriodic(k, m)">interpolFacesToCentersG1DPeriodic</a>(k, n);
+0016 
+0017     Im = speye(m, m);
+0018     In = speye(n, n);
+0019 
+0020     Sx = kron(In, Ix);
+0021     Sy = kron(Iy, Im);
+0022 
+0023     I = sparse(2*n*m, 2*n*m);
+0024     
+0025     I(1:n*m, 1:n*m) = Sx; 
+0026     I(n*m+1:<span class="keyword">end</span>, n*m+1:end) = Sy;  
+0027 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

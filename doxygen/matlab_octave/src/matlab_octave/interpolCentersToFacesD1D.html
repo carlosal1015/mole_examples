@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of interpolCentersToFacesD1D</title>
+  <meta name="keywords" content="interpolCentersToFacesD1D">
+  <meta name="description" content="1D interpolation from centers to faces.">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; interpolCentersToFacesD1D.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>interpolCentersToFacesD1D
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>1D interpolation from centers to faces.</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function I = interpolCentersToFacesD1D(k, m) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> 1D interpolation from centers to faces.
+ logical centers are [1 1.5 2.5 ... m-1.5 m-0.5 m]
+ m is the number of cells in the logic x-axis
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="interpolCentersToFacesD2D.html" class="code" title="function I = interpolCentersToFacesD2D(k, m, n)">interpolCentersToFacesD2D</a>	2D interpolation from centers to faces.</li>
+<li><a href="interpolCentersToFacesD3D.html" class="code" title="function I = interpolCentersToFacesD3D(k, m, n, o)">interpolCentersToFacesD3D</a>	3D interpolation from centers to faces</li>
+<li><a href="interpolCentersToNodes1D.html" class="code" title="function I = interpolCentersToNodes1D(k, m)">interpolCentersToNodes1D</a>	interpolation operator from nodal coordinates to staggered centers</li>
+<li><a href="interpolCentersToNodes2D.html" class="code" title="function I = interpolCentersToNodes2D(k, m, n)">interpolCentersToNodes2D</a>	interpolation operator from staggered to nodes</li>
+<li><a href="interpolCentersToNodes3D.html" class="code" title="function I = interpolCentersToNodes3D(k, m, n, o)">interpolCentersToNodes3D</a>	interpolation operator from staggered to nodes</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function I = interpolCentersToFacesD1D(k, m)</a>
+0002 <span class="comment">% 1D interpolation from centers to faces.</span>
+0003 <span class="comment">% logical centers are [1 1.5 2.5 ... m-1.5 m-0.5 m]</span>
+0004 <span class="comment">% m is the number of cells in the logic x-axis</span>
+0005 <span class="comment">% ----------------------------------------------------------------------------</span>
+0006 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0007 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0008 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0009 <span class="comment">% ----------------------------------------------------------------------------</span>
+0010 
+0011     I = sparse(m+1, m+2);
+0012 
+0013     <span class="keyword">switch</span> k
+0014         <span class="keyword">case</span> 2
+0015             I(1, 1) = 2; I(<span class="keyword">end</span>, end) = 2;
+0016             <span class="keyword">for</span> i = 2:m
+0017                I(i, i:i+1) = [1 1];
+0018             <span class="keyword">end</span>
+0019             denom = 2;
+0020 
+0021         <span class="keyword">case</span> 4
+0022             I(1, 1) = 112; I(<span class="keyword">end</span>, end) = 112;
+0023             A = [-16 70 70 -14 2];
+0024             I(2, 1:5) = A;
+0025             I(m, m-2:end) = fliplr(A);
+0026             <span class="keyword">for</span> i = 3:m-1
+0027                I(i, i-1:i+2) = [-7 63 63 -7];
+0028             <span class="keyword">end</span>
+0029             denom = 112;
+0030 
+0031         <span class="keyword">case</span> 6
+0032             I(1, 1) = 8448; I(<span class="keyword">end</span>, end) = 8448;
+0033             A = [-768 4158 6930 -2772  1188 -330  42; <span class="keyword">...</span>
+0034                   256 -924 4620  5544 -1320  308 -36];
+0035             I(2:3, 1:7) = A;
+0036             I(m-1:m, m-4:end) = flipud(fliplr(A));<span class="comment">%#ok</span>
+0037             <span class="keyword">for</span> i = 4:m-2
+0038                 I(i, i-2:i+3) = [99 -825 4950 4950 -825 99];
+0039             <span class="keyword">end</span>
+0040             denom = 8448;
+0041 
+0042         <span class="keyword">case</span> 8
+0043             I(1, 1) = 1; I(<span class="keyword">end</span>, end) = 1;
+0044             A = [-1/15  429/1024 1001/1024 -3003/5120  429/1024 -715/3072  91/1024   -21/1024  11/5120; <span class="keyword">...</span>
+0045                   1/65  -33/512   231/512   2079/2560 -165/512    77/512  -27/512     77/6656  -3/2560; <span class="keyword">...</span>
+0046                  -1/143  27/1024 -105/1024   567/1024  675/1024 -175/1024 567/11264 -135/13312  1/1024];
+0047             I(2:4, 1:9) = A;
+0048             I(m-2:m, m-6:end) = flipud(fliplr(A));<span class="comment">%#ok</span>
+0049             <span class="keyword">for</span> i = 5:m-3
+0050                 I(i, i-3:i+4) = (1/2048).*[-5 49 -245 1225 1225 -245 49 -5];
+0051             <span class="keyword">end</span>
+0052             denom = 1;   
+0053 
+0054     <span class="keyword">end</span>
+0055     I = (1/denom).*I;
+0056 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

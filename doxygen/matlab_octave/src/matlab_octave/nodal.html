@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of nodal</title>
+  <meta name="keywords" content="nodal">
+  <meta name="description" content="Returns a m+1 by m+1 one-dimensional operator that approximates the">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; nodal.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>nodal
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>Returns a m+1 by m+1 one-dimensional operator that approximates the</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function N = nodal(k, m, dx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> Returns a m+1 by m+1 one-dimensional operator that approximates the 
+ first-order derivatives on a uniform nodal grid
+
+ Parameters:
+                k : Order of accuracy
+                m : Number of nodes
+               dx : Step size
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="nodal2D.html" class="code" title="function N = nodal2D(k, m, dx, n, dy)">nodal2D</a>	Returns a two-dimensional operator that approximates the first-order</li>
+<li><a href="nodal3D.html" class="code" title="function N = nodal3D(k, m, dx, n, dy, o, dz)">nodal3D</a>	Returns a three-dimensional operator that approximates the first-order</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function N = nodal(k, m, dx)</a>
+0002 <span class="comment">% Returns a m+1 by m+1 one-dimensional operator that approximates the</span>
+0003 <span class="comment">% first-order derivatives on a uniform nodal grid</span>
+0004 <span class="comment">%</span>
+0005 <span class="comment">% Parameters:</span>
+0006 <span class="comment">%                k : Order of accuracy</span>
+0007 <span class="comment">%                m : Number of nodes</span>
+0008 <span class="comment">%               dx : Step size</span>
+0009 <span class="comment">% ----------------------------------------------------------------------------</span>
+0010 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0011 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0012 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0013 <span class="comment">% ----------------------------------------------------------------------------</span>
+0014 
+0015     m = m-1;
+0016     n_rows = m+1;
+0017     n_cols = n_rows;
+0018 
+0019     N = sparse(n_rows, n_cols);
+0020 
+0021     neighbors = zeros(1, k+1); <span class="comment">% Bandwidth = k+1</span>
+0022     neighbors(1) = -k/2;
+0023     len = k+1;
+0024     j = 1;
+0025 
+0026     <span class="keyword">for</span> i = 2 : len
+0027         neighbors(i) = neighbors(i-1)+1;
+0028     <span class="keyword">end</span>
+0029 
+0030     <span class="comment">% Create a k by k Vandermonde matrix based on the neighbors:</span>
+0031     A = vander(neighbors)';
+0032 
+0033     <span class="comment">% First-order derivative</span>
+0034     b = zeros(len, 1);
+0035     b(len-1) = 1;
+0036 
+0037     <span class="comment">% Solve the linear system to get the coefficients</span>
+0038     coeffs = A\b;
+0039 
+0040     <span class="keyword">for</span> i = k/2+1 : n_rows-k/2
+0041         N(i, j:j+len-1) = coeffs;
+0042         j = j+1;
+0043     <span class="keyword">end</span>
+0044 
+0045     p = k/2;
+0046     q = k+1;
+0047     A = sparse(p, q);
+0048     <span class="keyword">for</span> i = 1 : p <span class="comment">% For each row of A</span>
+0049         neighbors = zeros(1, q); <span class="comment">% k+1 points are used for the boundaries</span>
+0050         neighbors(1) = 1-i; <span class="comment">% Shifting the stencil to the right</span>
+0051         neighbors(2) = neighbors(1)+1;
+0052 
+0053         <span class="keyword">for</span> j = 3 : q
+0054             neighbors(j) = neighbors(j-1)+1;
+0055         <span class="keyword">end</span>
+0056 
+0057         V = vander(neighbors)';
+0058         b = zeros(q, 1);
+0059         b(q-1) = 1;
+0060         coeffs = V\b;
+0061         A(i, 1:q) = coeffs;
+0062     <span class="keyword">end</span>
+0063 
+0064     <span class="comment">% Insert A into N (upper-left corner of N)</span>
+0065     N(1:p, 1:q) = A;
+0066 
+0067     <span class="comment">% Permutation matrices</span>
+0068     Pp = fliplr(speye(p));
+0069     Pq = fliplr(speye(q));
+0070     <span class="comment">% Construct A' (lower-right corner of N)</span>
+0071     A = -Pp*A*Pq;
+0072 
+0073     <span class="comment">% Insert A' into N</span>
+0074     N(n_rows-p+1:n_rows, n_cols-q+1:n_cols) = A;
+0075 
+0076     <span class="comment">% Scale N</span>
+0077     N = 1/dx*N;
+0078 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>

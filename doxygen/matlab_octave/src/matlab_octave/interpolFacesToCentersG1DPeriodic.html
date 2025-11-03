@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of interpolFacesToCentersG1DPeriodic</title>
+  <meta name="keywords" content="interpolFacesToCentersG1DPeriodic">
+  <meta name="description" content="1D interpolation from faces to centers">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2003-2019 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+</head>
+<body>
+<a name="_top"></a>
+<div><a href="../../index.html">Home</a> &gt;  <a href="#">src</a> &gt; <a href="index.html">matlab_octave</a> &gt; interpolFacesToCentersG1DPeriodic.m</div>
+
+<!--<table width="100%"><tr><td align="left"><a href="../../index.html"><img alt="<" border="0" src="../../left.png">&nbsp;Master index</a></td>
+<td align="right"><a href="index.html">Index for src/matlab_octave&nbsp;<img alt=">" border="0" src="../../right.png"></a></td></tr></table>-->
+
+<h1>interpolFacesToCentersG1DPeriodic
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>1D interpolation from faces to centers</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function I = interpolFacesToCentersG1DPeriodic(k, m) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> 1D interpolation from faces to centers
+ when the boundary condition is periodic
+ centers logical coordinates [1,1.5:m-0.5]
+ m is the number of cells in the logical x-axis
+
+ ----------------------------------------------------------------------------
+ SPDX-License-Identifier: GPL-3.0-or-later
+ © 2008-2024 San Diego State University Research Foundation (SDSURF).
+ See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.
+ ----------------------------------------------------------------------------
+
+</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="interpolCentersToFacesD1DPeriodic.html" class="code" title="function I = interpolCentersToFacesD1DPeriodic(k, m)">interpolCentersToFacesD1DPeriodic</a>	1D interpolation from centers to faces.</li>
+<li><a href="interpolFacesToCentersG2DPeriodic.html" class="code" title="function I = interpolFacesToCentersG2DPeriodic(k, m, n)">interpolFacesToCentersG2DPeriodic</a>	2D interpolation from faces to centers</li>
+<li><a href="interpolFacesToCentersG3DPeriodic.html" class="code" title="function I = interpolFacesToCentersG3DPeriodic(k, m, n, o)">interpolFacesToCentersG3DPeriodic</a>	3D interpolation from faces to centers</li>
+<li><a href="interpolNodesToCenters1DPeriodic.html" class="code" title="function I = interpolNodesToCenters1DPeriodic(k, m)">interpolNodesToCenters1DPeriodic</a>	interpolation operator from nodal coordinates to staggered centers</li>
+<li><a href="interpolNodesToCenters2DPeriodic.html" class="code" title="function I = interpolNodesToCenters2DPeriodic(k, m, n)">interpolNodesToCenters2DPeriodic</a>	interpolation operator from nodal coordinates to staggered centers</li>
+<li><a href="interpolNodesToCenters3DPeriodic.html" class="code" title="function I = interpolNodesToCenters3DPeriodic(k, m, n, o)">interpolNodesToCenters3DPeriodic</a>	interpolation operator from nodal coordinates to staggered centers</li>
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function I = interpolFacesToCentersG1DPeriodic(k, m)</a>
+0002 <span class="comment">% 1D interpolation from faces to centers</span>
+0003 <span class="comment">% when the boundary condition is periodic</span>
+0004 <span class="comment">% centers logical coordinates [1,1.5:m-0.5]</span>
+0005 <span class="comment">% m is the number of cells in the logical x-axis</span>
+0006 <span class="comment">%</span>
+0007 <span class="comment">% ----------------------------------------------------------------------------</span>
+0008 <span class="comment">% SPDX-License-Identifier: GPL-3.0-or-later</span>
+0009 <span class="comment">% © 2008-2024 San Diego State University Research Foundation (SDSURF).</span>
+0010 <span class="comment">% See LICENSE file or https://www.gnu.org/licenses/gpl-3.0.html for details.</span>
+0011 <span class="comment">% ----------------------------------------------------------------------------</span>
+0012 <span class="comment">%</span>
+0013 
+0014     <span class="comment">% constructing circulant matrix</span>
+0015     V = sparse(1, m); <span class="comment">% vector of values for circulant matrix</span>
+0016     idx = repmat(-1,m, m); <span class="comment">% matrix of indices for circulant matrix</span>
+0017     idx(:,1) = 1:m;
+0018     idx = cumsum(idx, 2);
+0019     idx = rem(idx+m, m) + 1;
+0020 
+0021     <span class="keyword">switch</span> k
+0022         <span class="keyword">case</span> 2
+0023             V(1:2) = [1, 1];
+0024             denom = 2;
+0025 
+0026         <span class="keyword">case</span> 4
+0027             V(1:3) = [72, 72, -8]; V(m) = -8;
+0028             denom = 128;
+0029 
+0030         <span class="keyword">case</span> 6
+0031             V(1:4) = [600, 600, -100, 12]; V(m-1) = 12; V(m) = -100;
+0032             denom = 1024;
+0033 
+0034         <span class="keyword">case</span> 8
+0035             V(1:5) = [1225, 1225, -245, 49, -5]; V(m-2) = -5; V(m-1) = 49; V(m) = -245;
+0036             denom = 2048;   
+0037 
+0038     <span class="keyword">end</span>
+0039     <span class="comment">% I constructed as a circulant matrix</span>
+0040     I = V(idx);
+0041     I = (1/denom).*I;
+0042 <span class="keyword">end</span>
+</pre></div>
+
+<hr><address>Generated on Sun 02-Nov-2025 21:28:13 by <strong><a href="https://github.com/gllmflndn/m2html">m2html</a></strong> &copy; 2003-2022</address>
+</body>
+</html>
