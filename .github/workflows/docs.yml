@@ -4,26 +4,26 @@ on:
   push:
     branches: [main]
     paths:
-      - docker/libmole-git.Dockerfile
+      - docker/libmole-docs.Dockerfile
 
 jobs:
   docs:
     runs-on: ubuntu-24.04
-    container: archlinux:latest
+    container: ghcr.io/carlosal1015/mole_examples/libmole-docs:latest
     env:
       M2HTML_REPO: "https://github.com/gllmflndn/m2html.git"
       MOLE_REPO: "https://github.com/csrc-sdsu/mole.git"
-      PACKAGES: "make doxygen graphviz git octave python-sphinx_rtd_theme python-pillow python-docutils python-sphinxcontrib-bibtex python-altair python-breathe python-myst-parser python-linkify-it-py texlive-binextra texlive-luatex texlive-latexrecommended texlive-fontsrecommended ttf-dejavu texlive-latexextra"
 
     steps:
       - name: Docs
         run: |
-          pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1
-          pacman --needed --noconfirm --noprogressbar -S ${PACKAGES}
+          pwd
           git clone -q --filter=blob:none --depth=1 ${MOLE_REPO}
           pushd mole
           git clone -q --filter=blob:none --depth=1 ${M2HTML_REPO}
           sed -i 's/^	@python/	#@python/' doc/sphinx/Makefile
+          sed -i 's/import graphviz/import duration/' doc/sphinx/source/conf.py
+          sed -i 's/graphviz.on_build_finished/duration.on_build_finished/' doc/sphinx/source/conf.py
           # sed -i 's/..\/..\/..\/..\/..\/doc\/doxygen\/matlab\/index.html/..\/..\/..\/..\/..\/mole_examples\/doxygen\/matlab\/index.html/' doc/sphinx/source/api/matlab_api.rst
           octave -q -p m2html --eval "m2html('mfiles', 'src/matlab_octave', 'htmldir', 'doc/doxygen/matlab_octave', 'global', 'on', 'template', 'blue')"
           pushd doc/sphinx/
