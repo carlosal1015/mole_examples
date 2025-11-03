@@ -48,11 +48,19 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 ARG PACKAGES="\
   doxygen \
   git \
+  graphviz \
+  inkscape \
   octave \
   python-breathe \
   python-myst-parser \
   python-pillow \
   python-sphinx-copybutton \
+  texlive-binextra \
+  texlive-luatex \
+  texlive-latexrecommended \
+  texlive-fontsrecommended \
+  texlive-latexextra \
+  ttf-dejavu \
   "
 
 RUN sudo pacman-key --init && \
