@@ -2,27 +2,27 @@
 _base=mole
 pkgname=lib${_base}-git
 pkgdesc="The Mimetic Operators Library Enhanced"
-pkgver=1.0.r373.g732d57a
+pkgver=1.0.r518.g5260a8a
 pkgrel=1
 arch=(x86_64)
 url="https://github.com/csrc-sdsu/${_base}"
 license=(GPL-3.0-only)
 depends=(armadillo octave superlu)
-makedepends=(cmake eigen3 git)
-  # doxygen graphviz inkscape texlive-binextra texlive-luatex texlive-latexrecommended texlive-fontsrecommended ttf-dejavu texlive-latexextra
-  # python-setuptools python-sphinx-book-theme python-sphinx_design python-sphinx-copybutton python-sphinx-togglebutton
-  # python-docutils python-pillow python-breathe python-myst-parser python-sphinx_rtd_theme
-  # python-sphinxcontrib-bibtex python-sphinxcontrib-katex python-standard-imghdr python-altair python-sphinx-hoverxref
-  # python-sphinxcontrib-serializinghtml python-sphinxcontrib-htmlhelp
-  # python-sphinxcontrib-matlabdomain
+makedepends=(cmake eigen git)
+# doxygen graphviz inkscape texlive-binextra texlive-luatex texlive-latexrecommended texlive-fontsrecommended ttf-dejavu texlive-latexextra
+# python-setuptools python-sphinx-book-theme python-sphinx_design python-sphinx-copybutton python-sphinx-togglebutton
+# python-docutils python-pillow python-breathe python-myst-parser python-sphinx_rtd_theme
+# python-sphinxcontrib-bibtex python-sphinxcontrib-katex python-standard-imghdr python-altair python-sphinx-hoverxref
+# python-sphinxcontrib-serializinghtml python-sphinxcontrib-htmlhelp
+# python-sphinxcontrib-matlabdomain
 checkdepends=(gtest)
 optdepends=('matlab: for MATLAB support'
   'octave: for Octave support'
   'eigen: for the sparse LU factorization')
-source=(git+${url}.git#branch=master
+source=(git+${url}.git#branch=main
   git+https://github.com/gllmflndn/m2html.git#branch=main)
 sha512sums=('SKIP'
-            'SKIP')
+  'SKIP')
 provides=(${_base})
 conflicts=(${_base})
 
@@ -34,13 +34,16 @@ pkgver() {
 prepare() {
   # Similar issue https://lists.altlinux.org/pipermail/sisyphus-cybertalk/2025-May/126338.html
   sed -i 's/^set(CMAKE_CXX_STANDARD 14/set(CMAKE_CXX_STANDARD 17/' ${_base}/CMakeLists.txt
+  sed -i 's/3.3.7/5.0.1/' ${_base}/CMakeLists.txt
   sed -i '/^if(U/,+6 s/^/#/' ${_base}/CMakeLists.txt
   sed -i '/^set(ARMADILLO_VERSION/,+68 s/^/#/' ${_base}/CMakeLists.txt
   sed -i '/^set(LINK_LIBS/,+3 s/^/#/' ${_base}/CMakeLists.txt
   sed -i '118i set(LINK_LIBS ${ARMADILLO_LIBRARIES} ${OpenBLAS_LIBRARIES} ${SUPERLU_INSTALL_DIR}/lib/libsuperlu.so ${LAPACK_LIBRARY})' ${_base}/CMakeLists.txt # ${EIGEN3_LIBRARIES}
   sed -i '/^include(/,+9 s/^/#/' ${_base}/tests/cpp/CMakeLists.txt
   sed -i 's/^	@python/	#@python/' ${_base}/doc/sphinx/Makefile
-  mv m2html ${_base}
+  sed -i 's/import graphviz/import duration/' ${_base}/doc/sphinx/source/conf.py
+  sed -i 's/graphviz.on_build_finished/duration.on_build_finished/' ${_base}/doc/sphinx/source/conf.py
+  cp -r ${srcdir}/m2html ${srcdir}/${_base}
   mkdir -p ${_base}/doc/doxygen/cpp
   # exit 0
   # sed -i 's/svg/pdf/' ${_base}/README.md
