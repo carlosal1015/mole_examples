@@ -16,7 +16,7 @@ message("${carma_INCLUDE_DIRS}")
 # target_compile_definitions(elliptic1D PRIVATE EIGEN=1)
 # target_link_libraries(elliptic1D PUBLIC ${ARMADILLO_LIBRARIES} mole hdf5)
 
-# find_package(Eigen3 3.4 REQUIRED NO_MODULE)
+# find_package(Eigen3 5.0 REQUIRED NO_MODULE)
 
 # add_executable(helloeigen helloeigen.cc)
 # target_link_libraries(helloeigen Eigen3::Eigen)

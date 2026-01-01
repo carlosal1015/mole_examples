@@ -41,7 +41,7 @@ target_link_libraries(hyperbolic1D_upwind PUBLIC ${ARMADILLO_LIBRARIES} mole_C++
 add_executable(helloarmadillo helloarmadillo.cc)
 target_link_libraries(helloarmadillo ${ARMADILLO_LIBRARIES})
 
-find_package(Eigen3 3.4 REQUIRED NO_MODULE)
+find_package(Eigen3 5.0 REQUIRED NO_MODULE)
 add_executable(helloeigen helloeigen.cc)
 target_link_libraries(helloeigen Eigen3::Eigen)
 

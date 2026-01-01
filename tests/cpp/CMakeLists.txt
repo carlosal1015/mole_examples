@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
-# find_package(Eigen3 3.4 REQUIRED NO_MODULE)
+# find_package(Eigen3 5.0 REQUIRED NO_MODULE)
 # include_directories(${EIGEN3_INCLUDE_DIRS})
 set(BLA_VENDOR OpenBLAS)
 find_package(BLAS)
