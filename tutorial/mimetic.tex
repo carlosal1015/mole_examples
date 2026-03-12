@@ -33,7 +33,6 @@
 
 MOLE is an open-source library that implements high-order mimetic
 operators~\cite{Corbino2024}.
-Let $\Omega=\left[a,b\right]$.
 
 \begin{align*}
 	\symbf{G}f_{d}                           & =
@@ -101,12 +100,6 @@ Let $\Omega=\left[a,b\right]$.
 	v\left(1\right)f\left(1\right)-
 	v\left(0\right)f\left(0\right).
 \end{equation*}
-
-\begin{figure}[ht!]
-	\centering
-	\includegraphics[width=0.8\paperwidth]{staggered}
-	\caption{1D Staggered grid.}
-\end{figure}
 
 \begin{equation*}
 	D^{\left(2\right)}=
@@ -228,5 +221,58 @@ $u_{i}=\frac{u_{i+\frac{1}{2}}-u_{i-\frac{1}{2}}}{h_{i}}$, $1\leq i\leq N-1$
 	\begin{bNiceMatrix}
 		-\frac{8}{3} & 3  & -\frac{1}{3} & 0 \cdots & 0 \\
 		0            & -1 & 1            & 0        & 0 \\
+	\end{bNiceMatrix}
+\end{equation*}
+
+Let $\Omega=\left[a,b\right]\subset\mathbb{R}$ divided into $N$
+uniformly sized cells $\Delta x=\frac{b-a}{N}$.
+
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=0.8\paperwidth]{staggered}
+	\caption{1D Staggered grid.}
+\end{figure}
+
+$x_{i}=a+i\Delta x$, $i=0,\dotsc,N$
+
+$x_{i+\frac{1}{2}}=\frac{x_{i}+x_{i+1}}{2}$, $i=0,\dotsc,N-1$.
+
+\begin{equation*}
+	{\left(Gu\right)}_{i}=
+	\frac{u_{i+\frac{1}{2}}-u_{i-\frac{1}{2}}}{\Delta x}
+\end{equation*}
+
+\begin{align*}
+	u^{\prime}\left(x_{0}\right) & =\frac{-8u_{0}+9u_{\frac{1}{2}}-u_{\frac{3}{2}}}{3\Delta x}+\mathcal{O}\left({\Delta x}^{2}\right).    \\
+	u^{\prime}\left(x_{N}\right) & =\frac{8u_{N}-9u_{N-\frac{1}{2}}-u_{N-\frac{3}{2}}}{3\Delta x}+\mathcal{O}\left({\Delta x}^{2}\right). \\
+\end{align*}
+
+\begin{equation*}
+	G=
+	\frac{1}{\Delta x}
+	\begin{bNiceMatrix}
+		-\frac{8}{3} & 3      & -\frac{1}{3} & 0           & \cdots & 0           \\
+		0            & -1     & 1            & 0           & \cdots & 0           \\
+		\vdots       & \ddots & \ddots       & \ddots      & \vdots & 0           \\
+		0            & \cdots & 0            & -1 1        & 0      & 0           \\
+		0            & \cdots & 0            & \frac{1}{3} & -3     & \frac{8}{3}
+	\end{bNiceMatrix}\in\mathbb{R}^{\left(N+1\right)\times\left(N+2\right)}.
+\end{equation*}
+
+\begin{equation*}
+	\left(Dv\right)_{i+\frac{1}{2}}=
+	\frac{v_{i+1}-v_{i}}{\Delta x}
+\end{equation*}
+
+\begin{equation*}
+	D=
+	\frac{1}{\Delta x}
+	\begin{bNiceMatrix}
+		0      & 0      & 0      & \cdots & 0      \\
+		-1     & 1      & 0      & \cdots & 0      \\
+		0      & -1     & 1      & \cdots & 0      \\
+		\vdots & \ddots & \ddots & \ddots & \vdots \\
+		0      & \cdots & 0      & -1     & 1      \\
+		0      & 0      & 0      & \cdots & 0
 	\end{bNiceMatrix}
 \end{equation*}

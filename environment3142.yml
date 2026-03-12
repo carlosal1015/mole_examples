@@ -1,13 +1,13 @@
-name: matlab2025a
+name: matlab2025b
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.13.3
+  - python=3.14.3
   - pip
   - pip:
       - jupyter-matlab-proxy
       # - matlab_kernel
-      # - matlabengine==25.1.2
+      # - matlabengine==25.2.2
 # variables:
 #   LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$HOME/MATLAB/bin/glnxa64

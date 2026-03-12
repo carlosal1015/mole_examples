@@ -54,3 +54,4 @@ mole
 .python-version
 *.mkv
 m2html
+*.vscode
