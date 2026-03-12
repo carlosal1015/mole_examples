@@ -7,8 +7,8 @@ ARG PACKAGES="\
   octave-symbolic \
   "
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --needed --noconfirm --noprogressbar -S ${PACKAGES}
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  yay --needed --noconfirm --noprogressbar -S ${PACKAGES} >/dev/null 2>&1
 
 LABEL maintainer="C++ Review Dune" \
   name="Mole in Gitpod" \
