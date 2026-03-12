@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="structAddScalarBC_1_1BC1D" kind="struct" language="C++" prot="public">
+    <compoundname>AddScalarBC::BC1D</compoundname>
+    <includes refid="addscalarbc_8h" local="no">addscalarbc.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structAddScalarBC_1_1BC1D_1a8f2672f9ad96981da309a5fed839d1fd" prot="public" static="no" mutable="no">
+        <type>vec</type>
+        <definition>vec AddScalarBC::BC1D::dc</definition>
+        <argsstring></argsstring>
+        <name>dc</name>
+        <qualifiedname>AddScalarBC::BC1D::dc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.h" line="43" column="9" bodyfile="src/cpp/addscalarbc.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structAddScalarBC_1_1BC1D_1a8d642f27364b71cbd16fbd5fd5256f17" prot="public" static="no" mutable="no">
+        <type>vec</type>
+        <definition>vec AddScalarBC::BC1D::nc</definition>
+        <argsstring></argsstring>
+        <name>nc</name>
+        <qualifiedname>AddScalarBC::BC1D::nc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.h" line="44" column="9" bodyfile="src/cpp/addscalarbc.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structAddScalarBC_1_1BC1D_1a77183eb35fb880e324c910e9a8969099" prot="public" static="no" mutable="no">
+        <type>vec</type>
+        <definition>vec AddScalarBC::BC1D::v</definition>
+        <argsstring></argsstring>
+        <name>v</name>
+        <qualifiedname>AddScalarBC::BC1D::v</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.h" line="45" column="9" bodyfile="src/cpp/addscalarbc.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structAddScalarBC_1_1BC1D_1a73a46a54fa14b05d06653abe21c61382" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>AddScalarBC::BC1D::BC1D</definition>
+        <argsstring>()</argsstring>
+        <name>BC1D</name>
+        <qualifiedname>AddScalarBC::BC1D::BC1D</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.h" line="47" column="5" bodyfile="src/cpp/addscalarbc.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure to hold boundary condition data for 1D problems. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Represents boundary condition: a0*u + b0*du/dn = g </para>
+    </detaileddescription>
+    <location file="src/cpp/addscalarbc.h" line="42" column="1" bodyfile="src/cpp/addscalarbc.h" bodystart="42" bodyend="48"/>
+    <listofallmembers>
+      <member refid="structAddScalarBC_1_1BC1D_1a73a46a54fa14b05d06653abe21c61382" prot="public" virt="non-virtual"><scope>AddScalarBC::BC1D</scope><name>BC1D</name></member>
+      <member refid="structAddScalarBC_1_1BC1D_1a8f2672f9ad96981da309a5fed839d1fd" prot="public" virt="non-virtual"><scope>AddScalarBC::BC1D</scope><name>dc</name></member>
+      <member refid="structAddScalarBC_1_1BC1D_1a8d642f27364b71cbd16fbd5fd5256f17" prot="public" virt="non-virtual"><scope>AddScalarBC::BC1D</scope><name>nc</name></member>
+      <member refid="structAddScalarBC_1_1BC1D_1a77183eb35fb880e324c910e9a8969099" prot="public" virt="non-virtual"><scope>AddScalarBC::BC1D</scope><name>v</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

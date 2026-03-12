@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="addscalarbc_8h" kind="file" language="C++">
+    <compoundname>addscalarbc.h</compoundname>
+    <includes refid="utils_8h" local="yes">utils.h</includes>
+    <includes refid="gradient_8h" local="yes">gradient.h</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">cassert</includes>
+    <includedby refid="addscalarbc_8cpp" local="yes">src/cpp/addscalarbc.cpp</includedby>
+    <includedby refid="mole_8h" local="yes">src/cpp/mole.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>src/cpp/addscalarbc.h</label>
+        <link refid="addscalarbc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>gradient.h</label>
+        <link refid="gradient_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>utils.h</label>
+        <link refid="utils_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>armadillo</label>
+      </node>
+      <node id="5">
+        <label>cassert</label>
+      </node>
+      <node id="6">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>src/cpp/addscalarbc.cpp</label>
+        <link refid="addscalarbc_8cpp"/>
+      </node>
+      <node id="1">
+        <label>src/cpp/addscalarbc.h</label>
+        <link refid="addscalarbc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src/cpp/mole.h</label>
+        <link refid="mole_8h"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structAddScalarBC_1_1BC1D" prot="public">AddScalarBC::BC1D</innerclass>
+    <innerclass refid="structAddScalarBC_1_1BC2D" prot="public">AddScalarBC::BC2D</innerclass>
+    <innerclass refid="structAddScalarBC_1_1BC3D" prot="public">AddScalarBC::BC3D</innerclass>
+    <innernamespace refid="namespaceAddScalarBC">AddScalarBC</innernamespace>
+    <innernamespace refid="namespacearma">arma</innernamespace>
+    <briefdescription>
+<para>Boundary Condition Application for Scalar PDEs. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This file provides functions to add boundary conditions to discrete operators and right-hand side vectors for 1D, 2D, and 3D scalar PDEs.</para>
+<para>Supports:<itemizedlist>
+<listitem><para>Dirichlet boundary conditions (a0 ≠ 0, b0 = 0)</para>
+</listitem><listitem><para>Neumann boundary conditions (a0 = 0, b0 ≠ 0)</para>
+</listitem><listitem><para>Robin boundary conditions (a0 ≠ 0, b0 ≠ 0)</para>
+</listitem><listitem><para>Periodic boundary conditions (a0 = 0, b0 = 0)</para>
+</listitem></itemizedlist>
+</para>
+<para>date 2025/01/26 date modified 2026/02/26 </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-or-later</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>2008-2024<sp/>San<sp/>Diego<sp/>State<sp/>University<sp/>Research<sp/>Foundation<sp/>(SDSURF).</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>See<sp/>LICENSE<sp/>file<sp/>or<sp/>https://www.gnu.org/licenses/gpl-3.0.html<sp/>for<sp/>details.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>ADDSCALARBC_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ADDSCALARBC_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="utils_8h" kindref="compound">utils.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="gradient_8h" kindref="compound">gradient.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cassert&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">arma;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceAddScalarBC" kindref="compound">AddScalarBC</ref><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="structAddScalarBC_1_1BC1D" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structAddScalarBC_1_1BC1D_1a73a46a54fa14b05d06653abe21c61382" kindref="member">BC1D</ref><sp/>{</highlight></codeline>
+<codeline lineno="43" refid="structAddScalarBC_1_1BC1D_1a8f2672f9ad96981da309a5fed839d1fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="structAddScalarBC_1_1BC1D_1a8f2672f9ad96981da309a5fed839d1fd" kindref="member">dc</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>Dirichlet<sp/>coefficients<sp/>a0<sp/>(2x1:<sp/>left,<sp/>right)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="structAddScalarBC_1_1BC1D_1a8d642f27364b71cbd16fbd5fd5256f17" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="structAddScalarBC_1_1BC1D_1a8d642f27364b71cbd16fbd5fd5256f17" kindref="member">nc</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>Neumann<sp/>coefficients<sp/>b0<sp/>(2x1:<sp/>left,<sp/>right)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="structAddScalarBC_1_1BC1D_1a77183eb35fb880e324c910e9a8969099" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="structAddScalarBC_1_1BC1D_1a77183eb35fb880e324c910e9a8969099" kindref="member">v</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Boundary<sp/>values<sp/>g<sp/>(2x1:<sp/>left,<sp/>right)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="structAddScalarBC_1_1BC1D_1a73a46a54fa14b05d06653abe21c61382" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structAddScalarBC_1_1BC1D_1a73a46a54fa14b05d06653abe21c61382" kindref="member">BC1D</ref>()<sp/>:<sp/><ref refid="structAddScalarBC_1_1BC1D_1a8f2672f9ad96981da309a5fed839d1fd" kindref="member">dc</ref>(2,<sp/>fill::zeros),<sp/><ref refid="structAddScalarBC_1_1BC1D_1a8d642f27364b71cbd16fbd5fd5256f17" kindref="member">nc</ref>(2,<sp/>fill::zeros),<sp/><ref refid="structAddScalarBC_1_1BC1D_1a77183eb35fb880e324c910e9a8969099" kindref="member">v</ref>(2,<sp/>fill::zeros)<sp/>{}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="structAddScalarBC_1_1BC2D" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structAddScalarBC_1_1BC2D_1a354851ef97ebda1318a199c1b49e2b4a" kindref="member">BC2D</ref><sp/>{</highlight></codeline>
+<codeline lineno="56" refid="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" kindref="member">dc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Dirichlet<sp/>coefficients<sp/>a0<sp/>(4x1:<sp/>left,<sp/>right,<sp/>bottom,<sp/>top)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" kindref="member">nc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Neumann<sp/>coefficients<sp/>b0<sp/>(4x1:<sp/>left,<sp/>right,<sp/>bottom,<sp/>top)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="structAddScalarBC_1_1BC2D_1ad71fdb1405bee78b172d965e91deb12c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vec&gt;<sp/><ref refid="structAddScalarBC_1_1BC2D_1ad71fdb1405bee78b172d965e91deb12c" kindref="member">v</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>Boundary<sp/>values<sp/>g<sp/>(4<sp/>vectors:<sp/>left,<sp/>right,<sp/>bottom,<sp/>top)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="structAddScalarBC_1_1BC2D_1a354851ef97ebda1318a199c1b49e2b4a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structAddScalarBC_1_1BC2D_1a354851ef97ebda1318a199c1b49e2b4a" kindref="member">BC2D</ref>()<sp/>:<sp/><ref refid="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" kindref="member">dc</ref>(4,<sp/>fill::zeros),<sp/><ref refid="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" kindref="member">nc</ref>(4,<sp/>fill::zeros),<sp/><ref refid="structAddScalarBC_1_1BC2D_1ad71fdb1405bee78b172d965e91deb12c" kindref="member">v</ref>(4)<sp/>{}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="structAddScalarBC_1_1BC3D" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structAddScalarBC_1_1BC3D_1a011ca11fa506290a73dc9a7d307fcf52" kindref="member">BC3D</ref><sp/>{</highlight></codeline>
+<codeline lineno="69" refid="structAddScalarBC_1_1BC3D_1ae34c8703e0309547a7015cd3c22eaada" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="structAddScalarBC_1_1BC3D_1ae34c8703e0309547a7015cd3c22eaada" kindref="member">dc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Dirichlet<sp/>coefficients<sp/>a0<sp/>(6x1:<sp/>left,<sp/>right,<sp/>bottom,<sp/>top,<sp/>front,<sp/>back)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="structAddScalarBC_1_1BC3D_1ad57ff1213ee58d9f846a0bf665afd5d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vec<sp/><ref refid="structAddScalarBC_1_1BC3D_1ad57ff1213ee58d9f846a0bf665afd5d9" kindref="member">nc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Neumann<sp/>coefficients<sp/>b0<sp/>(6x1:<sp/>left,<sp/>right,<sp/>bottom,<sp/>top,<sp/>front,<sp/>back)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="structAddScalarBC_1_1BC3D_1ab0e1b68c8ca75c6da443bdb4676b0cab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;vec&gt;<sp/><ref refid="structAddScalarBC_1_1BC3D_1ab0e1b68c8ca75c6da443bdb4676b0cab" kindref="member">v</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>Boundary<sp/>values<sp/>g<sp/>(6<sp/>vectors:<sp/>left,<sp/>right,<sp/>bottom,<sp/>top,<sp/>front,<sp/>back)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="structAddScalarBC_1_1BC3D_1a011ca11fa506290a73dc9a7d307fcf52" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structAddScalarBC_1_1BC3D_1a011ca11fa506290a73dc9a7d307fcf52" kindref="member">BC3D</ref>()<sp/>:<sp/><ref refid="structAddScalarBC_1_1BC3D_1ae34c8703e0309547a7015cd3c22eaada" kindref="member">dc</ref>(6,<sp/>fill::zeros),<sp/><ref refid="structAddScalarBC_1_1BC3D_1ad57ff1213ee58d9f846a0bf665afd5d9" kindref="member">nc</ref>(6,<sp/>fill::zeros),<sp/><ref refid="structAddScalarBC_1_1BC3D_1ab0e1b68c8ca75c6da443bdb4676b0cab" kindref="member">v</ref>(6)<sp/>{}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LHS:<sp/>Boundary<sp/>matrix<sp/>construction<sp/>(1D,<sp/>2D,<sp/>3D<sp/>overloads)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>&amp;Al,<sp/>sp_mat<sp/>&amp;Ar);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,<sp/>u32<sp/>n,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dy,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>&amp;Al,<sp/>sp_mat<sp/>&amp;Ar,<sp/>sp_mat<sp/>&amp;Ab,<sp/>sp_mat<sp/>&amp;At);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,<sp/>u32<sp/>n,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dy,<sp/>u32<sp/>o,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dz,</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>&amp;Al,<sp/>sp_mat<sp/>&amp;Ar,<sp/>sp_mat<sp/>&amp;Ab,</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>&amp;At,<sp/>sp_mat<sp/>&amp;Af,<sp/>sp_mat<sp/>&amp;Ak);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="comment">//<sp/>RHS:<sp/>Boundary<sp/>value<sp/>application<sp/>(1D,<sp/>2D,<sp/>3D<sp/>overloads)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" kindref="member">addScalarBCrhs</ref>(vec<sp/>&amp;b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;v,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;indices);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" kindref="member">addScalarBCrhs</ref>(vec<sp/>&amp;b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vec&gt;<sp/>&amp;v,</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rl,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rr,</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rb,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rt);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" kindref="member">addScalarBCrhs</ref>(vec<sp/>&amp;b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vec&gt;<sp/>&amp;v,</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rl,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rb,</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rt,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rf,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rk);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Top-level<sp/>BC<sp/>application<sp/>(1D,<sp/>2D,<sp/>3D<sp/>overloads)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a2a94645bf49558f52b7d27344be3072d" kindref="member">addScalarBC</ref>(sp_mat<sp/>&amp;A,<sp/>vec<sp/>&amp;b,<sp/>u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BC1D<sp/>&amp;bc);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a2a94645bf49558f52b7d27344be3072d" kindref="member">addScalarBC</ref>(sp_mat<sp/>&amp;A,<sp/>vec<sp/>&amp;b,<sp/>u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>u32<sp/>n,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dy,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BC2D<sp/>&amp;bc);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a2a94645bf49558f52b7d27344be3072d" kindref="member">addScalarBC</ref>(sp_mat<sp/>&amp;A,<sp/>vec<sp/>&amp;b,<sp/>u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>u32<sp/>n,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dy,<sp/>u32<sp/>o,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BC3D<sp/>&amp;bc);</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>AddScalarBC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>ADDSCALARBC_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="src/cpp/addscalarbc.h"/>
+  </compounddef>
+</doxygen>

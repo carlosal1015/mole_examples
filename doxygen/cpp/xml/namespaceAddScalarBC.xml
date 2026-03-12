@@ -1,0 +1,1111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="namespaceAddScalarBC" kind="namespace" language="C++">
+    <compoundname>AddScalarBC</compoundname>
+    <innerclass refid="structAddScalarBC_1_1BC1D" prot="public">AddScalarBC::BC1D</innerclass>
+    <innerclass refid="structAddScalarBC_1_1BC2D" prot="public">AddScalarBC::BC2D</innerclass>
+    <innerclass refid="structAddScalarBC_1_1BC3D" prot="public">AddScalarBC::BC3D</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddScalarBC::addScalarBClhs</definition>
+        <argsstring>(u16 k, u32 m, Real dx, const vec &amp;dc, const vec &amp;nc, sp_mat &amp;Al, sp_mat &amp;Ar)</argsstring>
+        <name>addScalarBClhs</name>
+        <qualifiedname>AddScalarBC::addScalarBClhs</qualifiedname>
+        <param>
+          <type>u16</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>dc</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>nc</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Al</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Ar</declname>
+        </param>
+        <briefdescription>
+<para>Compute LHS boundary condition matrices for a 1D problem. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of accuracy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dirichlet coefficients (2x1: left, right) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Neumann coefficients (2x1: left, right) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Al</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: left boundary modification matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Ar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: right boundary modification matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.cpp" line="145" column="6" bodyfile="src/cpp/addscalarbc.cpp" bodystart="145" bodyend="169" declfile="src/cpp/addscalarbc.h" declline="91" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceAddScalarBC_1a4d1fa840fabd66d911946810e14d2285" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddScalarBC::addScalarBClhs</definition>
+        <argsstring>(u16 k, u32 m, Real dx, u32 n, Real dy, const vec &amp;dc, const vec &amp;nc, sp_mat &amp;Al, sp_mat &amp;Ar, sp_mat &amp;Ab, sp_mat &amp;At)</argsstring>
+        <name>addScalarBClhs</name>
+        <qualifiedname>AddScalarBC::addScalarBClhs</qualifiedname>
+        <param>
+          <type>u16</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>dc</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>nc</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Al</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Ar</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Ab</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>At</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>brief Compute LHS boundary condition matrices for a 2D problem</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of accuracy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in x-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in x-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in y-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in y-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dirichlet coefficients (4x1: left, right, bottom, top) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Neumann coefficients (4x1: left, right, bottom, top) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Al</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: left edge modification matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Ar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: right edge modification matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Ab</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: bottom edge modification matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>At</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: top edge modification matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.cpp" line="171" column="6" bodyfile="src/cpp/addscalarbc.cpp" bodystart="171" bodyend="199" declfile="src/cpp/addscalarbc.h" declline="110" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceAddScalarBC_1a837c962855d6b313385680077691610b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddScalarBC::addScalarBClhs</definition>
+        <argsstring>(u16 k, u32 m, Real dx, u32 n, Real dy, u32 o, Real dz, const vec &amp;dc, const vec &amp;nc, sp_mat &amp;Al, sp_mat &amp;Ar, sp_mat &amp;Ab, sp_mat &amp;At, sp_mat &amp;Af, sp_mat &amp;Ak)</argsstring>
+        <name>addScalarBClhs</name>
+        <qualifiedname>AddScalarBC::addScalarBClhs</qualifiedname>
+        <param>
+          <type>u16</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dz</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>dc</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>nc</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Al</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Ar</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Ab</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>At</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Af</declname>
+        </param>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>Ak</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>brief Compute LHS boundary condition matrices for a 3D problem</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of accuracy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in x-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in x-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in y-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in y-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>o</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in z-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in z-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dirichlet coefficients (6x1: left, right, bottom, top, front, back) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Neumann coefficients (6x1: left, right, bottom, top, front, back) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Al</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: left face modification matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Ar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: right face modification matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Ab</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: bottom face modification matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>At</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: top face modification matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Af</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: front face modification matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Ak</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: back face modification matrix </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.cpp" line="201" column="6" bodyfile="src/cpp/addscalarbc.cpp" bodystart="201" bodyend="247" declfile="src/cpp/addscalarbc.h" declline="133" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddScalarBC::addScalarBCrhs</definition>
+        <argsstring>(vec &amp;b, const vec &amp;v, const uvec &amp;indices)</argsstring>
+        <name>addScalarBCrhs</name>
+        <qualifiedname>AddScalarBC::addScalarBCrhs</qualifiedname>
+        <param>
+          <type>vec &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>indices</declname>
+        </param>
+        <briefdescription>
+<para>Apply boundary values to the RHS vector for a 1D problem. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right-hand side vector (modified in place) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boundary values (2x1: left, right) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>indices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Row indices to update </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.cpp" line="253" column="6" bodyfile="src/cpp/addscalarbc.cpp" bodystart="253" bodyend="257" declfile="src/cpp/addscalarbc.h" declline="149" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceAddScalarBC_1a456b441a84bbd0141a45751a529cbed6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddScalarBC::addScalarBCrhs</definition>
+        <argsstring>(vec &amp;b, const vec &amp;dc, const vec &amp;nc, const std::vector&lt; vec &gt; &amp;v, const uvec &amp;rl, const uvec &amp;rr, const uvec &amp;rb, const uvec &amp;rt)</argsstring>
+        <name>addScalarBCrhs</name>
+        <qualifiedname>AddScalarBC::addScalarBCrhs</qualifiedname>
+        <param>
+          <type>vec &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>dc</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>nc</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vec &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rl</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rr</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rb</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>brief Apply boundary values to the RHS vector for a 2D problem</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right-hand side vector (modified in place) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dirichlet coefficients (4x1: left, right, bottom, top) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Neumann coefficients (4x1: left, right, bottom, top) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boundary values (4 vectors: left, right, bottom, top) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Left edge row indices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right edge row indices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bottom edge row indices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Top edge row indices </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.cpp" line="259" column="6" bodyfile="src/cpp/addscalarbc.cpp" bodystart="259" bodyend="268" declfile="src/cpp/addscalarbc.h" declline="163" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceAddScalarBC_1a7b75c7fad386ce40e55768e316aeb299" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddScalarBC::addScalarBCrhs</definition>
+        <argsstring>(vec &amp;b, const vec &amp;dc, const vec &amp;nc, const std::vector&lt; vec &gt; &amp;v, const uvec &amp;rl, const uvec &amp;rr, const uvec &amp;rb, const uvec &amp;rt, const uvec &amp;rf, const uvec &amp;rk)</argsstring>
+        <name>addScalarBCrhs</name>
+        <qualifiedname>AddScalarBC::addScalarBCrhs</qualifiedname>
+        <param>
+          <type>vec &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>dc</declname>
+        </param>
+        <param>
+          <type>const vec &amp;</type>
+          <declname>nc</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; vec &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rl</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rr</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rb</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rt</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rf</declname>
+        </param>
+        <param>
+          <type>const uvec &amp;</type>
+          <declname>rk</declname>
+        </param>
+        <briefdescription>
+<para>Apply boundary values to the RHS vector for a 3D problem. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right-hand side vector (modified in place) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dirichlet coefficients (6x1: left, right, bottom, top, front, back) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Neumann coefficients (6x1: left, right, bottom, top, front, back) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boundary values (6 vectors: left, right, bottom, top, front, back) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Left face row indices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right face row indices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bottom face row indices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Top face row indices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Front face row indices </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rk</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Back face row indices </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.cpp" line="270" column="6" bodyfile="src/cpp/addscalarbc.cpp" bodystart="270" bodyend="280" declfile="src/cpp/addscalarbc.h" declline="182" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceAddScalarBC_1a2a94645bf49558f52b7d27344be3072d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddScalarBC::addScalarBC</definition>
+        <argsstring>(sp_mat &amp;A, vec &amp;b, u16 k, u32 m, Real dx, const BC1D &amp;bc)</argsstring>
+        <name>addScalarBC</name>
+        <qualifiedname>AddScalarBC::addScalarBC</qualifiedname>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>vec &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>u16</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structAddScalarBC_1_1BC1D" kindref="compound">BC1D</ref> &amp;</type>
+          <declname>bc</declname>
+        </param>
+        <briefdescription>
+<para>Apply boundary conditions to a 1D discrete operator and RHS. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Modifies the linear system A*u = b to enforce boundary conditions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Linear operator (modified in place) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right-hand side vector (modified in place) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of accuracy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boundary condition data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.cpp" line="286" column="6" bodyfile="src/cpp/addscalarbc.cpp" bodystart="286" bodyend="305" declfile="src/cpp/addscalarbc.h" declline="203" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceAddScalarBC_1a5c5ad118ba3b6fbe44155c8ab419c8db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddScalarBC::addScalarBC</definition>
+        <argsstring>(sp_mat &amp;A, vec &amp;b, u16 k, u32 m, Real dx, u32 n, Real dy, const BC2D &amp;bc)</argsstring>
+        <name>addScalarBC</name>
+        <qualifiedname>AddScalarBC::addScalarBC</qualifiedname>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>vec &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>u16</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structAddScalarBC_1_1BC2D" kindref="compound">BC2D</ref> &amp;</type>
+          <declname>bc</declname>
+        </param>
+        <briefdescription>
+<para>Apply boundary conditions to a 2D discrete operator and RHS. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Modifies the linear system A*u = b to enforce boundary conditions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Linear operator (modified in place) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right-hand side vector (modified in place) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of accuracy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in x-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in x-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in y-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in y-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boundary condition data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.cpp" line="307" column="6" bodyfile="src/cpp/addscalarbc.cpp" bodystart="307" bodyend="327" declfile="src/cpp/addscalarbc.h" declline="219" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceAddScalarBC_1ae5003d388561702fa7c35a939d77a160" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void AddScalarBC::addScalarBC</definition>
+        <argsstring>(sp_mat &amp;A, vec &amp;b, u16 k, u32 m, Real dx, u32 n, Real dy, u32 o, Real dz, const BC3D &amp;bc)</argsstring>
+        <name>addScalarBC</name>
+        <qualifiedname>AddScalarBC::addScalarBC</qualifiedname>
+        <param>
+          <type>sp_mat &amp;</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>vec &amp;</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>u16</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dx</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dy</declname>
+        </param>
+        <param>
+          <type>u32</type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref></type>
+          <declname>dz</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structAddScalarBC_1_1BC3D" kindref="compound">BC3D</ref> &amp;</type>
+          <declname>bc</declname>
+        </param>
+        <briefdescription>
+<para>Apply boundary conditions to a 3D discrete operator and RHS. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Modifies the linear system A*u = b to enforce boundary conditions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>A</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Linear operator (modified in place) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right-hand side vector (modified in place) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Order of accuracy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in x-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in x-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in y-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in y-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>o</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cells in z-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cell spacing in z-direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boundary condition data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.cpp" line="329" column="6" bodyfile="src/cpp/addscalarbc.cpp" bodystart="329" bodyend="351" declfile="src/cpp/addscalarbc.h" declline="238" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>file <ref refid="addscalarbc_8cpp" kindref="compound">addscalarbc.cpp</ref></para>
+<para>brief Implementation of boundary condition application for scalar PDEs</para>
+<para>date 2025/01/26 Last Modified: 2026/03/04 </para>
+    </detaileddescription>
+    <location file="src/cpp/addscalarbc.cpp" line="18" column="1"/>
+  </compounddef>
+</doxygen>

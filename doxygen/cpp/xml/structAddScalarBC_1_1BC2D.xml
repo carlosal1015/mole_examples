@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="structAddScalarBC_1_1BC2D" kind="struct" language="C++" prot="public">
+    <compoundname>AddScalarBC::BC2D</compoundname>
+    <includes refid="addscalarbc_8h" local="no">addscalarbc.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" prot="public" static="no" mutable="no">
+        <type>vec</type>
+        <definition>vec AddScalarBC::BC2D::dc</definition>
+        <argsstring></argsstring>
+        <name>dc</name>
+        <qualifiedname>AddScalarBC::BC2D::dc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.h" line="56" column="9" bodyfile="src/cpp/addscalarbc.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" prot="public" static="no" mutable="no">
+        <type>vec</type>
+        <definition>vec AddScalarBC::BC2D::nc</definition>
+        <argsstring></argsstring>
+        <name>nc</name>
+        <qualifiedname>AddScalarBC::BC2D::nc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.h" line="57" column="9" bodyfile="src/cpp/addscalarbc.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structAddScalarBC_1_1BC2D_1ad71fdb1405bee78b172d965e91deb12c" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; vec &gt;</type>
+        <definition>std::vector&lt;vec&gt; AddScalarBC::BC2D::v</definition>
+        <argsstring></argsstring>
+        <name>v</name>
+        <qualifiedname>AddScalarBC::BC2D::v</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.h" line="58" column="17" bodyfile="src/cpp/addscalarbc.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structAddScalarBC_1_1BC2D_1a354851ef97ebda1318a199c1b49e2b4a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>AddScalarBC::BC2D::BC2D</definition>
+        <argsstring>()</argsstring>
+        <name>BC2D</name>
+        <qualifiedname>AddScalarBC::BC2D::BC2D</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/cpp/addscalarbc.h" line="60" column="5" bodyfile="src/cpp/addscalarbc.h" bodystart="60" bodyend="60"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure to hold boundary condition data for 2D problems. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Represents boundary condition: a0*u + b0*du/dn = g </para>
+    </detaileddescription>
+    <location file="src/cpp/addscalarbc.h" line="55" column="1" bodyfile="src/cpp/addscalarbc.h" bodystart="55" bodyend="61"/>
+    <listofallmembers>
+      <member refid="structAddScalarBC_1_1BC2D_1a354851ef97ebda1318a199c1b49e2b4a" prot="public" virt="non-virtual"><scope>AddScalarBC::BC2D</scope><name>BC2D</name></member>
+      <member refid="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" prot="public" virt="non-virtual"><scope>AddScalarBC::BC2D</scope><name>dc</name></member>
+      <member refid="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" prot="public" virt="non-virtual"><scope>AddScalarBC::BC2D</scope><name>nc</name></member>
+      <member refid="structAddScalarBC_1_1BC2D_1ad71fdb1405bee78b172d965e91deb12c" prot="public" virt="non-virtual"><scope>AddScalarBC::BC2D</scope><name>v</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

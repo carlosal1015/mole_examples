@@ -1,0 +1,367 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="addscalarbc_8cpp" kind="file" language="C++">
+    <compoundname>addscalarbc.cpp</compoundname>
+    <includes refid="addscalarbc_8h" local="yes">addscalarbc.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>src/cpp/addscalarbc.cpp</label>
+        <link refid="addscalarbc_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>addscalarbc.h</label>
+        <link refid="addscalarbc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>gradient.h</label>
+        <link refid="gradient_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>utils.h</label>
+        <link refid="utils_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>armadillo</label>
+      </node>
+      <node id="6">
+        <label>cassert</label>
+      </node>
+      <node id="7">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceAddScalarBC">AddScalarBC</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>SPDX-License-Identifier:<sp/>GPL-3.0-or-later</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>2008-2024<sp/>San<sp/>Diego<sp/>State<sp/>University<sp/>Research<sp/>Foundation<sp/>(SDSURF).</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>See<sp/>LICENSE<sp/>file<sp/>or<sp/>https://www.gnu.org/licenses/gpl-3.0.html<sp/>for<sp/>details.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="addscalarbc_8h" kindref="compound">addscalarbc.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="namespaceAddScalarBC" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceAddScalarBC" kindref="compound">AddScalarBC</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Internal<sp/>Helpers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>boundaryNorm(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,<sp/>uword<sp/>i,<sp/>uword<sp/>j)<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dc(i)*dc(i)<sp/>+<sp/>dc(j)*dc(j)<sp/>+<sp/>nc(i)*nc(i)<sp/>+<sp/>nc(j)*nc(j);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">uvec<sp/>collectUniqueRows(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sp_mat<sp/>&amp;M)<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>uvec<sp/>temp(M.n_nonzero);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>uword<sp/>count<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(sp_mat::const_iterator<sp/>it<sp/>=<sp/>M.begin();<sp/>it<sp/>!=<sp/>M.end();<sp/>++it)<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp(count++)<sp/>=<sp/>it.row();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>temp.resize(count);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>unique(temp);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>zeroRows(sp_mat<sp/>&amp;A,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rows)<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uword<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>rows.n_elem;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uword<sp/>row_idx<sp/>=<sp/>rows(i);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(sp_mat::const_row_iterator<sp/>it<sp/>=<sp/>A.begin_row(row_idx);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it<sp/>!=<sp/>A.end_row(row_idx);<sp/>++it)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A(it.row(),<sp/>it.col())<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>applyBCMatrix(sp_mat<sp/>&amp;A,<sp/>vec<sp/>&amp;b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sp_mat<sp/>&amp;Abc,<sp/>uvec<sp/>&amp;rows)<sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>rows<sp/>=<sp/>collectUniqueRows(Abc);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>zeroRows(A,<sp/>rows);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>A<sp/>=<sp/>A<sp/>+<sp/>Abc;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>b(rows).zeros();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>applyRhsSide(vec<sp/>&amp;b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;indices,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;values)<sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uword<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>indices.n_elem<sp/>&amp;&amp;<sp/>i<sp/>&lt;<sp/>values.n_elem;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b(indices(i))<sp/>=<sp/>values(i);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">sp_mat<sp/>buildIdentity(uword<sp/>sz,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>zeroCorners<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>sp_mat<sp/>I<sp/>=<sp/>speye&lt;sp_mat&gt;(sz,<sp/>sz);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(zeroCorners<sp/>&amp;&amp;<sp/>sz<sp/>&gt;=<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>I(0,<sp/>0)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>I(sz-1,<sp/>sz-1)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>I;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">BCPairLhs<sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/><sp/><sp/><sp/><sp/>q;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>boundaryNorm<sp/>result;<sp/>skip<sp/>if<sp/>==<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>sp_mat<sp/><sp/>&amp;Mleft;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>BC<sp/>matrix<sp/>for<sp/>the<sp/>left/bottom/front<sp/>face</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>sp_mat<sp/><sp/>&amp;Mright;<sp/><sp/></highlight><highlight class="comment">//<sp/>BC<sp/>matrix<sp/>for<sp/>the<sp/>right/top/back<sp/>face</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>uvec<sp/><sp/><sp/><sp/>&amp;rowsL;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>output:<sp/>row<sp/>indices<sp/>for<sp/>left/bottom/front<sp/>face</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>uvec<sp/><sp/><sp/><sp/>&amp;rowsR;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>output:<sp/>row<sp/>indices<sp/>for<sp/>right/top/back<sp/>face</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>applyBCPair(sp_mat<sp/>&amp;A,<sp/>vec<sp/>&amp;b,<sp/>BCPairLhs<sp/>&amp;p)<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p.q<sp/>==<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>uvec<sp/>rows;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>applyBCMatrix(A,<sp/>b,<sp/>p.Mleft<sp/>+<sp/>p.Mright,<sp/>rows);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>p.rowsL<sp/>=<sp/>collectUniqueRows(p.Mleft);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>p.rowsR<sp/>=<sp/>collectUniqueRows(p.Mright);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">BCPairRhs<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>uword<sp/><sp/><sp/><sp/><sp/><sp/><sp/>i,<sp/>j;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dc/nc<sp/>indices<sp/>for<sp/>boundaryNorm<sp/>check</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rowsL;<sp/><sp/></highlight><highlight class="comment">//<sp/>row<sp/>indices<sp/>for<sp/>the<sp/>left/bottom/front<sp/>face</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rowsR;<sp/><sp/></highlight><highlight class="comment">//<sp/>row<sp/>indices<sp/>for<sp/>the<sp/>right/top/back<sp/>face</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>uword<sp/><sp/><sp/><sp/><sp/><sp/><sp/>vL,<sp/>vR;<sp/></highlight><highlight class="comment">//<sp/>indices<sp/>into<sp/>the<sp/>boundary<sp/>value<sp/>vector<sp/>v[]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>applyBCPairRhs(vec<sp/>&amp;b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vec&gt;<sp/>&amp;v,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BCPairRhs<sp/>&amp;p)<sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(boundaryNorm(dc,<sp/>nc,<sp/>p.i,<sp/>p.j)<sp/>==<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v.size()<sp/>&lt;=<sp/>p.vR)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v[p.vL].n_elem<sp/>&gt;<sp/>0)<sp/>applyRhsSide(b,<sp/>p.rowsL,<sp/>v[p.vL]);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v[p.vR].n_elem<sp/>&gt;<sp/>0)<sp/>applyRhsSide(b,<sp/>p.rowsR,<sp/>v[p.vR]);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>anonymous<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="comment">//<sp/>LHS:<sp/>Boundary<sp/>matrix<sp/>construction<sp/>(1D,<sp/>2D,<sp/>3D<sp/>overloads)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145" refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>&amp;Al,<sp/>sp_mat<sp/>&amp;Ar)<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>Al<sp/>=<sp/>sp_mat(m+2,<sp/>m+2);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>Ar<sp/>=<sp/>sp_mat(m+2,<sp/>m+2);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dc(0)<sp/>!=<sp/>0.0)<sp/>Al(0,<sp/>0)<sp/>=<sp/>dc(0);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dc(1)<sp/>!=<sp/>0.0)<sp/>Ar(m+1,<sp/>m+1)<sp/>=<sp/>dc(1);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nc(0)<sp/>!=<sp/>0.0<sp/>||<sp/>nc(1)<sp/>!=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classGradient" kindref="compound">Gradient</ref><sp/>G(k,<sp/>m,<sp/>dx);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>G_mat<sp/>=<sp/>sp_mat(G);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nc(0)<sp/>!=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Bl(m+2,<sp/>m+1);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Bl(0,<sp/>0)<sp/>=<sp/>-nc(0);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Al<sp/>=<sp/>Al<sp/>+<sp/>Bl<sp/>*<sp/>G_mat;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nc(1)<sp/>!=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Br(m+2,<sp/>m+1);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Br(m+1,<sp/>m)<sp/>=<sp/>nc(1);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ar<sp/>=<sp/>Ar<sp/>+<sp/>Br<sp/>*<sp/>G_mat;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="namespaceAddScalarBC_1a4d1fa840fabd66d911946810e14d2285" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,<sp/>u32<sp/>n,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dy,</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>&amp;Al,<sp/>sp_mat<sp/>&amp;Ar,<sp/>sp_mat<sp/>&amp;Ab,<sp/>sp_mat<sp/>&amp;At)<sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>Al.set_size(0,<sp/>0);<sp/>Ar.set_size(0,<sp/>0);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>Ab.set_size(0,<sp/>0);<sp/>At.set_size(0,<sp/>0);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>qrl<sp/>=<sp/>boundaryNorm(dc,<sp/>nc,<sp/>0,<sp/>1);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>qbt<sp/>=<sp/>boundaryNorm(dc,<sp/>nc,<sp/>2,<sp/>3);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(qrl<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Al0,<sp/>Ar0;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(k,<sp/>m,<sp/>dx,<sp/>{dc(0),<sp/>dc(1)},<sp/>{nc(0),<sp/>nc(1)},<sp/>Al0,<sp/>Ar0);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>In<sp/>=<sp/>(qbt<sp/>==<sp/>0)<sp/>?<sp/>buildIdentity(n)</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>buildIdentity(n+2,<sp/></highlight><highlight class="comment">/*zeroCorners=*/</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Al<sp/>=<sp/>kron(In,<sp/>Al0);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ar<sp/>=<sp/>kron(In,<sp/>Ar0);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(qbt<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Ab0,<sp/>At0;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(k,<sp/>n,<sp/>dy,<sp/>{dc(2),<sp/>dc(3)},<sp/>{nc(2),<sp/>nc(3)},<sp/>Ab0,<sp/>At0);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Im<sp/>=<sp/>(qrl<sp/>==<sp/>0)<sp/>?<sp/>buildIdentity(m)</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>buildIdentity(m+2);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ab<sp/>=<sp/>kron(Ab0,<sp/>Im);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>At<sp/>=<sp/>kron(At0,<sp/>Im);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201" refid="namespaceAddScalarBC_1a837c962855d6b313385680077691610b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,<sp/>u32<sp/>n,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dy,<sp/>u32<sp/>o,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dz,</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>&amp;Al,<sp/>sp_mat<sp/>&amp;Ar,<sp/>sp_mat<sp/>&amp;Ab,</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>&amp;At,<sp/>sp_mat<sp/>&amp;Af,<sp/>sp_mat<sp/>&amp;Ak)<sp/>{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>Al.set_size(0,0);<sp/>Ar.set_size(0,0);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>Ab.set_size(0,0);<sp/>At.set_size(0,0);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>Af.set_size(0,0);<sp/>Ak.set_size(0,0);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>qrl<sp/>=<sp/>boundaryNorm(dc,<sp/>nc,<sp/>0,<sp/>1);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>qbt<sp/>=<sp/>boundaryNorm(dc,<sp/>nc,<sp/>2,<sp/>3);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>qfk<sp/>=<sp/>boundaryNorm(dc,<sp/>nc,<sp/>4,<sp/>5);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>makeId<sp/>=<sp/>[](u32<sp/>sz,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>q,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>excludeCorners)<sp/>-&gt;<sp/>sp_mat<sp/>{</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(q<sp/>==<sp/>0)<sp/>?<sp/>buildIdentity(sz)</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>buildIdentity(sz<sp/>+<sp/>2,<sp/>excludeCorners);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(qrl<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Al0,<sp/>Ar0;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(k,<sp/>m,<sp/>dx,<sp/>{dc(0),<sp/>dc(1)},<sp/>{nc(0),<sp/>nc(1)},<sp/>Al0,<sp/>Ar0);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>In<sp/>=<sp/>makeId(n,<sp/>qbt,<sp/></highlight><highlight class="comment">/*excludeCorners=*/</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Io<sp/>=<sp/>makeId(o,<sp/>qfk,<sp/></highlight><highlight class="comment">/*excludeCorners=*/</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Al<sp/>=<sp/>kron(kron(Io,<sp/>In),<sp/>Al0);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ar<sp/>=<sp/>kron(kron(Io,<sp/>In),<sp/>Ar0);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(qbt<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Ab0,<sp/>At0;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(k,<sp/>n,<sp/>dy,<sp/>{dc(2),<sp/>dc(3)},<sp/>{nc(2),<sp/>nc(3)},<sp/>Ab0,<sp/>At0);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Im<sp/>=<sp/>makeId(m,<sp/>qrl,<sp/></highlight><highlight class="comment">/*excludeCorners=*/</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Io<sp/>=<sp/>makeId(o,<sp/>qfk,<sp/></highlight><highlight class="comment">/*excludeCorners=*/</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ab<sp/>=<sp/>kron(kron(Io,<sp/>Ab0),<sp/>Im);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>At<sp/>=<sp/>kron(kron(Io,<sp/>At0),<sp/>Im);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(qfk<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Af0,<sp/>Ak0;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(k,<sp/>o,<sp/>dz,<sp/>{dc(4),<sp/>dc(5)},<sp/>{nc(4),<sp/>nc(5)},<sp/>Af0,<sp/>Ak0);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>Im<sp/>=<sp/>makeId(m,<sp/>qrl,<sp/></highlight><highlight class="comment">/*excludeCorners=*/</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sp_mat<sp/>In<sp/>=<sp/>makeId(n,<sp/>qbt,<sp/></highlight><highlight class="comment">/*excludeCorners=*/</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Af<sp/>=<sp/>kron(kron(Af0,<sp/>In),<sp/>Im);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ak<sp/>=<sp/>kron(kron(Ak0,<sp/>In),<sp/>Im);</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="247"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight><highlight class="comment">//<sp/>RHS:<sp/>Boundary<sp/>value<sp/>application<sp/>(1D,<sp/>2D,<sp/>3D<sp/>overloads)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253" refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" kindref="member">addScalarBCrhs</ref>(vec<sp/>&amp;b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;v,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;indices)<sp/>{</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uword<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>indices.n_elem;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b(indices(i))<sp/>=<sp/>v(i);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="257"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="259" refid="namespaceAddScalarBC_1a456b441a84bbd0141a45751a529cbed6" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" kindref="member">addScalarBCrhs</ref>(vec<sp/>&amp;b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vec&gt;<sp/>&amp;v,</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rl,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rr,</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rb,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rt)<sp/>{</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BCPairRhs<sp/>pairs[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{0,<sp/>1,<sp/>rl,<sp/>rr,<sp/>0,<sp/>1},<sp/><sp/></highlight><highlight class="comment">//<sp/>Left<sp/><sp/>/<sp/>Right</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{2,<sp/>3,<sp/>rb,<sp/>rt,<sp/>2,<sp/>3},<sp/><sp/></highlight><highlight class="comment">//<sp/>Bottom<sp/>/<sp/>Top</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;p<sp/>:<sp/>pairs)<sp/>applyBCPairRhs(b,<sp/>dc,<sp/>nc,<sp/>v,<sp/>p);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270" refid="namespaceAddScalarBC_1a7b75c7fad386ce40e55768e316aeb299" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" kindref="member">addScalarBCrhs</ref>(vec<sp/>&amp;b,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;dc,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vec<sp/>&amp;nc,</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;vec&gt;<sp/>&amp;v,</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rl,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rb,</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rt,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rf,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uvec<sp/>&amp;rk)<sp/>{</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BCPairRhs<sp/>pairs[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{0,<sp/>1,<sp/>rl,<sp/>rr,<sp/>0,<sp/>1},<sp/><sp/></highlight><highlight class="comment">//<sp/>Left<sp/><sp/>/<sp/>Right</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{2,<sp/>3,<sp/>rb,<sp/>rt,<sp/>2,<sp/>3},<sp/><sp/></highlight><highlight class="comment">//<sp/>Bottom<sp/>/<sp/>Top</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{4,<sp/>5,<sp/>rf,<sp/>rk,<sp/>4,<sp/>5},<sp/><sp/></highlight><highlight class="comment">//<sp/>Front<sp/><sp/>/<sp/>Back</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;p<sp/>:<sp/>pairs)<sp/>applyBCPairRhs(b,<sp/>dc,<sp/>nc,<sp/>v,<sp/>p);</highlight></codeline>
+<codeline lineno="280"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Top-level<sp/>BC<sp/>application<sp/>(1D,<sp/>2D,<sp/>3D<sp/>overloads)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight><highlight class="comment">//<sp/>============================================================================</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286" refid="namespaceAddScalarBC_1a2a94645bf49558f52b7d27344be3072d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a2a94645bf49558f52b7d27344be3072d" kindref="member">addScalarBC</ref>(sp_mat<sp/>&amp;A,<sp/>vec<sp/>&amp;b,<sp/>u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structAddScalarBC_1_1BC1D" kindref="compound">BC1D</ref><sp/>&amp;bc)<sp/>{</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(bc.<ref refid="structAddScalarBC_1_1BC1D_1a8f2672f9ad96981da309a5fed839d1fd" kindref="member">dc</ref>.n_elem<sp/>==<sp/>2<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;dc<sp/>must<sp/>be<sp/>a<sp/>2x1<sp/>vector&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(bc.<ref refid="structAddScalarBC_1_1BC1D_1a8d642f27364b71cbd16fbd5fd5256f17" kindref="member">nc</ref>.n_elem<sp/>==<sp/>2<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;nc<sp/>must<sp/>be<sp/>a<sp/>2x1<sp/>vector&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(A.n_rows<sp/>==<sp/>A.n_cols<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;A<sp/>must<sp/>be<sp/>square&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(A.n_cols<sp/>==<sp/>b.n_elem<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;b<sp/>size<sp/>must<sp/>equal<sp/>A<sp/>columns&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(boundaryNorm(bc.<ref refid="structAddScalarBC_1_1BC1D_1a8f2672f9ad96981da309a5fed839d1fd" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC1D_1a8d642f27364b71cbd16fbd5fd5256f17" kindref="member">nc</ref>,<sp/>0,<sp/>1)<sp/>==<sp/>0.0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(bc.<ref refid="structAddScalarBC_1_1BC1D_1a77183eb35fb880e324c910e9a8969099" kindref="member">v</ref>.n_elem<sp/>==<sp/>2<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;v<sp/>must<sp/>be<sp/>a<sp/>2x1<sp/>vector&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>uvec<sp/>indices<sp/>=<sp/>{0,<sp/>(uword)(A.n_rows<sp/>-<sp/>1)};</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>zeroRows(A,<sp/>indices);</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>b(indices).zeros();</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>sp_mat<sp/>Al,<sp/>Ar;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(k,<sp/>m,<sp/>dx,<sp/>bc.<ref refid="structAddScalarBC_1_1BC1D_1a8f2672f9ad96981da309a5fed839d1fd" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC1D_1a8d642f27364b71cbd16fbd5fd5256f17" kindref="member">nc</ref>,<sp/>Al,<sp/>Ar);</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>A<sp/>=<sp/>A<sp/>+<sp/>Al<sp/>+<sp/>Ar;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" kindref="member">addScalarBCrhs</ref>(b,<sp/>bc.<ref refid="structAddScalarBC_1_1BC1D_1a77183eb35fb880e324c910e9a8969099" kindref="member">v</ref>,<sp/>indices);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"></highlight></codeline>
+<codeline lineno="307" refid="namespaceAddScalarBC_1a5c5ad118ba3b6fbe44155c8ab419c8db" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a2a94645bf49558f52b7d27344be3072d" kindref="member">addScalarBC</ref>(sp_mat<sp/>&amp;A,<sp/>vec<sp/>&amp;b,<sp/>u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>u32<sp/>n,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dy,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structAddScalarBC_1_1BC2D" kindref="compound">BC2D</ref><sp/>&amp;bc)<sp/>{</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(bc.<ref refid="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" kindref="member">dc</ref>.n_elem<sp/>==<sp/>4<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;dc<sp/>must<sp/>be<sp/>a<sp/>4x1<sp/>vector&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(bc.<ref refid="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" kindref="member">nc</ref>.n_elem<sp/>==<sp/>4<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;nc<sp/>must<sp/>be<sp/>a<sp/>4x1<sp/>vector&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(bc.<ref refid="structAddScalarBC_1_1BC2D_1ad71fdb1405bee78b172d965e91deb12c" kindref="member">v</ref>.size()<sp/>==<sp/>4<sp/><sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;v<sp/>must<sp/>have<sp/>4<sp/>vectors&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(A.n_rows<sp/>==<sp/>A.n_cols<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;A<sp/>must<sp/>be<sp/>square&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(A.n_cols<sp/>==<sp/>b.n_elem<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;b<sp/>size<sp/>must<sp/>equal<sp/>A<sp/>columns&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/>sp_mat<sp/>Al,<sp/>Ar,<sp/>Ab,<sp/>At;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(k,<sp/>m,<sp/>dx,<sp/>n,<sp/>dy,<sp/>bc.<ref refid="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" kindref="member">nc</ref>,<sp/>Al,<sp/>Ar,<sp/>Ab,<sp/>At);</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>uvec<sp/>rl,<sp/>rr,<sp/>rb,<sp/>rt;</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>BCPairLhs<sp/>pairs[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{boundaryNorm(bc.<ref refid="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" kindref="member">nc</ref>,<sp/>0,<sp/>1),<sp/>Al,<sp/>Ar,<sp/>rl,<sp/>rr},<sp/><sp/></highlight><highlight class="comment">//<sp/>Left<sp/><sp/>/<sp/>Right</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{boundaryNorm(bc.<ref refid="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" kindref="member">nc</ref>,<sp/>2,<sp/>3),<sp/>Ab,<sp/>At,<sp/>rb,<sp/>rt},<sp/><sp/></highlight><highlight class="comment">//<sp/>Bottom<sp/>/<sp/>Top</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;p<sp/>:<sp/>pairs)<sp/>applyBCPair(A,<sp/>b,<sp/>p);</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" kindref="member">addScalarBCrhs</ref>(b,<sp/>bc.<ref refid="structAddScalarBC_1_1BC2D_1a166f6736fbdfb8470309758f9e8b9a87" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC2D_1a7e1086c99349a6c9ef0d679aaf9e609c" kindref="member">nc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC2D_1ad71fdb1405bee78b172d965e91deb12c" kindref="member">v</ref>,<sp/>rl,<sp/>rr,<sp/>rb,<sp/>rt);</highlight></codeline>
+<codeline lineno="327"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329" refid="namespaceAddScalarBC_1ae5003d388561702fa7c35a939d77a160" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceAddScalarBC_1a2a94645bf49558f52b7d27344be3072d" kindref="member">addScalarBC</ref>(sp_mat<sp/>&amp;A,<sp/>vec<sp/>&amp;b,<sp/>u16<sp/>k,<sp/>u32<sp/>m,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dx,</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>u32<sp/>n,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dy,<sp/>u32<sp/>o,<sp/><ref refid="utils_8h_1a4b04262b81aa7d31eb5d2f607e2a35de" kindref="member">Real</ref><sp/>dz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structAddScalarBC_1_1BC3D" kindref="compound">BC3D</ref><sp/>&amp;bc)<sp/>{</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(bc.<ref refid="structAddScalarBC_1_1BC3D_1ae34c8703e0309547a7015cd3c22eaada" kindref="member">dc</ref>.n_elem<sp/>==<sp/>6<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;dc<sp/>must<sp/>be<sp/>a<sp/>6x1<sp/>vector&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(bc.<ref refid="structAddScalarBC_1_1BC3D_1ad57ff1213ee58d9f846a0bf665afd5d9" kindref="member">nc</ref>.n_elem<sp/>==<sp/>6<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;nc<sp/>must<sp/>be<sp/>a<sp/>6x1<sp/>vector&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(bc.<ref refid="structAddScalarBC_1_1BC3D_1ab0e1b68c8ca75c6da443bdb4676b0cab" kindref="member">v</ref>.size()<sp/>==<sp/>6<sp/><sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;v<sp/>must<sp/>have<sp/>6<sp/>vectors&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(A.n_rows<sp/>==<sp/>A.n_cols<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;A<sp/>must<sp/>be<sp/>square&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(A.n_cols<sp/>==<sp/>b.n_elem<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;b<sp/>size<sp/>must<sp/>equal<sp/>A<sp/>columns&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>sp_mat<sp/>Al,<sp/>Ar,<sp/>Ab,<sp/>At,<sp/>Af,<sp/>Ak;</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1afd4c1b6f5c029b82a6fd07b1723724d3" kindref="member">addScalarBClhs</ref>(k,<sp/>m,<sp/>dx,<sp/>n,<sp/>dy,<sp/>o,<sp/>dz,<sp/>bc.<ref refid="structAddScalarBC_1_1BC3D_1ae34c8703e0309547a7015cd3c22eaada" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC3D_1ad57ff1213ee58d9f846a0bf665afd5d9" kindref="member">nc</ref>,</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Al,<sp/>Ar,<sp/>Ab,<sp/>At,<sp/>Af,<sp/>Ak);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/>uvec<sp/>rl,<sp/>rr,<sp/>rb,<sp/>rt,<sp/>rf,<sp/>rk;</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/>BCPairLhs<sp/>pairs[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{boundaryNorm(bc.<ref refid="structAddScalarBC_1_1BC3D_1ae34c8703e0309547a7015cd3c22eaada" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC3D_1ad57ff1213ee58d9f846a0bf665afd5d9" kindref="member">nc</ref>,<sp/>0,<sp/>1),<sp/>Al,<sp/>Ar,<sp/>rl,<sp/>rr},<sp/><sp/></highlight><highlight class="comment">//<sp/>Left<sp/><sp/>/<sp/>Right</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{boundaryNorm(bc.<ref refid="structAddScalarBC_1_1BC3D_1ae34c8703e0309547a7015cd3c22eaada" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC3D_1ad57ff1213ee58d9f846a0bf665afd5d9" kindref="member">nc</ref>,<sp/>2,<sp/>3),<sp/>Ab,<sp/>At,<sp/>rb,<sp/>rt},<sp/><sp/></highlight><highlight class="comment">//<sp/>Bottom<sp/>/<sp/>Top</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{boundaryNorm(bc.<ref refid="structAddScalarBC_1_1BC3D_1ae34c8703e0309547a7015cd3c22eaada" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC3D_1ad57ff1213ee58d9f846a0bf665afd5d9" kindref="member">nc</ref>,<sp/>4,<sp/>5),<sp/>Af,<sp/>Ak,<sp/>rf,<sp/>rk},<sp/><sp/></highlight><highlight class="comment">//<sp/>Front<sp/><sp/>/<sp/>Back</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;p<sp/>:<sp/>pairs)<sp/>applyBCPair(A,<sp/>b,<sp/>p);</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceAddScalarBC_1a6ee34dd5e753931bc4edd6a0c4205b63" kindref="member">addScalarBCrhs</ref>(b,<sp/>bc.<ref refid="structAddScalarBC_1_1BC3D_1ae34c8703e0309547a7015cd3c22eaada" kindref="member">dc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC3D_1ad57ff1213ee58d9f846a0bf665afd5d9" kindref="member">nc</ref>,<sp/>bc.<ref refid="structAddScalarBC_1_1BC3D_1ab0e1b68c8ca75c6da443bdb4676b0cab" kindref="member">v</ref>,<sp/>rl,<sp/>rr,<sp/>rb,<sp/>rt,<sp/>rf,<sp/>rk);</highlight></codeline>
+<codeline lineno="351"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>AddScalarBC</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="src/cpp/addscalarbc.cpp"/>
+  </compounddef>
+</doxygen>
