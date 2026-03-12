@@ -3,7 +3,6 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  python-sphinx-book-theme \
   python-sphinx_design \
   python-sphinx-togglebutton \
   python-sphinxcontrib-katex \
@@ -54,6 +53,7 @@ ARG PACKAGES="\
   python-breathe \
   python-myst-parser \
   python-pillow \
+  python-sphinx-book-theme \
   python-sphinx-copybutton \
   texlive-binextra \
   texlive-luatex \
